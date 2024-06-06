@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // Sets the root directory of input files. All other paths are relative to this.
+    "rootDir": "./src",
+    // Provides a base directory for non-relative module names. All paths will be resolved relative to this baseUrl.
+    "baseUrl": "./",
+  },
+  "exclude": [
+    "test",
+    "./jest.config.ts",
+  ]
+}

@@ -1,4 +1,4 @@
-import { TypeNames } from './database';
+import { TypeNames } from './database.js';
 
 export type DeleteFromCount = { count: number };
 export type ArcadeDeleteFromResponse = Array<DeleteFromCount>;

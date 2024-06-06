@@ -1,18 +1,18 @@
 import {
   ISpriteDatabaseClientParameters,
   ISpriteDatabaseConnectionParameters,
-} from '../types/database';
+} from "../types/database.js";
 
 export function isNewClient(
   parameters:
     | ISpriteDatabaseClientParameters
-    | ISpriteDatabaseConnectionParameters,
+    | ISpriteDatabaseConnectionParameters
 ) {
   if (
-    Object.hasOwn(parameters, 'address') &&
-    Object.hasOwn(parameters, 'username') &&
-    Object.hasOwn(parameters, 'password') &&
-    Object.hasOwn(parameters, 'databaseName')
+    Object.hasOwn(parameters, "address") &&
+    Object.hasOwn(parameters, "username") &&
+    Object.hasOwn(parameters, "password") &&
+    Object.hasOwn(parameters, "databaseName")
   ) {
     return true;
   }

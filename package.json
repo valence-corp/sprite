@@ -1,16 +1,17 @@
 {
   "name": "@valence-corp/sprite",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A TypeScript driver for ArcadeDB",
-  "main": "./dist/src/index.js",
-  "module": "./dist/src/index.js",
-  "types": "./dist/src/index.d.ts",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "jest ./test/",
     "unit-test": "jest ./test/unit/",
     "integration-test": "jest ./src/test/integration/",
     "dev": "nodemon --watch ./ --ext ts --exec 'rimraf ./dist && tsc && node ./dist/src/index.js'",
-    "build": "rimraf ./dist && tsc",
+    "build": "rimraf ./dist && tsc -p ./tsconfig.build.json",
     "build-docs": "typedoc ./src/api.ts --out ./docs --darkHighlightTheme dracula --lightHighlightTheme github-light",
     "exec": "pnpm build && node ./dist/src/index.js"
   },
