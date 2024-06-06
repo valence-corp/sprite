@@ -1,5 +1,5 @@
 import { client as dbClient } from '../../client/testClient.js';
-import { DocumentTypes } from '../../types';
+import { DocumentTypes } from '../../types.js';
 
 export { dbClient };
 

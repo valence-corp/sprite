@@ -1,5 +1,5 @@
 import { ModalityBase } from '../../../../../src/modes/ModalityBase.js';
-import { client as dbClient } from '../../client/testClient';
+import { client as dbClient } from '../../client/testClient.js';
 import { DocumentTypes } from '../../types.js';
 import { client as operators } from '../../operators/testClient.js';
 
