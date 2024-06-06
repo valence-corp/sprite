@@ -4,6 +4,7 @@
   "description": "A TypeScript driver for ArcadeDB",
   "main": "./dist/src/index.js",
   "module": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "scripts": {
     "test": "jest ./test/",
     "unit-test": "jest ./test/unit/",
