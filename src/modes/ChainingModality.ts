@@ -1,0 +1,127 @@
+import {
+  ArcadeResultSortDirection,
+  ArcadeSelectTimeoutStrategy,
+} from '../nodes/types.js';
+import {
+  ISpriteSelectFromOptions,
+  SpriteOperators,
+  SpriteWhereClause,
+  TypeNames,
+  WithRid,
+} from '../types/database.js';
+import { SpriteDatabase } from '../SpriteDatabase.js';
+import { SpriteOperations } from '../SpriteOperations.js';
+
+class ChainingModality<S> {
+  private database: SpriteDatabase;
+  private _operators: SpriteOperations;
+  constructor(database: SpriteDatabase, operators: SpriteOperations) {
+    this.database = database;
+    this._operators = operators;
+  }
+  /**
+   * Perform a `SELECT FROM` query on a specific type.
+   * @param typeName The type to perform a select from query on
+   * @returns An array containing the records found during the query.
+   */
+  selectFrom = <N extends TypeNames<S>, P extends keyof WithRid<S, N>>(
+    typeName: N,
+  ) => new SelectFrom<S, N>(this._operators, typeName);
+}
+
+// SELECT [ <Projections> ] [ FROM <Target> (([ LET <Assignment>* ] ])) ( not implemented)
+// [ WHERE <Condition>* ]
+// (([ GROUP BY <Field>* ])) (not implemented)
+// [ ORDER BY <Fields>* [ ASC|DESC ] * ]
+// (([ UNWIND <Field>* ])) (not implemented)
+// [ SKIP <SkipRecords> ]
+// [ LIMIT <MaxRecords> ]
+// [ TIMEOUT <MilliSeconds> [ <STRATEGY> ] ]
+
+class SelectFrom<S, N extends TypeNames<S>> {
+  private typeName: N;
+  private _operators: SpriteOperations;
+  private options?: ISpriteSelectFromOptions<S, N, any>;
+  constructor(operators: SpriteOperations, typeName: N) {
+    this.typeName = typeName;
+    this._operators = operators;
+  }
+  /**
+   * Designates conditions to filter the result-set.
+   * @param reference The field/property to target in the where statement
+   * @param operator The operator (i.e. !=, !!, <=, etc)
+   * @param value The value to check again the operator.
+   */
+  where = <P extends keyof WithRid<S, N>>(
+    reference: P,
+    operator: SpriteOperators,
+    value: WithRid<S, N>[P],
+  ) => {
+    this.options = {
+      ...this.options,
+      where: [reference, operator, value],
+    };
+    return this;
+  };
+  /**
+   * Designates the field with which to order the result-set.
+   * @param {string} field The field to order the result-set by.
+   * @param {ArcadeResultSortDirection} direction Defines the direction to sort the result (ASCending or DESCending).
+   */
+  orderBy = (field: keyof S[N], direction: ArcadeResultSortDirection) => {
+    this.options = {
+      ...this.options,
+      orderBy: {
+        field,
+        direction,
+      },
+    };
+    return this;
+  };
+  /**
+   * Defines the number of records you want to skip from the start of the result-set.
+   * You mayfind this useful in Pagination, when using it in conjunction with the
+   * limit `option`.
+   * @param {number} numberOfRecords The number of records to skip
+   * @returns
+   */
+  skip = (numberOfRecords: number) => {
+    this.options = {
+      ...this.options,
+      skip: numberOfRecords,
+    };
+    return this;
+  };
+  /**
+   * Defines the maximum number of records in the result-set. You may find this useful in
+   * Pagination, when using it in conjunction with the `skip` option.
+   * @param {number} numberOfRecords The number of records to limit the query to.
+   */
+  limit = (numberOfRecords: number) => {
+    this.options = {
+      ...this.options,
+      skip: numberOfRecords,
+    };
+    return this;
+  };
+  /**
+   * Defines the maximum time in milliseconds for the query, and optionally the
+   * exception strategy to use.
+   * @param {number} timeout The duration of the timeout in milliseconds.
+   * @param {ArcadeSelectTimeoutStrategy} strategy The timeout strategy to use. `RETURN` Truncates the result-set, returning the data collected up to the timeout. `EXCEPTION` Raises an exception.
+   */
+  timeout = (duration: number, strategy?: ArcadeSelectTimeoutStrategy) => {
+    this.options = {
+      ...this.options,
+      timeout: { duration, strategy },
+    };
+    return this;
+  };
+  /**
+   * Executes the SQL query / command on the database.
+   * @returns The result of the operation.
+   */
+  execute = () => this._operators.selectFrom<S, N>(this.typeName, this.options);
+}
+
+export { ChainingModality };

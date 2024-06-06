@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TypedOperations.createType() should throw an error if it receives an empty string for parameters 1`] = `[Error: Unable to create type: [''], in database: ['Test']]`;
+
+exports[`TypedOperations.createType() should throw an error if it receives no arguments 1`] = `[Error: Unable to create type: ['undefined'], in database: ['Test']]`;

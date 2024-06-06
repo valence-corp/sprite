@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SpriteServer.closeDatabase() should throw an error if supplied "databaseName" is an object 1`] = `[Error: Failed to create database "".]`;

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SpriteDatabase.explain() should throw an error if it receives no parameters 1`] = `[ReferenceError: testClient is not defined]`;

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SpriteServer.createUser() should throw an error if no "databases" property is supplied 1`] = `[Error: Failed to create database "[object Object]".]`;
+
+exports[`SpriteServer.createUser() should throw an error if no "password" is supplied 1`] = `[Error: Failed to create database "[object Object]".]`;
+
+exports[`SpriteServer.createUser() should throw an error if no "username" is supplied 1`] = `[Error: Failed to create database "[object Object]".]`;
