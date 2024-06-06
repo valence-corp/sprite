@@ -26,7 +26,7 @@ class ChainingModality<S> {
    */
   selectFrom = <N extends TypeNames<S>, P extends keyof WithRid<S, N>>(
     typeName: N,
-  ) => new SelectFrom<S, N>(this._operators, typeName);
+  ) => new SelectFrom<S, N, P>(this._operators, typeName);
 }
 
 // SELECT [ <Projections> ] [ FROM <Target> (([ LET <Assignment>* ] ])) ( not implemented)
@@ -38,7 +38,7 @@ class ChainingModality<S> {
 // [ LIMIT <MaxRecords> ]
 // [ TIMEOUT <MilliSeconds> [ <STRATEGY> ] ]
 
-class SelectFrom<S, N extends TypeNames<S>> {
+class SelectFrom<S, N extends TypeNames<S>, P extends keyof WithRid<S, N>> {
   private typeName: N;
   private _operators: SpriteOperations;
   private options?: ISpriteSelectFromOptions<S, N, any>;
@@ -121,7 +121,7 @@ class SelectFrom<S, N extends TypeNames<S>> {
    * Executes the SQL query / command on the database.
    * @returns The result of the operation.
    */
-  execute = () => this._operators.selectFrom<S, N>(this.typeName, this.options);
+  execute = () => this._operators.selectFrom<S, N, P>(this.typeName, this.options);
 }
 
 export { ChainingModality };

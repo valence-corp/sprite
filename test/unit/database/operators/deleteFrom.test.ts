@@ -28,7 +28,7 @@ describe('SpriteOperations.deleteOne()', () => {
     } as Response);
 
     // Act
-    await client.deleteFrom<DocumentTypes, TypeName>(
+    await client.deleteFrom<DocumentTypes, TypeName, any>(
       typeName,
       testTransaction,
       {
@@ -57,7 +57,7 @@ describe('SpriteOperations.deleteOne()', () => {
       .mockResolvedValueOnce(deleteOneResult);
 
     // Act
-    await client.deleteFrom<DocumentTypes, TypeName>(
+    await client.deleteFrom<DocumentTypes, TypeName, any>(
       typeName,
       testTransaction,
       {
@@ -81,7 +81,7 @@ describe('SpriteOperations.deleteOne()', () => {
       .mockResolvedValueOnce(deleteOneResult);
 
     // Act
-    await client.deleteFrom<DocumentTypes, TypeName>(
+    await client.deleteFrom<DocumentTypes, TypeName, any>(
       typeName,
       testTransaction,
       {
@@ -105,7 +105,7 @@ describe('SpriteOperations.deleteOne()', () => {
       .mockResolvedValueOnce(deleteOneResult);
 
     // Act
-    await client.deleteFrom<DocumentTypes, TypeName>(
+    await client.deleteFrom<DocumentTypes, TypeName, any>(
       typeName,
       testTransaction,
       {
@@ -129,7 +129,7 @@ describe('SpriteOperations.deleteOne()', () => {
       .mockResolvedValueOnce(deleteOneResult);
 
     // Act
-    await client.deleteFrom<DocumentTypes, TypeName>(
+    await client.deleteFrom<DocumentTypes, TypeName, any>(
       typeName,
       testTransaction,
       {

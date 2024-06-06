@@ -15,7 +15,7 @@ describe('TypedOperations.selectFrom()', () => {
       json: async () => ({ result: [{ count: 1 }] }),
     } as Response);
 
-    await client.selectFrom<DocumentTypes, TypeName>('aDocument', {
+    await client.selectFrom<DocumentTypes, TypeName, any>('aDocument', {
       where: ['@rid', '=', variables.rid],
     });
 
@@ -40,7 +40,7 @@ describe('TypedOperations.selectFrom()', () => {
       .spyOn(SpriteDatabase, 'query')
       .mockImplementationOnce(() => ({ result: [{ count: 0 }] } as any));
 
-    await client.selectFrom<DocumentTypes, TypeName>('aDocument', {
+    await client.selectFrom<DocumentTypes, TypeName, any>('aDocument', {
       skip: 10,
       where: ['aProperty', '!!', 'ok'],
     });
@@ -56,7 +56,7 @@ describe('TypedOperations.selectFrom()', () => {
       .spyOn(SpriteDatabase, 'query')
       .mockImplementationOnce(() => ({ result: [{ count: 0 }] } as any));
 
-    await client.selectFrom<DocumentTypes, TypeName>('aDocument', {
+    await client.selectFrom<DocumentTypes, TypeName, any>('aDocument', {
       limit: 10,
       where: ['aProperty', '!!', 'ok'],
     });
@@ -72,7 +72,7 @@ describe('TypedOperations.selectFrom()', () => {
       .spyOn(SpriteDatabase, 'query')
       .mockImplementationOnce(() => ({ result: [{ count: 0 }] } as any));
 
-    await client.selectFrom<DocumentTypes, TypeName>('aDocument', {
+    await client.selectFrom<DocumentTypes, TypeName, any>('aDocument', {
       timeout: {
         duration: 1000,
         strategy: 'EXCEPTION',
@@ -91,7 +91,7 @@ describe('TypedOperations.selectFrom()', () => {
       .spyOn(SpriteDatabase, 'query')
       .mockImplementationOnce(() => ({ result: [{ count: 0 }] } as any));
 
-    await client.selectFrom<DocumentTypes, TypeName>('aDocument', {
+    await client.selectFrom<DocumentTypes, TypeName, any>('aDocument', {
       orderBy: {
         field: 'aProperty',
         direction: 'ASC',
@@ -110,7 +110,7 @@ describe('TypedOperations.selectFrom()', () => {
       .spyOn(SpriteDatabase, 'query')
       .mockImplementationOnce(() => ({ result: [{ count: 0 }] } as any));
 
-    await client.selectFrom<DocumentTypes, TypeName>('aDocument', {
+    await client.selectFrom<DocumentTypes, TypeName, any>('aDocument', {
       where: ['@rid', '=', variables.rid],
     });
 

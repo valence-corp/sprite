@@ -24,7 +24,7 @@ class ModalityBase<S> {
     typeName: N,
     options?: ISpriteSelectFromOptions<S, N, P>,
   ) => {
-    return this._operators.selectFrom<S, N>(typeName, options);
+    return this._operators.selectFrom<S, N, P>(typeName, options);
   };
   dropType = async <N extends TypeNames<S>>(
     typeName: N,
@@ -132,7 +132,7 @@ class ModalityBase<S> {
     typeName: N,
     transaction: SpriteTransaction,
     options: ISpriteDeleteFromOptions<S, N, P>,
-  ) => this._operators.deleteFrom<S, N>(typeName, transaction, options);
+  ) => this._operators.deleteFrom<S, N, P>(typeName, transaction, options);
   /**
    * Delete a specific record by providing the `rid`
    * @param {string} rid The RID of the record to delete.
