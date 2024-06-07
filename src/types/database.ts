@@ -18,11 +18,11 @@ export type EdgeBase = RecordBase & {
   '@out': string;
 };
 
-export type WithArcadeEdgeRecordMeta<S> = {
+export type AsArcadeEdges<S> = {
   [K in keyof S]: S[K] & EdgeBase;
 };
 
-export type WithArcadeRecordMeta<S> = {
+export type AsArcadeRecords<S> = {
   [K in keyof S]: S[K] & RecordBase;
 };
 

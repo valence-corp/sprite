@@ -1,19 +1,19 @@
-import { SpriteDatabase } from '../SpriteDatabase.js';
-import { ModalityBase } from './ModalityBase.js';
+import { SpriteDatabase } from "../SpriteDatabase.js";
+import { ModalityBase } from "./ModalityBase.js";
 import {
   ISpriteCreateTypeOptions,
   ISpriteInsertRecordOptions,
   TypeNames,
   WithArcadeEdgeRecordMeta,
   WithArcadeRecordMeta,
-} from '../types/database.js';
-import { SpriteOperations } from '../SpriteOperations.js';
-import { SpriteType } from '../SpriteType.js';
-import { SpriteTransaction } from '../SpriteTransaction.js';
+} from "../types/database.js";
+import { SpriteOperations } from "../SpriteOperations.js";
+import { SpriteType } from "../SpriteType.js";
+import { SpriteTransaction } from "../SpriteTransaction.js";
 import {
   ISpriteEdgeOptions,
   SpriteEdgeVertexDescriptor,
-} from '../types/edge.js';
+} from "../types/edge.js";
 
 /**
  * A window to a specific graph set.
@@ -23,7 +23,7 @@ import {
  */
 class GraphModality<
   V extends WithArcadeRecordMeta<V>,
-  E extends WithArcadeEdgeRecordMeta<E>,
+  E extends WithArcadeEdgeRecordMeta<E>
 > extends ModalityBase<V & E> {
   constructor(client: SpriteDatabase, operators: SpriteOperations) {
     super(client, operators);
@@ -65,7 +65,7 @@ class GraphModality<
   newVertex = async <N extends TypeNames<V>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteInsertRecordOptions<V[N]>,
+    options?: ISpriteInsertRecordOptions<V[N]>
   ) => this._operators.insertRecord<V, N>(typeName, transaction, options);
   /**
    * Insert a new edge into the database.
@@ -108,20 +108,20 @@ class GraphModality<
   newEdge = async <
     N extends TypeNames<E>,
     V1 extends keyof V,
-    V2 extends keyof V,
+    V2 extends keyof V
   >(
     typeName: N,
     to: SpriteEdgeVertexDescriptor<V, V1>,
     from: SpriteEdgeVertexDescriptor<V, V2>,
     transaction: SpriteTransaction,
-    options?: ISpriteEdgeOptions<E[N]>,
+    options?: ISpriteEdgeOptions<E[N]>
   ) =>
     this._operators.createEdge<E, V, N, V1, V2>(
       typeName,
       to,
       from,
       transaction!,
-      options,
+      options
     );
   /**
    * Create a new edge type.
@@ -165,8 +165,8 @@ class GraphModality<
   createEdgeType = async <N extends TypeNames<E>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteCreateTypeOptions<E, N>,
-  ) => this._operators.createType<E, N>(typeName, 'edge', transaction, options);
+    options?: ISpriteCreateTypeOptions<E, N>
+  ) => this._operators.createType<E, N>(typeName, "edge", transaction, options);
   /**
    * Create a new vertex type.
    * @param {TypeInRecordCategory} typeName The name of the type to create.
@@ -209,9 +209,9 @@ class GraphModality<
   createVertexType = async <N extends TypeNames<V>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteCreateTypeOptions<V, N>,
+    options?: ISpriteCreateTypeOptions<V, N>
   ): Promise<SpriteType<V, N>> =>
-    this._operators.createType<V, N>(typeName, 'vertex', transaction, options);
+    this._operators.createType<V, N>(typeName, "vertex", transaction, options);
 }
 
 export { GraphModality };

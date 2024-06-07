@@ -2,16 +2,17 @@ import {
   ISpriteDeleteFromOptions,
   ISpriteDropTypeOptions,
   ISpriteSelectFromOptions,
+  OmitMeta,
   SpriteTransactionCallback,
   TypeNames,
   WithRid,
-} from '../types/database.js';
+} from "../types/database.js";
 import {
   ArcadeTransactionIsolationLevel,
   SpriteTransaction,
-} from '../SpriteTransaction.js';
-import { SpriteDatabase } from '../SpriteDatabase.js';
-import { SpriteOperations } from '../SpriteOperations.js';
+} from "../SpriteTransaction.js";
+import { SpriteDatabase } from "../SpriteDatabase.js";
+import { SpriteOperations } from "../SpriteOperations.js";
 
 class ModalityBase<S> {
   protected _database: SpriteDatabase;
@@ -22,14 +23,14 @@ class ModalityBase<S> {
   }
   selectFrom = async <N extends TypeNames<S>, P extends keyof WithRid<S, N>>(
     typeName: N,
-    options?: ISpriteSelectFromOptions<S, N, P>,
+    options?: ISpriteSelectFromOptions<S, N, P>
   ) => {
     return this._operators.selectFrom<S, N, P>(typeName, options);
   };
   dropType = async <N extends TypeNames<S>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteDropTypeOptions,
+    options?: ISpriteDropTypeOptions
   ) => this._operators.dropType<S, N>(typeName, transaction, options);
   newTransaction = (isolationLevel?: ArcadeTransactionIsolationLevel) =>
     this._database.newTransaction(isolationLevel);
@@ -74,7 +75,7 @@ class ModalityBase<S> {
    */
   transaction = async (
     callback: SpriteTransactionCallback,
-    isolationLevel?: ArcadeTransactionIsolationLevel,
+    isolationLevel?: ArcadeTransactionIsolationLevel
   ): Promise<SpriteTransaction> => {
     try {
       const trx = await this.newTransaction(isolationLevel);
@@ -128,10 +129,10 @@ class ModalityBase<S> {
    *
    * deleteFromExample();
    */
-  deleteFrom = async <N extends TypeNames<S>, P extends keyof WithRid<S,N>>(
+  deleteFrom = async <N extends TypeNames<S>, P extends keyof WithRid<S, N>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options: ISpriteDeleteFromOptions<S, N, P>,
+    options: ISpriteDeleteFromOptions<S, N, P>
   ) => this._operators.deleteFrom<S, N, P>(typeName, transaction, options);
   /**
    * Delete a specific record by providing the `rid`
@@ -216,11 +217,12 @@ class ModalityBase<S> {
    *
    * updateOneExample();
    */
-  updateOne = async <N extends TypeNames<S>, D extends S[N]>(
+  updateOne = async <N extends TypeNames<S>>(
     rid: string,
-    data: D,
-    transaction: SpriteTransaction,
+    data: OmitMeta<S[N]>,
+    transaction: SpriteTransaction
   ) => this._operators.updateOne<S, N>(rid, data, transaction);
+
   /**
    * Select a specific record by providing the `rid`
    * @param rid The RID of the record to select.

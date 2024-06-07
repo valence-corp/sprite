@@ -1,6 +1,5 @@
 import { SpriteDatabase } from './SpriteDatabase.js';
 import {
-  ArcadeCommandResponse,
   ArcadeRecordType,
   ISpriteCreateTypeOptions,
   ISpriteDeleteFromOptions,
@@ -34,7 +33,7 @@ import {
   SpriteEdgeVertexDescriptor,
 } from './types/edge.js';
 
-class SpriteOperations {
+class SpriteOperations<S = unknown> {
   database: SpriteDatabase;
   private _validate = validation;
   private _nodes = nodes;
@@ -591,7 +590,7 @@ class SpriteOperations {
    */
   updateOne = async <S, N extends TypeNames<S>>(
     rid: string,
-    data: S[N],
+    data: OmitMeta<S[N]>,
     transaction: SpriteTransaction,
   ): Promise<RecordOperationResponse> => {
     // UPDATE <recordID>
@@ -604,7 +603,7 @@ class SpriteOperations {
       });
 
       if (data) {
-        command.append<S[N]>(this._nodes.update.record.content, data);
+        command.append<OmitMeta<S[N]>>(this._nodes.update.record.content, data);
       }
 
       command.append<boolean>(this._nodes.update.record.returnAfter, true);

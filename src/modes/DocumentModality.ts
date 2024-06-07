@@ -1,13 +1,14 @@
-import { SpriteDatabase } from '../SpriteDatabase.js';
-import { ModalityBase } from './ModalityBase.js';
+import { SpriteDatabase } from "../SpriteDatabase.js";
+import { ModalityBase } from "./ModalityBase.js";
 import {
   ISpriteCreateTypeOptions,
   ISpriteInsertRecordOptions,
   RecordBase,
   TypeNames,
-} from '../types/database.js';
-import { SpriteOperations } from '../SpriteOperations.js';
-import { SpriteTransaction } from '../SpriteTransaction.js';
+  WithArcadeRecordMeta,
+} from "../types/database.js";
+import { SpriteOperations } from "../SpriteOperations.js";
+import { SpriteTransaction } from "../SpriteTransaction.js";
 
 /**
  * Handles the operations related to document records in the database.
@@ -54,7 +55,7 @@ class DocumentModality<S> extends ModalityBase<S> {
   newDocument = <N extends TypeNames<S>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options: ISpriteInsertRecordOptions<S[N]>,
+    options: ISpriteInsertRecordOptions<S[N]>
   ) => this._operators.insertRecord<S, N>(typeName, transaction, options);
   /**
    * Create a new document type in the schema.
@@ -98,13 +99,13 @@ class DocumentModality<S> extends ModalityBase<S> {
   createType = <N extends TypeNames<S>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteCreateTypeOptions<S, N>,
+    options?: ISpriteCreateTypeOptions<S, N>
   ) =>
     this._operators.createType<S, N>(
       typeName,
-      'document',
+      "document",
       transaction,
-      options,
+      options
     );
 }
 
