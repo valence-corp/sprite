@@ -3,9 +3,7 @@ import { ModalityBase } from "./ModalityBase.js";
 import {
   ISpriteCreateTypeOptions,
   ISpriteInsertRecordOptions,
-  RecordBase,
   TypeNames,
-  WithArcadeRecordMeta,
 } from "../types/database.js";
 import { SpriteOperations } from "../SpriteOperations.js";
 import { SpriteTransaction } from "../SpriteTransaction.js";

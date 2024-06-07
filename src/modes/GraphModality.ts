@@ -4,8 +4,6 @@ import {
   ISpriteCreateTypeOptions,
   ISpriteInsertRecordOptions,
   TypeNames,
-  WithArcadeEdgeRecordMeta,
-  WithArcadeRecordMeta,
 } from "../types/database.js";
 import { SpriteOperations } from "../SpriteOperations.js";
 import { SpriteType } from "../SpriteType.js";
@@ -21,10 +19,7 @@ import {
  * @param {SpriteDatabase} client The instance of SpriteDatabase to target
  * @param {SpriteOperations} operators The operators instance to use
  */
-class GraphModality<
-  V extends WithArcadeRecordMeta<V>,
-  E extends WithArcadeEdgeRecordMeta<E>
-> extends ModalityBase<V & E> {
+class GraphModality<V, E> extends ModalityBase<V & E> {
   constructor(client: SpriteDatabase, operators: SpriteOperations) {
     super(client, operators);
   }

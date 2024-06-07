@@ -3,6 +3,6 @@ import { DocumentModality } from '../../../../src/modes/DocumentModality.js';
 
 describe('SpriteDatabase.documents()', () => {
   it(`should return an instance of DocumentModality`, async () => {
-    expect(client.documents()).toBeInstanceOf(DocumentModality);
+    expect(client.documentModality()).toBeInstanceOf(DocumentModality);
   });
 });

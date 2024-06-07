@@ -153,7 +153,7 @@ class SpriteDatabase {
    * Returns a modality building SQL queries using method chaining.
    * @returns {ChainingModality} A database chaining modality.
    */
-  createChainingModality = <S>(): ChainingModality<S> =>
+  chainModality = <S>(): ChainingModality<S> =>
     new ChainingModality<S>(this, this.operators);
   /**
    * Executes a query against the target database. This method only executes
