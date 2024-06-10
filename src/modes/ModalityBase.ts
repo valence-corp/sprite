@@ -7,12 +7,10 @@ import {
   TypeNames,
   WithRid,
 } from "../types/database.js";
-import {
-  ArcadeTransactionIsolationLevel,
-  SpriteTransaction,
-} from "../SpriteTransaction.js";
+import { SpriteTransaction } from "../SpriteTransaction.js";
 import { SpriteDatabase } from "../SpriteDatabase.js";
 import { SpriteOperations } from "../SpriteOperations.js";
+import { ArcadeTransactionIsolationLevel } from "../types/transaction.js";
 
 class ModalityBase<S> {
   protected _database: SpriteDatabase;

@@ -11,7 +11,6 @@ import {
 } from "./types/database.js";
 import { ArcadeDatabaseError } from "./errors/ArcadeDatabaseError.js";
 import {
-  ArcadeTransactionIsolationLevel,
   SpriteTransaction,
 } from "./SpriteTransaction.js";
 import {
@@ -23,6 +22,7 @@ import { SpriteOperations } from "./SpriteOperations.js";
 import { endpoints } from "./endpoints/database.js";
 import { isNewClient } from "./utilities/isNewClient.js";
 import { SpriteRestClient } from "./SpriteRestClient.js";
+import { ArcadeTransactionIsolationLevel } from "./types/transaction.js";
 
 /**
  * Interact with a SpriteDatabase, perform queries,
