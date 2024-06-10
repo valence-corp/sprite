@@ -8,12 +8,12 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "test": "jest ./test/",
-    "unit-test": "jest ./test/unit/",
+    "unit-test": "jest ./test/unit/type/createProperty.test.ts",
     "integration-test": "jest ./src/test/integration/",
-    "dev": "nodemon --watch ./ --ext ts --exec 'rimraf ./dist && tsc && node ./dist/src/index.js'",
+    "dev": "nodemon --watch ./ --ext ts --exec 'rimraf ./dist && tsc && node ./dist/index.js'",
     "build": "rimraf ./dist && tsc -p ./tsconfig.build.json",
     "build-docs": "typedoc ./src/api.ts --out ./docs --darkHighlightTheme dracula --lightHighlightTheme github-light",
-    "exec": "pnpm build && node ./dist/src/index.js"
+    "exec": "pnpm build && node ./dist/index.js"
   },
   "keywords": [],
   "author": "Austin Pittman",

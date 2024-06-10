@@ -53,7 +53,7 @@ class DocumentModality<S> extends ModalityBase<S> {
   newDocument = <N extends TypeNames<S>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options: ISpriteInsertRecordOptions<S[N]>
+    options?: ISpriteInsertRecordOptions<S[N]>
   ) => this._operators.insertRecord<S, N>(typeName, transaction, options);
   /**
    * Create a new document type in the schema.

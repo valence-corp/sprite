@@ -1,14 +1,14 @@
-import { SpriteRestClient } from './SpriteRestClient.js';
-import { endpoints } from './endpoints/server.js';
+import { SpriteRestClient } from "./SpriteRestClient.js";
+import { endpoints } from "./endpoints/server.js";
 import {
   ArcadeServerInformation,
   ArcadeServerInformationLevel,
   ISpriteCreateArcadeUser,
   SpriteArcadeServerEvents,
-} from './types/server.js';
-import { SpriteDatabase } from './SpriteDatabase.js';
-import { ISpriteRestClientConnectionParameters } from './types/client.js';
-import { validation } from './validation/ArcadeParameterValidation.js';
+} from "./types/server.js";
+import { SpriteDatabase } from "./SpriteDatabase.js";
+import { ISpriteRestClientConnectionParameters } from "./types/client.js";
+import { validation } from "./validation/ArcadeParameterValidation.js";
 
 /**
  * Interact with a ArcadeDB server. Manage databases, users, etc.
@@ -57,7 +57,7 @@ class SpriteServer {
       const response = await this._client.fetch(endpoints.ready);
       return response.status === 204;
     } catch (error) {
-      throw new Error('Unable to check the server status.', { cause: error });
+      throw new Error("Unable to check the server status.", { cause: error });
     }
   };
   /**
@@ -120,10 +120,7 @@ class SpriteServer {
    */
   openDatabase = async (databaseName: string): Promise<boolean> => {
     try {
-      return await this._booleanCommand(
-        `OPEN DATABASE`,
-        databaseName as string,
-      );
+      return await this._booleanCommand(`OPEN DATABASE`, databaseName);
     } catch (error) {
       throw new Error(`Unabled to open database "${databaseName as string}`, {
         cause: error,
@@ -148,7 +145,7 @@ class SpriteServer {
    */
   database = (databaseName: string): SpriteDatabase => {
     try {
-      //this.validate.databaseName(databaseName);
+      this._validate.databaseName(databaseName);
       return new SpriteDatabase({ client: this._client, databaseName });
     } catch (error) {
       throw new Error(
@@ -157,7 +154,7 @@ class SpriteServer {
         }`,
         {
           cause: error,
-        },
+        }
       );
     }
   };
@@ -190,29 +187,29 @@ class SpriteServer {
    */
   command = async <T>(
     command: string,
-    parameters?: string | object,
+    parameters?: string | object
   ): Promise<T> => {
     try {
       // TODO: This is a bad idea.
       // Why all this logic for every command?
       const parametersString = parameters
-        ? typeof parameters === 'object'
+        ? typeof parameters === "object"
           ? ` ${JSON.stringify(parameters)}`
           : ` ${parameters}`
-        : '';
+        : "";
 
       const body = JSON.stringify({
         command: `${command}${parametersString}`,
       });
 
       return await this._client.fetchJson<T>(endpoints.command, {
-        method: 'POST',
+        method: "POST",
         body,
       });
     } catch (error) {
       throw new Error(
         `Encountered an error when sending a command to the server.`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -239,10 +236,10 @@ class SpriteServer {
    */
   private _booleanCommand = async (
     command: string,
-    parameters?: string | object,
+    parameters?: string | object
   ): Promise<boolean> => {
     const response = await this.command(command, parameters);
-    if (response === 'ok') {
+    if (response === "ok") {
       return true;
     } else {
       return false;
@@ -280,7 +277,7 @@ class SpriteServer {
     } catch (error) {
       throw new Error(
         `There was an error attempting to connect cluster at: ${address}`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -312,8 +309,8 @@ class SpriteServer {
     try {
       this._validate.databaseName(databaseName);
       const created = await this._booleanCommand(
-        'CREATE DATABASE',
-        databaseName,
+        "CREATE DATABASE",
+        databaseName
       );
       if (created) {
         return this.database(databaseName);
@@ -321,7 +318,7 @@ class SpriteServer {
         throw new Error(
           `Received an unexpected response from the server when attempting to create database "${
             databaseName as string
-          }"`,
+          }"`
         );
       }
     } catch (error) {
@@ -329,7 +326,7 @@ class SpriteServer {
         `Failed to create database "${databaseName as string}".`,
         {
           cause: error,
-        },
+        }
       );
     }
   };
@@ -374,14 +371,14 @@ class SpriteServer {
   createUser = async (params: ISpriteCreateArcadeUser): Promise<boolean> => {
     try {
       if (
-        !params.hasOwnProperty('username') ||
-        !params.hasOwnProperty('password') ||
-        !params.hasOwnProperty('databases')
+        !params.hasOwnProperty("username") ||
+        !params.hasOwnProperty("password") ||
+        !params.hasOwnProperty("databases")
       ) {
         throw new TypeError(
           `The object supplied as an argument must contain 'username', 'password', and 'databases' properties. Received: ${JSON.stringify(
-            params,
-          )}`,
+            params
+          )}`
         );
       }
 
@@ -394,7 +391,7 @@ class SpriteServer {
       // character minimum, but in practice it's 4 (for non-aUser users)
       if (!(params.password.length > 3)) {
         throw new TypeError(
-          `The password must be at least 4 characters in length, received: ${params.password}, which is ${params.password.length} characters long.`,
+          `The password must be at least 4 characters in length, received: ${params.password}, which is ${params.password.length} characters long.`
         );
       }
 
@@ -410,12 +407,12 @@ class SpriteServer {
         databases: params.databases,
       };
 
-      return await this._booleanCommand('CREATE USER', expectedParameters);
+      return await this._booleanCommand("CREATE USER", expectedParameters);
     } catch (error) {
-      const databaseListString = Object.keys(params.databases).join(', ');
+      const databaseListString = Object.keys(params.databases).join(", ");
       throw new Error(
         `Could not create user ${params.username}. In database(s): ${databaseListString}`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -448,7 +445,7 @@ class SpriteServer {
   databaseExists = async (databaseName: string): Promise<boolean> => {
     try {
       const { status } = await this._client.fetch(
-        `${endpoints.exists}/${databaseName}`,
+        `${endpoints.exists}/${databaseName}`
       );
       switch (status) {
         case 200:
@@ -457,7 +454,7 @@ class SpriteServer {
           return false;
         default:
           throw new Error(
-            `Received an unexpected result from the server when attempting to check if database "${databaseName}" exists.`,
+            `Received an unexpected result from the server when attempting to check if database "${databaseName}" exists.`
           );
       }
     } catch (error) {
@@ -465,7 +462,7 @@ class SpriteServer {
         `Encountered an error when checking to see if database "${
           databaseName as string
         }" exists`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -495,11 +492,11 @@ class SpriteServer {
    */
   disconnectCluster = async (): Promise<boolean> => {
     try {
-      return await this._booleanCommand('DISCONNECT CLUSTER');
+      return await this._booleanCommand("DISCONNECT CLUSTER");
     } catch (error) {
       throw new Error(
-        'There was an error when attempting to disconnect from the cluster.',
-        { cause: error },
+        "There was an error when attempting to disconnect from the cluster.",
+        { cause: error }
       );
     }
   };
@@ -531,7 +528,7 @@ class SpriteServer {
   dropDatabase = async (databaseName: string): Promise<boolean> => {
     try {
       //this.validate.databaseName(databaseName);
-      return await this._booleanCommand('DROP DATABASE', databaseName);
+      return await this._booleanCommand("DROP DATABASE", databaseName);
     } catch (error) {
       throw new Error(`Failed to drop database.`, {
         cause: error,
@@ -618,11 +615,11 @@ class SpriteServer {
    */
   getEvents = async (): Promise<SpriteArcadeServerEvents> => {
     try {
-      return await this.command<SpriteArcadeServerEvents>('GET SERVER EVENTS');
+      return await this.command<SpriteArcadeServerEvents>("GET SERVER EVENTS");
     } catch (error) {
       throw new Error(
         `There was an error when attempting to retrieve ArcadeDB server event logs.`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -654,12 +651,12 @@ class SpriteServer {
    *
    * getInformationExample('basic');
    */
-  getInformation = async <M extends ArcadeServerInformationLevel = 'default'>(
-    mode?: M,
+  getInformation = async <M extends ArcadeServerInformationLevel = "default">(
+    mode?: M
   ): Promise<ArcadeServerInformation<M>> => {
     try {
       return await this._client.fetchJson(
-        `${endpoints.command}?mode=${mode || 'default'}`,
+        `${endpoints.command}?mode=${mode || "default"}`
       );
     } catch (error) {
       throw new Error(`Could not get ArcadeDB server information.`, {
@@ -696,8 +693,8 @@ class SpriteServer {
       return await this._client.fetchJson(endpoints.databases);
     } catch (error) {
       throw new Error(
-        'Encountered an error when attemping to fetch list of databases from the server.',
-        { cause: error },
+        "Encountered an error when attemping to fetch list of databases from the server.",
+        { cause: error }
       );
     }
   };
@@ -730,16 +727,16 @@ class SpriteServer {
   shutdown = async (): Promise<boolean> => {
     try {
       const response = await this._client.fetch(endpoints.command, {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify({
-          command: 'SHUTDOWN',
+          command: "SHUTDOWN",
         }),
       });
       return response.status === 204;
     } catch (error) {
       throw new Error(
         `There was an error when attempting to shutdown the ArcadeDB server at.`,
-        { cause: error },
+        { cause: error }
       );
     }
   };

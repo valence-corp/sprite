@@ -1,4 +1,4 @@
-import { SpriteDatabase } from './SpriteDatabase.js';
+import { SpriteDatabase } from "./SpriteDatabase.js";
 import {
   ArcadeRecordType,
   ISpriteCreateTypeOptions,
@@ -9,16 +9,16 @@ import {
   OmitMeta,
   TypeNames,
   WithRid,
-} from './types/database.js';
-import { SpriteCommand } from './SpriteCommand.js';
+} from "./types/database.js";
+import { SpriteCommand } from "./SpriteCommand.js";
 import {
   ArcadeDeleteReturnCount,
   ArcadeResultSortDirection,
   ArcadeSelectTimeoutStrategy,
-} from './nodes/types.js';
-import { nodes } from './nodes/index.js';
-import { SpriteType, ValidSuperTypeKey } from './SpriteType.js';
-import { SpriteTransaction } from './SpriteTransaction.js';
+} from "./nodes/types.js";
+import { nodes } from "./nodes/index.js";
+import { SpriteType } from "./SpriteType.js";
+import { SpriteTransaction } from "./SpriteTransaction.js";
 import {
   ArcadeCreateEdgeResponse,
   ArcadeCreateTypeResponse,
@@ -26,12 +26,13 @@ import {
   ArcadeUpdateOneResponse,
   DeleteFromCount,
   RecordOperationResponse,
-} from './types/operators.js';
-import { validation } from './validation/ArcadeParameterValidation.js';
+} from "./types/operators.js";
+import { validation } from "./validation/ArcadeParameterValidation.js";
 import {
   ISpriteEdgeOptions,
   SpriteEdgeVertexDescriptor,
-} from './types/edge.js';
+} from "./types/edge.js";
+import { ValidSuperTypeKey } from "./types/type.js";
 
 class SpriteOperations<S = unknown> {
   database: SpriteDatabase;
@@ -52,7 +53,7 @@ class SpriteOperations<S = unknown> {
     typeName: N,
     recordType: ArcadeRecordType,
     transaction: SpriteTransaction,
-    options?: ISpriteCreateTypeOptions<S, N>,
+    options?: ISpriteCreateTypeOptions<S, N>
   ) => {
     try {
       // CREATE <DOCUMENT|VERTEX|EDGE> TYPE <type>
@@ -68,40 +69,40 @@ class SpriteOperations<S = unknown> {
 
       createTypeCommand.append<TypeNames<S>>(
         this._nodes.create.type.type,
-        typeName,
+        typeName
       );
 
       if (options?.ifNotExists) {
         createTypeCommand.append<boolean>(
           this._nodes.create.type.ifNotExists,
-          options.ifNotExists,
+          options.ifNotExists
         );
       }
 
       if (options?.extends) {
         createTypeCommand.append<ValidSuperTypeKey<S, N>>(
           this._nodes.create.type.superType,
-          options.extends,
+          options.extends
         );
       }
 
       if (options?.buckets) {
         createTypeCommand.append<Array<string> | string>(
           this._nodes.create.bucket,
-          options.buckets,
+          options.buckets
         );
       }
 
       if (options?.totalBuckets) {
         createTypeCommand.append<number>(
           this._nodes.create.type.totalBuckets,
-          options.totalBuckets,
+          options.totalBuckets
         );
       }
 
       const response = await this._command<ArcadeCreateTypeResponse>(
         createTypeCommand.toString(),
-        transaction,
+        transaction
       );
       if (response[0].typeName === typeName) {
         return this.type<S, N>(typeName);
@@ -111,7 +112,7 @@ class SpriteOperations<S = unknown> {
             typeName as string
           }'], of recordType: ['${recordType as string}'], into database ['${
             this.database.name
-          }']`,
+          }']`
         );
       }
     } catch (error) {
@@ -119,7 +120,7 @@ class SpriteOperations<S = unknown> {
         `Unable to create type: ['${typeName as string}'], in database: ['${
           this.database.name
         }']`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -146,13 +147,13 @@ class SpriteOperations<S = unknown> {
     V,
     N extends TypeNames<E>,
     V1 extends TypeNames<V>,
-    V2 extends TypeNames<V>,
+    V2 extends TypeNames<V>
   >(
     type: N,
     from: SpriteEdgeVertexDescriptor<V, V1>,
     to: SpriteEdgeVertexDescriptor<V, V2>,
     transaction: SpriteTransaction,
-    options?: ISpriteEdgeOptions<E[N]>,
+    options?: ISpriteEdgeOptions<E[N]>
   ): Promise<E[N]> => {
     // CREATE EDGE <type> [BUCKET <bucket>] [UPSERT] FROM <rid>|(<query>)|[<rid>]* TO <rid>|
     // (<query>)|[<rid>]*
@@ -174,63 +175,63 @@ class SpriteOperations<S = unknown> {
       if (options?.upsert) {
         createEdgeCommand.append<boolean>(
           this._nodes.create.edge.upsert,
-          options.upsert,
+          options.upsert
         );
       }
 
       createEdgeCommand.append<SpriteEdgeVertexDescriptor<V, V1>>(
         this._nodes.create.edge.from,
-        from,
+        from
       );
       createEdgeCommand.append<SpriteEdgeVertexDescriptor<V, V2>>(
         this._nodes.create.edge.to,
-        to,
+        to
       );
 
       if (options?.unidirectional) {
         createEdgeCommand.append<boolean>(
           this._nodes.create.edge.unidirectional,
-          options.unidirectional,
+          options.unidirectional
         );
       }
 
       if (options?.ifNotExists) {
         createEdgeCommand.append<boolean>(
           this._nodes.create.edge.ifNotExists,
-          options.ifNotExists,
+          options.ifNotExists
         );
       }
 
       if (options?.data) {
         createEdgeCommand.append<OmitMeta<E[N]>>(
           this._nodes.create.edge.content,
-          options.data,
+          options.data
         );
       }
       if (options?.retry?.attempts) {
         createEdgeCommand.append<number>(
           this._nodes.create.edge.retry,
-          options.retry.attempts,
+          options.retry.attempts
         );
       }
 
       if (options?.retry?.wait) {
         createEdgeCommand.append<number>(
           this._nodes.create.edge.wait,
-          options.retry.wait,
+          options.retry.wait
         );
       }
 
       if (options?.batchSize) {
         createEdgeCommand.append<number>(
           this._nodes.create.edge.batchSize,
-          options.batchSize,
+          options.batchSize
         );
       }
 
       const result = await this._command<ArcadeCreateEdgeResponse<E, N>>(
         createEdgeCommand.toString(),
-        transaction,
+        transaction
       );
 
       if (result[0]) {
@@ -241,7 +242,7 @@ class SpriteOperations<S = unknown> {
             type as string
           }, with content: ${JSON.stringify(options?.data)}, into database '${
             this.database.name
-          }'`,
+          }'`
         );
       }
     } catch (error) {
@@ -261,7 +262,7 @@ class SpriteOperations<S = unknown> {
   insertRecord = async <S, N extends TypeNames<S>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteInsertRecordOptions<S[N]>,
+    options?: ISpriteInsertRecordOptions<S[N]>
   ): Promise<S[N]> => {
     this._validate.transaction(transaction);
     // INSERT INTO [TYPE:]<type>|BUCKET:<bucket>
@@ -270,20 +271,20 @@ class SpriteOperations<S = unknown> {
       initial: this._nodes.insert.record.insertInto<string>(
         options?.bucket
           ? this._nodes.insert.record.bucket(options.bucket)
-          : (typeName as string),
+          : (typeName as string)
       ),
     });
 
     if (options?.data) {
       insertIntoCommand.append<OmitMeta<S[N]>>(
         this._nodes.insert.record.content,
-        options.data,
+        options.data
       );
     }
 
     const result = await this._command<S[N][]>(
       insertIntoCommand.toString(),
-      transaction,
+      transaction
     );
 
     if (result[0]) {
@@ -294,7 +295,7 @@ class SpriteOperations<S = unknown> {
           typeName as string
         }, with content: ${JSON.stringify(options?.data)}, into database '${
           this.database.name
-        }'`,
+        }'`
       );
     }
   };
@@ -310,7 +311,7 @@ class SpriteOperations<S = unknown> {
   dropType = async <S, N extends TypeNames<S>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteDropTypeOptions,
+    options?: ISpriteDropTypeOptions
   ) => {
     try {
       this._validate.transaction(transaction);
@@ -322,20 +323,20 @@ class SpriteOperations<S = unknown> {
       if (options?.unsafe) {
         dropTypeCommand.append<boolean>(
           this._nodes.drop.type.unsafe,
-          options.unsafe,
+          options.unsafe
         );
       }
 
       if (options?.ifExists) {
         dropTypeCommand.append<boolean>(
           this._nodes.drop.type.ifExists,
-          options.ifExists,
+          options.ifExists
         );
       }
 
       const result = await this._command<any>(
         dropTypeCommand.toString(),
-        transaction,
+        transaction
       );
 
       if (result) {
@@ -343,8 +344,8 @@ class SpriteOperations<S = unknown> {
       } else {
         throw new Error(
           `Received an unexpected response from the server: ${JSON.stringify(
-            result,
-          )}`,
+            result
+          )}`
         );
       }
     } catch (error) {
@@ -352,7 +353,7 @@ class SpriteOperations<S = unknown> {
         `Unable to drop type [${typeName as string}] from database [${
           this.database.name
         }]`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -365,7 +366,7 @@ class SpriteOperations<S = unknown> {
   deleteFrom = async <S, N extends TypeNames<S>, P extends keyof WithRid<S, N>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteDeleteFromOptions<S, N, P>,
+    options?: ISpriteDeleteFromOptions<S, N, P>
   ): Promise<DeleteFromCount> => {
     // DELETE FROM <Type> [RETURN <returning>]
     // [WHERE <Condition>*] [LIMIT <MaxRecords>] [TIMEOUT <MilliSeconds>] [UNSAFE]
@@ -375,14 +376,14 @@ class SpriteOperations<S = unknown> {
       // you must use backticks on the typeName, so this is a hack for now (TODO)
       const command = new SpriteCommand({
         initial: this._nodes.delete.from.delete<N>(
-          options?.where ? typeName : (`\`${typeName as string}\`` as N),
+          options?.where ? typeName : (`\`${typeName as string}\`` as N)
         ),
       });
 
       if (options?.return) {
         command.append<ArcadeDeleteReturnCount>(
           this._nodes.delete.from.returnCount,
-          options?.return,
+          options?.return
         );
       }
 
@@ -397,27 +398,27 @@ class SpriteOperations<S = unknown> {
       if (options?.timeout) {
         command.append<number>(
           this._nodes.delete.from.timeout,
-          options.timeout,
+          options.timeout
         );
       }
 
       const result = await this._command<ArcadeDeleteFromResponse>(
         command.toString(),
-        transaction,
+        transaction
       );
       if (result[0]) {
         return result[0];
       } else {
-        throw new Error('Unexpected result from the the server.');
+        throw new Error("Unexpected result from the the server.");
       }
     } catch (error) {
       throw new Error(
         `Could not delete record of type: ['${
           typeName as string
         }'], from database ['${this.database.name}'], where: ['${JSON.stringify(
-          options?.where,
+          options?.where
         )}'].`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -429,19 +430,19 @@ class SpriteOperations<S = unknown> {
    */
   private _command = async <T>(
     command: string,
-    transaction: SpriteTransaction,
+    transaction: SpriteTransaction
   ): Promise<T> => {
     this._validate.transaction(transaction);
     const response = await this.database.command<T>(
-      'sql',
+      "sql",
       command,
-      transaction,
+      transaction
     );
     if (response.result) {
       return response.result;
     }
     throw new Error(
-      'No result property was present on the response from the server.',
+      "No result property was present on the response from the server."
     );
   };
   /**
@@ -451,12 +452,12 @@ class SpriteOperations<S = unknown> {
    * the codebase DRY.
    */
   private _query = async <T>(command: string): Promise<T> => {
-    const response = await this.database.query<T>('sql', command);
+    const response = await this.database.query<T>("sql", command);
     if (response.result) {
       return response.result;
     }
     throw new Error(
-      'No result property was present on the response from the server.',
+      "No result property was present on the response from the server."
     );
   };
   /**
@@ -467,7 +468,7 @@ class SpriteOperations<S = unknown> {
    */
   selectFrom = async <S, N extends TypeNames<S>, P extends keyof WithRid<S, N>>(
     typeName: N,
-    options?: ISpriteSelectFromOptions<S, N, P>,
+    options?: ISpriteSelectFromOptions<S, N, P>
   ): Promise<Array<S[N]>> => {
     // SELECT [ <Projections> ] [ FROM <Target> (([ LET <Assignment>* ] ])) ( not implemented)
     // [ WHERE <Condition>* ]
@@ -489,12 +490,12 @@ class SpriteOperations<S = unknown> {
       if (options?.orderBy) {
         command.append<keyof S[N]>(
           this._nodes.select.from.orderBy,
-          options.orderBy.field,
+          options.orderBy.field
         );
         if (options?.orderBy.direction) {
           command.append<ArcadeResultSortDirection>(
             this._nodes.select.from.direction,
-            options.orderBy.direction,
+            options.orderBy.direction
           );
         }
       }
@@ -510,12 +511,12 @@ class SpriteOperations<S = unknown> {
       if (options?.timeout) {
         command.append<number>(
           this._nodes.select.from.timeout,
-          options.timeout.duration,
+          options.timeout.duration
         );
         if (options?.timeout.strategy) {
           command.append<ArcadeSelectTimeoutStrategy>(
             this._nodes.select.from.strategy,
-            options.timeout.strategy,
+            options.timeout.strategy
           );
         }
       }
@@ -527,7 +528,7 @@ class SpriteOperations<S = unknown> {
         `Could not execute select command on type:${
           typeName as string
         } in database ${this.database.name}`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -544,7 +545,7 @@ class SpriteOperations<S = unknown> {
     } catch (error) {
       throw new Error(
         `Could not select RID: [${rid}], from database ${this.database.name}.`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -557,24 +558,24 @@ class SpriteOperations<S = unknown> {
    */
   deleteOne = async (
     rid: string,
-    transaction: SpriteTransaction,
+    transaction: SpriteTransaction
   ): Promise<DeleteFromCount> => {
     try {
       this._validate.transaction(transaction);
       const result = await this._command<ArcadeDeleteFromResponse>(
         `DELETE FROM ${rid}`,
-        transaction,
+        transaction
       );
       switch (result[0].count) {
         case 1:
           return result[0];
         case 0:
           throw new Error(
-            `No record found with rid: [${rid}], in database: [${this.database.name}]`,
+            `No record found with rid: [${rid}], in database: [${this.database.name}]`
           );
         default:
           throw new Error(
-            `Unexpected result when deleting record by rid: [${rid}]`,
+            `Unexpected result when deleting record by rid: [${rid}]`
           );
       }
     } catch (error) {
@@ -591,7 +592,7 @@ class SpriteOperations<S = unknown> {
   updateOne = async <S, N extends TypeNames<S>>(
     rid: string,
     data: OmitMeta<S[N]>,
-    transaction: SpriteTransaction,
+    transaction: SpriteTransaction
   ): Promise<RecordOperationResponse> => {
     // UPDATE <recordID>
     // [CONTENT <JSON>]
@@ -610,7 +611,7 @@ class SpriteOperations<S = unknown> {
 
       const result = await this._command<ArcadeUpdateOneResponse>(
         command.toString(),
-        transaction,
+        transaction
       );
       if (result[0]) {
         return result[0];
@@ -620,7 +621,7 @@ class SpriteOperations<S = unknown> {
     } catch (error) {
       throw new Error(
         `An error occured when attmepting to update record @rid: ${rid}, in database ${this.database.name}`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
