@@ -34,7 +34,7 @@ import {
 } from "./types/edge.js";
 import { ValidSuperTypeKey } from "./types/type.js";
 
-class SpriteOperations<S = unknown> {
+class SpriteOperations {
   database: SpriteDatabase;
   private _validate = validation;
   private _nodes = nodes;
