@@ -8,7 +8,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "test": "jest ./test/",
-    "unit-test": "jest ./test/unit/type/createProperty.test.ts",
+    "unit-test": "jest ./test/unit/server",
     "integration-test": "jest ./src/test/integration/",
     "dev": "nodemon --watch ./ --ext ts --exec 'rimraf ./dist && tsc && node ./dist/index.js'",
     "build": "rimraf ./dist && tsc -p ./tsconfig.build.json",

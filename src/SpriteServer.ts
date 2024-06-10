@@ -502,7 +502,7 @@ class SpriteServer {
    */
   dropDatabase = async (databaseName: string): Promise<boolean> => {
     try {
-      return await this._booleanCommand(`DROP DATABASE$ ${databaseName}`);
+      return await this._booleanCommand(`DROP DATABASE ${databaseName}`);
     } catch (error) {
       throw new Error(`Failed to drop database.`, {
         cause: error,
