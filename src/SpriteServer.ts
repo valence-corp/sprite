@@ -159,7 +159,6 @@ class SpriteServer {
   /**
    * A method for sending commands as strings to the server.
    * @param {string} command The [command](https://docs.arcadedb.com/#HTTP-ServerCommand) to send to the server, such as `CREATE DATABASE`.
-   * @param {object | string} parameters Optionally, "command arguments" can be supplied as a second argument to the method, (i.e. a `string`, or an `object`).
    * @returns {Promise<object>} The response is simplified from the raw response from the ArcadeDB server. JSON responses automatically return just the `result` property of the raw JSON object returned from the server. Results such as `OK` are returned as `boolean` values.
    * @example
    *
@@ -204,7 +203,6 @@ class SpriteServer {
    * containing an `ok` value in the `result` property is expected. `ok` is then
    * returned as a simple boolean (`true`) value
    * @param {string} command The [command](https://docs.arcadedb.com/#HTTP-ServerCommand) to send to the server, such as `CREATE DATABASE`.
-   * @param {object | string} parameters Optionally, "command arguments" can be supplied as a second argument to the method, (i.e. a `string`, or an `object`).
    * @returns {boolean} `true` if the command was successful.
    * @example
    * async function booleanCommandExample(databaseName: string) {
