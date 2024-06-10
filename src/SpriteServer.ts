@@ -86,7 +86,7 @@ class SpriteServer {
    */
   closeDatabase = async (databaseName: string): Promise<boolean> => {
     try {
-      return await this._booleanCommand(`CLOSE DATABASE`, databaseName);
+      return await this._booleanCommand(`CLOSE DATABASE ${databaseName}`);
     } catch (error) {
       throw new Error(`Unabled to close database "${databaseName}`, {
         cause: error,
@@ -120,9 +120,9 @@ class SpriteServer {
    */
   openDatabase = async (databaseName: string): Promise<boolean> => {
     try {
-      return await this._booleanCommand(`OPEN DATABASE`, databaseName);
+      return await this._booleanCommand(`OPEN DATABASE ${databaseName}`);
     } catch (error) {
-      throw new Error(`Unabled to open database "${databaseName as string}`, {
+      throw new Error(`Unabled to open database "${databaseName}`, {
         cause: error,
       });
     }
@@ -149,9 +149,7 @@ class SpriteServer {
       return new SpriteDatabase({ client: this._client, databaseName });
     } catch (error) {
       throw new Error(
-        `Could not return an insance of "SpriteDatabase" for database: ${
-          databaseName as string
-        }`,
+        `Could not return an insance of "SpriteDatabase" for database: ${databaseName}`,
         {
           cause: error,
         }
@@ -185,23 +183,11 @@ class SpriteServer {
    *
    * commandExample('aDatabase');
    */
-  command = async <T>(
-    command: string,
-    parameters?: string | object
-  ): Promise<T> => {
+  command = async <T>(command: string): Promise<T> => {
     try {
-      // TODO: This is a bad idea.
-      // Why all this logic for every command?
-      const parametersString = parameters
-        ? typeof parameters === "object"
-          ? ` ${JSON.stringify(parameters)}`
-          : ` ${parameters}`
-        : "";
-
       const body = JSON.stringify({
-        command: `${command}${parametersString}`,
+        command,
       });
-
       return await this._client.fetchJson<T>(endpoints.command, {
         method: "POST",
         body,
@@ -234,11 +220,8 @@ class SpriteServer {
    * }
    * booleanCommandExample("myDatabase");
    */
-  private _booleanCommand = async (
-    command: string,
-    parameters?: string | object
-  ): Promise<boolean> => {
-    const response = await this.command(command, parameters);
+  private _booleanCommand = async (command: string): Promise<boolean> => {
+    const response = await this.command(command);
     if (response === "ok") {
       return true;
     } else {
@@ -273,7 +256,7 @@ class SpriteServer {
   connectCluster = async (address: string): Promise<boolean> => {
     try {
       this._validate.url(address);
-      return await this._booleanCommand(`CONNECT CLUSTER`, address);
+      return await this._booleanCommand(`CONNECT CLUSTER ${address}`);
     } catch (error) {
       throw new Error(
         `There was an error attempting to connect cluster at: ${address}`,
@@ -309,25 +292,19 @@ class SpriteServer {
     try {
       this._validate.databaseName(databaseName);
       const created = await this._booleanCommand(
-        "CREATE DATABASE",
-        databaseName
+        `CREATE DATABASE ${databaseName}`
       );
       if (created) {
         return this.database(databaseName);
       } else {
         throw new Error(
-          `Received an unexpected response from the server when attempting to create database "${
-            databaseName as string
-          }"`
+          `Received an unexpected response from the server when attempting to create database "${databaseName}"`
         );
       }
     } catch (error) {
-      throw new Error(
-        `Failed to create database "${databaseName as string}".`,
-        {
-          cause: error,
-        }
-      );
+      throw new Error(`Failed to create database "${databaseName}".`, {
+        cause: error,
+      });
     }
   };
   /**
@@ -407,7 +384,9 @@ class SpriteServer {
         databases: params.databases,
       };
 
-      return await this._booleanCommand("CREATE USER", expectedParameters);
+      return await this._booleanCommand(
+        `CREATE USER ${JSON.stringify(expectedParameters)}`
+      );
     } catch (error) {
       const databaseListString = Object.keys(params.databases).join(", ");
       throw new Error(
@@ -459,9 +438,7 @@ class SpriteServer {
       }
     } catch (error) {
       throw new Error(
-        `Encountered an error when checking to see if database "${
-          databaseName as string
-        }" exists`,
+        `Encountered an error when checking to see if database "${databaseName}" exists`,
         { cause: error }
       );
     }
@@ -527,8 +504,7 @@ class SpriteServer {
    */
   dropDatabase = async (databaseName: string): Promise<boolean> => {
     try {
-      //this.validate.databaseName(databaseName);
-      return await this._booleanCommand("DROP DATABASE", databaseName);
+      return await this._booleanCommand(`DROP DATABASE$ ${databaseName}`);
     } catch (error) {
       throw new Error(`Failed to drop database.`, {
         cause: error,
@@ -567,7 +543,7 @@ class SpriteServer {
       //     `A non-empty string must be supplied as a "username", which indicates the user to drop. The supplied parameter was: [${username}]. Which is of type ${typeof username}`,
       //   );
       // }
-      return await this._booleanCommand(`DROP USER`, username);
+      return await this._booleanCommand(`DROP USER ${username}`);
     } catch (error) {
       throw new Error(`Could not drop user ${username}.`, { cause: error });
     }
