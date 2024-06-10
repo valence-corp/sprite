@@ -222,7 +222,6 @@ class ModalityBase<S> {
     data: OmitMeta<S[N]>,
     transaction: SpriteTransaction
   ) => this._operators.updateOne<S, N>(rid, data, transaction);
-
   /**
    * Select a specific record by providing the `rid`
    * @param rid The RID of the record to select.
