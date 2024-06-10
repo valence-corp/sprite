@@ -1,10 +1,6 @@
 import { testTransaction } from "../database/client/testClient.js";
 import { client } from "./testClient.js";
 
-import { typeJsonSchema } from "../../../src/SpriteType.js";
-import { DocumentTypes } from "../database/types.js";
-import { variables } from "../../variables.js";
-
 describe("SpriteType.define", () => {
   it("make a properly formatted fetch request", async () => {
     jest.spyOn(client, "createProperty").mockResolvedValueOnce({
@@ -16,17 +12,21 @@ describe("SpriteType.define", () => {
     // transaction: SpriteTransaction,
     // options?: ISpritePropertyOptions
 
-    const typedSchema = typeJsonSchema<DocumentTypes, "aDocument">({
-      properties: {
+    await client.model(
+      {
         aProperty: {
           type: "string",
           default: "string",
-          minLength: 6,
-          maxLength: 8,
+          min: 6,
+          max: 8,
+        },
+        bProperty: {
+          type: "float",
+          default: 4.1,
         },
       },
-    });
-    await client.define(typedSchema, testTransaction);
+      testTransaction
+    );
     expect(client.createProperty).toHaveBeenCalledWith(
       "aProperty",
       "STRING",

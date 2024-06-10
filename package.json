@@ -12,6 +12,7 @@
     "integration-test": "jest ./src/test/integration/",
     "dev": "nodemon --watch ./ --ext ts --exec 'rimraf ./dist && tsc && node ./dist/index.js'",
     "build": "rimraf ./dist && tsc -p ./tsconfig.build.json",
+    "build-api-docs": "typedoc ./src/api.ts --out ./docs/api --darkHighlightTheme dracula --lightHighlightTheme github-light",
     "build-docs": "typedoc ./src/api.ts --out ./docs --darkHighlightTheme dracula --lightHighlightTheme github-light",
     "exec": "pnpm build && node ./dist/index.js"
   },

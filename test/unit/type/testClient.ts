@@ -4,7 +4,7 @@ import { client as SpriteDatabase } from "../database/client/testClient.js";
 type DocumentTypes = {
   aDocument: {
     aProperty: string,
-    bProperty: Array<number>
+    bProperty: number
   }
 }
 

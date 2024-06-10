@@ -62,7 +62,7 @@ export type SpriteSchemaTypeDefinition<T> = T extends string
   ? SpriteSchemaDateDefinition
   : never;
 
-export type ArcadeSchemaConstraints<T> = {
+export type SpriteSchemaDefinitionConstraints<T> = {
   /**
    * If true, the property must be present.
    * @default false
@@ -90,6 +90,10 @@ export type ArcadeSchemaConstraints<T> = {
    */
   regexp?: string;
 };
+
+export type ArcadeSchemaConstraints<T> = T extends string | number
+  ? SpriteSchemaDefinitionConstraints<T> & SpriteSchemaDefinitionMinMax
+  : SpriteSchemaDefinitionConstraints<T>;
 
 export type SpriteSchemaProperty<
   S,

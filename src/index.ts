@@ -1,6 +1,6 @@
 import { SpriteServer } from "./SpriteServer.js";
 import { SpriteDatabase } from "./SpriteDatabase.js";
-import { ArcadeEmbeddedMap } from "./SpriteType.js";
+import { ArcadeEmbeddedMap } from "./types/type.js";
 
 export { SpriteServer };
 export { SpriteDatabase };
@@ -9,9 +9,6 @@ export * from "./types/index.js";
 type ADocumentType = {
   aProperty: string;
   bProperty: ArcadeEmbeddedMap<number>;
-  // cProperty: ArcadeEmbeddedMap<string>;
-  // dProperty: number;
-  // eProperty: Date;
 };
 
 type DocumentTypes = {
@@ -46,7 +43,7 @@ server.dropDatabase("tester").then(() => {
           },
           bProperty: {
             type: "map",
-            default: {thing: 4},
+            default: { thing: 4 },
             mandatory: true,
             notnull: true,
           },

@@ -2,10 +2,6 @@ import { testTransaction } from "../database/client/testClient.js";
 import { client } from "./testClient.js";
 import { client as SpriteDatabase } from "../database/client/testClient.js";
 
-import { typeJsonSchema } from "../../../src/SpriteType.js";
-import { DocumentTypes } from "../database/types.js";
-import { variables } from "../../variables.js";
-
 describe("SpriteType.createProperty", () => {
   it("send a properly formatted command via SpriteDatabase.command", async () => {
     jest.spyOn(SpriteDatabase, "command").mockResolvedValueOnce({
@@ -22,7 +18,7 @@ describe("SpriteType.createProperty", () => {
       ifNotExists: true,
     };
 
-    await client.createProperty("aProperty", "STRING", testTransaction, {
+    await client.createProperty("aProperty", "string", testTransaction, {
       constraints: { min: 0, max: 1, default: "string" },
     });
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
@@ -36,7 +32,7 @@ describe("SpriteType.createProperty", () => {
       result: [{}],
     } as any);
 
-    await client.createProperty("aProperty", "STRING", testTransaction, {
+    await client.createProperty("aProperty", "string", testTransaction, {
       constraints: { min: 0, max: 1, default: "string" },
       ifNotExists: true,
     });
@@ -51,9 +47,8 @@ describe("SpriteType.createProperty", () => {
       result: [{}],
     } as any);
 
-    await client.createProperty("bProperty", "LIST", testTransaction, {
-      constraints: { min: 0, max: 1, default: "string" },
-      embeddedType: ""
+    await client.createProperty("bProperty", "float", testTransaction, {
+      constraints: { default: 4.1 },
     });
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       "sql",
