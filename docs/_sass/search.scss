@@ -1,0 +1,21 @@
+#searchBox {
+  position: relative;
+  width: 100%;
+
+  input[type="search"] {
+    padding: var(--padding-reg) var(--section-padding) var(--padding-reg) var(--padding-reg);
+    min-width: 100%;
+    color: var(--foreground-primary);
+    margin: 0 var(--padding-min) var(--section-padding) var(--padding-min);
+  }
+
+  #searchIcon {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    right: .31rem;
+    top: 0.5rem;
+    z-index: 0;
+    fill: var(--placeholder-color);
+  }
+}

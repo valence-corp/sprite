@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArcadeCreateEdgeResponse</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👾</text></svg>">
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <script src="/assets/js/accordion.js"></script>
+<script src="/assets/js/themeToggleSwitch.js"></script>
+<script src="/assets/js/navButton.js"></script>
+</head>
+
+<body>
+  <header id="documentHeader">
+  <div class="container row">
+    <h1>Sprite</h1>
+    <div id="controls">
+  <label class="switch" for="themeToggle">
+    <input type="checkbox" id="themeToggle" />
+    <figure class="button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M11.3807 2.01886C9.91573 3.38768 9 5.3369 9 7.49999C9 11.6421 12.3579 15 16.5 15C18.6631 15 20.6123 14.0843 21.9811 12.6193C21.6613 17.8537 17.3149 22 12 22C6.47715 22 2 17.5228 2 12C2 6.68514 6.14629 2.33869 11.3807 2.01886Z">
+        </path>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M11 18H7.94101C7.64391 16.7274 6.30412 15.6857 5.75395 14.9992C4.65645 13.6297 4 11.8915 4 10C4 5.58172 7.58172 2 12 2C16.4183 2 20 5.58172 20 10C20 11.8925 19.3428 13.6315 18.2443 15.0014C17.6944 15.687 16.3558 16.7276 16.059 18H13V13H11V18ZM16 20V21C16 22.1046 15.1046 23 14 23H10C8.89543 23 8 22.1046 8 21V20H16Z">
+        </path>
+      </svg>
+    </figure>
+  </label>
+  <button id="navButton">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" fill="none" 1.618 stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <line x1="34" y1="30" x2="18" y2="30"></line>
+      <line x1="18" y1="22" x2="34" y2="22"></line>
+    </svg>
+  </button>
+</div>
+  </div>
+</header>
+  <div class="container row">
+    <nav id="mainNavigation">
+  <div id="searchBox">
+  <input class="button" type="search" placeholder="search..." />
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" id="searchIcon">
+    <path
+      d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z">
+    </path>
+  </svg>
+</div>
+  <ul>
+    <li>
+      <a href="../../index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#666">
+  <path
+    d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
+  </path>
+</svg>
+        Home
+      </a>
+    </li>
+    <li>
+      <a href="https://www.github.com/valence-corp/sprite">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#666">
+  <path
+    d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z">
+  </path>
+</svg>
+        GitHub
+      </a>
+    </li>
+    <li class="menuItem">
+      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectGettingStarted" id="gettingStartedId">
+        <svg viewBox="0 0 16 24" width="1rem" height="1.5rem" class="icon">
+  <g>
+    <rect x="3" y="7" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
+    <line x1="5" y1="12" x2=11 y2="12" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="8" y1="9" x2=8 y2="15" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
+  </g>
+</svg>
+        Getting Started
+      </button>
+      <ul id="sectGettingStarted" role="region" aria-labelledby="gettingStartedId" class="accordion-panel">
+        
+        <li>
+          <a href="/tutorials/introduction.html">
+            Introduction
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tutorials/installation.html">
+            Installation
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tutorials/createDatabase.html">
+            Create a Database
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tutorials/createDocument.html">
+            Create a Document
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tutorials/createGraph.html">
+            Create a Graph
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tutorials/transactions.html">
+            Database Transaction
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tutorials/select.html">
+            Select Records
+          </a>
+        </li>
+        
+      </ul>
+    </li>
+  </ul>
+  <h2>
+    API Documentation
+  </h2>
+  <ul>
+    
+    <li  class="menuItem" >
+      
+      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectDocumentModality" id="DocumentModalityid">
+        <svg viewBox="0 0 16 24" width="1rem" height="1.5rem" class="icon">
+  <g>
+    <rect x="3" y="7" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
+    <line x1="5" y1="12" x2=11 y2="12" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="8" y1="9" x2=8 y2="15" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
+  </g>
+</svg>
+        DocumentModality
+      </button>
+      <ul id="sectDocumentModality" role="region" aria-labelledby="DocumentModalityid" class="accordion-panel">
+        
+        <li>
+          <a href="/classes/DocumentModality/createType.html">
+            createType
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/DocumentModality/deleteFrom.html">
+            deleteFrom
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/DocumentModality/deleteOne.html">
+            deleteOne
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/DocumentModality/dropType.html">
+            dropType
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/DocumentModality/newDocument.html">
+            newDocument
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/DocumentModality/newTransaction.html">
+            newTransaction
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/DocumentModality/selectFrom.html">
+            selectFrom
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/DocumentModality/selectOne.html">
+            selectOne
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/DocumentModality/transaction.html">
+            transaction
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/DocumentModality/updateOne.html">
+            updateOne
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+    </li>
+    
+    <li  class="menuItem" >
+      
+      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectGraphModality" id="GraphModalityid">
+        <svg viewBox="0 0 16 24" width="1rem" height="1.5rem" class="icon">
+  <g>
+    <rect x="3" y="7" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
+    <line x1="5" y1="12" x2=11 y2="12" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="8" y1="9" x2=8 y2="15" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
+  </g>
+</svg>
+        GraphModality
+      </button>
+      <ul id="sectGraphModality" role="region" aria-labelledby="GraphModalityid" class="accordion-panel">
+        
+        <li>
+          <a href="/classes/GraphModality/createEdgeType.html">
+            createEdgeType
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/GraphModality/createVertexType.html">
+            createVertexType
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/GraphModality/deleteFrom.html">
+            deleteFrom
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/GraphModality/deleteOne.html">
+            deleteOne
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/GraphModality/dropType.html">
+            dropType
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/GraphModality/newEdge.html">
+            newEdge
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/GraphModality/newTransaction.html">
+            newTransaction
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/GraphModality/newVertex.html">
+            newVertex
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/GraphModality/selectFrom.html">
+            selectFrom
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/GraphModality/selectOne.html">
+            selectOne
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/GraphModality/transaction.html">
+            transaction
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/GraphModality/updateOne.html">
+            updateOne
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+    </li>
+    
+    <li  class="menuItem" >
+      
+      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectSpriteDatabase" id="SpriteDatabaseid">
+        <svg viewBox="0 0 16 24" width="1rem" height="1.5rem" class="icon">
+  <g>
+    <rect x="3" y="7" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
+    <line x1="5" y1="12" x2=11 y2="12" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="8" y1="9" x2=8 y2="15" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
+  </g>
+</svg>
+        SpriteDatabase
+      </button>
+      <ul id="sectSpriteDatabase" role="region" aria-labelledby="SpriteDatabaseid" class="accordion-panel">
+        
+        <li>
+          <a href="/classes/SpriteDatabase/command.html">
+            command
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteDatabase/commitTransaction.html">
+            commitTransaction
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteDatabase/documentModality.html">
+            documentModality
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteDatabase/explain.html">
+            explain
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteDatabase/getSchema.html">
+            getSchema
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteDatabase/graphModality.html">
+            graphModality
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteDatabase/newTransaction.html">
+            newTransaction
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteDatabase/query.html">
+            query
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteDatabase/rollbackTransaction.html">
+            rollbackTransaction
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+    </li>
+    
+    <li  class="menuItem" >
+      
+      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectSpriteServer" id="SpriteServerid">
+        <svg viewBox="0 0 16 24" width="1rem" height="1.5rem" class="icon">
+  <g>
+    <rect x="3" y="7" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
+    <line x1="5" y1="12" x2=11 y2="12" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="8" y1="9" x2=8 y2="15" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
+  </g>
+</svg>
+        SpriteServer
+      </button>
+      <ul id="sectSpriteServer" role="region" aria-labelledby="SpriteServerid" class="accordion-panel">
+        
+        <li>
+          <a href="/classes/SpriteServer/closeDatabase.html">
+            closeDatabase
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/command.html">
+            command
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/connectCluster.html">
+            connectCluster
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/createDatabase.html">
+            createDatabase
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/createUser.html">
+            createUser
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/database.html">
+            database
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/databaseExists.html">
+            databaseExists
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/disconnectCluster.html">
+            disconnectCluster
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/dropDatabase.html">
+            dropDatabase
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/dropUser.html">
+            dropUser
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/getEvents.html">
+            getEvents
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/getInformation.html">
+            getInformation
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/listDatabases.html">
+            listDatabases
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/openDatabase.html">
+            openDatabase
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/serverReady.html">
+            serverReady
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteServer/shutdown.html">
+            shutdown
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+    </li>
+    
+    <li  class="menuItem" >
+      
+      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectSpriteTransaction" id="SpriteTransactionid">
+        <svg viewBox="0 0 16 24" width="1rem" height="1.5rem" class="icon">
+  <g>
+    <rect x="3" y="7" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
+    <line x1="5" y1="12" x2=11 y2="12" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="8" y1="9" x2=8 y2="15" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
+  </g>
+</svg>
+        SpriteTransaction
+      </button>
+      <ul id="sectSpriteTransaction" role="region" aria-labelledby="SpriteTransactionid" class="accordion-panel">
+        
+        <li>
+          <a href="/classes/SpriteTransaction/commit.html">
+            commit
+          </a>
+        </li>
+        
+        <li>
+          <a href="/classes/SpriteTransaction/rollback.html">
+            rollback
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+    </li>
+    
+    <li class="menuItem">
+      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectTypes" id="typesId">
+        <svg viewBox="0 0 16 24" width="1rem" height="1.5rem" class="icon">
+  <g>
+    <rect x="3" y="7" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
+    <line x1="5" y1="12" x2=11 y2="12" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="8" y1="9" x2=8 y2="15" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
+  </g>
+</svg>
+        Type Definitions
+      </button>
+      <ul id="sectTypes" role="region" aria-labelledby="typesId" class="accordion-panel">
+        
+        <li>
+          <a href="/types/ArcadeBucketSelectionStrategies.html">
+            <span class="menuItemText">
+              ArcadeBucketSelectionStrategies.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeCommandResponse.html">
+            <span class="menuItemText">
+              ArcadeCommandResponse.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeCreateEdgeResponse.html">
+            <span class="menuItemText">
+              ArcadeCreateEdgeResponse.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeCreateTypeResponse.html">
+            <span class="menuItemText">
+              ArcadeCreateTypeResponse.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeDeleteFromResponse.html">
+            <span class="menuItemText">
+              ArcadeDeleteFromResponse.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeGetSchemaResponse.html">
+            <span class="menuItemText">
+              ArcadeGetSchemaResponse.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeQueryResponse.html">
+            <span class="menuItemText">
+              ArcadeQueryResponse.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeRecordCategory.html">
+            <span class="menuItemText">
+              ArcadeRecordCategory.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeRecordType.html">
+            <span class="menuItemText">
+              ArcadeRecordType.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeServerBasicInformation.html">
+            <span class="menuItemText">
+              ArcadeServerBasicInformation.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeServerClusterInformation.html">
+            <span class="menuItemText">
+              ArcadeServerClusterInformation.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeServerDefaultInformation.html">
+            <span class="menuItemText">
+              ArcadeServerDefaultInformation.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeServerInfoMetrics.html">
+            <span class="menuItemText">
+              ArcadeServerInfoMetrics.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeServerInfoSetting.html">
+            <span class="menuItemText">
+              ArcadeServerInfoSetting.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeServerInformation.html">
+            <span class="menuItemText">
+              ArcadeServerInformation.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeServerInformationLevel.html">
+            <span class="menuItemText">
+              ArcadeServerInformationLevel.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeSqlExplanation.html">
+            <span class="menuItemText">
+              ArcadeSqlExplanation.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeSqlExplanationExecutionPlan.html">
+            <span class="menuItemText">
+              ArcadeSqlExplanationExecutionPlan.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeSupportedQueryLanguages.html">
+            <span class="menuItemText">
+              ArcadeSupportedQueryLanguages.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeTypeDefinition.html">
+            <span class="menuItemText">
+              ArcadeTypeDefinition.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ArcadeUpdateOneResponse.html">
+            <span class="menuItemText">
+              ArcadeUpdateOneResponse.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/AsArcadeEdges.html">
+            <span class="menuItemText">
+              AsArcadeEdges.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/AsArcadeRecords.html">
+            <span class="menuItemText">
+              AsArcadeRecords.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/DeleteFromCount.html">
+            <span class="menuItemText">
+              DeleteFromCount.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/EdgeBase.html">
+            <span class="menuItemText">
+              EdgeBase.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/EdgeRecordMeta.html">
+            <span class="menuItemText">
+              EdgeRecordMeta.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ISpriteConnection.html">
+            <span class="menuItemText">
+              ISpriteConnection.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ISpriteCreateArcadeUser.html">
+            <span class="menuItemText">
+              ISpriteCreateArcadeUser.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ISpriteCreateTypeOptions.html">
+            <span class="menuItemText">
+              ISpriteCreateTypeOptions.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ISpriteDatabaseClientParameters.html">
+            <span class="menuItemText">
+              ISpriteDatabaseClientParameters.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ISpriteDatabaseConnectionParameters.html">
+            <span class="menuItemText">
+              ISpriteDatabaseConnectionParameters.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ISpriteDeleteFromOptions.html">
+            <span class="menuItemText">
+              ISpriteDeleteFromOptions.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ISpriteDropTypeOptions.html">
+            <span class="menuItemText">
+              ISpriteDropTypeOptions.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ISpriteEdgeOptions.html">
+            <span class="menuItemText">
+              ISpriteEdgeOptions.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ISpriteIndexdescriptor.html">
+            <span class="menuItemText">
+              ISpriteIndexdescriptor.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ISpriteInsertRecordOptions.html">
+            <span class="menuItemText">
+              ISpriteInsertRecordOptions.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ISpriteRestClientConnectionParameters.html">
+            <span class="menuItemText">
+              ISpriteRestClientConnectionParameters.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/ISpriteSelectFromOptions.html">
+            <span class="menuItemText">
+              ISpriteSelectFromOptions.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/OmitMeta.html">
+            <span class="menuItemText">
+              OmitMeta.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/RecordBase.html">
+            <span class="menuItemText">
+              RecordBase.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/RecordMeta.html">
+            <span class="menuItemText">
+              RecordMeta.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/RecordOperationResponse.html">
+            <span class="menuItemText">
+              RecordOperationResponse.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/SpriteArcadeServerEvent.html">
+            <span class="menuItemText">
+              SpriteArcadeServerEvent.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/SpriteArcadeServerEvents.html">
+            <span class="menuItemText">
+              SpriteArcadeServerEvents.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/SpriteEdgeVertexDescriptor.html">
+            <span class="menuItemText">
+              SpriteEdgeVertexDescriptor.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/SpriteOperators.html">
+            <span class="menuItemText">
+              SpriteOperators.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/SpriteTransactionCallback.html">
+            <span class="menuItemText">
+              SpriteTransactionCallback.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/SpriteWhereClause.html">
+            <span class="menuItemText">
+              SpriteWhereClause.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/TypeNames.html">
+            <span class="menuItemText">
+              TypeNames.md
+            </span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="/types/WithRid.html">
+            <span class="menuItemText">
+              WithRid.md
+            </span>
+          </a>
+        </li>
+        
+      </ul>
+    </li>
+    <li>
+      <a href="../../api">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#666">
+  <path
+    d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
+  </path>
+</svg>
+        Raw API Docs
+      </a>
+    </li>
+  </ul>
+</nav>
+    <div class="content">
+      <div>
+        <h3 id="arcadecreateedgeresponsee-n-extends-typenamese">ArcadeCreateEdgeResponse<br />&lt;E, N extends TypeNames&lt;E&gt;&gt;</h3>
+
+<p>Result from the ArcadeDB server for a <code class="language-plaintext highlighter-rouge">CREATE EDGE</code> command</p>
+
+<h4 id="definition">Definition</h4>
+
+<hr />
+
+<p><code class="language-plaintext highlighter-rouge">Array&lt;E[N]&gt;</code></p>
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

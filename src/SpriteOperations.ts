@@ -104,7 +104,13 @@ class SpriteOperations {
         createTypeCommand.toString(),
         transaction
       );
-      if (response[0].typeName === typeName) {
+      // TODO: this seems a bit lax
+      // It could be an empty array, or something that
+      // says the type was created. But, maybe it's ok.
+      // Need to look closer at testing this to ensure
+      // ifNotExists not erroring works ok with the returned
+      // type.
+      if (response) {
         return this.type<S, N>(typeName);
       } else {
         throw new Error(
@@ -263,7 +269,7 @@ class SpriteOperations {
     typeName: N,
     transaction: SpriteTransaction,
     options?: ISpriteInsertRecordOptions<S[N]>
-  ): Promise<S[N]> => {
+  ): Promise<S[N][]> => {
     this._validate.transaction(transaction);
     // INSERT INTO [TYPE:]<type>|BUCKET:<bucket>
     // [CONTENT {<JSON>}|[{<JSON>}[,]*]]
@@ -276,7 +282,7 @@ class SpriteOperations {
     });
 
     if (options?.data) {
-      insertIntoCommand.append<OmitMeta<S[N]>>(
+      insertIntoCommand.append<OmitMeta<S[N]> | OmitMeta<S[N]>[]>(
         this._nodes.insert.record.content,
         options.data
       );
@@ -287,8 +293,8 @@ class SpriteOperations {
       transaction
     );
 
-    if (result[0]) {
-      return result[0];
+    if (result) {
+      return result;
     } else {
       throw new Error(
         `Received an unexpected response from the server when attempting to create record of type: ${

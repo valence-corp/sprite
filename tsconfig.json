@@ -10,7 +10,7 @@
     "experimentalDecorators": true,
     // Sets the ECMAScript target version for the emitted JavaScript code.
     "target": "ES2022",
-    // Specifies the module system for generated code. CommonJS is used in this case.
+    // Specifies the module system for generated code.
     "module": "NodeNext",
     // Sets the module resolution strategy to Node.js style.
     "moduleResolution": "Node16",

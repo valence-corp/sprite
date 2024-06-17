@@ -1,13 +1,13 @@
-import { SpriteRestClient } from "./SpriteRestClient.js";
-import { endpoints } from "./endpoints/server.js";
 import {
   ArcadeServerInformation,
   ArcadeServerInformationLevel,
   ISpriteCreateArcadeUser,
   SpriteArcadeServerEvents,
 } from "./types/server.js";
-import { SpriteDatabase } from "./SpriteDatabase.js";
+import { endpoints } from "./endpoints/server.js";
 import { ISpriteRestClientConnectionParameters } from "./types/client.js";
+import { SpriteDatabase } from "./SpriteDatabase.js";
+import { SpriteRestClient } from "./SpriteRestClient.js";
 import { validation } from "./validation/ArcadeParameterValidation.js";
 
 /**
@@ -170,9 +170,14 @@ class SpriteServer {
    *
    * async function commandExample(databaseName: string) {
    *   try {
-   *     const response = await server.command("CREATE DATABASE", databaseName);
+   *     const response = await server.command(`CREATE DATABASE ${databaseName}`);
    *     console.log(response);
-   *     // { user: 'aUser', 'version': '24.4.1', serverName: 'ArcadeDB_0', result: 'ok' }
+   *     // {
+   *     //   user: 'aUser',
+   *     //   version: '24.4.1',
+   *     //   serverName: 'ArcadeDB_0',
+   *     //   result: 'ok'
+   *     // }
    *   } catch (error) {
    *     // Will throw an error for conditions such as:
    *     // Invalid credentials, Database Already Exists, etc.
@@ -207,7 +212,7 @@ class SpriteServer {
    * @example
    * async function booleanCommandExample(databaseName: string) {
    *   try {
-   *     const response = await server.booleanCommand("CREATE DATABASE", databaseName);
+   *     const response = await server.booleanCommand(`CREATE DATABASE ${databaseName}`);
    *     console.log(response);
    *     // true
    *   } catch (error) {
@@ -363,7 +368,7 @@ class SpriteServer {
       // be confusing because it isn't really explained and could be confused with a
       // 403 for invalid credentials from user error establishing authorization
       // through the client. Further question: the manual indicates that it's a 8
-      // character minimum, but in practice it's 4 (for non-aUser users)
+      // character minimum, but in practice it's 4 (for non-root users)
       if (!(params.password.length > 3)) {
         throw new TypeError(
           `The password must be at least 4 characters in length, received: ${params.password}, which is ${params.password.length} characters long.`
@@ -374,7 +379,7 @@ class SpriteServer {
       // This is fine if all you are collecting is a 'username',
       // but in many use cases a user's 'name' and their 'username'
       // will be different fields, and to avoid complication for
-      // end users, we are collection 'username' and manually
+      // end users, we are collecting 'username' and manually
       // changing it to 'name' as arcadedb expects.
       const expectedParameters = {
         name: params.username,
@@ -536,11 +541,6 @@ class SpriteServer {
    */
   dropUser = async (username: string): Promise<boolean> => {
     try {
-      // if (!this.validate.nonEmptyString(username)) {
-      //   throw new TypeError(
-      //     `A non-empty string must be supplied as a "username", which indicates the user to drop. The supplied parameter was: [${username}]. Which is of type ${typeof username}`,
-      //   );
-      // }
       return await this._booleanCommand(`DROP USER ${username}`);
     } catch (error) {
       throw new Error(`Could not drop user ${username}.`, { cause: error });
@@ -616,7 +616,11 @@ class SpriteServer {
    *   try {
    *     const information = await sprite.getInformation(mode);
    *     console.log(information);
-   *     // {"user":"aUser", "version":"24.1.1", "serverName":"ArcadeDB_0"}
+   *     // {
+   *     //   user: 'aUser',
+   *     //   version: '24.x.x',
+   *     //   serverName: 'ArcadeDB_0'
+   *     // }
    *   } catch (error) {
    *     console.error(error);
    *     // handle error condition

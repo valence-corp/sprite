@@ -1,0 +1,7 @@
+collections:
+  classes:
+    output: true
+  tutorials:
+    output: true
+  types:
+    output: true

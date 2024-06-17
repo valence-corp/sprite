@@ -2,7 +2,6 @@
   "name": "@valence-corp/sprite",
   "version": "0.0.2",
   "description": "A TypeScript driver for ArcadeDB",
-  "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -13,7 +12,8 @@
     "dev": "nodemon --watch ./ --ext ts --exec 'rimraf ./dist && tsc && node ./dist/index.js'",
     "build": "rimraf ./dist && tsc -p ./tsconfig.build.json",
     "build-api-docs": "typedoc ./src/api.ts --out ./docs/api --darkHighlightTheme dracula --lightHighlightTheme github-light",
-    "build-docs": "typedoc ./src/api.ts --out ./docs --darkHighlightTheme dracula --lightHighlightTheme github-light",
+    "build-json-docs": "typedoc ./src/api.ts --json ./docs/_data/docs.json ",
+    "build-docs-site": "ts-node ./src/dev/*",
     "exec": "pnpm build && node ./dist/index.js"
   },
   "keywords": [],

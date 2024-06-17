@@ -11,22 +11,37 @@ export interface ISpriteCreateArcadeUser {
   databases: { [key: string]: string };
 }
 
+/** Describes an event on the ArcadeDB server */
 export type SpriteArcadeServerEvent = {
   time: string;
   type: string;
   message: string;
 };
 
+/** The ArcadeDB Server Events Log */
 export type SpriteArcadeServerEvents = {
+  /** The list of server events */
   events: SpriteArcadeServerEvent[];
+  /** Event log files */
   files: string[];
 };
 
-export type ArcadeServerInformationLevel = 'basic' | 'default' | 'cluster';
+/**
+ * The level of detail that should be returned for a
+ * `SpriteServer.getInformation()` request
+ * @default 'default'
+ */
+export type ArcadeServerInformationLevel = "basic" | "default" | "cluster";
 
+/**
+ * The metadata returned from the server on every operation.
+ */
 export type ArcadeServerBasicInformation = {
+  /** The user who performed the operation */
   user: string;
+  /** The version of ArcadeDB on the server */
   version: string;
+  /** The name of the server */
   serverName: string;
 };
 

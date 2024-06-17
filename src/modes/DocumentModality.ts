@@ -50,7 +50,7 @@ class DocumentModality<S> extends ModalityBase<S> {
    * trx.commit();
    * // ...
    */
-  newDocument = <N extends TypeNames<S>>(
+  newDocument = <N extends keyof S>(
     typeName: N,
     transaction: SpriteTransaction,
     options?: ISpriteInsertRecordOptions<S[N]>

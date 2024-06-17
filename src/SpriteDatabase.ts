@@ -73,13 +73,9 @@ class SpriteDatabase {
   private _operators: SpriteOperations | undefined;
   /** The name of the database */
   private _name: string;
-  /**
-   *
-   */
+  /** Modality for operations involving document records */
   private _documentModality: DocumentModality<unknown> | undefined;
-  /**
-   *
-   */
+  /** Modality for operations involving vertex & edge records */
   private _graphModality: GraphModality<unknown, unknown> | undefined;
   constructor(parameters: ISpriteDatabaseClientParameters);
   constructor(parameters: ISpriteDatabaseConnectionParameters);
@@ -115,6 +111,7 @@ class SpriteDatabase {
     }
     return this._operators;
   }
+  /** Helper function for building enpoints */
   private _endpoint = (endpoint: string) => `${endpoint}/${this.name}`;
   /**
    * Returns a modality for working with document records within the database.
@@ -148,13 +145,13 @@ class SpriteDatabase {
       AsArcadeEdges<E>
     >;
   };
-  /**
-   * @experimental
-   * Returns a modality building SQL queries using method chaining.
-   * @returns {ChainingModality} A database chaining modality.
-   */
-  chainModality = <S>(): ChainingModality<S> =>
-    new ChainingModality<S>(this, this.operators);
+  // /**
+  //  * @experimental
+  //  * Returns a modality building SQL queries using method chaining.
+  //  * @returns {ChainingModality} A database chaining modality.
+  //  */
+  // chainModality = <S>(): ChainingModality<S> =>
+  //   new ChainingModality<S>(this, this.operators);
   /**
    * Executes a query against the target database. This method only executes
    * idempotent statements (that cannot change the database), namely `SELECT`
@@ -175,9 +172,17 @@ class SpriteDatabase {
    *
    * async function spriteQueryExample() {
    *   try {
-   *     const result = await database.query('sql', 'SELECT FROM schema:types');
+   *     const result = await database.query(
+   *       'sql',
+   *       'SELECT FROM schema:types'
+   *     );
    *     console.log(result);
-   *     // { user: 'aUser', 'version': '24.x.x', serverName: 'ArcadeDB_0', result: [...] }
+   *     // { 
+   *     //   user: 'aUser',
+   *     //   version: '24.x.x',
+   *     //   serverName: 'ArcadeDB_0',
+   *     //   result: [...]
+   *     // }
    *   return result
    *   } catch (error) {
    *     console.error(error);
@@ -302,9 +307,14 @@ class SpriteDatabase {
    *
    * async function spriteCommandExample() {
    *   try {
-   *     // commands are non-idempotent, and must be conducted as part of a transaction
+   *     // commands are non-idempotent, and must be
+   *     // conducted as part of a transaction
    *     const transaction = await database.newTransaction();
-   *     const result = await database.command('sql', 'CREATE document TYPE aType', transaction);
+   *     const result = await database.command(
+   *       'sql',
+   *       'CREATE document TYPE aType',
+   *       transaction
+   *     );
    *     transaction.commit();
    *     console.log(result);
    *     // {
@@ -410,7 +420,11 @@ class SpriteDatabase {
    * async function transactionExample() {
    *   try {
    *     const trx = await database.newTransaction();
-   *     await database.command('sql', 'CREATE document TYPE aType', trx);
+   *     await database.command(
+   *       'sql',
+   *       'CREATE document TYPE aType',
+   *       trx
+   *     );
    *     trx.commit();
    *     console.log(trx.id);
    *     // 'AS-0000000-0000-0000-0000-00000000000'
@@ -448,8 +462,9 @@ class SpriteDatabase {
 
       const sessionId = response.headers.get("arcadedb-session-id");
 
-      // TODO: Is a check even necessary?
-      if (typeof sessionId !== "string") {
+      // Must check if it's a string because it be null from
+      // headers.get()
+      if (sessionId !== "string") {
         throw new Error("Invalid transaction key received from server.");
       } else {
         return new SpriteTransaction(this, sessionId);
@@ -465,7 +480,7 @@ class SpriteDatabase {
    * Commits a transaction on the server, provided a transaction id.
    * Provide the id obtained from the transaction returned from invoking
    * `SpriteDatabase.newTransaction()`.
-   * @note You can just use the SpriteTransaction.commit() method directly.
+   * @note You can use the `SpriteTransaction.commit()` method directly.
    * @param {string} transactionId The ID of the transaction to commit.
    * @returns {Promise<boolean>} Promise that resolves to boolean `true` if successful, and `false` otherwise.
    * @throws Error if it cannot commit the transaction.
@@ -473,7 +488,11 @@ class SpriteDatabase {
    * async function commitTransactionExample() {
    *   try {
    *     const trx = await database.newTransaction();
-   *     await database.command('sql', 'CREATE document TYPE aType', trx);
+   *     await database.command(
+   *       'sql',
+   *       'CREATE document TYPE aType',
+   *       trx
+   *     );
    *     console.log(trx.id);
    *     // 'AS-0000000-0000-0000-0000-00000000000'
    *     database.commitTransaction(trx.id);
@@ -516,14 +535,18 @@ class SpriteDatabase {
     }
   };
   /**
-   * Rolls back a transaction on the server. Provide the session id obtained with the `SpriteDatabase.beginTransaction()` method.
+   * Rolls back a transaction on the server. Provide the session id obtained with the `SpriteDatabase.newTransaction()` method.
    * @param {string} transactionId The ID of the transaction to commit.
    * @returns {Promise<boolean>} The response from the server.
    * @example
    * async function rollbackTransactionExample() {
    *   try {
    *     const trx = await database.newTransaction();
-   *     await database.command('sql', 'CREATE document TYPE aType', trx);
+   *     await database.command(
+   *       'sql',
+   *       'CREATE document TYPE aType',
+   *       trx
+   *     );
    *     await trx.commit();
    *     console.log(trx.id);
    *     // 'AS-0000000-0000-0000-0000-00000000000'

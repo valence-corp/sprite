@@ -3,6 +3,7 @@ import { ModalityBase } from "./ModalityBase.js";
 import {
   ISpriteCreateTypeOptions,
   ISpriteInsertRecordOptions,
+  SpriteTransactionCallback,
   TypeNames,
 } from "../types/database.js";
 import { SpriteOperations } from "../SpriteOperations.js";
@@ -12,6 +13,7 @@ import {
   ISpriteEdgeOptions,
   SpriteEdgeVertexDescriptor,
 } from "../types/edge.js";
+import { ArcadeTransactionIsolationLevel } from "../types/transaction.js";
 
 /**
  * A window to a specific graph set.
@@ -20,7 +22,11 @@ import {
  * @param {SpriteOperations} operators The operators instance to use
  */
 class GraphModality<V, E> extends ModalityBase<V & E> {
-  constructor(client: SpriteDatabase, operators: SpriteOperations) {
+  constructor(
+    client: SpriteDatabase,
+    operators: SpriteOperations,
+    transaction?: SpriteTransaction
+  ) {
     super(client, operators);
   }
   /**
@@ -118,6 +124,58 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
       transaction!,
       options
     );
+  /**
+   * Helps to manage a transaction, by automatically invoking `newTransation`,
+   * and passing the returned `SpriteTransaction` to a callback as an argument,
+   * to be passed to non-idempotent databases operations.
+   * @param {SpriteTransactionCallback} callback
+   * @param {ArcadeTransactionIsolationLevel} isolationLevel
+   * @returns {void} void
+   * @example
+   *
+   * const database = new SpriteDatabase({
+   *   username: 'aUser',
+   *   password: 'aPassword',
+   *   address: 'http://localhost:2480',
+   *   databaseName: 'aDatabase'
+   * });
+   *
+   * type DocTypes = {
+   *   aType: {
+   *     aField: string
+   *   }
+   * }
+   *
+   * const docs = database.documents<DocTypes>();
+   *
+   * async function transactionExample() {
+   *   try {
+   *     const transaction = await docs.transaction(async (trx) => {
+   *       docs.createType('aType', trx);
+   *     });
+   *     console.log(transaction.id);
+   *     // 'AS-0000000-0000-0000-0000-00000000000'
+   *   } catch (error) {
+   *     console.error(error);
+   *     // handle error conditions
+   *   }
+   * };
+   *
+   * transactionExample();
+   */
+  transaction = async (
+    callback: SpriteTransactionCallback,
+    isolationLevel?: ArcadeTransactionIsolationLevel
+  ): Promise<SpriteTransaction> => {
+    try {
+      const trx = await this.newTransaction(isolationLevel);
+      await callback(trx);
+      await trx.commit();
+      return trx;
+    } catch (error) {
+      throw new Error(`Could not complete transaction.`, { cause: error });
+    }
+  };
   /**
    * Create a new edge type.
    * @param {TypeInRecordCategory} typeName The name of the type to create.

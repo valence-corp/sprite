@@ -1,0 +1,52 @@
+body {
+  font-size: var(--font-size-base);
+  font-family: -apple-system, BlinkMacSystemFont, "Lato", "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 900;
+}
+
+h1,
+h2 {
+  font-size: 2.42rem;
+  letter-spacing: 0.02rem;
+}
+
+h2 {
+  font-size: var(--font-size);
+  color: var(--accent);
+  margin: var(--padding-reg) 0;
+}
+
+h3 {
+  margin: var(--section-padding) 0;
+  font-size: 1.88rem;
+  em {
+    font-weight: 500;
+    color: var(--title-emphasis-color);
+    font-style: normal;
+  }
+}
+
+h4 {
+  color: var(--accent);
+  margin: var(--section-padding) 0;
+}
+
+h5 {
+  font-size: var(--font-size);
+  margin: var(--padding-small) 0;
+}
+
+h6 {
+  color: var(--pink);
+  margin: var(--padding-small) 0;
+  text-transform: uppercase;
+}
+
+p {
+  margin: var(--section-padding) 0;
+  line-height: var(--paragraph-line-height);
+}

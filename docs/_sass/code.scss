@@ -1,0 +1,32 @@
+div.highlight {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  margin: var(--section-padding) 0;
+  min-width: 100%;
+}
+
+pre {
+  padding: var(--section-padding);
+  overflow-x: scroll;
+}
+
+a>code,
+code {
+  font-size: var(--code-font-size);
+  background: var(--background-secondary);
+  border-radius: var(--border-radius);
+  padding: 0 var(--padding-small);
+  border: var(--button-border);
+}
+
+pre>code {
+  padding: unset;
+  border: unset;
+  background: unset;
+}
+
+a>code {
+  &:hover {
+    color: var(--accent);
+  }
+}

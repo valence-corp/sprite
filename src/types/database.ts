@@ -4,28 +4,62 @@ import { SpriteRestClient } from "../SpriteRestClient.js";
 import { SpriteTransaction } from "../SpriteTransaction.js";
 import { ValidSuperTypeKey } from "./type.js";
 
+/**
+ * The possible categories of a record in ArcadeDB,
+ * as they appear in the record's `@cat` property.
+ */
 export type ArcadeRecordCategory = "d" | "e" | "v";
+
+/**
+ * The possible record types, as expected to be
+ * supplied to a `CREATE TYPE` sql operation.
+ */
 export type ArcadeRecordType = "document" | "edge" | "vertex";
 
-export type RecordBase = {
+/**
+ * The base metadata for record in 
+ * ArcadeDB.
+ */
+export type RecordMeta = {
+  /** The id of the record. */
   "@rid": string;
+  /** The category of the record. */
   "@cat": ArcadeRecordCategory;
+  /** The type of the record. */
   "@type": string;
 };
 
-export type EdgeBase = RecordBase & {
+/**
+ * The metadata for an Edge record in 
+ * ArcadeDB
+ */
+export type EdgeRecordMeta = RecordMeta & {
+  /** The `@rid` of the vertex the edge goes to */
   "@in": string;
+  /** The `@rid` of the vertex the edge comes from */
   "@out": string;
 };
 
+/**
+ * Adds ArcadeDB record metadata to the types
+ * defined in the schema.
+ */
 export type AsArcadeEdges<S> = {
-  [K in keyof S]: S[K] & EdgeBase;
+  [K in keyof S]: S[K] & EdgeRecordMeta;
 };
 
+/**
+ * Adds ArcadeDB record metadata to the types
+ * defined in the schema. Used for Document
+ * and Vertex records.
+ */
 export type AsArcadeRecords<S> = {
-  [K in keyof S]: S[K] & RecordBase;
+  [K in keyof S]: S[K] & RecordMeta;
 };
 
+/**
+ * The TypeNames in a supplied schema.
+ */
 export type TypeNames<Schema> = keyof Schema;
 
 /**
@@ -40,14 +74,26 @@ export interface ISpriteDatabaseConnectionParameters
   databaseName: string;
 }
 
+/**
+ * The parameters used to create a `SpriteDatabase`
+ * intance when there is an existing instance of a
+ * `SpriteRestClient`, such as when intantiated
+ * from a method in the `SpriteServer` class
+ */
 export interface ISpriteDatabaseClientParameters {
+  /**
+   * The `SpriteRestClient` instance
+   */
   client: SpriteRestClient;
+  /**
+   * The name of the database to connect to.
+   */
   databaseName: string;
 }
 
 /**
- * The Query languages supported by ArcadeDB, to be declared when
- * using SpriteDatabase.query() and SpriteDatabase.command() methods
+ * The Query languages supported by ArcadeDB, supplied as a parameter
+ * to `SpriteDatabase.query()` and `SpriteDatabase.command()`
  */
 export type ArcadeSupportedQueryLanguages =
   | "sql"
@@ -82,12 +128,12 @@ export interface ISpriteCreateTypeOptions<S, N extends TypeNames<S>> {
   totalBuckets?: number;
 }
 
-export type OmitMeta<T> = Omit<T, keyof RecordBase | keyof EdgeBase>;
+export type OmitMeta<T> = Omit<T, keyof RecordMeta | keyof EdgeRecordMeta>;
 
 /** Options to insert a new record with */
 export interface ISpriteInsertRecordOptions<T> {
   /** The data to populate the newly created reacord with */
-  data?: OmitMeta<T>;
+  data?: OmitMeta<T> | OmitMeta<T>[];
   /** The bucket to store the record in */
   bucket?: string;
 }
@@ -109,7 +155,7 @@ export interface ISpriteDropTypeOptions {
   unsafe?: boolean;
 }
 
-/** A function which contains the operations to be conducted within a transaction */
+/** A callback which contains the operations to be conducted within a transaction */
 export type SpriteTransactionCallback =
   | ((trx: SpriteTransaction) => Promise<void>)
   | ((trx: SpriteTransaction) => void);
@@ -156,8 +202,10 @@ export type ArcadeTypeDefinition = {
   custom: Record<string, unknown>;
 };
 
+/** The response from a `SpriteDatabase.getSchema()` query */
 export type ArcadeGetSchemaResponse = Array<ArcadeTypeDefinition>;
 
+/** SQL Explanation Execution Plan */
 export type ArcadeSqlExplanationExecutionPlan = {
   type: "QueryExecutionPlan" | "DDLExecutionPlan";
   javaType: string;
@@ -176,8 +224,7 @@ export type ArcadeSqlExplanation = {
 };
 
 /**
- * An object returned from the server following a successfully command / query
- *
+ * The object returned from the server following a successfully command
  */
 export interface ArcadeCommandResponse<T = unknown> {
   /**
@@ -196,9 +243,12 @@ export interface ArcadeCommandResponse<T = unknown> {
   result: T;
 }
 
+/**
+ * The object returned from the server following a successfully query
+ */
 export type ArcadeQueryResponse<T = unknown> = ArcadeCommandResponse<T>;
 
-// TODO: I have not checked these for compatibility with ArcadeDB
+// TODO: have not checked these for compatibility with ArcadeDB
 export declare const COMPARISON_OPERATORS: readonly [
   "=",
   "==",
@@ -238,8 +288,10 @@ export declare const COMPARISON_OPERATORS: readonly [
   "is not distinct from"
 ];
 
+/** Operators for a `WHERE` sql statement */
 export type SpriteOperators = (typeof COMPARISON_OPERATORS)[number];
 
+/** Options for a `selectFrom` operation, as executed via a `SpriteDatabase` modality. */
 export interface ISpriteSelectFromOptions<
   S,
   N extends keyof S,
@@ -290,16 +342,27 @@ export interface ISpriteSelectFromOptions<
   };
 }
 
+/**
+ * A base type, with an `@rid` property added.
+ */
 export type WithRid<S, N extends TypeNames<S>> = OmitMeta<S[N]> & {
   "@rid": string;
 };
 
+/**
+ * An array with three items used to describe a `where` statement.
+ * @example ['@rid', '==', '#0:0']
+ */
 export type SpriteWhereClause<
   S,
   N extends TypeNames<S>,
   P extends keyof WithRid<S, N>
 > = [P, SpriteOperators, WithRid<S, N>[P]];
 
+/**
+ * Options for a `deleteFrom` operation as executed 
+ * via a `SpriteDatabase` modality.
+ */
 export interface ISpriteDeleteFromOptions<
   S,
   N extends TypeNames<S>,

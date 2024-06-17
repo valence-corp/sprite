@@ -1,0 +1,41 @@
+@import './duskBringerMono.scss';
+
+.light {
+  --background-primary: #f9f9f9;
+  --background-secondary: #dfdfdf;
+  --background-tertiary: #e4e8eb;
+  --foreground-primary: #111;
+  --foreground-secondary: #efefef;
+  --foreground-tertiary: #93bcf9;
+
+  --placeholder-color: #777;
+
+  --button-background-hover: #ebebeb;
+  --link-hover: #8d4cd8;
+
+  --title-emphasis-color: var(var(--foreground-primary));
+
+  --nav-focus-background: #dfdfdf;
+  --nav-hover-background: #9252db;
+  --nav-focus-color: var(--foreground-primary);
+  --nav-tree-color: #dfdfdf;
+
+  --border-color: rgba(0, 0, 0, 0.1);
+
+  --outline: var(--accent) solid 2px;
+
+  // Code Highlighting
+  --grey: #888;
+  --comment: #777;
+  --dark-gray: #666;
+  --code-background: #efefef;
+  --cyan: #1382b6;
+  --pink: #c93979;
+  --purple: #723ead;
+  --red: #ff5555;
+
+  --frosted-background: rgba(230, 230, 220, 0.65);
+  --link-underline-color: var(--accent);
+  --accent: var(--purple);
+  --background-selected: rgba(255, 255, 255, 0.1);
+}

@@ -1,0 +1,16 @@
+a {
+  text-decoration-style: dotted;
+  color: var(--accent);
+  border-radius: var(--border-radius);
+  border: 2px solid transparent;
+
+  &:focus {
+    outline: var(--outline);
+    outline-offset: var(--outline-offset);
+    background: var(--background-selected);
+    color: var(--foreground-primary);
+  }
+  &:hover {
+    color: var(--link-hover);
+  }
+}

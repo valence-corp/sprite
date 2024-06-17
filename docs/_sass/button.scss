@@ -1,0 +1,22 @@
+.button {
+  font-weight: var(--font-weight-bold);
+  height: var(--button-height);
+  background: var(--background-secondary);
+  border-radius: var(--button-radius);
+  border: var(--button-border);
+  padding: 0;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: fit-content;
+  white-space: nowrap;
+  flex-wrap: none;
+  &:hover {
+    background-color: var(--button-background-hover);
+  }
+  &:focus {
+    outline: var(--outline);
+    outline-offset: var(--outline-offset);
+  }
+}
