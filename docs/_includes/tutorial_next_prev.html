@@ -1,9 +1,9 @@
 <footer
   class="tutorial {% unless page.prevUrl %}nextOnly{% endunless %}{% unless page.nextUrl %}prevOnly{% endunless %}">
   {% if page.prevUrl %}
-  <a href="{{ page.prevUrl }}" class="prev button">{% include arrow-left.svg %} Previous: {{ page.prevDesc}}</a>
+  <a href="{{ site.baseurl }}/{{ page.prevUrl }}" class="prev button">{% include arrow-left.svg %} Previous: {{ page.prevDesc}}</a>
   {% endif %}
   {% if page.nextUrl %}
-  <a href="{{ page.nextUrl }}" class="next button">Next: {{ page.nextDesc}} {% include arrow-right.svg %}</a>
+  <a href="{{ site.baseurl }}/{{ page.nextUrl }}" class="next button">Next: {{ page.nextDesc}} {% include arrow-right.svg %}</a>
   {% endif %}
 </footer>
