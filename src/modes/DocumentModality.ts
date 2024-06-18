@@ -1,23 +1,22 @@
-import { SpriteDatabase } from '../SpriteDatabase.js';
-import { ModalityBase } from './ModalityBase.js';
+import { SpriteDatabase } from "../SpriteDatabase.js";
+import { ModalityBase } from "./ModalityBase.js";
 import {
   ISpriteCreateTypeOptions,
   ISpriteInsertRecordOptions,
-  RecordBase,
   TypeNames,
-} from '../types/database.js';
-import { SpriteOperations } from '../SpriteOperations.js';
-import { SpriteTransaction } from '../SpriteTransaction.js';
+} from "../types/database.js";
+import { SpriteTransaction } from "../SpriteTransaction.js";
+import { SqlDialect } from "../SqlDialect.js";
 
 /**
  * Handles the operations related to document records in the database.
  * It wraps the methods of the SpriteOperations class with types.
- * @param {SpriteDatabase} client The instance of SpriteDatabase to target
+ * @param {SpriteDatabase} client The instance of Database to target
  * @param {SpriteOperations} operators The operators instance to use
  */
 class DocumentModality<S> extends ModalityBase<S> {
-  constructor(client: SpriteDatabase, operators: SpriteOperations) {
-    super(client, operators);
+  constructor(client: SpriteDatabase, dialect: SqlDialect) {
+    super(client, dialect);
   }
   /**
    * Insert a new document into the database.
@@ -26,6 +25,22 @@ class DocumentModality<S> extends ModalityBase<S> {
    * @returns {SpriteRecord} The record that is created in the database.
    * @see createType
    * @example
+   *
+   * const database = new Database({
+   *   username: 'root',
+   *   password: 'rootPassword',
+   *   address: 'http://localhost:2480',
+   *   databaseName: 'aDatabase'
+   * });
+   *
+   * interface DocumentTypes {
+   *   aDocument: {
+   *     aProperty: string
+   *   }
+   * }
+   *
+   * const client = database.documents<DocumentTypes>();
+   *
    * // non-idempotent operations must be conducted within a transaction
    * client.transaction(async (trx)=>{
    *   // to create a document, a type must be created first
@@ -41,21 +56,12 @@ class DocumentModality<S> extends ModalityBase<S> {
    *   //   aProperty: 'aValue'
    *   // }
    * });
-   *
-   * // NOTE: you could control the transaction manually
-   * const trx = await database.newTransaction();
-   * await client.createType('aDocument', trx);
-   * const document = await client.newDocument('aDocument', trx, {
-   *   aProperty: 'aValue',
-   * });
-   * trx.commit();
-   * // ...
    */
-  newDocument = <N extends TypeNames<S>>(
+  newDocument = <N extends keyof S>(
     typeName: N,
     transaction: SpriteTransaction,
-    options: ISpriteInsertRecordOptions<S[N]>,
-  ) => this._operators.insertRecord<S, N>(typeName, transaction, options);
+    options?: ISpriteInsertRecordOptions<S[N]>
+  ) => this._sql.insertRecord<S, N>(typeName, transaction, options);
   /**
    * Create a new document type in the schema.
    * @param {TypeInRecordCategory} typeName The name of the type to create.
@@ -65,12 +71,18 @@ class DocumentModality<S> extends ModalityBase<S> {
    * @note non-idempotent commands (such a creating types) must be issued as part of a transaction
    * @example
    *
-   * const database = new SpriteDatabase({
+   * const database = new Database({
    *   username: 'root',
    *   password: 'rootPassword',
    *   address: 'http://localhost:2480',
    *   databaseName: 'aDatabase'
    * });
+   *
+   * interface DocumentTypes {
+   *   aDocument: {
+   *     aProperty: string
+   *   }
+   * }
    *
    * const client = database.documents<DocumentTypes>();
    *
@@ -78,7 +90,7 @@ class DocumentModality<S> extends ModalityBase<S> {
    *   try {
    *     // non-idempotent operations must be conducted within a transaction
    *     client.transaction(async (trx)=>{
-   *       const type = await client.createType('aType', trx);
+   *       const type = await client.createType('aDocument', trx);
    *       console.log(type.name);
    *       // 'aType'
    *     });
@@ -89,23 +101,12 @@ class DocumentModality<S> extends ModalityBase<S> {
    * };
    *
    * createDocumentTypeExample();
-   *
-   * // NOTE: you could control the transaction manually
-   * const trx = await database.newTransaction();
-   * const type = await client.createType('aType', trx);
-   * trx.commit();
    */
   createType = <N extends TypeNames<S>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteCreateTypeOptions<S, N>,
-  ) =>
-    this._operators.createType<S, N>(
-      typeName,
-      'document',
-      transaction,
-      options,
-    );
+    options?: ISpriteCreateTypeOptions<S, N>
+  ) => this._sql.createType<S, N>(typeName, "document", transaction, options);
 }
 
 export { DocumentModality };

@@ -1,0 +1,50 @@
+@import "./button.scss";
+@import "./code.scss";
+@import "./container.scss";
+@import "./content.scss";
+@import "./grid.scss";
+@import "./header.scss";
+@import "./links.scss";
+@import "./lists.scss";
+@import "./navigation.scss";
+@import "./parameters.scss";
+@import "./projects.scss";
+@import "./search.scss";
+@import "./switch.scss";
+@import "./tutorialFooter.scss";
+@import "./typography.scss";
+
+@import "./theme/theme.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  background: var(--background-primary);
+  color: var(--foreground-primary);
+}
+
+::-moz-selection {
+  background: var(--accent);
+  color: var(--background-primary);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background-primary);
+}
+
+hr {
+  margin: var(--section-padding) 0;
+  border: 0;
+  border-top: 1px solid var(--background-secondary);
+}

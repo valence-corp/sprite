@@ -3,6 +3,6 @@ import { DocumentTypes } from '../../types.js';
 
 export { dbClient };
 
-const client = dbClient.documents<DocumentTypes>();
+const client = dbClient.documentModality<DocumentTypes>();
 
 export { client };

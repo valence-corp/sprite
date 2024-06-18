@@ -1,116 +1,89 @@
-import { SpriteDatabase } from './SpriteDatabase.js';
-import { createPropertyNodes } from './nodes/create/property/index.js';
-import { TypeNames } from './types/database.js';
+import { SpriteCommand } from "./SpriteCommand.js";
+import { SpriteDatabase } from "./SpriteDatabase.js";
+import { SpriteTransaction } from "./SpriteTransaction.js";
+import { createPropertyNodes } from "./nodes/create/property/index.js";
+import { TypeNames } from "./types/database.js";
+import {
+  ArcadeSchemaConstraints,
+  ArcadeSchemaDataType,
+  SpriteSchemaDefinition,
+} from "./types/type.js";
 
 /**
- * Options for configuring a property.
+ * @description Used to define properties of a type in the schema.
+ * @experimental
  */
-export type ArcadePropertyConstraints = {
-  /**
-   * If true, the property must be present. Default is false.
-   * @default false
-   */
-  mandatory?: boolean;
-
-  /**
-   * If true, the property, if present, cannot be null. Default is false.
-   * @default false
-   */
-  notnull?: boolean;
-
-  /**
-   * If true, the property cannot be changed after the creation of the record. Default is false.
-   * @default false
-   */
-  readonly?: boolean;
-
-  /**
-   * Defines the minimum value for this property.
-   * For number types, it is the minimum number as a value.
-   * For strings, it represents the minimum number of characters.
-   * For dates, it is the minimum date (uses the database date format).
-   * For collections (lists, sets, maps), this attribute determines the minimally required number of elements.
-   */
-  min?: number | string;
-
-  /**
-   * Defines the maximum value for this property.
-   * For number types, it is the maximum number as a value.
-   * For strings, it represents the maximum number of characters.
-   * For dates, it is the maximum date (uses the database date format).
-   * For collections (lists, sets, maps), this attribute determines the maximally allowed number of elements.
-   */
-  max?: number | string;
-
-  /**
-   * Defines the mask to validate the input as a Regular Expression.
-   */
-  regexp?: string;
-
-  /**
-   * Defines default value if not present.
-   * @default null
-   */
-  default?: any;
-};
-
-export interface ISpritePropertyOptions {
-  ifNotExists: boolean;
-  embeddedType: string;
-  constraints?: ArcadePropertyConstraints;
-}
-
-export type ArcadePropertyDataType =
-  | 'BOOLEAN'
-  | 'BYTE'
-  | 'SHORT'
-  | 'INTEGER'
-  | 'LONG'
-  | 'STRING'
-  | 'LINK'
-  | 'BINARY'
-  | 'DATE'
-  | 'DATETIME'
-  | 'FLOAT'
-  | 'DOUBLE'
-  | 'DECIMAL'
-  | 'LIST'
-  | 'MAP'
-  | 'EMBEDDED';
-
-export type ValidSuperTypeKey<S, N extends TypeNames<S>> = keyof Omit<S, N>;
-
 export class SpriteType<S, N extends TypeNames<S>> {
-  name: N;
-  nodes = createPropertyNodes;
-  database: SpriteDatabase;
-  constructor(database: SpriteDatabase, typeName: N) {
-    this.name = typeName;
-    this.database = database;
+  private _database: SpriteDatabase;
+  private _name: N;
+  private _nodes = createPropertyNodes;
+  /** The name of the type */
+  get name() {
+    return this._name;
   }
-  // createProperty = (
-  //   property: keyof S[N],
-  //   dataType: ArcadePropertyDataType,
-  //   options?: ISpritePropertyOptions,
-  // ) => {
-  //   const command = new SpriteCommand({
-  //     initial: this.nodes.createProperty(
-  //       this.name as string,
-  //       property as string,
-  //     ),
-  //   });
+  constructor(database: SpriteDatabase, typeName: N) {
+    this._name = typeName;
+    this._database = database;
+  }
+  model = async (
+    definitions: SpriteSchemaDefinition<S, N>,
+    transaction: SpriteTransaction
+  ) => {
+    const properties = Object.keys(definitions) as [keyof typeof definitions];
+    const reciept = [];
+    for (let i = 0; i < properties.length; ++i) {
+      const { type, ...constraints } = definitions[properties[i]];
+      reciept.push(
+        await this.createProperty(properties[i], type as any, transaction, {
+          constraints: constraints as any,
+        })
+      );
+    }
+    return Promise.all(reciept);
+  };
+  createProperty = async <P extends keyof S[N]>(
+    property: P,
+    dataType: ArcadeSchemaDataType<S[N][P]>,
+    transaction: SpriteTransaction,
+    options?: {
+      embeddedType?: S[N][P];
+      constraints?: ArcadeSchemaConstraints<S[N][P]>;
+      ifNotExists?: boolean;
+    }
+  ) => {
+    const command = new SpriteCommand({
+      initial: this._nodes.createProperty(
+        this._name as string,
+        property as string
+      ),
+    });
 
-  //   if (options?.ifNotExists) {
-  //     command.append<boolean>(this.nodes.ifNotExists, options.ifNotExists);
-  //   }
+    if (options?.ifNotExists) {
+      command.append<boolean>(this._nodes.ifNotExists, options.ifNotExists);
+    }
 
-  //   if (options?.constraints) {
-  //     command.append<ArcadePropertyConstraints>(
-  //       this.nodes.constraints,
-  //       options.constraints,
-  //     );
-  //   }
+    // TODO: command.append, perhaps it just appends the string
+    // if that's all that's passed to it
+    command.append((dataType) => dataType as string, dataType);
 
-  //   return this.database.command('sql', command.toString());
-  // };
+    if (options?.embeddedType) {
+      command.append<S[N][P]>(
+        (type: S[N][P]) => `OF ${type}`,
+        options.embeddedType
+      );
+    }
+    if (options?.constraints) {
+      command.append<ArcadeSchemaConstraints<S[N][P]>>(
+        this._nodes.constraints,
+        options.constraints
+      );
+    }
+
+    const response = await this._database.command<[{}]>(
+      "sql",
+      command.toString(),
+      transaction
+    );
+    return response.result[0];
+  };
 }

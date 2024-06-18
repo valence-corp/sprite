@@ -1,26 +1,42 @@
-import { SpriteRestClient } from './SpriteRestClient.js';
-import { endpoints } from './endpoints/server.js';
 import {
   ArcadeServerInformation,
   ArcadeServerInformationLevel,
   ISpriteCreateArcadeUser,
   SpriteArcadeServerEvents,
-} from './types/server.js';
-import { SpriteDatabase } from './SpriteDatabase.js';
-import { ISpriteRestClientConnectionParameters } from './types/client.js';
-import { validation } from './validation/ArcadeParameterValidation.js';
+} from "./types/server.js";
+import { endpoints } from "./endpoints/server.js";
+import { ISpriteRestClientConnectionParameters } from "./types/client.js";
+import { SpriteDatabase } from "./SpriteDatabase.js";
+import { SpriteRestClient } from "./SpriteRestClient.js";
+import { validation } from "./validation/ArcadeParameterValidation.js";
 
 /**
- * Interact with a ArcadeDB server. Manage databases, users, etc.
- * @param {ISpriteRestClientConnectionParameters} parameters The details necessary to access, and perform operations on a server.
+ * Methods for interact with an ArcadeDB server. Manage databases, users, etc.
+ * @param {ISpriteRestClientConnectionParameters} parameters Connection details to access the server with.
  * @example
+ * 
  * const client = new SpriteServer({
  *   username: 'aUser',
  *   password: 'aPassword',
  *   address: 'http://localhost:2480',
  * });
- * client.serverReady().then(console.log);
- * // true
+ *
+ * async function serverReadyExample() {
+ *   try {
+ *     const ready = await client.serverReady();
+ *     if (ready) {
+ *       console.log(ready);
+ *       // true;
+ *     }
+ *   } catch (error) {
+ *     throw new Error(
+ *       'An error occurred while running example.',
+ *       { cause: error }
+ *     );
+ *   }
+ * }
+ *
+ * serverReadyExample();
  */
 class SpriteServer {
   private _client: SpriteRestClient;
@@ -33,6 +49,7 @@ class SpriteServer {
    * Useful for remote monitoring of server readiness.
    * @returns {Promise<boolean>} `true` if the server is ready, otherwise `false`.
    * @example
+   * 
    * const client = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -41,14 +58,18 @@ class SpriteServer {
    *
    * async function serverReadyExample() {
    *   try {
-   *     const serverReady = await client.serverReady();
-   *     console.log(serverReady);
-   *     // true
+   *     const ready = await client.serverReady();
+   *     if (ready) {
+   *       console.log(ready);
+   *       // true;
+   *     }
    *   } catch (error) {
-   *     console.error(error);
-   *     // manage error conditions
+   *     throw new Error(
+   *       'An error occurred while running example.',
+   *       { cause: error }
+   *     );
    *   }
-   * };
+   * }
    *
    * serverReadyExample();
    */
@@ -57,7 +78,7 @@ class SpriteServer {
       const response = await this._client.fetch(endpoints.ready);
       return response.status === 204;
     } catch (error) {
-      throw new Error('Unable to check the server status.', { cause: error });
+      throw new Error("Unable to check the server status.", { cause: error });
     }
   };
   /**
@@ -65,6 +86,7 @@ class SpriteServer {
    * @param {string} databaseName The name of the database to close.
    * @returns {Promise<boolean>} The response from the server.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -86,7 +108,7 @@ class SpriteServer {
    */
   closeDatabase = async (databaseName: string): Promise<boolean> => {
     try {
-      return await this._booleanCommand(`CLOSE DATABASE`, databaseName);
+      return await this._booleanCommand(`CLOSE DATABASE ${databaseName}`);
     } catch (error) {
       throw new Error(`Unabled to close database "${databaseName}`, {
         cause: error,
@@ -98,7 +120,7 @@ class SpriteServer {
    * @param {string} databaseName The name of the database to open.
    * @returns {Promise<boolean>} The response from the server.
    * @example
-   * // Async/Await
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -120,12 +142,9 @@ class SpriteServer {
    */
   openDatabase = async (databaseName: string): Promise<boolean> => {
     try {
-      return await this._booleanCommand(
-        `OPEN DATABASE`,
-        databaseName as string,
-      );
+      return await this._booleanCommand(`OPEN DATABASE ${databaseName}`);
     } catch (error) {
-      throw new Error(`Unabled to open database "${databaseName as string}`, {
+      throw new Error(`Unabled to open database "${databaseName}`, {
         cause: error,
       });
     }
@@ -136,6 +155,7 @@ class SpriteServer {
    * @param {string} databaseName The name of the database to create a client for.
    * @returns {SpriteDatabase} An instance of SpriteDatabase.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -143,28 +163,26 @@ class SpriteServer {
    * });
    *
    * const database = await server.database('aDatabase');
+   * // returns an instance of SpriteDatabase
    * console.log(database.name);
    * // 'aDatabase';
    */
   database = (databaseName: string): SpriteDatabase => {
     try {
-      //this.validate.databaseName(databaseName);
+      this._validate.databaseName(databaseName);
       return new SpriteDatabase({ client: this._client, databaseName });
     } catch (error) {
       throw new Error(
-        `Could not return an insance of "SpriteDatabase" for database: ${
-          databaseName as string
-        }`,
+        `Could not return an insance of "SpriteDatabase" for database: ${databaseName}`,
         {
           cause: error,
-        },
+        }
       );
     }
   };
   /**
-   * A method for sending commands as strings to the server.
-   * @param {string} command The [command](https://docs.arcadedb.com/#HTTP-ServerCommand) to send to the server, such as `CREATE DATABASE`.
-   * @param {object | string} parameters Optionally, "command arguments" can be supplied as a second argument to the method, (i.e. a `string`, or an `object`).
+   * A method for sending commands (as strings) to the server.
+   * @param {string} command The [command](https://docs.arcadedb.com/#HTTP-ServerCommand) to send to the server, such as `CREATE DATABASE aDatabase`.
    * @returns {Promise<object>} The response is simplified from the raw response from the ArcadeDB server. JSON responses automatically return just the `result` property of the raw JSON object returned from the server. Results such as `OK` are returned as `boolean` values.
    * @example
    *
@@ -176,9 +194,14 @@ class SpriteServer {
    *
    * async function commandExample(databaseName: string) {
    *   try {
-   *     const response = await server.command("CREATE DATABASE", databaseName);
+   *     const response = await server.command(`CREATE DATABASE ${databaseName}`);
    *     console.log(response);
-   *     // { user: 'aUser', 'version': '24.4.1', serverName: 'ArcadeDB_0', result: 'ok' }
+   *     // {
+   *     //   user: 'aUser',
+   *     //   version: '24.x.x',
+   *     //   serverName: 'ArcadeDB_0',
+   *     //   result: 'ok'
+   *     // }
    *   } catch (error) {
    *     // Will throw an error for conditions such as:
    *     // Invalid credentials, Database Already Exists, etc.
@@ -188,31 +211,19 @@ class SpriteServer {
    *
    * commandExample('aDatabase');
    */
-  command = async <T>(
-    command: string,
-    parameters?: string | object,
-  ): Promise<T> => {
+  command = async <T>(command: string): Promise<T> => {
     try {
-      // TODO: This is a bad idea.
-      // Why all this logic for every command?
-      const parametersString = parameters
-        ? typeof parameters === 'object'
-          ? ` ${JSON.stringify(parameters)}`
-          : ` ${parameters}`
-        : '';
-
       const body = JSON.stringify({
-        command: `${command}${parametersString}`,
+        command,
       });
-
       return await this._client.fetchJson<T>(endpoints.command, {
-        method: 'POST',
+        method: "POST",
         body,
       });
     } catch (error) {
       throw new Error(
         `Encountered an error when sending a command to the server.`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -221,12 +232,12 @@ class SpriteServer {
    * containing an `ok` value in the `result` property is expected. `ok` is then
    * returned as a simple boolean (`true`) value
    * @param {string} command The [command](https://docs.arcadedb.com/#HTTP-ServerCommand) to send to the server, such as `CREATE DATABASE`.
-   * @param {object | string} parameters Optionally, "command arguments" can be supplied as a second argument to the method, (i.e. a `string`, or an `object`).
    * @returns {boolean} `true` if the command was successful.
    * @example
+   * 
    * async function booleanCommandExample(databaseName: string) {
    *   try {
-   *     const response = await server.booleanCommand("CREATE DATABASE", databaseName);
+   *     const response = await server.booleanCommand(`CREATE DATABASE ${databaseName}`);
    *     console.log(response);
    *     // true
    *   } catch (error) {
@@ -237,12 +248,9 @@ class SpriteServer {
    * }
    * booleanCommandExample("myDatabase");
    */
-  private _booleanCommand = async (
-    command: string,
-    parameters?: string | object,
-  ): Promise<boolean> => {
-    const response = await this.command(command, parameters);
-    if (response === 'ok') {
+  private _booleanCommand = async (command: string): Promise<boolean> => {
+    const response = await this.command(command);
+    if (response === "ok") {
       return true;
     } else {
       return false;
@@ -254,6 +262,7 @@ class SpriteServer {
    * @returns {Promise<SpriteConnectClusterResponse>} The response from the server.
    * @throws `Error` if the cluster could not be connected.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -276,11 +285,11 @@ class SpriteServer {
   connectCluster = async (address: string): Promise<boolean> => {
     try {
       this._validate.url(address);
-      return await this._booleanCommand(`CONNECT CLUSTER`, address);
+      return await this._booleanCommand(`CONNECT CLUSTER ${address}`);
     } catch (error) {
       throw new Error(
         `There was an error attempting to connect cluster at: ${address}`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -289,6 +298,7 @@ class SpriteServer {
    * @param {string} databaseName The name of the database to create.
    * @returns {Promise<SpriteDatabase>} An instance of `SpriteDatabase`, targeting the created database.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -312,25 +322,19 @@ class SpriteServer {
     try {
       this._validate.databaseName(databaseName);
       const created = await this._booleanCommand(
-        'CREATE DATABASE',
-        databaseName,
+        `CREATE DATABASE ${databaseName}`
       );
       if (created) {
         return this.database(databaseName);
       } else {
         throw new Error(
-          `Received an unexpected response from the server when attempting to create database "${
-            databaseName as string
-          }"`,
+          `Received an unexpected response from the server when attempting to create database "${databaseName}"`
         );
       }
     } catch (error) {
-      throw new Error(
-        `Failed to create database "${databaseName as string}".`,
-        {
-          cause: error,
-        },
-      );
+      throw new Error(`Failed to create database "${databaseName}".`, {
+        cause: error,
+      });
     }
   };
   /**
@@ -345,6 +349,7 @@ class SpriteServer {
    * @returns {Promise<boolean>} `true` if the user was created successfully.
    * @throws `Error` if the user could not be created.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -374,14 +379,14 @@ class SpriteServer {
   createUser = async (params: ISpriteCreateArcadeUser): Promise<boolean> => {
     try {
       if (
-        !params.hasOwnProperty('username') ||
-        !params.hasOwnProperty('password') ||
-        !params.hasOwnProperty('databases')
+        !params.hasOwnProperty("username") ||
+        !params.hasOwnProperty("password") ||
+        !params.hasOwnProperty("databases")
       ) {
         throw new TypeError(
           `The object supplied as an argument must contain 'username', 'password', and 'databases' properties. Received: ${JSON.stringify(
-            params,
-          )}`,
+            params
+          )}`
         );
       }
 
@@ -391,10 +396,10 @@ class SpriteServer {
       // be confusing because it isn't really explained and could be confused with a
       // 403 for invalid credentials from user error establishing authorization
       // through the client. Further question: the manual indicates that it's a 8
-      // character minimum, but in practice it's 4 (for non-aUser users)
+      // character minimum, but in practice it's 4 (for non-root users)
       if (!(params.password.length > 3)) {
         throw new TypeError(
-          `The password must be at least 4 characters in length, received: ${params.password}, which is ${params.password.length} characters long.`,
+          `The password must be at least 4 characters in length, received: ${params.password}, which is ${params.password.length} characters long.`
         );
       }
 
@@ -402,7 +407,7 @@ class SpriteServer {
       // This is fine if all you are collecting is a 'username',
       // but in many use cases a user's 'name' and their 'username'
       // will be different fields, and to avoid complication for
-      // end users, we are collection 'username' and manually
+      // end users, we are collecting 'username' and manually
       // changing it to 'name' as arcadedb expects.
       const expectedParameters = {
         name: params.username,
@@ -410,12 +415,14 @@ class SpriteServer {
         databases: params.databases,
       };
 
-      return await this._booleanCommand('CREATE USER', expectedParameters);
+      return await this._booleanCommand(
+        `CREATE USER ${JSON.stringify(expectedParameters)}`
+      );
     } catch (error) {
-      const databaseListString = Object.keys(params.databases).join(', ');
+      const databaseListString = Object.keys(params.databases).join(", ");
       throw new Error(
         `Could not create user ${params.username}. In database(s): ${databaseListString}`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -425,6 +432,7 @@ class SpriteServer {
    * @returns {Promise<boolean>} `true` if database exists, `false` if not
    * @throws `Error` if the existence of the database could not be verified.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -448,7 +456,7 @@ class SpriteServer {
   databaseExists = async (databaseName: string): Promise<boolean> => {
     try {
       const { status } = await this._client.fetch(
-        `${endpoints.exists}/${databaseName}`,
+        `${endpoints.exists}/${databaseName}`
       );
       switch (status) {
         case 200:
@@ -457,15 +465,13 @@ class SpriteServer {
           return false;
         default:
           throw new Error(
-            `Received an unexpected result from the server when attempting to check if database "${databaseName}" exists.`,
+            `Received an unexpected result from the server when attempting to check if database "${databaseName}" exists.`
           );
       }
     } catch (error) {
       throw new Error(
-        `Encountered an error when checking to see if database "${
-          databaseName as string
-        }" exists`,
-        { cause: error },
+        `Encountered an error when checking to see if database "${databaseName}" exists`,
+        { cause: error }
       );
     }
   };
@@ -474,6 +480,7 @@ class SpriteServer {
    * @returns {Promise<SpriteDisconnectClusterResponse>} The response from the server.
    * @throws `Error` if the cluster could not be disconnected.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -495,11 +502,11 @@ class SpriteServer {
    */
   disconnectCluster = async (): Promise<boolean> => {
     try {
-      return await this._booleanCommand('DISCONNECT CLUSTER');
+      return await this._booleanCommand("DISCONNECT CLUSTER");
     } catch (error) {
       throw new Error(
-        'There was an error when attempting to disconnect from the cluster.',
-        { cause: error },
+        "There was an error when attempting to disconnect from the cluster.",
+        { cause: error }
       );
     }
   };
@@ -509,6 +516,7 @@ class SpriteServer {
    * @returns {Promise<boolean>} `true` if successfully dropped.
    * @throws `Error` if the database could not be dropped.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -530,8 +538,7 @@ class SpriteServer {
    */
   dropDatabase = async (databaseName: string): Promise<boolean> => {
     try {
-      //this.validate.databaseName(databaseName);
-      return await this._booleanCommand('DROP DATABASE', databaseName);
+      return await this._booleanCommand(`DROP DATABASE ${databaseName}`);
     } catch (error) {
       throw new Error(`Failed to drop database.`, {
         cause: error,
@@ -544,6 +551,7 @@ class SpriteServer {
    * @returns {Promise<SpriteDropUserResult>} `true` if the user was successfully dropped.
    * @throws `Error` if the user could not be dropped.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -565,12 +573,7 @@ class SpriteServer {
    */
   dropUser = async (username: string): Promise<boolean> => {
     try {
-      // if (!this.validate.nonEmptyString(username)) {
-      //   throw new TypeError(
-      //     `A non-empty string must be supplied as a "username", which indicates the user to drop. The supplied parameter was: [${username}]. Which is of type ${typeof username}`,
-      //   );
-      // }
-      return await this._booleanCommand(`DROP USER`, username);
+      return await this._booleanCommand(`DROP USER ${username}`);
     } catch (error) {
       throw new Error(`Could not drop user ${username}.`, { cause: error });
     }
@@ -582,6 +585,7 @@ class SpriteServer {
    * @returns {Promise<SpriteGetServerEventsResult>} An object containing he server events from the server, and filenames of the associated logs.
    * @throws `Error` if there was a problem fetching the event logs.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -618,11 +622,11 @@ class SpriteServer {
    */
   getEvents = async (): Promise<SpriteArcadeServerEvents> => {
     try {
-      return await this.command<SpriteArcadeServerEvents>('GET SERVER EVENTS');
+      return await this.command<SpriteArcadeServerEvents>("GET SERVER EVENTS");
     } catch (error) {
       throw new Error(
         `There was an error when attempting to retrieve ArcadeDB server event logs.`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -635,6 +639,7 @@ class SpriteServer {
    * @returns {Promise<Response>} The response from the server.
    * @throws `Error` if the information could not be retrieved.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -645,7 +650,11 @@ class SpriteServer {
    *   try {
    *     const information = await sprite.getInformation(mode);
    *     console.log(information);
-   *     // {"user":"aUser", "version":"24.1.1", "serverName":"ArcadeDB_0"}
+   *     // {
+   *     //   user: 'aUser',
+   *     //   version: '24.x.x',
+   *     //   serverName: 'ArcadeDB_0'
+   *     // }
    *   } catch (error) {
    *     console.error(error);
    *     // handle error condition
@@ -654,12 +663,12 @@ class SpriteServer {
    *
    * getInformationExample('basic');
    */
-  getInformation = async <M extends ArcadeServerInformationLevel = 'default'>(
-    mode?: M,
+  getInformation = async <M extends ArcadeServerInformationLevel = "default">(
+    mode?: M
   ): Promise<ArcadeServerInformation<M>> => {
     try {
       return await this._client.fetchJson(
-        `${endpoints.command}?mode=${mode || 'default'}`,
+        `${endpoints.command}?mode=${mode || "default"}`
       );
     } catch (error) {
       throw new Error(`Could not get ArcadeDB server information.`, {
@@ -672,6 +681,7 @@ class SpriteServer {
    * @returns {Promise<Array<string>>} A list (array) of database names present on the server.
    * @throws `Error` if the database list could not be retrieved.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -696,8 +706,8 @@ class SpriteServer {
       return await this._client.fetchJson(endpoints.databases);
     } catch (error) {
       throw new Error(
-        'Encountered an error when attemping to fetch list of databases from the server.',
-        { cause: error },
+        "Encountered an error when attemping to fetch list of databases from the server.",
+        { cause: error }
       );
     }
   };
@@ -709,6 +719,7 @@ class SpriteServer {
    * @returns `true` if the server is successfully shutdown.
    * @throws `Error` if there is a problem attempting the shutdown.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -730,16 +741,16 @@ class SpriteServer {
   shutdown = async (): Promise<boolean> => {
     try {
       const response = await this._client.fetch(endpoints.command, {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify({
-          command: 'SHUTDOWN',
+          command: "SHUTDOWN",
         }),
       });
       return response.status === 204;
     } catch (error) {
       throw new Error(
         `There was an error when attempting to shutdown the ArcadeDB server at.`,
-        { cause: error },
+        { cause: error }
       );
     }
   };

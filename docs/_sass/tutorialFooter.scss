@@ -1,0 +1,33 @@
+footer.tutorial {
+  margin-top: var(--section-padding);
+  padding: var(--section-padding) 0;
+  border-top: var(--button-border);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  a {
+    position: relative;
+    text-decoration: none;
+    svg {
+      min-width: var(--full-line);
+    }
+    &:focus {
+      background: var(--background-tertiary);
+    }
+    &:first-of-type {
+      padding-right: var(--padding-reg);
+    }
+    &:last-of-type {
+      padding-left: var(--padding-reg);
+    }
+  }
+
+  &.nextOnly {
+    justify-content: flex-end;
+  }
+
+  &.prevOnly {
+    justify-content: flex-start;
+  }
+}

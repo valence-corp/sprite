@@ -1,0 +1,84 @@
+<nav id="mainNavigation">
+  {% include search.html %}
+  <ul>
+    <li>
+      <a href="../../index.html">
+        {% include home_icon.svg %}
+        Home
+      </a>
+    </li>
+    <li>
+      <a href="https://www.github.com/valence-corp/sprite">
+        {% include github_icon.svg %}
+        GitHub
+      </a>
+    </li>
+    <li class="menuItem">
+      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectGettingStarted" id="gettingStartedId">
+        {% include accordion-icon.svg %}
+        Getting Started
+      </button>
+      <ul id="sectGettingStarted" role="region" aria-labelledby="gettingStartedId" class="accordion-panel">
+        {% for tutorial in site.tutorials %}
+        <li>
+          <a href="{{ tutorial.permalink }}">
+            {{ tutorial.name }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </li>
+  </ul>
+  <h2>
+    API Documentation
+  </h2>
+  <ul>
+    {% for class in site.data.nav.modules %}
+    <li {% if class.methods %} class="menuItem" {% endif %}>
+      {% if class.methods %}
+      <button aria-expanded="true" class="accordion-trigger" aria-controls="sect{{class.name}}" id="{{class.name}}id">
+        {% include accordion-icon.svg %}
+        {{ class.name }}
+      </button>
+      <ul id="sect{{class.name}}" role="region" aria-labelledby="{{class.name}}id" class="accordion-panel">
+        {% for child in class.methods %}
+        <li>
+          <a href="{{child.link}}">
+            {{child.name}}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% unless class.methods %}
+      <a href="{{ class.name }}">
+        {{ class.name }}
+      </a>
+      {% endunless %}
+    </li>
+    {% endfor %}
+    <li class="menuItem">
+      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectTypes" id="typesId">
+        {% include accordion-icon.svg %}
+        Type Definitions
+      </button>
+      <ul id="sectTypes" role="region" aria-labelledby="typesId" class="accordion-panel">
+        {% for type in site.types %}
+        <li>
+          <a href="{{ type.permalink }}">
+            <span class="menuItemText">
+              {{ type.name }}
+            </span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </li>
+    <li>
+      <a href="../../api">
+        {% include book-icon.svg %}
+        Generated Docs
+      </a>
+    </li>
+  </ul>
+</nav>

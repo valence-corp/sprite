@@ -1,0 +1,15 @@
+.container {
+  overflow-y: hidden;
+  max-width: 100%;
+  justify-content: space-between;
+}
+
+// above 720px wide we want to display desktop styles
+
+@media (min-width: 1000px) {
+  .container {
+    min-width: 1000px;
+    max-width: 1000px;
+    margin: auto;
+  }
+}

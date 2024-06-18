@@ -1,19 +1,17 @@
-import { SpriteDatabase } from '../SpriteDatabase.js';
-import { ModalityBase } from './ModalityBase.js';
+import { SpriteDatabase } from "../SpriteDatabase.js";
+import { ModalityBase } from "./ModalityBase.js";
 import {
   ISpriteCreateTypeOptions,
   ISpriteInsertRecordOptions,
   TypeNames,
-  WithArcadeEdgeRecordMeta,
-  WithArcadeRecordMeta,
-} from '../types/database.js';
-import { SpriteOperations } from '../SpriteOperations.js';
-import { SpriteType } from '../SpriteType.js';
-import { SpriteTransaction } from '../SpriteTransaction.js';
+} from "../types/database.js";
+import { SpriteType } from "../SpriteType.js";
+import { SpriteTransaction } from "../SpriteTransaction.js";
 import {
   ISpriteEdgeOptions,
   SpriteEdgeVertexDescriptor,
-} from '../types/edge.js';
+} from "../types/edge.js";
+import { SqlDialect } from "../SqlDialect.js";
 
 /**
  * A window to a specific graph set.
@@ -21,12 +19,9 @@ import {
  * @param {SpriteDatabase} client The instance of SpriteDatabase to target
  * @param {SpriteOperations} operators The operators instance to use
  */
-class GraphModality<
-  V extends WithArcadeRecordMeta<V>,
-  E extends WithArcadeEdgeRecordMeta<E>,
-> extends ModalityBase<V & E> {
-  constructor(client: SpriteDatabase, operators: SpriteOperations) {
-    super(client, operators);
+class GraphModality<V, E> extends ModalityBase<V & E> {
+  constructor(client: SpriteDatabase, dialect: SqlDialect) {
+    super(client, dialect);
   }
   /**
    * Insert a new vertex into the database.
@@ -36,6 +31,28 @@ class GraphModality<
    * @see createVertexType()
    * @see transaction()
    * @example
+   *
+   * const db = new SpriteDatabase({
+   *   username: 'aUser',
+   *   password: 'aPassword',
+   *   address: 'http://localhost:2480',
+   *   databaseName: 'aSpriteDatabase'
+   * });
+   *
+   * type VertexTypes = {
+   *   aType: {
+   *     aProperty: string
+   *   }
+   * }
+   *
+   * type EdgeTypes = {
+   *   aType: {
+   *     aProperty: string
+   *   }
+   * }
+   *
+   * const client = db.graphModality<VertexTypes, EdgeTypes>();
+   *
    * // non-idempotent operations must be conducted within a transaction
    * client.transaction(async (trx)=>{
    *   // to create a vertex, a type must be created first
@@ -51,22 +68,12 @@ class GraphModality<
    *   //   'aProperty': 'aValue'
    *   // }
    * });
-   *
-   * // NOTE: you could control the transaction manually
-   * const trx = await database.newTransaction();
-   * client.setTransaction(trx);
-   * await client.createType('aVertex', trx);
-   * const vertex = await client.newVertex('aVertex', trx, {
-   *   aProperty: 'aValue',
-   * });
-   * trx.commit();
-   * // ...
    */
   newVertex = async <N extends TypeNames<V>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteInsertRecordOptions<V[N]>,
-  ) => this._operators.insertRecord<V, N>(typeName, transaction, options);
+    options?: ISpriteInsertRecordOptions<V[N]>
+  ) => this._sql.insertRecord<V, N>(typeName, transaction, options);
   /**
    * Insert a new edge into the database.
    * @param {string} type The type of edge to create. It must be a type that currently exists in the schema.
@@ -77,6 +84,28 @@ class GraphModality<
    * @param {ISpriteInsertRecordOptions} options The options for the edge insertion.
    * @returns {SpriteRecord} The record that is created in the database.
    * @example
+   *
+   * const db = new SpriteDatabase({
+   *   username: 'aUser',
+   *   password: 'aPassword',
+   *   address: 'http://localhost:2480',
+   *   databaseName: 'aSpriteDatabase'
+   * });
+   *
+   * type VertexTypes = {
+   *   aType: {
+   *     aProperty: string
+   *   }
+   * }
+   *
+   * type EdgeTypes = {
+   *   aType: {
+   *     aProperty: string
+   *   }
+   * }
+   *
+   * const client = db.graphModality<VertexTypes, EdgeTypes>();
+   *
    * // non-idempotent operations must be conducted within a transaction
    * client.transaction(async ()=>{
    *   // to create a edge, a type must be created first
@@ -94,34 +123,24 @@ class GraphModality<
    *   //   aProperty: 'aValue'
    *   // }
    * });
-   *
-   * // NOTE: you could control the transaction manually
-   * const trx = await database.newTransaction();
-   * client.setTransaction(trx);
-   * await client.createType('anEdge', trx);
-   * const edge = await client.newEdge('anEdge', trx, {
-   *   aProperty: 'aValue',
-   * });
-   * trx.commit();
-   * // ...
    */
   newEdge = async <
     N extends TypeNames<E>,
     V1 extends keyof V,
-    V2 extends keyof V,
+    V2 extends keyof V
   >(
     typeName: N,
     to: SpriteEdgeVertexDescriptor<V, V1>,
     from: SpriteEdgeVertexDescriptor<V, V2>,
     transaction: SpriteTransaction,
-    options?: ISpriteEdgeOptions<E[N]>,
+    options?: ISpriteEdgeOptions<E[N]>
   ) =>
-    this._operators.createEdge<E, V, N, V1, V2>(
+    this._sql.createEdge<E, V, N, V1, V2>(
       typeName,
       to,
       from,
       transaction!,
-      options,
+      options
     );
   /**
    * Create a new edge type.
@@ -132,14 +151,26 @@ class GraphModality<
    * @note non-idempotent commands (such a creating types) must be issued as part of a transaction
    * @example
    *
-   * const database = new SpriteDatabase({
-   *   username: 'root',
-   *   password: 'rootPassword',
+   * const db = new SpriteDatabase({
+   *   username: 'aUser',
+   *   password: 'aPassword',
    *   address: 'http://localhost:2480',
-   *   databaseName: 'aDatabase'
+   *   databaseName: 'aSpriteDatabase'
    * });
    *
-   * const client = database.graph<VertexTypes, EdgeTypes>();
+   * type VertexTypes = {
+   *   aType: {
+   *     aProperty: string
+   *   }
+   * }
+   *
+   * type EdgeTypes = {
+   *   aType: {
+   *     aProperty: string
+   *   }
+   * }
+   *
+   * const client = db.graphModality<VertexTypes, EdgeTypes>();
    *
    * async function createEdgeTypeExample() {
    *   try {
@@ -156,17 +187,12 @@ class GraphModality<
    * };
    *
    * createEdgeTypeExample();
-   *
-   * // NOTE: you could control the transaction manually
-   * const trx = await database.newTransaction();
-   * const type = await client.createEdgeType('aType', trx);
-   * trx.commit();
    */
   createEdgeType = async <N extends TypeNames<E>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteCreateTypeOptions<E, N>,
-  ) => this._operators.createType<E, N>(typeName, 'edge', transaction, options);
+    options?: ISpriteCreateTypeOptions<E, N>
+  ) => this._sql.createType<E, N>(typeName, "edge", transaction, options);
   /**
    * Create a new vertex type.
    * @param {TypeInRecordCategory} typeName The name of the type to create.
@@ -176,14 +202,26 @@ class GraphModality<
    * @note non-idempotent commands (such a creating types) must be issued as part of a transaction
    * @example
    *
-   * const database = new SpriteDatabase({
-   *   username: 'root',
-   *   password: 'rootPassword',
+   * const db = new SpriteDatabase({
+   *   username: 'aUser',
+   *   password: 'aPassword',
    *   address: 'http://localhost:2480',
-   *   databaseName: 'aDatabase'
+   *   databaseName: 'aSpriteDatabase'
    * });
    *
-   * const client = database.graph<VertexTypes, EdgeTypes>();
+   * type VertexTypes = {
+   *   aType: {
+   *     aProperty: string
+   *   }
+   * }
+   *
+   * type EdgeTypes = {
+   *   aType: {
+   *     aProperty: string
+   *   }
+   * }
+   *
+   * const client = db.graphModality<VertexTypes, EdgeTypes>();
    *
    * async function createVertexTypeExample() {
    *   try {
@@ -200,18 +238,13 @@ class GraphModality<
    * };
    *
    * createVertexTypeExample();
-   *
-   * // NOTE: you could control the transaction manually
-   * const trx = await database.newTransaction();
-   * const type = await client.createVertexType('aType', trx);
-   * trx.commit();
    */
   createVertexType = async <N extends TypeNames<V>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteCreateTypeOptions<V, N>,
+    options?: ISpriteCreateTypeOptions<V, N>
   ): Promise<SpriteType<V, N>> =>
-    this._operators.createType<V, N>(typeName, 'vertex', transaction, options);
+    this._sql.createType<V, N>(typeName, "vertex", transaction, options);
 }
 
 export { GraphModality };

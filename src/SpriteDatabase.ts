@@ -4,25 +4,21 @@ import {
   ArcadeQueryResponse,
   ArcadeSqlExplanation,
   ArcadeSupportedQueryLanguages,
+  AsArcadeEdges,
+  AsArcadeRecords,
   ISpriteDatabaseClientParameters,
   ISpriteDatabaseConnectionParameters,
-  WithArcadeEdgeRecordMeta,
-  WithArcadeRecordMeta,
-} from './types/database.js';
-import { ArcadeDatabaseError } from './errors/ArcadeDatabaseError.js';
+} from "./types/database.js";
+import { ArcadeDatabaseError } from "./errors/ArcadeDatabaseError.js";
 import {
-  ArcadeTransactionIsolationLevel,
   SpriteTransaction,
-} from './SpriteTransaction.js';
-import {
-  ChainingModality,
-  DocumentModality,
-  GraphModality,
-} from './modes/index.js';
-import { SpriteOperations } from './SpriteOperations.js';
-import { endpoints } from './endpoints/database.js';
-import { isNewClient } from './utilities/isNewClient.js';
-import { SpriteRestClient } from './SpriteRestClient.js';
+} from "./SpriteTransaction.js";
+import { endpoints } from "./endpoints/database.js";
+import { isNewClient } from "./utilities/isNewClient.js";
+import { SpriteRestClient } from "./SpriteRestClient.js";
+import { ArcadeTransactionIsolationLevel } from "./types/transaction.js";
+import { DocumentModality, GraphModality } from "./api.js";
+import { SqlDialect } from "./SqlDialect.js";
 
 /**
  * Interact with a SpriteDatabase, perform queries,
@@ -70,15 +66,19 @@ class SpriteDatabase {
   /** The rest client, handles auth and connection details  */
   private _client: SpriteRestClient;
   /** Methods for performing SQL operations on the database. */
-  private _operators: SpriteOperations | undefined;
+  private _sql: SqlDialect | undefined;
   /** The name of the database */
   private _name: string;
+  /** Modality for operations involving document records */
+  private _documentModality: DocumentModality<unknown> | undefined;
+  /** Modality for operations involving vertex & edge records */
+  private _graphModality: GraphModality<unknown, unknown> | undefined;
   constructor(parameters: ISpriteDatabaseClientParameters);
   constructor(parameters: ISpriteDatabaseConnectionParameters);
   constructor(
     parameters:
       | ISpriteDatabaseConnectionParameters
-      | ISpriteDatabaseClientParameters,
+      | ISpriteDatabaseClientParameters
   ) {
     if (isNewClient(parameters)) {
       const { databaseName, ...clientParameters } =
@@ -97,42 +97,57 @@ class SpriteDatabase {
     return this._name;
   }
   /**
-   * Private getter for this._operators, to avoid
-   * prematurly creating operators if they are not
+   * Private getter for this._sql, to avoid
+   * prematurly creating the sql dialect if they are not
    * needed.
    */
-  private get operators() {
-    if (!this._operators) {
-      this._operators = new SpriteOperations(this);
+  private get sql() {
+    if (!this._sql) {
+      this._sql = new SqlDialect(this);
     }
-    return this._operators;
+    return this._sql;
   }
+  /** Helper function for building enpoints */
   private _endpoint = (endpoint: string) => `${endpoint}/${this.name}`;
   /**
    * Returns a modality for working with document records within the database.
    * @returns {DocumentModality} A database document modality.
    */
-  documents = <T>(): DocumentModality<WithArcadeRecordMeta<T>> =>
-    new DocumentModality<WithArcadeRecordMeta<T>>(this, this.operators);
+  documentModality = <T>(): DocumentModality<AsArcadeRecords<T>> => {
+    if (!this._documentModality) {
+      this._documentModality = new DocumentModality<unknown>(
+        this,
+        this.sql
+      );
+    }
+    return this._documentModality as DocumentModality<AsArcadeRecords<T>>;
+  };
   /**
    * Returns a modality for working with graph records within the database.
    * @returns {GraphModality} A database graph modality.
    */
-  graph = <V, E>(): GraphModality<
-    WithArcadeRecordMeta<V>,
-    WithArcadeEdgeRecordMeta<E>
-  > =>
-    new GraphModality<WithArcadeRecordMeta<V>, WithArcadeEdgeRecordMeta<E>>(
-      this,
-      this.operators,
-    );
-  /**
-   * @experimental
-   * Returns a modality building SQL queries using method chaining.
-   * @returns {ChainingModality} A database chaining modality.
-   */
-  chain = <S>(): ChainingModality<S> =>
-    new ChainingModality<S>(this, this.operators);
+  graphModality = <V, E>(): GraphModality<
+    AsArcadeRecords<V>,
+    AsArcadeEdges<E>
+  > => {
+    if (!this._graphModality) {
+      this._graphModality = new GraphModality<unknown, unknown>(
+        this,
+        this.sql
+      );
+    }
+    return this._graphModality as GraphModality<
+      AsArcadeRecords<V>,
+      AsArcadeEdges<E>
+    >;
+  };
+  // /**
+  //  * @experimental
+  //  * Returns a modality building SQL queries using method chaining.
+  //  * @returns {ChainingModality} A database chaining modality.
+  //  */
+  // chainModality = <S>(): ChainingModality<S> =>
+  //   new ChainingModality<S>(this, this.operators);
   /**
    * Executes a query against the target database. This method only executes
    * idempotent statements (that cannot change the database), namely `SELECT`
@@ -153,9 +168,17 @@ class SpriteDatabase {
    *
    * async function spriteQueryExample() {
    *   try {
-   *     const result = await database.query('sql', 'SELECT FROM schema:types');
+   *     const result = await database.query(
+   *       'sql',
+   *       'SELECT FROM schema:types'
+   *     );
    *     console.log(result);
-   *     // { user: 'aUser', 'version': '24.x.x', serverName: 'ArcadeDB_0', result: [...] }
+   *     // { 
+   *     //   user: 'aUser',
+   *     //   version: '24.x.x',
+   *     //   serverName: 'ArcadeDB_0',
+   *     //   result: [...]
+   *     // }
    *   return result
    *   } catch (error) {
    *     console.error(error);
@@ -168,10 +191,10 @@ class SpriteDatabase {
   query = async <ReturnType>(
     language: ArcadeSupportedQueryLanguages,
     command: string,
-    params?: Record<string, any>,
-  ): Promise<ArcadeQueryResponse<ReturnType>> => {
+    params?: Record<string, any>
+  ): Promise<ArcadeQueryResponse<ReturnType[]>> => {
     const response = await this._client.fetch(this._endpoint(endpoints.query), {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify({
         language,
         command,
@@ -189,16 +212,16 @@ class SpriteDatabase {
         return response.json();
       case 400:
         throw new Error(
-          `Invalid language or query. Status: ${response.status}`,
+          `Invalid language or query. Status: ${response.status}`
         );
       case 500:
         const message = await response.json();
         throw new Error(
-          `${message.error}. ${message.detail}. Status: ${response.status}`,
+          `${message.error}. ${message.detail}. Status: ${response.status}`
         );
       default:
         throw new Error(
-          `Unknown error. Status: ${response.status}, StatusText: ${response.statusText}`,
+          `Unknown error. Status: ${response.status}, StatusText: ${response.statusText}`
         );
     }
   };
@@ -241,9 +264,9 @@ class SpriteDatabase {
    */
   explain = async (sql: string): Promise<ArcadeSqlExplanation> => {
     try {
-      const response = await this.query<ArcadeSqlExplanation[]>(
-        'sql',
-        `EXPLAIN ${sql}`,
+      const response = await this.query<ArcadeSqlExplanation>(
+        "sql",
+        `EXPLAIN ${sql}`
       );
       if (response.result[0]) {
         return response.result[0];
@@ -253,7 +276,7 @@ class SpriteDatabase {
     } catch (error) {
       throw new Error(
         `Could not retreive explanation from the server for ${sql}.`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -280,9 +303,14 @@ class SpriteDatabase {
    *
    * async function spriteCommandExample() {
    *   try {
-   *     // commands are non-idempotent, and must be conducted as part of a transaction
+   *     // commands are non-idempotent, and must be
+   *     // conducted as part of a transaction
    *     const transaction = await database.newTransaction();
-   *     const result = await database.command('sql', 'CREATE document TYPE aType', transaction);
+   *     const result = await database.command(
+   *       'sql',
+   *       'CREATE document TYPE aType',
+   *       transaction
+   *     );
    *     transaction.commit();
    *     console.log(result);
    *     // {
@@ -306,7 +334,7 @@ class SpriteDatabase {
     transaction: SpriteTransaction,
     options?: {
       params?: Record<string, any>;
-    },
+    }
   ): Promise<ArcadeCommandResponse<T>> => {
     const body = JSON.stringify({
       language,
@@ -316,12 +344,12 @@ class SpriteDatabase {
     const response = await this._client.fetch(
       this._endpoint(endpoints.command),
       {
-        method: 'POST',
+        method: "POST",
         body,
         headers: {
-          'arcadedb-session-id': transaction.id,
+          "arcadedb-session-id": transaction.id,
         },
-      },
+      }
     );
 
     switch (response.status) {
@@ -332,13 +360,13 @@ class SpriteDatabase {
       //  break;
       case 400:
         throw new Error(
-          `Invalid language or command. Status: ${response.status}`,
+          `Invalid language or command. Status: ${response.status}`
         );
       case 500:
         throw new ArcadeDatabaseError(await response.json());
       default:
         throw new Error(
-          `Unknown error. Status: ${response.status}, StatusText: ${response.statusText}`,
+          `Unknown error. Status: ${response.status}, StatusText: ${response.statusText}`
         );
     }
   };
@@ -360,17 +388,17 @@ class SpriteDatabase {
    *
    * getSchemaExample();
    */
-  getSchema = async (): Promise<ArcadeGetSchemaResponse> => {
+  getSchema = async (): Promise<ArcadeGetSchemaResponse[]> => {
     try {
       const response = await this.query<ArcadeGetSchemaResponse>(
-        'sql',
-        'SELECT FROM schema:types',
+        "sql",
+        "SELECT FROM schema:types"
       );
       if (Array.isArray(response.result)) {
         return response.result;
       } else {
         throw new Error(
-          `Unexpected result returned from the server when attemping to get the schema for ${this.name}`,
+          `Unexpected result returned from the server when attemping to get the schema for ${this.name}`
         );
       }
     } catch (error) {
@@ -388,7 +416,11 @@ class SpriteDatabase {
    * async function transactionExample() {
    *   try {
    *     const trx = await database.newTransaction();
-   *     await database.command('sql', 'CREATE document TYPE aType', trx);
+   *     await database.command(
+   *       'sql',
+   *       'CREATE document TYPE aType',
+   *       trx
+   *     );
    *     trx.commit();
    *     console.log(trx.id);
    *     // 'AS-0000000-0000-0000-0000-00000000000'
@@ -402,7 +434,7 @@ class SpriteDatabase {
    * transactionExample();
    */
   newTransaction = async (
-    isolationLevel?: ArcadeTransactionIsolationLevel,
+    isolationLevel?: ArcadeTransactionIsolationLevel
   ): Promise<SpriteTransaction> => {
     try {
       // 'READ_COMMITTED' is default in ARCADEDB,
@@ -410,32 +442,33 @@ class SpriteDatabase {
       const response = await this._client.fetch(
         this._endpoint(endpoints.beginTransaction),
         {
-          method: 'POST',
+          method: "POST",
           body:
-            isolationLevel === 'REPEATABLE_READ'
+            isolationLevel === "REPEATABLE_READ"
               ? JSON.stringify({ isolationLevel })
               : null,
-        },
+        }
       );
 
       if (response.status !== 204) {
         throw new Error(
-          `Server returned an unexpected response. Status: ${response.status} / ${response.statusText}.`,
+          `Server returned an unexpected response. Status: ${response.status} / ${response.statusText}.`
         );
       }
 
-      const sessionId = response.headers.get('arcadedb-session-id');
+      const sessionId = response.headers.get("arcadedb-session-id");
 
-      // TODO: Is a check even necessary?
-      if (typeof sessionId !== 'string') {
-        throw new Error('Invalid transaction key received from server.');
+      // Must check if it's a string because it be null from
+      // headers.get()
+      if (sessionId !== "string") {
+        throw new Error("Invalid transaction key received from server.");
       } else {
         return new SpriteTransaction(this, sessionId);
       }
     } catch (error) {
       throw new Error(
         `Unable to begin transaction in database "${this.name}".`,
-        { cause: error },
+        { cause: error }
       );
     }
   };
@@ -443,7 +476,7 @@ class SpriteDatabase {
    * Commits a transaction on the server, provided a transaction id.
    * Provide the id obtained from the transaction returned from invoking
    * `SpriteDatabase.newTransaction()`.
-   * @note You can just use the SpriteTransaction.commit() method directly.
+   * @note You can use the `SpriteTransaction.commit()` method directly.
    * @param {string} transactionId The ID of the transaction to commit.
    * @returns {Promise<boolean>} Promise that resolves to boolean `true` if successful, and `false` otherwise.
    * @throws Error if it cannot commit the transaction.
@@ -451,7 +484,11 @@ class SpriteDatabase {
    * async function commitTransactionExample() {
    *   try {
    *     const trx = await database.newTransaction();
-   *     await database.command('sql', 'CREATE document TYPE aType', trx);
+   *     await database.command(
+   *       'sql',
+   *       'CREATE document TYPE aType',
+   *       trx
+   *     );
    *     console.log(trx.id);
    *     // 'AS-0000000-0000-0000-0000-00000000000'
    *     database.commitTransaction(trx.id);
@@ -468,23 +505,23 @@ class SpriteDatabase {
     try {
       if (!transactionId) {
         throw new TypeError(
-          `Must supply a transactionId in order to commit a transaction`,
+          `Must supply a transactionId in order to commit a transaction`
         );
       }
       const result = await this._client.fetch(
         this._endpoint(endpoints.commitTransaction),
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'arcadedb-session-id': transactionId,
+            "arcadedb-session-id": transactionId,
           },
-        },
+        }
       );
       if (result.status === 204) {
         return true;
       } else {
         throw new Error(
-          `Unexpected response from the server when attemping to commit transaction ${transactionId}`,
+          `Unexpected response from the server when attemping to commit transaction ${transactionId}`
         );
       }
     } catch (error) {
@@ -494,14 +531,18 @@ class SpriteDatabase {
     }
   };
   /**
-   * Rolls back a transaction on the server. Provide the session id obtained with the `SpriteDatabase.beginTransaction()` method.
+   * Rolls back a transaction on the server. Provide the session id obtained with the `SpriteDatabase.newTransaction()` method.
    * @param {string} transactionId The ID of the transaction to commit.
    * @returns {Promise<boolean>} The response from the server.
    * @example
    * async function rollbackTransactionExample() {
    *   try {
    *     const trx = await database.newTransaction();
-   *     await database.command('sql', 'CREATE document TYPE aType', trx);
+   *     await database.command(
+   *       'sql',
+   *       'CREATE document TYPE aType',
+   *       trx
+   *     );
    *     await trx.commit();
    *     console.log(trx.id);
    *     // 'AS-0000000-0000-0000-0000-00000000000'
@@ -519,23 +560,23 @@ class SpriteDatabase {
     try {
       if (!transactionId) {
         throw new Error(
-          `Must supply a transactionId in order to rollback a transaction.`,
+          `Must supply a transactionId in order to rollback a transaction.`
         );
       }
       const result = await this._client.fetch(
         this._endpoint(endpoints.rollbackTransaction),
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'arcadedb-session-id': transactionId,
+            "arcadedb-session-id": transactionId,
           },
-        },
+        }
       );
       if (result.status === 204) {
         return true;
       } else {
         throw new Error(
-          `Unexpected response from the server when attemping to rollback transaction ${transactionId}`,
+          `Unexpected response from the server when attemping to rollback transaction ${transactionId}`
         );
       }
     } catch (error) {

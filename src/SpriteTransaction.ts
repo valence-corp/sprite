@@ -1,23 +1,4 @@
-import { SpriteDatabase } from './SpriteDatabase.js';
-import { ISpriteInsertRecordOptions } from './types/database.js';
-import { ISpriteEdgeOptions } from './types/edge.js';
-
-/**
- * isolationLevel is the isolation level for the current transaction,
- * either `READ_COMMITTED` or `REPEATABLE_READ`. For details on what
- * isolation level dictates about the transaction, see the [ArcadeDB
- * documentation](http://TODO.getTheUrl)
- * @default READ_COMMITTED
- */
-export type ArcadeTransactionIsolationLevel =
-  | 'READ_COMMITTED'
-  | 'REPEATABLE_READ';
-
-export interface ISpriteTransactionInsertRecordOptions<T>
-  extends Omit<ISpriteInsertRecordOptions<T>, 'transactionId'> {}
-
-export interface ISpriteTransactionCreateEdgeOptions<D>
-  extends Omit<ISpriteEdgeOptions<D>, 'transactionId'> {}
+import { SpriteDatabase } from "./SpriteDatabase.js";
 
 export class SpriteTransaction {
   private _id: string;
@@ -26,7 +7,7 @@ export class SpriteTransaction {
   constructor(database: SpriteDatabase, transactionId: string) {
     if (!transactionId) {
       throw new Error(
-        `A transaction ID must be supplied as a parameter in order to return an instance of SpriteTransaction. Recieved ${transactionId}`,
+        `A transaction ID must be supplied as a parameter in order to return an instance of SpriteTransaction. Recieved ${transactionId}`
       );
     }
     this.database = database;

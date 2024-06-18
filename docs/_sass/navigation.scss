@@ -1,0 +1,156 @@
+#mainNavigation {
+  position: fixed;
+  flex: 1;
+  width: 100%;
+  transform: translate3d(-100%, 0, 0);
+  padding: var(--section-padding);
+  overflow-y: scroll;
+  overflow-x: visible;
+  transition: all 125ms ease;
+  z-index: 9;
+  background: var(--frosted-background);
+  backdrop-filter: var(--frosted-backdrop);
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  svg {
+    fill: var(--foreground-primary);
+  }
+
+  ul,
+  ol {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+
+      svg {
+        min-width: var(--font-size-base);
+        min-height: var(--font-size-base);
+        margin: 0 var(--padding-min) 0 0;
+        &.open {
+          .closedIndicator {
+            visibility: hidden;
+          }
+        }
+      }
+
+      ul {
+        margin: 0 0 var(--padding-small) 0;
+        li {
+          position: relative;
+          margin: 0 0 0 var(--section-padding);
+          &:before {
+            width: .618rem;
+            height: calc(1.618rem);
+            border-left: 2px solid var(--nav-tree-color);
+            border-bottom: 2px solid var(--nav-tree-color);
+            left: calc(-.618rem + 1px);
+            top: calc(-.809rem);
+            content: '';
+            display: block;
+            position: absolute;
+            z-index: -1;
+          }
+        }
+      }
+
+      button,
+
+      a {
+        max-width: fit-content;
+        display: flex;
+        flex-direction: row;
+        height: var(--full-line);
+        border-radius: var(--border-radius);
+        align-items: center;
+        text-decoration: none;
+        padding: var(--padding-min) var(--padding-reg);
+        white-space: nowrap;
+        .menuItemText {
+          display: block;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+
+        background: unset;
+        box-shadow: unset;
+        border: unset;
+        color: var(--foreground-primary);
+        border-radius: var(--border-radius);
+        &:focus {
+          background: var(--nav-focus-background);
+          color: var(--nav-focus-color);
+          outline: unset;
+        }
+        &:hover {
+          color: var(--nav-hover-foreground);
+          text-decoration: 2px dotted underline var(--nav-hover-foreground);
+        }
+      }
+    }
+  }
+
+  &.open {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+
+#navButton {
+  width: var(--nav-button-size);
+  height: var(--nav-button-size);
+  margin: 0 0 0 var(--section-padding);
+  color: var(--background-primary);
+  border: unset;
+  border-radius: 50%;
+  background: var(--pink);
+
+  &:focus {
+    outline-offset: var(--outline-offset);
+    outline: var(--outline);
+  }
+}
+
+
+/* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4806035/ */
+.accordion-panel[hidden] {
+  display: none !important;
+}
+
+@media (min-width: 860px) {
+  #mainNavigation {
+    max-width: 290px;
+    display: flex;
+    position: relative;
+    left: 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    padding: var(--section-padding);
+    border-right: 1px solid var(--frame-border-color);
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      margin: 0 0 var(--section-padding) 0;
+    }
+
+    backdrop-filter: unset;
+    background: unset;
+    transform: unset;
+    opacity: unset;
+    transition: unset;
+  }
+
+  #navButton {
+    display: none;
+  }
+}

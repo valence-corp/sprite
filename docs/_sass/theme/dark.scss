@@ -1,0 +1,45 @@
+@import "./dawnBringerMono.scss";
+
+.dark {
+  --background-primary: #111;
+  --background-secondary: #222;
+  --background-tertiary: #000;
+  --foreground-primary: #efefef;
+  --foreground-secondary: #e6e6e6;
+  --foreground-tertiary: #93bcf9;
+
+  --placeholder-color: #777;
+
+  --button-background-hover: #252525;
+  --link-hover: #c18bfa;
+
+  --nav-focus-background: #444;
+  --nav-hover-foreground: #fff;
+  --nav-focus-color: #fff;
+  --nav-tree-color: #666;
+
+  --border-color: rgba(255, 255, 255, 0.1);
+
+  --outline: var(--accent) solid 2px;
+  --title-emphasis-color: var(--foreground-primary);
+
+  // Colors
+  --grey-dark: #171717; // Background
+  --grey: #44475a; // Current Line & Selection
+  --grey-light: #f2eff6; // Foreground
+  --blue: #6a73b0; // Comment
+  --cyan: #50baec;
+  --green: #8fff9c;
+  --orange: #ffa86d;
+  --pink: #ff6daf;
+  --purple: #b67ef3;
+  --red: #ff5555;
+  --yellow: #ffe192;
+
+  --frosted-background: rgba(17, 17, 17, 0.65);
+  --link-underline-color: white;
+
+  --accent: var(--purple);
+
+  --background-selected: rgba(255, 255, 255, 0.1);
+}

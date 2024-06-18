@@ -1,0 +1,31 @@
+@import "./light.scss";
+@import "./dark.scss";
+
+body {
+  --font-size-base: 16px;
+  --font-weight-bold: 700;
+  --paragraph-line-height: 1.618;
+  --full-line: 1.612rem;
+  --frosted-backdrop: blur(20px);
+  --section-padding: var(--full-line);
+
+  --button-border: 1px solid var(--border-color);
+  --frame-border-color: var(--border-color);
+
+  --border-radius: 4px;
+  --outline-offset: 2px;
+
+  --code-font-size: 0.9rem;
+
+  --padding-small: 0.3105rem;
+  --padding-min: 0.1505rem;
+  --padding-reg: 0.621rem;
+  --padding-large: 3.42rem;
+
+  --button-height: 2rem;
+  --button-radius: 1rem;
+
+  --nav-button-size: 3.42rem;
+
+  --link-underline-style: dotted;
+}
