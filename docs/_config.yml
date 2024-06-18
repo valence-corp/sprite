@@ -1,3 +1,4 @@
+baseurl: "/sprite"
 collections:
   classes:
     output: true
