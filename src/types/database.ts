@@ -203,7 +203,7 @@ export type ArcadeTypeDefinition = {
 };
 
 /** The response from a `SpriteDatabase.getSchema()` query */
-export type ArcadeGetSchemaResponse = Array<ArcadeTypeDefinition>;
+export type ArcadeGetSchemaResponse = ArcadeTypeDefinition[];
 
 /** SQL Explanation Execution Plan */
 export type ArcadeSqlExplanationExecutionPlan = {

@@ -84,14 +84,14 @@
         border: unset;
         color: var(--foreground-primary);
         border-radius: var(--border-radius);
-        &:hover,
         &:focus {
           background: var(--nav-focus-background);
           color: var(--nav-focus-color);
-        }
-
-        &:focus {
           outline: unset;
+        }
+        &:hover {
+          color: var(--nav-hover-foreground);
+          text-decoration: 2px dotted underline var(--nav-hover-foreground);
         }
       }
     }

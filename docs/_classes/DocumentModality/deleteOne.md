@@ -1,7 +1,11 @@
 ---
+
 layout: default
+
 title: deleteOne
+
 permalink: /classes/DocumentModality/deleteOne.html
+
 ---
 
 ### _DocumentModality&lt;S&gt;_.deleteOne
@@ -19,7 +23,7 @@ const database = new SpriteDatabase({
   username: 'aUser',
   password: 'aPassword',
   address: 'http://localhost:2480',
-  databaseName: 'aDatabase'
+  databaseName: 'aSpriteDatabase'
 });
 
 type DocTypes = {

@@ -4,25 +4,21 @@ import {
   ArcadeQueryResponse,
   ArcadeSqlExplanation,
   ArcadeSupportedQueryLanguages,
-  ISpriteDatabaseClientParameters,
-  ISpriteDatabaseConnectionParameters,
   AsArcadeEdges,
   AsArcadeRecords,
+  ISpriteDatabaseClientParameters,
+  ISpriteDatabaseConnectionParameters,
 } from "./types/database.js";
 import { ArcadeDatabaseError } from "./errors/ArcadeDatabaseError.js";
 import {
   SpriteTransaction,
 } from "./SpriteTransaction.js";
-import {
-  ChainingModality,
-  DocumentModality,
-  GraphModality,
-} from "./modes/index.js";
-import { SpriteOperations } from "./SpriteOperations.js";
 import { endpoints } from "./endpoints/database.js";
 import { isNewClient } from "./utilities/isNewClient.js";
 import { SpriteRestClient } from "./SpriteRestClient.js";
 import { ArcadeTransactionIsolationLevel } from "./types/transaction.js";
+import { DocumentModality, GraphModality } from "./api.js";
+import { SqlDialect } from "./SqlDialect.js";
 
 /**
  * Interact with a SpriteDatabase, perform queries,
@@ -70,7 +66,7 @@ class SpriteDatabase {
   /** The rest client, handles auth and connection details  */
   private _client: SpriteRestClient;
   /** Methods for performing SQL operations on the database. */
-  private _operators: SpriteOperations | undefined;
+  private _sql: SqlDialect | undefined;
   /** The name of the database */
   private _name: string;
   /** Modality for operations involving document records */
@@ -101,15 +97,15 @@ class SpriteDatabase {
     return this._name;
   }
   /**
-   * Private getter for this._operators, to avoid
-   * prematurly creating operators if they are not
+   * Private getter for this._sql, to avoid
+   * prematurly creating the sql dialect if they are not
    * needed.
    */
-  private get operators() {
-    if (!this._operators) {
-      this._operators = new SpriteOperations(this);
+  private get sql() {
+    if (!this._sql) {
+      this._sql = new SqlDialect(this);
     }
-    return this._operators;
+    return this._sql;
   }
   /** Helper function for building enpoints */
   private _endpoint = (endpoint: string) => `${endpoint}/${this.name}`;
@@ -121,7 +117,7 @@ class SpriteDatabase {
     if (!this._documentModality) {
       this._documentModality = new DocumentModality<unknown>(
         this,
-        this.operators
+        this.sql
       );
     }
     return this._documentModality as DocumentModality<AsArcadeRecords<T>>;
@@ -137,7 +133,7 @@ class SpriteDatabase {
     if (!this._graphModality) {
       this._graphModality = new GraphModality<unknown, unknown>(
         this,
-        this.operators
+        this.sql
       );
     }
     return this._graphModality as GraphModality<
@@ -196,7 +192,7 @@ class SpriteDatabase {
     language: ArcadeSupportedQueryLanguages,
     command: string,
     params?: Record<string, any>
-  ): Promise<ArcadeQueryResponse<ReturnType>> => {
+  ): Promise<ArcadeQueryResponse<ReturnType[]>> => {
     const response = await this._client.fetch(this._endpoint(endpoints.query), {
       method: "POST",
       body: JSON.stringify({
@@ -268,7 +264,7 @@ class SpriteDatabase {
    */
   explain = async (sql: string): Promise<ArcadeSqlExplanation> => {
     try {
-      const response = await this.query<ArcadeSqlExplanation[]>(
+      const response = await this.query<ArcadeSqlExplanation>(
         "sql",
         `EXPLAIN ${sql}`
       );
@@ -392,7 +388,7 @@ class SpriteDatabase {
    *
    * getSchemaExample();
    */
-  getSchema = async (): Promise<ArcadeGetSchemaResponse> => {
+  getSchema = async (): Promise<ArcadeGetSchemaResponse[]> => {
     try {
       const response = await this.query<ArcadeGetSchemaResponse>(
         "sql",

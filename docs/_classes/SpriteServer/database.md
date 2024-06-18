@@ -27,6 +27,7 @@ const server = new SpriteServer({
 });
 
 const database = await server.database('aDatabase');
+// returns an instance of SpriteDatabase
 console.log(database.name);
 // 'aDatabase';
 ```

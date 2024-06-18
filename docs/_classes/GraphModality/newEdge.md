@@ -19,6 +19,27 @@ Insert a new edge into the database.
 #### Example
 
 ```ts
+const db = new SpriteDatabase({
+  username: 'aUser',
+  password: 'aPassword',
+  address: 'http://localhost:2480',
+  databaseName: 'aSpriteDatabase'
+});
+
+type VertexTypes = {
+  aType: {
+    aProperty: string
+  }
+}
+
+type EdgeTypes = {
+  aType: {
+    aProperty: string
+  }
+}
+
+const client = db.graphModality<VertexTypes, EdgeTypes>();
+
 // non-idempotent operations must be conducted within a transaction
 client.transaction(async ()=>{
   // to create a edge, a type must be created first
@@ -36,15 +57,5 @@ client.transaction(async ()=>{
   //   aProperty: 'aValue'
   // }
 });
-
-// NOTE: you could control the transaction manually
-const trx = await database.newTransaction();
-client.setTransaction(trx);
-await client.createType('anEdge', trx);
-const edge = await client.newEdge('anEdge', trx, {
-  aProperty: 'aValue',
-});
-trx.commit();
-// ...
 ```
 

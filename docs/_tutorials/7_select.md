@@ -3,32 +3,31 @@ layout: tutorial
 permalink: /tutorials/select.html
 title: Sprite Tutorials - Select Records
 name: Select Records
-prevDesc: Introduction
-prevUrl: /tutorials/introduction.html
-nextDesc: Create a Database
-nextUrl: /tutorials/createDatabase.html
+prevDesc: Create a Graph
+prevUrl: /tutorials/createGraph.html
 ---
 
-### Database Transactions
+### Select Records
 
-ArcadeDB is a transactional database. This is preferred for applications that require a high level of data integrity. All non-idempotent operations (operations that can change the database) must be part of a transaction.
+Abstractions for `selectOne` and `selectFrom` exists on `DocumentModality`, and `GraphModality`. You are welcome to write your own queries using the `SpriteDatabase.query` method as well.
 
-Sprite has various methods for orchestrating transactions. You can manually control how transactions are accomplished, or use `DocumentModality.transaction()` method, which incorporates some abstraction to reduce boilerplate. This tutorial will demonstate the methods of conducting transactions, and why they are implemented as such in Sprite.
+This tutorial will cover all three of these methods.
 
 #### Overview
 
 1. [Prerequisites](#prerequisites)
 2. [Instantiating SpriteDatabase](#instantiating)
-3. [Manual Transactions](#manual)
-4. [Transaction Helper](#help)
-5. [Why?](#why)
+3. [SpriteDatabase.query](#query)
+4. [selectOne](#selectOne)
+5. [selectFrom](#why)
 6. [Conclusion](#conclusion)
 7. [What is next](#next)
 
 <h4 id="prerequisites">Prerequisites</h4>
 
 1. Ensure you have [the installation](../installation.html) completed. This means you have ArcadeDB installed, running, and accessible, as well as a TypeScript / JavaScript project with Sprite installed.
-2. You have created a database called "ExampleDatabase", like accomplished in the [Create a Database tutorial]()
+2. You have created a database called "ExampleDatabase", in the [Create a Database tutorial]().
+3. You have a document in "ExampleDatabase", in the [Create a Document tutorial]().
 
 <h4 id="instantiating">Instantiating SpriteDatabase</h4>
 
@@ -46,40 +45,53 @@ const db = new SpriteDatabase({
   address: "http://localhost:2480", // default address for ArcadeDB
   databaseName: "ExampleDatabase", // the existing database
 });
-```
 
+type ADocumentType = {
+  aProperty: string
+}
 
-<h4 id="manual">Manual Transactions</h4>
-
-The following code is to be inserted under the database instantiation. The `manualTransaction` function creates a new transaction, issues a command using that transaction, and then commits the transaction. All commands are non-idempotent in ArcadeDB (and Sprite). Non-idempotent means that it can change the database, so things like CRUD operations.
-
-```ts
-async function manualTransaction() {
-  try {
-    // create a new transaction
-    // returns an instance of SpriteTransaction
-    const transaction = await db.newTransaction();
-
-    // All commands (idempotent, non-query) must
-    // be part of a transaction, so the command method
-    // requires a transaction argument
-    await db.command(
-      'sql',
-      'CREATE document TYPE ExampleUnused',
-      transaction
-    );
-
-    // transaction is committed
-    await db.commitTransaction(transaction.id);
-    
-    // transaction is rolledback
-    await db.rollbackTransaction(transaction.id);
-
-  } catch (error) {
-
-  }
+type DocumentTypes = {
+  aDocument: ADocumentType
 }
 
 ```
 
+<h4 id="manual">SpriteDatabase.query()</h4>
 
+The following code is to be inserted under the database instantiation. The `manualTransaction` function creates a new transaction, issues a command using that transaction, and then commits the transaction. All commands are non-idempotent in ArcadeDB (and Sprite). Non-idempotent means that it can change the database, so things like CRUD operations.
+
+```ts
+async function selectQueryExample() {
+  try {
+    // ArcadeDB supports various query
+    // lanagues, so it must be specified
+    // See ArcadeDB docs for a full list
+    const result = await db.query<ADocumentType>(
+      'sql',
+      'SELECT * from aDocument'
+    );
+
+    console.log(result);
+    // { 
+    //   user: 'aUsername',
+    //   version: '24.x.x',
+    //   serverName: 'ArcadeDB_0',
+    //   result: [
+    //     {
+    //       '@rid': '#0:0',
+    //       '@cat': 'd',
+    //       '@type': 'aDocument',
+    //       aProperty: 'aValue'
+    //     }
+    //   ]
+    // }
+
+  } catch (error) {
+    // handle error conditions
+    throw new Error(
+      'An error occured while running the example',
+      { cause: error }
+    )
+  }
+}
+```

@@ -106,6 +106,12 @@
         </li>
         
         <li>
+          <a href="/tutorials/transactions.html">
+            Transactions
+          </a>
+        </li>
+        
+        <li>
           <a href="/tutorials/createDocument.html">
             Create a Document
           </a>
@@ -114,12 +120,6 @@
         <li>
           <a href="/tutorials/createGraph.html">
             Create a Graph
-          </a>
-        </li>
-        
-        <li>
-          <a href="/tutorials/transactions.html">
-            Database Transaction
           </a>
         </li>
         
@@ -943,12 +943,8 @@
     </li>
     <li>
       <a href="../../api">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#666">
-  <path
-    d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
-  </path>
-</svg>
-        Raw API Docs
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 18H6C5.44772 18 5 18.4477 5 19C5 19.5523 5.44772 20 6 20H21V22H6C4.34315 22 3 20.6569 3 19V4C3 2.89543 3.89543 2 5 2H21V18ZM16 9V7H8V9H16Z"/></svg>
+        Generated Docs
       </a>
     </li>
   </ul>
@@ -969,14 +965,26 @@
 
 <h4 id="example">Example</h4>
 
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">database</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SpriteDatabase</span><span class="p">({</span>
-  <span class="na">username</span><span class="p">:</span> <span class="dl">'</span><span class="s1">root</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">password</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rootPassword</span><span class="dl">'</span><span class="p">,</span>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SpriteDatabase</span><span class="p">({</span>
+  <span class="na">username</span><span class="p">:</span> <span class="dl">'</span><span class="s1">aUser</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="dl">'</span><span class="s1">aPassword</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">address</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://localhost:2480</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">databaseName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">aDatabase</span><span class="dl">'</span>
+  <span class="na">databaseName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">aSpriteDatabase</span><span class="dl">'</span>
 <span class="p">});</span>
 
-<span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">database</span><span class="p">.</span><span class="nx">graph</span><span class="o">&lt;</span><span class="nx">VertexTypes</span><span class="p">,</span> <span class="nx">EdgeTypes</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="kd">type</span> <span class="nx">VertexTypes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">aType</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">aProperty</span><span class="p">:</span> <span class="kr">string</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">EdgeTypes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">aType</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">aProperty</span><span class="p">:</span> <span class="kr">string</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">graphModality</span><span class="o">&lt;</span><span class="nx">VertexTypes</span><span class="p">,</span> <span class="nx">EdgeTypes</span><span class="o">&gt;</span><span class="p">();</span>
 
 <span class="k">async</span> <span class="kd">function</span> <span class="nf">createVertexTypeExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
@@ -993,11 +1001,6 @@
 <span class="p">};</span>
 
 <span class="nf">createVertexTypeExample</span><span class="p">();</span>
-
-<span class="c1">// NOTE: you could control the transaction manually</span>
-<span class="kd">const</span> <span class="nx">trx</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">database</span><span class="p">.</span><span class="nf">newTransaction</span><span class="p">();</span>
-<span class="kd">const</span> <span class="kd">type</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createVertexType</span><span class="p">(</span><span class="dl">'</span><span class="s1">aType</span><span class="dl">'</span><span class="p">,</span> <span class="nx">trx</span><span class="p">);</span>
-<span class="nx">trx</span><span class="p">.</span><span class="nf">commit</span><span class="p">();</span>
 </code></pre></div></div>
 
 

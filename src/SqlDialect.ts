@@ -34,7 +34,7 @@ import {
 } from "./types/edge.js";
 import { ValidSuperTypeKey } from "./types/type.js";
 
-class SpriteOperations {
+class SqlDialect {
   database: SpriteDatabase;
   private _validate = validation;
   private _nodes = nodes;
@@ -457,7 +457,7 @@ class SpriteOperations {
    * instead of returning the entire response. It is used to keep
    * the codebase DRY.
    */
-  private _query = async <T>(command: string): Promise<T> => {
+  private _query = async <T>(command: string): Promise<T[]> => {
     const response = await this.database.query<T>("sql", command);
     if (response.result) {
       return response.result;
@@ -527,7 +527,7 @@ class SpriteOperations {
         }
       }
 
-      const result = await this._query<S[N][]>(command.toString());
+      const result = await this._query<S[N]>(command.toString());
       return result;
     } catch (error) {
       throw new Error(
@@ -546,7 +546,7 @@ class SpriteOperations {
    */
   selectOne = async <S, N extends TypeNames<S>>(rid: string): Promise<S[N]> => {
     try {
-      const result = await this._query<S[N][]>(`SELECT FROM ${rid}`);
+      const result = await this._query<S[N]>(`SELECT FROM ${rid}`);
       return result[0];
     } catch (error) {
       throw new Error(
@@ -633,4 +633,4 @@ class SpriteOperations {
   };
 }
 
-export { SpriteOperations };
+export { SqlDialect };

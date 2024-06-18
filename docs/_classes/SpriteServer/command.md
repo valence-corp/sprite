@@ -14,7 +14,7 @@ permalink: /classes/SpriteServer/command.html
 
 (**command: *string***)
 
-A method for sending commands as strings to the server.
+A method for sending commands (as strings) to the server.
 
 #### Example
 
@@ -31,7 +31,7 @@ async function commandExample(databaseName: string) {
     console.log(response);
     // {
     //   user: 'aUser',
-    //   version: '24.4.1',
+    //   version: '24.x.x',
     //   serverName: 'ArcadeDB_0',
     //   result: 'ok'
     // }

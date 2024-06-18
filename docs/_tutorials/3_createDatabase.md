@@ -3,8 +3,8 @@ layout: tutorial
 permalink: /tutorials/createDatabase.html
 title: Sprite Tutorials - Create a Database
 name: Create a Database
-nextDesc: Create Documents
-nextUrl: /tutorials/createDocument.html
+nextDesc: Transactions
+nextUrl: /tutorials/transactions.html
 prevDesc: Installation
 prevUrl: /tutorials/installation.html
 ---

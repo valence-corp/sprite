@@ -24,14 +24,18 @@ const client = new SpriteServer({
 
 async function serverReadyExample() {
   try {
-    const serverReady = await client.serverReady();
-    console.log(serverReady);
-    // true
+    const ready = await client.serverReady();
+    if (ready) {
+      console.log(ready);
+      // true;
+    }
   } catch (error) {
-    console.error(error);
-    // manage error conditions
+    throw new Error(
+      'An error occurred while running example.',
+      { cause: error }
+    );
   }
-};
+}
 
 serverReadyExample();
 ```

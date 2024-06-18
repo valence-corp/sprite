@@ -303,21 +303,20 @@ a:hover {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-#mainNavigation ul li button:hover, #mainNavigation ul li button:focus,
-#mainNavigation ul li a:hover,
-#mainNavigation ul li a:focus,
-#mainNavigation ol li button:hover,
-#mainNavigation ol li button:focus,
-#mainNavigation ol li a:hover,
-#mainNavigation ol li a:focus {
-  background: var(--nav-focus-background);
-  color: var(--nav-focus-color);
-}
 #mainNavigation ul li button:focus,
 #mainNavigation ul li a:focus,
 #mainNavigation ol li button:focus,
 #mainNavigation ol li a:focus {
+  background: var(--nav-focus-background);
+  color: var(--nav-focus-color);
   outline: unset;
+}
+#mainNavigation ul li button:hover,
+#mainNavigation ul li a:hover,
+#mainNavigation ol li button:hover,
+#mainNavigation ol li a:hover {
+  color: var(--nav-hover-foreground);
+  text-decoration: 2px dotted underline var(--nav-hover-foreground);
 }
 #mainNavigation.open {
   transform: translate3d(0, 0, 0);
@@ -646,6 +645,7 @@ p {
   --title-emphasis-color: var(var(--foreground-primary));
   --nav-focus-background: #dfdfdf;
   --nav-hover-background: #9252db;
+  --nav-hover-foreground: #000;
   --nav-focus-color: var(--foreground-primary);
   --nav-tree-color: #dfdfdf;
   --border-color: rgba(0, 0, 0, 0.1);
@@ -799,6 +799,7 @@ p {
   --button-background-hover: #252525;
   --link-hover: #c18bfa;
   --nav-focus-background: #444;
+  --nav-hover-foreground: #fff;
   --nav-focus-color: #fff;
   --nav-tree-color: #666;
   --border-color: rgba(255, 255, 255, 0.1);

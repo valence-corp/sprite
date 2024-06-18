@@ -10,14 +10,14 @@ import {
   WithRid,
 } from '../types/database.js';
 import { SpriteDatabase } from '../SpriteDatabase.js';
-import { SpriteOperations } from '../SpriteOperations.js';
+import { SqlDialect } from '../SqlDialect.js';
 
 class ChainingModality<S> {
   private database: SpriteDatabase;
-  private _operators: SpriteOperations;
-  constructor(database: SpriteDatabase, operators: SpriteOperations) {
+  private _sql: SqlDialect;
+  constructor(database: SpriteDatabase, dialect: SqlDialect) {
     this.database = database;
-    this._operators = operators;
+    this._sql = dialect;
   }
   /**
    * Perform a `SELECT FROM` query on a specific type.
@@ -26,7 +26,7 @@ class ChainingModality<S> {
    */
   selectFrom = <N extends TypeNames<S>, P extends keyof WithRid<S, N>>(
     typeName: N,
-  ) => new SelectFrom<S, N, P>(this._operators, typeName);
+  ) => new SelectFrom<S, N, P>(this._sql, typeName);
 }
 
 // SELECT [ <Projections> ] [ FROM <Target> (([ LET <Assignment>* ] ])) ( not implemented)
@@ -40,11 +40,11 @@ class ChainingModality<S> {
 
 class SelectFrom<S, N extends TypeNames<S>, P extends keyof WithRid<S, N>> {
   private typeName: N;
-  private _operators: SpriteOperations;
+  private _sql: SqlDialect;
   private options?: ISpriteSelectFromOptions<S, N, any>;
-  constructor(operators: SpriteOperations, typeName: N) {
+  constructor(operators: SqlDialect, typeName: N) {
     this.typeName = typeName;
-    this._operators = operators;
+    this._sql = operators;
   }
   /**
    * Designates conditions to filter the result-set.
@@ -121,7 +121,7 @@ class SelectFrom<S, N extends TypeNames<S>, P extends keyof WithRid<S, N>> {
    * Executes the SQL query / command on the database.
    * @returns The result of the operation.
    */
-  execute = () => this._operators.selectFrom<S, N, P>(this.typeName, this.options);
+  execute = () => this._sql.selectFrom<S, N, P>(this.typeName, this.options);
 }
 
 export { ChainingModality };

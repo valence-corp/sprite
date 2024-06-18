@@ -5,10 +5,10 @@ export { SpriteServer };
 export { SpriteDatabase };
 export * from "./types/index.js";
 
-// type ADocumentType = {
-//   aProperty: string;
-//   bProperty: ArcadeEmbeddedMap<number>;
-// };
+type ADocumentType = {
+  aProperty: string;
+  bProperty: number;
+};
 
 // type DocumentTypes = {
 //   aDocument: ADocumentType;
@@ -36,6 +36,12 @@ interface ExampleVertexes {
   };
 }
 
+interface DocumentTypes {
+  aDocument: {
+    aProperty: string
+  }
+}
+
 interface ExampleEdges {
   Friends: {
     since: number;
@@ -45,57 +51,58 @@ interface ExampleEdges {
   };
 }
 
-const client = db.graphModality<ExampleVertexes, ExampleEdges>();
+const client = db.documentModality<ExampleEdges>();
 
-async function graphModalityExample() {
-  try {
-    client.transaction(async (trx) => {
+db.query<ADocumentType>('sql', '').then((result)=>{
+})
 
-      await client.createVertexType("User", trx, {
-        ifNotExists: true,
-      });
-      await client.createEdgeType("Friends", trx, {
-        ifNotExists: true,
-      });
+// async function graphModalityExample() {
+//   try {
+//     client.transaction(async (trx) => {
+//       await client.createVertexType("User", trx, {
+//         ifNotExists: true,
+//       });
+//       await client.createEdgeType("Friends", trx, {
+//         ifNotExists: true,
+//       });
 
-      const [record1, record2] = await client.newVertex("User", trx, {
-        data: [
-          {
-            name: "John",
-          },
-          {
-            name: "Jane",
-          },
-        ],
-      });
+//       const [record1, record2] = await client.newVertex("User", trx, {
+//         data: [
+//           {
+//             name: "John",
+//           },
+//           {
+//             name: "Jane",
+//           },
+//         ],
+//       });
 
-      const edge = await client.newEdge(
-        "Friends",
-        record1['@rid'],
-        record2["@rid"],
-        trx,
-        {
-          data: {
-            since: new Date().getDate()
-          }
-        }
-      );
+//       const edge = await client.newEdge(
+//         "Friends",
+//         record1["@rid"],
+//         record2["@rid"],
+//         trx,
+//         {
+//           data: {
+//             since: new Date().getDate(),
+//           },
+//         }
+//       );
 
-      console.log({
-        record1,
-        record2,
-        edge
-      })
+//       console.log({
+//         record1,
+//         record2,
+//         edge,
+//       });
+//     });
+//   } catch (error) {
+//     throw new Error(`There was a problem while running the example.`, {
+//       cause: error,
+//     });
+//   }
+// }
 
-    });
-  } catch (error) {
-    throw new Error(`There was a problem while running the example.`, {
-      cause: error,
-    });
-  }
-}
-
-graphModalityExample();
+// graphModalityExample();
 
 // const server = new SpriteServer({
 //   username: "root",
@@ -109,7 +116,7 @@ graphModalityExample();
 //     if (ready) {
 //       // creating a database with the server client
 //       const database = await server.createDatabase("ExampleDatabase");
-//       // logging the name of the returned SpriteDatabase instance
+//       // logging the name of the returned Database instance
 //       console.log(`${database.name} was created`);
 //       // "ExampleDatabase was created"
 //     }

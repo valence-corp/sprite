@@ -25,7 +25,7 @@ const database = new SpriteDatabase({
   username: 'aUser',
   password: 'aPassword',
   address: 'http://localhost:2480',
-  databaseName: 'aDatabase'
+  databaseName: 'aSpriteDatabase'
 });
 
 type DocTypes = {

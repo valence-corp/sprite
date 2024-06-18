@@ -106,6 +106,12 @@
         </li>
         
         <li>
+          <a href="/tutorials/transactions.html">
+            Transactions
+          </a>
+        </li>
+        
+        <li>
           <a href="/tutorials/createDocument.html">
             Create a Document
           </a>
@@ -114,12 +120,6 @@
         <li>
           <a href="/tutorials/createGraph.html">
             Create a Graph
-          </a>
-        </li>
-        
-        <li>
-          <a href="/tutorials/transactions.html">
-            Database Transaction
           </a>
         </li>
         
@@ -943,32 +943,28 @@
     </li>
     <li>
       <a href="../../api">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#666">
-  <path
-    d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
-  </path>
-</svg>
-        Raw API Docs
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 18H6C5.44772 18 5 18.4477 5 19C5 19.5523 5.44772 20 6 20H21V22H6C4.34315 22 3 20.6569 3 19V4C3 2.89543 3.89543 2 5 2H21V18ZM16 9V7H8V9H16Z"/></svg>
+        Generated Docs
       </a>
     </li>
   </ul>
 </nav>
     <div class="content">
       <div>
-        <h3 id="database-transactions">Database Transactions</h3>
+        <h3 id="select-records">Select Records</h3>
 
-<p>ArcadeDB is a transactional database. This is preferred for applications that require a high level of data integrity. All non-idempotent operations (operations that can change the database) must be part of a transaction.</p>
+<p>Abstractions for <code class="language-plaintext highlighter-rouge">selectOne</code> and <code class="language-plaintext highlighter-rouge">selectFrom</code> exists on <code class="language-plaintext highlighter-rouge">DocumentModality</code>, and <code class="language-plaintext highlighter-rouge">GraphModality</code>. You are welcome to write your own queries using the <code class="language-plaintext highlighter-rouge">SpriteDatabase.query</code> method as well.</p>
 
-<p>Sprite has various methods for orchestrating transactions. You can manually control how transactions are accomplished, or use <code class="language-plaintext highlighter-rouge">DocumentModality.transaction()</code> method, which incorporates some abstraction to reduce boilerplate. This tutorial will demonstate the methods of conducting transactions, and why they are implemented as such in Sprite.</p>
+<p>This tutorial will cover all three of these methods.</p>
 
 <h4 id="overview">Overview</h4>
 
 <ol>
   <li><a href="#prerequisites">Prerequisites</a></li>
   <li><a href="#instantiating">Instantiating SpriteDatabase</a></li>
-  <li><a href="#manual">Manual Transactions</a></li>
-  <li><a href="#help">Transaction Helper</a></li>
-  <li><a href="#why">Why?</a></li>
+  <li><a href="#query">SpriteDatabase.query</a></li>
+  <li><a href="#selectOne">selectOne</a></li>
+  <li><a href="#why">selectFrom</a></li>
   <li><a href="#conclusion">Conclusion</a></li>
   <li><a href="#next">What is next</a></li>
 </ol>
@@ -977,7 +973,8 @@
 
 <ol>
   <li>Ensure you have <a href="../installation.html">the installation</a> completed. This means you have ArcadeDB installed, running, and accessible, as well as a TypeScript / JavaScript project with Sprite installed.</li>
-  <li>You have created a database called “ExampleDatabase”, like accomplished in the <a href="">Create a Database tutorial</a></li>
+  <li>You have created a database called “ExampleDatabase”, in the <a href="">Create a Database tutorial</a>.</li>
+  <li>You have a document in “ExampleDatabase”, in the <a href="">Create a Document tutorial</a>.</li>
 </ol>
 
 <h4 id="instantiating">Instantiating SpriteDatabase</h4>
@@ -995,48 +992,61 @@
   <span class="na">address</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:2480</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// default address for ArcadeDB</span>
   <span class="na">databaseName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ExampleDatabase</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// the existing database</span>
 <span class="p">});</span>
-</code></pre></div></div>
 
-<h4 id="manual">Manual Transactions</h4>
+<span class="kd">type</span> <span class="nx">ADocumentType</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">aProperty</span><span class="p">:</span> <span class="kr">string</span>
+<span class="p">}</span>
 
-<p>The following code is to be inserted under the database instantiation. The <code class="language-plaintext highlighter-rouge">manualTransaction</code> function creates a new transaction, issues a command using that transaction, and then commits the transaction. All commands are non-idempotent in ArcadeDB (and Sprite). Non-idempotent means that it can change the database, so things like CRUD operations.</p>
-
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">manualTransaction</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">try</span> <span class="p">{</span>
-    <span class="c1">// create a new transaction</span>
-    <span class="c1">// returns an instance of SpriteTransaction</span>
-    <span class="kd">const</span> <span class="nx">transaction</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">newTransaction</span><span class="p">();</span>
-
-    <span class="c1">// All commands (idempotent, non-query) must</span>
-    <span class="c1">// be part of a transaction, so the command method</span>
-    <span class="c1">// requires a transaction argument</span>
-    <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span>
-      <span class="dl">'</span><span class="s1">sql</span><span class="dl">'</span><span class="p">,</span>
-      <span class="dl">'</span><span class="s1">CREATE document TYPE ExampleUnused</span><span class="dl">'</span><span class="p">,</span>
-      <span class="nx">transaction</span>
-    <span class="p">);</span>
-
-    <span class="c1">// transaction is committed</span>
-    <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">commitTransaction</span><span class="p">(</span><span class="nx">transaction</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
-    
-    <span class="c1">// transaction is rolledback</span>
-    <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">rollbackTransaction</span><span class="p">(</span><span class="nx">transaction</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
-
-  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-
-  <span class="p">}</span>
+<span class="kd">type</span> <span class="nx">DocumentTypes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">aDocument</span><span class="p">:</span> <span class="nx">ADocumentType</span>
 <span class="p">}</span>
 
 </code></pre></div></div>
 
+<h4 id="manual">SpriteDatabase.query()</h4>
+
+<p>The following code is to be inserted under the database instantiation. The <code class="language-plaintext highlighter-rouge">manualTransaction</code> function creates a new transaction, issues a command using that transaction, and then commits the transaction. All commands are non-idempotent in ArcadeDB (and Sprite). Non-idempotent means that it can change the database, so things like CRUD operations.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">selectQueryExample</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// ArcadeDB supports various query</span>
+    <span class="c1">// lanagues, so it must be specified</span>
+    <span class="c1">// See ArcadeDB docs for a full list</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nx">query</span><span class="o">&lt;</span><span class="nx">ADocumentType</span><span class="o">&gt;</span><span class="p">(</span>
+      <span class="dl">'</span><span class="s1">sql</span><span class="dl">'</span><span class="p">,</span>
+      <span class="dl">'</span><span class="s1">SELECT * from aDocument</span><span class="dl">'</span>
+    <span class="p">);</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="c1">// { </span>
+    <span class="c1">//   user: 'aUsername',</span>
+    <span class="c1">//   version: '24.x.x',</span>
+    <span class="c1">//   serverName: 'ArcadeDB_0',</span>
+    <span class="c1">//   result: [</span>
+    <span class="c1">//     {</span>
+    <span class="c1">//       '@rid': '#0:0',</span>
+    <span class="c1">//       '@cat': 'd',</span>
+    <span class="c1">//       '@type': 'aDocument',</span>
+    <span class="c1">//       aProperty: 'aValue'</span>
+    <span class="c1">//     }</span>
+    <span class="c1">//   ]</span>
+    <span class="c1">// }</span>
+
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// handle error conditions</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span>
+      <span class="dl">'</span><span class="s1">An error occured while running the example</span><span class="dl">'</span><span class="p">,</span>
+      <span class="p">{</span> <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span> <span class="p">}</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
         <footer
-  class="tutorial ">
+  class="tutorial prevOnly">
   
-  <a href="/tutorials/introduction.html" class="prev button"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M11.8284 12.0005L14.6569 14.8289L13.2426 16.2431L9 12.0005L13.2426 7.75781L14.6569 9.17203L11.8284 12.0005Z"/></svg> Previous: Introduction</a>
+  <a href="/tutorials/createGraph.html" class="prev button"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M11.8284 12.0005L14.6569 14.8289L13.2426 16.2431L9 12.0005L13.2426 7.75781L14.6569 9.17203L11.8284 12.0005Z"/></svg> Previous: Create a Graph</a>
   
-  
-  <a href="/tutorials/createDatabase.html" class="next button">Next: Create a Database <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.1717 12.0005L9.34326 9.17203L10.7575 7.75781L15.0001 12.0005L10.7575 16.2431L9.34326 14.8289L12.1717 12.0005Z"/></svg></a>
   
 </footer>
       </div>

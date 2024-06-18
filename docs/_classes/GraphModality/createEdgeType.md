@@ -23,14 +23,26 @@ Create a new edge type.
 #### Example
 
 ```ts
-const database = new SpriteDatabase({
-  username: 'root',
-  password: 'rootPassword',
+const db = new SpriteDatabase({
+  username: 'aUser',
+  password: 'aPassword',
   address: 'http://localhost:2480',
-  databaseName: 'aDatabase'
+  databaseName: 'aSpriteDatabase'
 });
 
-const client = database.graph<VertexTypes, EdgeTypes>();
+type VertexTypes = {
+  aType: {
+    aProperty: string
+  }
+}
+
+type EdgeTypes = {
+  aType: {
+    aProperty: string
+  }
+}
+
+const client = db.graphModality<VertexTypes, EdgeTypes>();
 
 async function createEdgeTypeExample() {
   try {
@@ -47,10 +59,5 @@ async function createEdgeTypeExample() {
 };
 
 createEdgeTypeExample();
-
-// NOTE: you could control the transaction manually
-const trx = await database.newTransaction();
-const type = await client.createEdgeType('aType', trx);
-trx.commit();
 ```
 

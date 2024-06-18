@@ -5,11 +5,11 @@ title: Sprite Tutorials — Create a Document
 name: Create a Document
 nextDesc: Graphs
 nextUrl: /tutorials/createGraph.html
-prevDesc: Create a Database
-prevUrl: /tutorials/createDatabase.html
+prevDesc: Transations
+prevUrl: /tutorials/transactions.html
 ---
 
-### Adding Documents
+### Create a Document
 
 #### Introduction
 

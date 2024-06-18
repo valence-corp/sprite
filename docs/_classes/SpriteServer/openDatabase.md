@@ -19,7 +19,6 @@ Open a database
 #### Example
 
 ```ts
-// Async/Await
 const server = new SpriteServer({
   username: 'aUser',
   password: 'aPassword',

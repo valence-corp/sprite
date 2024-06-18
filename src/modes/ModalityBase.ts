@@ -9,27 +9,27 @@ import {
 } from "../types/database.js";
 import { SpriteTransaction } from "../SpriteTransaction.js";
 import { SpriteDatabase } from "../SpriteDatabase.js";
-import { SpriteOperations } from "../SpriteOperations.js";
 import { ArcadeTransactionIsolationLevel } from "../types/transaction.js";
+import { SqlDialect } from "../SqlDialect.js";
 
 class ModalityBase<S> {
   protected _database: SpriteDatabase;
-  protected _operators: SpriteOperations;
-  constructor(client: SpriteDatabase, operators: SpriteOperations) {
+  protected _sql: SqlDialect;
+  constructor(client: SpriteDatabase, dialect: SqlDialect) {
     this._database = client;
-    this._operators = operators;
+    this._sql = dialect;
   }
   selectFrom = async <N extends TypeNames<S>, P extends keyof WithRid<S, N>>(
     typeName: N,
     options?: ISpriteSelectFromOptions<S, N, P>
   ) => {
-    return this._operators.selectFrom<S, N, P>(typeName, options);
+    return this._sql.selectFrom<S, N, P>(typeName, options);
   };
   dropType = async <N extends TypeNames<S>>(
     typeName: N,
     transaction: SpriteTransaction,
     options?: ISpriteDropTypeOptions
-  ) => this._operators.dropType<S, N>(typeName, transaction, options);
+  ) => this._sql.dropType<S, N>(typeName, transaction, options);
   newTransaction = (isolationLevel?: ArcadeTransactionIsolationLevel) =>
     this._database.newTransaction(isolationLevel);
   /**
@@ -45,7 +45,7 @@ class ModalityBase<S> {
    *   username: 'aUser',
    *   password: 'aPassword',
    *   address: 'http://localhost:2480',
-   *   databaseName: 'aDatabase'
+   *   databaseName: 'aSpriteDatabase'
    * });
    *
    * type DocTypes = {
@@ -97,7 +97,7 @@ class ModalityBase<S> {
    *   username: 'aUser',
    *   password: 'aPassword',
    *   address: 'http://localhost:2480',
-   *   databaseName: 'aDatabase'
+   *   databaseName: 'aSpriteDatabase'
    * });
    *
    * type DocTypes = {
@@ -131,7 +131,7 @@ class ModalityBase<S> {
     typeName: N,
     transaction: SpriteTransaction,
     options: ISpriteDeleteFromOptions<S, N, P>
-  ) => this._operators.deleteFrom<S, N, P>(typeName, transaction, options);
+  ) => this._sql.deleteFrom<S, N, P>(typeName, transaction, options);
   /**
    * Delete a specific record by providing the `rid`
    * @param {string} rid The RID of the record to delete.
@@ -143,7 +143,7 @@ class ModalityBase<S> {
    *   username: 'aUser',
    *   password: 'aPassword',
    *   address: 'http://localhost:2480',
-   *   databaseName: 'aDatabase'
+   *   databaseName: 'aSpriteDatabase'
    * });
    *
    * type DocTypes = {
@@ -172,7 +172,7 @@ class ModalityBase<S> {
    * deleteOneExample();
    */
   deleteOne = async (rid: string, transaction: SpriteTransaction) =>
-    this._operators.deleteOne(rid, transaction);
+    this._sql.deleteOne(rid, transaction);
   /**
    * Update one record in the database, by providing an RID.
    * @param {string} rid The RID of the record to update.
@@ -184,7 +184,7 @@ class ModalityBase<S> {
    *   username: 'aUser',
    *   password: 'aPassword',
    *   address: 'http://localhost:2480',
-   *   databaseName: 'aDatabase'
+   *   databaseName: 'aSpriteDatabase'
    * });
    *
    * type DocTypes = {
@@ -219,7 +219,7 @@ class ModalityBase<S> {
     rid: string,
     data: OmitMeta<S[N]>,
     transaction: SpriteTransaction
-  ) => this._operators.updateOne<S, N>(rid, data, transaction);
+  ) => this._sql.updateOne<S, N>(rid, data, transaction);
   /**
    * Select a specific record by providing the `rid`
    * @param rid The RID of the record to select.
@@ -231,7 +231,7 @@ class ModalityBase<S> {
    *   username: 'aUser',
    *   password: 'aPassword',
    *   address: 'http://localhost:2480',
-   *   databaseName: 'aDatabase'
+   *   databaseName: 'aSpriteDatabase'
    * });
    *
    * type DocTypes = {
@@ -261,7 +261,7 @@ class ModalityBase<S> {
    * selectOneExample();
    */
   selectOne = async <N extends TypeNames<S>>(rid: string) =>
-    this._operators.selectOne<S, N>(rid);
+    this._sql.selectOne<S, N>(rid);
 }
 
 export { ModalityBase };

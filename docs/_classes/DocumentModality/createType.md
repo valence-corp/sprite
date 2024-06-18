@@ -23,12 +23,18 @@ Create a new document type in the schema.
 #### Example
 
 ```ts
-const database = new SpriteDatabase({
+const database = new Database({
   username: 'root',
   password: 'rootPassword',
   address: 'http://localhost:2480',
   databaseName: 'aDatabase'
 });
+
+interface DocumentTypes {
+  aDocument: {
+    aProperty: string
+  }
+}
 
 const client = database.documents<DocumentTypes>();
 
@@ -36,7 +42,7 @@ async function createDocumentTypeExample() {
   try {
     // non-idempotent operations must be conducted within a transaction
     client.transaction(async (trx)=>{
-      const type = await client.createType('aType', trx);
+      const type = await client.createType('aDocument', trx);
       console.log(type.name);
       // 'aType'
     });
@@ -47,10 +53,5 @@ async function createDocumentTypeExample() {
 };
 
 createDocumentTypeExample();
-
-// NOTE: you could control the transaction manually
-const trx = await database.newTransaction();
-const type = await client.createType('aType', trx);
-trx.commit();
 ```
 

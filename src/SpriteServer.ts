@@ -11,16 +11,32 @@ import { SpriteRestClient } from "./SpriteRestClient.js";
 import { validation } from "./validation/ArcadeParameterValidation.js";
 
 /**
- * Interact with a ArcadeDB server. Manage databases, users, etc.
- * @param {ISpriteRestClientConnectionParameters} parameters The details necessary to access, and perform operations on a server.
+ * Methods for interact with an ArcadeDB server. Manage databases, users, etc.
+ * @param {ISpriteRestClientConnectionParameters} parameters Connection details to access the server with.
  * @example
+ * 
  * const client = new SpriteServer({
  *   username: 'aUser',
  *   password: 'aPassword',
  *   address: 'http://localhost:2480',
  * });
- * client.serverReady().then(console.log);
- * // true
+ *
+ * async function serverReadyExample() {
+ *   try {
+ *     const ready = await client.serverReady();
+ *     if (ready) {
+ *       console.log(ready);
+ *       // true;
+ *     }
+ *   } catch (error) {
+ *     throw new Error(
+ *       'An error occurred while running example.',
+ *       { cause: error }
+ *     );
+ *   }
+ * }
+ *
+ * serverReadyExample();
  */
 class SpriteServer {
   private _client: SpriteRestClient;
@@ -33,6 +49,7 @@ class SpriteServer {
    * Useful for remote monitoring of server readiness.
    * @returns {Promise<boolean>} `true` if the server is ready, otherwise `false`.
    * @example
+   * 
    * const client = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -41,14 +58,18 @@ class SpriteServer {
    *
    * async function serverReadyExample() {
    *   try {
-   *     const serverReady = await client.serverReady();
-   *     console.log(serverReady);
-   *     // true
+   *     const ready = await client.serverReady();
+   *     if (ready) {
+   *       console.log(ready);
+   *       // true;
+   *     }
    *   } catch (error) {
-   *     console.error(error);
-   *     // manage error conditions
+   *     throw new Error(
+   *       'An error occurred while running example.',
+   *       { cause: error }
+   *     );
    *   }
-   * };
+   * }
    *
    * serverReadyExample();
    */
@@ -65,6 +86,7 @@ class SpriteServer {
    * @param {string} databaseName The name of the database to close.
    * @returns {Promise<boolean>} The response from the server.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -98,7 +120,7 @@ class SpriteServer {
    * @param {string} databaseName The name of the database to open.
    * @returns {Promise<boolean>} The response from the server.
    * @example
-   * // Async/Await
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -133,6 +155,7 @@ class SpriteServer {
    * @param {string} databaseName The name of the database to create a client for.
    * @returns {SpriteDatabase} An instance of SpriteDatabase.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -140,6 +163,7 @@ class SpriteServer {
    * });
    *
    * const database = await server.database('aDatabase');
+   * // returns an instance of SpriteDatabase
    * console.log(database.name);
    * // 'aDatabase';
    */
@@ -157,8 +181,8 @@ class SpriteServer {
     }
   };
   /**
-   * A method for sending commands as strings to the server.
-   * @param {string} command The [command](https://docs.arcadedb.com/#HTTP-ServerCommand) to send to the server, such as `CREATE DATABASE`.
+   * A method for sending commands (as strings) to the server.
+   * @param {string} command The [command](https://docs.arcadedb.com/#HTTP-ServerCommand) to send to the server, such as `CREATE DATABASE aDatabase`.
    * @returns {Promise<object>} The response is simplified from the raw response from the ArcadeDB server. JSON responses automatically return just the `result` property of the raw JSON object returned from the server. Results such as `OK` are returned as `boolean` values.
    * @example
    *
@@ -174,7 +198,7 @@ class SpriteServer {
    *     console.log(response);
    *     // {
    *     //   user: 'aUser',
-   *     //   version: '24.4.1',
+   *     //   version: '24.x.x',
    *     //   serverName: 'ArcadeDB_0',
    *     //   result: 'ok'
    *     // }
@@ -210,6 +234,7 @@ class SpriteServer {
    * @param {string} command The [command](https://docs.arcadedb.com/#HTTP-ServerCommand) to send to the server, such as `CREATE DATABASE`.
    * @returns {boolean} `true` if the command was successful.
    * @example
+   * 
    * async function booleanCommandExample(databaseName: string) {
    *   try {
    *     const response = await server.booleanCommand(`CREATE DATABASE ${databaseName}`);
@@ -237,6 +262,7 @@ class SpriteServer {
    * @returns {Promise<SpriteConnectClusterResponse>} The response from the server.
    * @throws `Error` if the cluster could not be connected.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -272,6 +298,7 @@ class SpriteServer {
    * @param {string} databaseName The name of the database to create.
    * @returns {Promise<SpriteDatabase>} An instance of `SpriteDatabase`, targeting the created database.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -322,6 +349,7 @@ class SpriteServer {
    * @returns {Promise<boolean>} `true` if the user was created successfully.
    * @throws `Error` if the user could not be created.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -404,6 +432,7 @@ class SpriteServer {
    * @returns {Promise<boolean>} `true` if database exists, `false` if not
    * @throws `Error` if the existence of the database could not be verified.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -451,6 +480,7 @@ class SpriteServer {
    * @returns {Promise<SpriteDisconnectClusterResponse>} The response from the server.
    * @throws `Error` if the cluster could not be disconnected.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -486,6 +516,7 @@ class SpriteServer {
    * @returns {Promise<boolean>} `true` if successfully dropped.
    * @throws `Error` if the database could not be dropped.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -520,6 +551,7 @@ class SpriteServer {
    * @returns {Promise<SpriteDropUserResult>} `true` if the user was successfully dropped.
    * @throws `Error` if the user could not be dropped.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -553,6 +585,7 @@ class SpriteServer {
    * @returns {Promise<SpriteGetServerEventsResult>} An object containing he server events from the server, and filenames of the associated logs.
    * @throws `Error` if there was a problem fetching the event logs.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -606,6 +639,7 @@ class SpriteServer {
    * @returns {Promise<Response>} The response from the server.
    * @throws `Error` if the information could not be retrieved.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -647,6 +681,7 @@ class SpriteServer {
    * @returns {Promise<Array<string>>} A list (array) of database names present on the server.
    * @throws `Error` if the database list could not be retrieved.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -684,6 +719,7 @@ class SpriteServer {
    * @returns `true` if the server is successfully shutdown.
    * @throws `Error` if there is a problem attempting the shutdown.
    * @example
+   * 
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',

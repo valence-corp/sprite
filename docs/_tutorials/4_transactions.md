@@ -2,20 +2,22 @@
 layout: tutorial
 permalink: /tutorials/transactions.html
 title: Sprite Tutorials - Database Transactions
-name: Database Transaction
-prevDesc: Introduction
-prevUrl: /tutorials/introduction.html
-nextDesc: Create a Database
-nextUrl: /tutorials/createDatabase.html
+name: Transactions
+prevDesc: Create a Database
+prevUrl: /tutorials/createDatabase.html
+nextDesc: Create a Document
+nextUrl: /tutorials/createDocument.html
 ---
 
-### Database Transactions
+### Transactions
 
 ---
 
 ###### Note
 
 This tutorial could be challenging to users with no prior experience in transactional databases. There will be a lot of new information. It is, however, foundational to understand how to use Sprite properly.
+
+_It is not necessary to run this code, it will be put into practice in the next tutorial._
 
 ---
 

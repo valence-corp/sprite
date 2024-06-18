@@ -5,6 +5,8 @@ title: Sprite Tutorials — Create a Graph
 name: Create a Graph
 prevDesc: Add a Document
 prevUrl: /tutorials/createDocument.html
+nextDesc: Selecting Records
+nextUrl: /tutorials/select.html
 ---
 
 ### Create a Graph
