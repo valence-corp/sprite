@@ -21,7 +21,7 @@
       <ul id="sectGettingStarted" role="region" aria-labelledby="gettingStartedId" class="accordion-panel">
         {% for tutorial in site.tutorials %}
         <li>
-          <a href="{{ tutorial.permalink }}">
+          <a href="{{ site.basurl }}/{{ tutorial.permalink }}">
             {{ tutorial.name }}
           </a>
         </li>
@@ -43,7 +43,7 @@
       <ul id="sect{{class.name}}" role="region" aria-labelledby="{{class.name}}id" class="accordion-panel">
         {% for child in class.methods %}
         <li>
-          <a href="{{child.link}}">
+          <a href="{{ site.basurl }}/{{child.link}}">
             {{child.name}}
           </a>
         </li>
@@ -51,7 +51,7 @@
       </ul>
       {% endif %}
       {% unless class.methods %}
-      <a href="{{ class.name }}">
+      <a href="{{ site.basurl }}/{{ class.name }}">
         {{ class.name }}
       </a>
       {% endunless %}
@@ -65,7 +65,7 @@
       <ul id="sectTypes" role="region" aria-labelledby="typesId" class="accordion-panel">
         {% for type in site.types %}
         <li>
-          <a href="{{ type.permalink }}">
+          <a href="{{ site.basurl }}/{{ type.permalink }}">
             <span class="menuItemText">
               {{ type.name }}
             </span>
