@@ -180,8 +180,8 @@ a:hover {
   margin: var(--section-padding);
 }
 .content ol li, .content ul li {
-  padding: var(--padding-min) var(--padding-reg);
-  margin: var(--padding-small) 0;
+  padding: 0 var(--padding-reg);
+  margin: 0;
   line-height: var(--paragraph-line-height);
 }
 .content ol li::marker, .content ul li::marker {
@@ -516,7 +516,7 @@ h3 em {
 
 h4 {
   color: var(--accent);
-  margin: var(--section-padding) 0;
+  margin: var(--section-start-padding) 0 var(--section-padding) 0;
 }
 
 h5 {
@@ -829,6 +829,7 @@ body {
   --full-line: 1.612rem;
   --frosted-backdrop: blur(20px);
   --section-padding: var(--full-line);
+  --section-start-padding: calc(var(--full-line)*2);
   --button-border: 1px solid var(--border-color);
   --frame-border-color: var(--border-color);
   --border-radius: 4px;

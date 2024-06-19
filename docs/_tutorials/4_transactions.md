@@ -13,11 +13,9 @@ nextUrl: /tutorials/createDocument.html
 
 ---
 
-###### Note
+**Note:** This tutorial assumes prior experience with transactional databases. If you're new to this topic, it may be challenging, but it's essential to understand how to use Sprite properly.
 
-This tutorial could be challenging to users with no prior experience in transactional databases. There will be a lot of new information. It is, however, foundational to understand how to use Sprite properly.
-
-_It is not necessary to run this code, it will be put into practice in the next tutorial._
+**Important:** You don't need to run this code; it will be put into practice in the next tutorial.
 
 ---
 
@@ -37,21 +35,20 @@ Is Sprite you can manually control how transactions are accomplished, use the `S
 6. [Conclusion](#conclusion)
 7. [What is next](#next)
 
-<h4 id="prerequisites">Prerequisites</h4>
+#### Prerequisites
+---------------
 
-1. Ensure you have [the installation](../installation.html) completed. This means you have ArcadeDB installed, running, and accessible, as well as a TypeScript / JavaScript project with Sprite installed.
-2. You have created a database called "ExampleDatabase", like accomplished in the [Create a Database tutorial](tutorials/createDatabase.html)
+1. Ensure you have completed the [installation](../installation.html) process, which includes installing ArcadeDB, running it, and accessing it from a TypeScript/JavaScript project with Sprite installed.
+2. You have created a database called "ExampleDatabase", as accomplished in the [Create a Database tutorial](tutorials/createDatabase.html)
 
-<h4 id="instantiating">Instantiating SpriteDatabase</h4>
+#### Instantiating SpriteDatabase
+-----------------------------
 
-Begin by inserting the following snippet into the `index.ts` file of your project. This imports the `SpriteDatabase` module, and creates an instance of it named `db`.
+Begin by inserting the following code into your project's `index.ts` file:
 
 ```ts
-// import the SpriteDatabase class from the sprite package
 import { SpriteDatabase } from "@valence-corp/sprite";
 
-// create an instance of SpriteDatabase with your credentials
-// and the name of the target database
 const db = new SpriteDatabase({
   username: "aUsername", // root will be ok for this tutorial
   password: "aPassword", // your password,
@@ -60,102 +57,53 @@ const db = new SpriteDatabase({
 });
 ```
 
-<h4 id="manual">Manual Transactions</h4>
+#### Manual Transactions
+---------------------
 
-The following code is to be inserted under the database instantiation.
-
-The `manualTransaction` function performs the following:
-
-1. Creates a new transaction using `SpriteDatabase.newTransaction`. This returns an instance of `SpriteTransaction`.
-2. Invokes `SpriteDatabase.command`, ensuring that the transaction is passed as an argument. This informs the database that you intend to issue this command during the transaction
-3. Calls `SpriteDatabase.commitTransaction` with the transaction's `id` property. This causes the transaction to be carried out, and the type is inserted into the database.
-4. Rollsback the transaction using `SpriteDatabase.rollbackTransaction`. This effectively reverses the transaction, and the type is removed from the database.
+The following code demonstrates manual transactions:
 
 ```ts
 async function manualTransaction() {
   try {
-    // create a new transaction
-    // returns an instance of SpriteTransaction
     const transaction = await db.newTransaction();
-
-    // All commands (idempotent, non-query) must
-    // be part of a transaction, so the command method
-    // requires a transaction argument
     await db.command("sql", "CREATE document TYPE ExampleUnused", transaction);
-
-    // transaction is committed
     await db.commitTransaction(transaction.id);
-
-    // transaction is rolledback
     await db.rollbackTransaction(transaction.id);
   } catch (error) {
-    throw new Error("There was an error during the example transaction", {
-      cause: error,
-    });
+    throw new Error("There was an error during the example transaction", { cause: error });
   }
 }
 ```
 
-<h4 id="manual">Transaction Helper Method</h4>
+#### Transaction Helper
+---------------------
 
-The `SpriteDatabase.transaction` method reduces boilerplate for transactions. It accepts a callback as the only argument, that callback is passed a newly created `SpriteTransaction` as a function parameter (named `trx`, in this case). It is the job of the developer to place the non-idempotent operations inside of the callback, and pass them the transaction. The transaction method will the execute the callback, along with all operations inside of it, and then commit the transaction. It returns the `SpriteTransaction` in case it is needed, for instance to rollback later.
+The `SpriteDatabase.transaction` method reduces boilerplate for transactions:
 
 ```ts
 async function transactionHelperExample() {
   try {
-    // create a new transaction
-    // returns an instance of SpriteTransaction
     const transaction = await db.transaction(async (trx) => {
-      // All commands (idempotent, non-query) must
-      // be part of a transaction, so the command method
-      // requires a transaction argument
-      await db.command(
-        "sql",
-        "CREATE document TYPE ExampleUnused",
-        trx
-      );
+      await db.command("sql", "CREATE document TYPE ExampleUnused", trx);
     });
-
-    // transaction is rolledback
     await transaction.rollback();
-
   } catch (error) {
-    throw new Error("There was an error during the example transaction", {
-      cause: error,
-    });
+    throw new Error("There was an error during the example transaction", { cause: error });
   }
 }
 ```
 
-<h4 id="manual">SpriteTransaction Methods</h4>
+#### Why?
+-----------------------------------
 
-It is important to add that `SpriteTransaction` has methods on it to commit, and rollback a transaction, this makes life a bit easier for developers.
+Manually passing transactions allows for more control and flexibility, reducing resource consumption by avoiding the need to create a new instance of the client for each transaction.
 
-```ts
-async function spriteTransactionMethodsExample() {
-  try {
-    // create a new transaction
-    // returns an instance of SpriteTransaction
-    const transaction = await db.newTransaction();
+#### Conclusion
+----------
 
-    // any number of commands can be executed
-    // with this transaction
+In this tutorial, we demonstrated how to work with transactions in Sprite. We covered manual transactions, transaction helpers, and the reasoning behind manually passing transactions.
 
-    // transaction can be committed using
-    // the methods on it
-    await transaction.commit();
+#### What's Next?
+--------------
 
-    // same for a rollback
-    await transaction.rollback();
-
-  } catch (error) {
-    throw new Error("There was an error during the example transaction", {
-      cause: error,
-    });
-  }
-}
-```
-
-#### Why Manually Passing Transactions?
-
-The reasoning for manually passing transactions, even in a transaction context, is that otherwise a new instance of a client would need to be created for each transaction. This way all operations can be conducted on the same instance of the client, which reduces resource consumption.
+In the next section, we will explore more advanced topics in Sprite.

@@ -8,6 +8,7 @@ body {
   --full-line: 1.612rem;
   --frosted-backdrop: blur(20px);
   --section-padding: var(--full-line);
+  --section-start-padding: calc(var(--full-line)*2);
 
   --button-border: 1px solid var(--border-color);
   --frame-border-color: var(--border-color);

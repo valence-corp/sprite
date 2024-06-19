@@ -7,24 +7,39 @@ nextDesc: Installation
 nextUrl: /tutorials/installation.html
 ---
 
-### Introduction
+### Introduction to Sprite
 
-Sprite is a TypeScript (or JavaScript) driver/client for ArcadeDB. It supports working with data in document, and graph formats. Timeseries and vector functionality will be added when those features are officially released for ArcadeDB.
+Sprite is a TypeScript (or JavaScript) driver/client for ArcadeDB, designed to work with data in document and graph formats. Future releases will include support for timeseries and vector functionality.
 
-Functionality is split into focused modules.
+The Sprite architecture is organized into focused modules, each serving a specific purpose.
 
-#### SpriteServer 
+1. [SpriteServer](#spriteserver)
+2. [SpriteDatabase](#spritedatabase)
+3. [Modalities](#modalities)
+4. [What's Next?](#whats-next)
 
-Provides methods for working with server level commands, such as: creating (or dropping) databases, user administration, and settings.
+#### SpriteServer
 
----
+The SpriteServer module provides methods for executing server-level commands, including:
 
-#### SpriteDatabase 
+* Creating and dropping databases
+* User administration
+* Settings / Configuration
 
-Provides methods for performing core database operations, such as: orchestrating transactions, issuing commands, performing queries, etc.
+#### SpriteDatabase
+
+The SpriteDatabase module offers methods for performing core database operations, such as:
+
+* Orchestrating transactions
+* Issuing database commands
+* Executing queries
 
 #### Modalities
 
-Many users would rather have some abstraction over these core driver functionalities. That abstraction happens via the modalities of the database client. There are currently two: `DocumentModality`, and `GraphModality`. The modalities contain methods for performing CRUD operations, and queries on specific record types.
+To provide a higher-level abstraction, Sprite includes two modalities: `DocumentModality` and `GraphModality`. These modalities contain methods for performing CRUD (Create, Read, Update, Delete) operations and queries on specific record types.
 
-This arrangement reduces overhead by ensuring the methods contained in the modalities are instantiated as required, and keeping the namespaces focused.
+The modalities' design reduces overhead by instantiating functionality as required, keeping namespaces focused and organized.
+
+#### What's next?
+
+The next step in this tutorial is to explore the installation process, outlined in the following section.

@@ -3,8 +3,8 @@
   ol, ul {
     margin: var(--section-padding);
     li {
-      padding: var(--padding-min) var(--padding-reg);
-      margin: var(--padding-small) 0;
+      padding: 0 var(--padding-reg);
+      margin: 0;
       line-height: var(--paragraph-line-height);
       &::marker {
         font-weight: 600;
