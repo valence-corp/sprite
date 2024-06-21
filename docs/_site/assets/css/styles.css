@@ -227,7 +227,7 @@ a:hover {
   flex: 1;
   width: 100%;
   transform: translate3d(-100%, 0, 0);
-  padding: var(--section-padding);
+  padding: var(--padding-reg);
   overflow-x: visible;
   transition: all 125ms ease;
   z-index: 2;
