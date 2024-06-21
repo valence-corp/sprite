@@ -111,10 +111,9 @@
   width: var(--nav-button-size);
   height: var(--nav-button-size);
   margin: 0 0 0 var(--section-padding);
-  color: var(--background-primary);
+  color: var(--foreground-primary);
   border: unset;
-  border-radius: 50%;
-  background: var(--pink);
+  background: unset;
 
   &:focus {
     outline-offset: var(--outline-offset);
