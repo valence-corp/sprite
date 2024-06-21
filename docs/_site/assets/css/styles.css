@@ -179,25 +179,25 @@ a:hover {
   color: var(--link-hover);
 }
 
-.content ol, .content ul {
+#content ol, #content ul {
   margin: var(--section-padding);
 }
-.content ol li, .content ul li {
+#content ol li, #content ul li {
   padding: 0 var(--padding-reg);
   margin: 0;
   line-height: var(--paragraph-line-height);
 }
-.content ol li::marker, .content ul li::marker {
+#content ol li::marker, #content ul li::marker {
   font-weight: 600;
   color: var(--accent);
 }
-.content ul {
+#content ul {
   list-style: none;
 }
-.content ul li {
+#content ul li {
   position: relative;
 }
-.content ul li:before {
+#content ul li:before {
   content: "";
   position: absolute;
   border-right: 2px solid var(--accent);
@@ -208,7 +208,7 @@ a:hover {
   left: -1rem;
   transform: translateY(-50%) rotate(-45deg);
 }
-.content ul li h4 span {
+#content ul li h4 span {
   color: var(--foreground-primary);
   font-weight: 400;
   font-style: italic;
