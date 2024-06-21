@@ -471,13 +471,12 @@ table th {
   border: unset;
   outline: none;
   position: relative;
-  background: var(--red);
+  background: var(--foreground-primary);
   border: var(--button-border);
   width: var(--button-height);
   height: var(--button-height);
   border-radius: 50%;
   margin: 0 0 0 var(--section-padding);
-  color: var(--background-primary);
 }
 #searchResultsBox header #searchBoxControls #searchClose:after {
   position: absolute;
@@ -490,7 +489,7 @@ table th {
   transform: translate(-50%, -50%);
 }
 #searchResultsBox header #searchBoxControls #searchClose svg {
-  fill: var(--background-primary);
+  fill: var(--red);
   width: var(--full-line);
   height: var(--full-line);
   border-radius: var(--button-radius);
@@ -753,12 +752,20 @@ footer.tutorial.prevOnly {
   justify-content: flex-start;
 }
 
+@font-face {
+  font-family: "Retro Pixel Petty 5X5";
+  src: local("Retro Pixel Petty 5X5"), url("assets/fonts/retro-pixel-petty-5x5.woff2") format("woff2");
+}
 body {
   font-size: var(--font-size-base);
   font-family: -apple-system, BlinkMacSystemFont, "Lato", "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-weight: 900;
 }
 

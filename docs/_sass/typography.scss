@@ -1,10 +1,21 @@
+@font-face {
+  font-family: "Retro Pixel Petty 5X5";
+  src:
+    local("Retro Pixel Petty 5X5"),
+    url("assets/fonts/retro-pixel-petty-5x5.woff2") format("woff2");
+};
+
 body {
   font-size: var(--font-size-base);
   font-family: -apple-system, BlinkMacSystemFont, "Lato", "Segoe UI", Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-weight: 900;
 }
 
@@ -23,6 +34,7 @@ h2 {
 h3 {
   margin: var(--section-padding) 0;
   font-size: 1.95rem;
+
   em {
     font-weight: 500;
     color: var(--title-emphasis-color);
