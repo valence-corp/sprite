@@ -5,10 +5,9 @@
   text-shadow: 1px 1px 0 var(--background-primary), 2px 2px 0 var(--accent);
   font-family: "Retro Pixel Petty 5X5";
   h1 {
-    font-size: 2.0rem;
     display: flex;
     align-items: center;
-    margin: 0 0 0 var(--section-padding);
+    margin: 0 0 0 var(--padding-reg);
     position: relative;
     z-index: 9;
   }
@@ -27,6 +26,7 @@
   #documentHeader {
     h1 {
       padding: var(--section-padding) 0;
+      margin: 0 0 0 var(--section-padding);
     }
   }
 }

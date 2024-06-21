@@ -122,12 +122,17 @@ a > code:hover {
   display: flex;
   flex: 1;
   overflow: scroll;
-  padding: 0 var(--section-padding);
+  padding: 0 var(--padding-reg);
 }
 #content div {
   width: 100%;
 }
 
+@media (min-width: 860px) {
+  #content {
+    padding: 0 var(--section-padding);
+  }
+}
 .row {
   display: flex;
   flex: 1;
@@ -142,10 +147,9 @@ a > code:hover {
   font-family: "Retro Pixel Petty 5X5";
 }
 #documentHeader h1 {
-  font-size: 2rem;
   display: flex;
   align-items: center;
-  margin: 0 0 0 var(--section-padding);
+  margin: 0 0 0 var(--padding-reg);
   position: relative;
   z-index: 9;
 }
@@ -161,6 +165,7 @@ a > code:hover {
 @media (min-width: 860px) {
   #documentHeader h1 {
     padding: var(--section-padding) 0;
+    margin: 0 0 0 var(--section-padding);
   }
 }
 a {
@@ -771,7 +776,7 @@ h5 {
 
 h1,
 h2 {
-  font-size: 2.42rem;
+  font-size: var(--full-line);
   letter-spacing: 0.02rem;
 }
 
@@ -783,7 +788,7 @@ h2 {
 
 h3 {
   margin: var(--section-padding) 0;
-  font-size: 1.95rem;
+  font-size: 1.305rem;
 }
 h3 em {
   font-weight: 500;
@@ -812,6 +817,14 @@ p {
   line-height: var(--paragraph-line-height);
 }
 
+@media (min-width: 860px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.95rem;
+  }
+}
 .editLink {
   text-decoration: unset;
   padding: 0 var(--padding-reg);

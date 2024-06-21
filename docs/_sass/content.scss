@@ -2,8 +2,15 @@
   display: flex;
   flex: 1;
   overflow: scroll;
-  padding: 0 var(--section-padding);
+  padding: 0 var(--padding-reg);
+
   div {
     width: 100%;
+  }
+}
+
+@media (min-width: 860px) {
+  #content {
+    padding: 0 var(--section-padding);
   }
 }
