@@ -7,16 +7,16 @@ nextDesc: Graphs
 nextUrl: /tutorials/createGraph.html
 prevDesc: Transations
 prevUrl: /tutorials/transactions.html
+filename: 5_createDocument.md
 ---
-
-### Create a Document
-
 #### Introduction
+---
 
 This tutorial will demonstrate the basics of using the `DocumentModality` via the `SpriteDatabase` module to define a document type, and create a document.
 
 
 #### Overview
+---
 
 1. [Prerequisites](#prerequisites)
 2. [Instantiating SpriteDatabase](#instantiating)
@@ -26,12 +26,14 @@ This tutorial will demonstrate the basics of using the `DocumentModality` via th
 6. [Conclusion](#conclusion)
 7. [What is next](#next)
 
-<h4 id="prerequisites">Prerequisites</h4>
+#### Prerequisites
+---
 
 1. Ensure you have [the installation](../installation.html) completed. This means you have ArcadeDB installed, running, and accessible, as well as a TypeScript / JavaScript project with Sprite installed.
 2. You have created a database called "ExampleDatabase", like accomplished in the [Create a Database tutorial]()
 
-<h4 id="instantiating">Instantiating SpriteDatabase</h4>
+#### Instantiating SpriteDatabase
+---
 
 Begin by inserting the following snippet into the `index.ts` file of your project. This imports the `SpriteDatabase` module, and creates an instance of it named `db`.
 
@@ -49,7 +51,8 @@ const db = new SpriteDatabase({
 });
 ```
 
-<h4 id="modality">Accessing the DocumentModality</h4>
+#### Accessing the DocumentModality
+---
 
 Add the following code bellow the previous section.
 
@@ -58,6 +61,7 @@ The `DocumentModality` is accessed via the `SpriteDatabase` instance we created.
 ---
 
 ###### Note
+
 
 The accessor method returns a [singleton instance](https://en.wikipedia.org/wiki/Singleton_pattern) of `DocumentModality`. The library just uses the accessor method to define types for it, so you can create many typed modalities without any additional runtime overhead.
 
@@ -94,7 +98,8 @@ async function documentModalityExample() {
 documentModalityExample();
 ```
 
-<h4 id="transactions">Transactions</h4>
+#### Transactions
+---
 
 ArcadeDB is a transactional database. This is preferred for applications that require a high level of data integrity. All non-idempotent operations (operations that can change the database) must be part of a transaction.
 
@@ -127,7 +132,8 @@ There is additional information on transactions in the following locations.
 
 ---
 
-<h4 id="createDatabase">Creating a Type</h4>
+#### Creating a Type
+---
 
 Within the transaction callback, we will call the `DocumentModality.createType()` method, and pass it the transaction (`trx`) that is supplied as a parameter to the callback. This operation should be awaited to avoid an error with the `newDocument` method we will add in the next step (the type must be present in the database to create a record with that type).
 
@@ -147,7 +153,8 @@ async function documentModalityExample() {
 }
 ```
 
-<h4 id="newDocument">Creating a Document</h4>
+#### Creating a Document
+---
 
 Following the `createType` operation, insert the `newDocument` method. Ensure the transaction is passed to it also. Optionally, data can be included at record creation. The properties will be automatially typed as defined in the `ExampleDocuments` interface created earlier.
 
@@ -175,7 +182,8 @@ async function documentModalityExample() {
 ```
 
 
-<h4 id="running">Running the Example</h4> 
+#### Running the Example
+---
 
 ```ts
 import { SpriteDatabase } from "@valence-corp/sprite";
@@ -219,7 +227,8 @@ async function documentModalityExample() {
 documentModalityExample();
 ```
 
-<h4 id="conclusion">Conclusion</h4> 
+#### Conclusion
+---
 
 There should now be a database on your server called "ExampleDatabase".
 
@@ -229,6 +238,7 @@ Note You can verify the existence of a database on the server by utilizing one o
 - SpriteServer.databaseExists()
 - [ArcadeDB server console]().
 
-<h4 id="next">What is next?</h4>
+#### What is next?
+---
 
 The next section will demonstrate how to use the `SpriteDatabase` module to perform operations on the database.

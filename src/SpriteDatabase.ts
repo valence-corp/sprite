@@ -21,8 +21,8 @@ import { DocumentModality, GraphModality } from "./api.js";
 import { SqlDialect } from "./SqlDialect.js";
 
 /**
- * Interact with a SpriteDatabase, perform queries,
- * create interfaces to manage records, types, and settings.
+ * Interact with a database, perform queries, issue commands to manage
+ * records, types, and settings.
  * @param {ISpriteDatabaseConnectionParameters} parameters The fields necessary to perform operations on a specific database.
  * @returns an instance of SpriteDatabase
  * @example

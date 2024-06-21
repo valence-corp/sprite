@@ -3,26 +3,35 @@
   <ul>
     <li>
       <a href="{{ site.baseurl }}">
-        {% include home_icon.svg %}
-        Home
+
+        <span class="menuItemText">
+          {% include home-icon.svg %}
+          Home
+        </span>
       </a>
     </li>
     <li>
       <a href="https://www.github.com/valence-corp/sprite">
-        {% include github_icon.svg %}
-        GitHub
+        <span class="menuItemText">
+          {% include github-icon.svg %}
+          GitHub
+        </span>
       </a>
     </li>
     <li class="menuItem">
       <button aria-expanded="true" class="accordion-trigger" aria-controls="sectGettingStarted" id="gettingStartedId">
-        {% include accordion-icon.svg %}
-        Getting Started
+        <span class="menuItemText">
+          {% include accordion-icon.svg %}
+          Getting Started
+        </span>
       </button>
       <ul id="sectGettingStarted" role="region" aria-labelledby="gettingStartedId" class="accordion-panel">
         {% for tutorial in site.tutorials %}
         <li>
           <a href="{{ site.baseurl }}{{ tutorial.permalink }}">
-            {{ tutorial.name }}
+            <span class="menuItemText">
+              {{ tutorial.name }}
+            </span>
           </a>
         </li>
         {% endfor %}
@@ -37,14 +46,18 @@
     <li {% if class.methods %} class="menuItem" {% endif %}>
       {% if class.methods %}
       <button aria-expanded="true" class="accordion-trigger" aria-controls="sect{{class.name}}" id="{{class.name}}id">
-        {% include accordion-icon.svg %}
-        {{ class.name }}
+        <span class="menuItemText">
+          {% include accordion-icon.svg %}
+          {{ class.name }}
+        </span>
       </button>
       <ul id="sect{{class.name}}" role="region" aria-labelledby="{{class.name}}id" class="accordion-panel">
         {% for child in class.methods %}
         <li>
           <a href="{{ site.baseurl }}{{child.link}}">
-            {{child.name}}
+            <span class="menuItemText">
+              {{child.name}}
+            </span>
           </a>
         </li>
         {% endfor %}
@@ -52,15 +65,20 @@
       {% endif %}
       {% unless class.methods %}
       <a href="{{ site.baseurl }}{{ class.name }}">
-        {{ class.name }}
+
+        <span class="menuItemText">
+          {{ class.name }}
+        </span>
       </a>
       {% endunless %}
     </li>
     {% endfor %}
     <li class="menuItem">
       <button aria-expanded="true" class="accordion-trigger" aria-controls="sectTypes" id="typesId">
-        {% include accordion-icon.svg %}
-        Type Definitions
+        <span class="menuItemText">
+          {% include accordion-icon.svg %}
+          Type Definitions
+        </span>
       </button>
       <ul id="sectTypes" role="region" aria-labelledby="typesId" class="accordion-panel">
         {% for type in site.types %}
@@ -76,8 +94,10 @@
     </li>
     <li>
       <a href="{{ site.baseurl }}/api">
-        {% include book-icon.svg %}
-        Generated Docs
+        <span class="menuItemText">
+          {% include dna-icon.svg %}
+          Generated Docs
+        </span>
       </a>
     </li>
   </ul>

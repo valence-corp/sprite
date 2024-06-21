@@ -11,6 +11,9 @@
   <script src="/sprite/assets/js/accordion.js"></script>
 <script src="/sprite/assets/js/themeToggleSwitch.js"></script>
 <script src="/sprite/assets/js/navButton.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js"></script>
+<script src="/sprite/assets/js/search.js" type="module"></script>
+<script src="/sprite/assets/js/ajax.js" type="module"></script>
 </head>
 
 <body>
@@ -19,21 +22,21 @@
     <h1>Sprite</h1>
     <div id="controls">
   <label class="switch" for="themeToggle">
-    <input type="checkbox" id="themeToggle" />
-    <figure class="button">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <input type="checkbox" id="themeToggle" aria-label="Theme Toggle"/>
+    <figure class="button" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path
           d="M11.3807 2.01886C9.91573 3.38768 9 5.3369 9 7.49999C9 11.6421 12.3579 15 16.5 15C18.6631 15 20.6123 14.0843 21.9811 12.6193C21.6613 17.8537 17.3149 22 12 22C6.47715 22 2 17.5228 2 12C2 6.68514 6.14629 2.33869 11.3807 2.01886Z">
         </path>
       </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path
           d="M11 18H7.94101C7.64391 16.7274 6.30412 15.6857 5.75395 14.9992C4.65645 13.6297 4 11.8915 4 10C4 5.58172 7.58172 2 12 2C16.4183 2 20 5.58172 20 10C20 11.8925 19.3428 13.6315 18.2443 15.0014C17.6944 15.687 16.3558 16.7276 16.059 18H13V13H11V18ZM16 20V21C16 22.1046 15.1046 23 14 23H10C8.89543 23 8 22.1046 8 21V20H16Z">
         </path>
       </svg>
     </figure>
   </label>
-  <button id="navButton">
+  <button id="navButton" aria-label="Toggle Navigation">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" fill="none" 1.618 stroke="currentColor" stroke-width="2"
       stroke-linecap="round" stroke-linejoin="round">
       <line x1="34" y1="30" x2="18" y2="30"></line>
@@ -46,86 +49,127 @@
   <div class="container row">
     <nav id="mainNavigation">
   <div id="searchBox">
-  <input class="button" type="search" placeholder="search..." />
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" id="searchIcon">
-    <path
-      d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z">
-    </path>
-  </svg>
+  <div id="searchFieldWrap">
+    <input class="button" type="search" id="searchInput" aria-label="Search" />
+    <label for="searchInput" id="searchLabel">search</label>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" id="searchIcon" aria-label="Search Icon">
+      <path
+        d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z">
+      </path>
+    </svg>
+  </div>
+  <div id="searchResultsBox" class="hidden">
+  <header>
+    <h6><span id="numberResultsShowing">0</span> of <span id="numberOfResults">0</span> results</h6>
+    <div id="searchBoxControls">
+      <fieldset class="toggleButtons" id="searchFilters">
+        <input type="checkbox" id="toggleClassResults" value="class" checked /><label
+          for="toggleClassResults">Classes</label>
+        <input type="checkbox" id="toggleMethodResults" value="method" checked /><label
+          for="toggleMethodResults">Methods</label>
+        <input type="checkbox" id="toggleTypeResults" value="type" checked /><label
+          for="toggleTypeResults">Types</label>
+      </fieldset>
+      <button id="searchClose" aria-label="Close Search">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close Icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>
+      </button>
+    </div>
+  </header>
+  <ul id="resultList">
+    <li class="no-results">No results found</li>
+  </ul>
+</div>
 </div>
   <ul>
     <li>
       <a href="/sprite">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#666">
+
+        <span class="menuItemText">
+          <svg xmlns="http://www.w3.org/2000/svg" aria-label="Home Icon" viewBox="0 0 24 24" fill="#666">
   <path
     d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
   </path>
 </svg>
-        Home
+          Home
+        </span>
       </a>
     </li>
     <li>
       <a href="https://www.github.com/valence-corp/sprite">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#666">
-  <path
-    d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z">
-  </path>
-</svg>
-        GitHub
+        <span class="menuItemText">
+          <svg xmlns="http://www.w3.org/2000/svg" aria-label="Github Icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"/></svg>
+          GitHub
+        </span>
       </a>
     </li>
     <li class="menuItem">
       <button aria-expanded="true" class="accordion-trigger" aria-controls="sectGettingStarted" id="gettingStartedId">
-        <svg viewBox="0 0 16 24" width="1rem" height="1.5rem" class="icon">
+        <span class="menuItemText">
+          <svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
   <g>
-    <rect x="3" y="7" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="12" x2=11 y2="12" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="9" x2=8 y2="15" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
+    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
+    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
   </g>
 </svg>
-        Getting Started
+          Getting Started
+        </span>
       </button>
       <ul id="sectGettingStarted" role="region" aria-labelledby="gettingStartedId" class="accordion-panel">
         
         <li>
           <a href="/sprite/tutorials/introduction.html">
-            Introduction
+            <span class="menuItemText">
+              Introduction
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/tutorials/installation.html">
-            Installation
+            <span class="menuItemText">
+              Installation
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/tutorials/createDatabase.html">
-            Create a Database
+            <span class="menuItemText">
+              Create a Database
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/tutorials/transactions.html">
-            Transactions
+            <span class="menuItemText">
+              Transactions
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/tutorials/createDocument.html">
-            Create a Document
+            <span class="menuItemText">
+              Create a Document
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/tutorials/createGraph.html">
-            Create a Graph
+            <span class="menuItemText">
+              Create a Graph
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/tutorials/select.html">
-            Select Records
+            <span class="menuItemText">
+              Select Records
+            </span>
           </a>
         </li>
         
@@ -140,74 +184,96 @@
     <li  class="menuItem" >
       
       <button aria-expanded="true" class="accordion-trigger" aria-controls="sectDocumentModality" id="DocumentModalityid">
-        <svg viewBox="0 0 16 24" width="1rem" height="1.5rem" class="icon">
+        <span class="menuItemText">
+          <svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
   <g>
-    <rect x="3" y="7" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="12" x2=11 y2="12" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="9" x2=8 y2="15" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
+    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
+    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
   </g>
 </svg>
-        DocumentModality
+          DocumentModality
+        </span>
       </button>
       <ul id="sectDocumentModality" role="region" aria-labelledby="DocumentModalityid" class="accordion-panel">
         
         <li>
           <a href="/sprite/classes/DocumentModality/createType.html">
-            createType
+            <span class="menuItemText">
+              createType
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/DocumentModality/deleteFrom.html">
-            deleteFrom
+            <span class="menuItemText">
+              deleteFrom
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/DocumentModality/deleteOne.html">
-            deleteOne
+            <span class="menuItemText">
+              deleteOne
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/DocumentModality/dropType.html">
-            dropType
+            <span class="menuItemText">
+              dropType
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/DocumentModality/newDocument.html">
-            newDocument
+            <span class="menuItemText">
+              newDocument
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/DocumentModality/newTransaction.html">
-            newTransaction
+            <span class="menuItemText">
+              newTransaction
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/DocumentModality/selectFrom.html">
-            selectFrom
+            <span class="menuItemText">
+              selectFrom
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/DocumentModality/selectOne.html">
-            selectOne
+            <span class="menuItemText">
+              selectOne
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/DocumentModality/transaction.html">
-            transaction
+            <span class="menuItemText">
+              transaction
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/DocumentModality/updateOne.html">
-            updateOne
+            <span class="menuItemText">
+              updateOne
+            </span>
           </a>
         </li>
         
@@ -219,86 +285,112 @@
     <li  class="menuItem" >
       
       <button aria-expanded="true" class="accordion-trigger" aria-controls="sectGraphModality" id="GraphModalityid">
-        <svg viewBox="0 0 16 24" width="1rem" height="1.5rem" class="icon">
+        <span class="menuItemText">
+          <svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
   <g>
-    <rect x="3" y="7" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="12" x2=11 y2="12" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="9" x2=8 y2="15" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
+    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
+    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
   </g>
 </svg>
-        GraphModality
+          GraphModality
+        </span>
       </button>
       <ul id="sectGraphModality" role="region" aria-labelledby="GraphModalityid" class="accordion-panel">
         
         <li>
           <a href="/sprite/classes/GraphModality/createEdgeType.html">
-            createEdgeType
+            <span class="menuItemText">
+              createEdgeType
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/GraphModality/createVertexType.html">
-            createVertexType
+            <span class="menuItemText">
+              createVertexType
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/GraphModality/deleteFrom.html">
-            deleteFrom
+            <span class="menuItemText">
+              deleteFrom
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/GraphModality/deleteOne.html">
-            deleteOne
+            <span class="menuItemText">
+              deleteOne
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/GraphModality/dropType.html">
-            dropType
+            <span class="menuItemText">
+              dropType
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/GraphModality/newEdge.html">
-            newEdge
+            <span class="menuItemText">
+              newEdge
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/GraphModality/newTransaction.html">
-            newTransaction
+            <span class="menuItemText">
+              newTransaction
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/GraphModality/newVertex.html">
-            newVertex
+            <span class="menuItemText">
+              newVertex
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/GraphModality/selectFrom.html">
-            selectFrom
+            <span class="menuItemText">
+              selectFrom
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/GraphModality/selectOne.html">
-            selectOne
+            <span class="menuItemText">
+              selectOne
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/GraphModality/transaction.html">
-            transaction
+            <span class="menuItemText">
+              transaction
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/GraphModality/updateOne.html">
-            updateOne
+            <span class="menuItemText">
+              updateOne
+            </span>
           </a>
         </li>
         
@@ -310,68 +402,88 @@
     <li  class="menuItem" >
       
       <button aria-expanded="true" class="accordion-trigger" aria-controls="sectSpriteDatabase" id="SpriteDatabaseid">
-        <svg viewBox="0 0 16 24" width="1rem" height="1.5rem" class="icon">
+        <span class="menuItemText">
+          <svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
   <g>
-    <rect x="3" y="7" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="12" x2=11 y2="12" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="9" x2=8 y2="15" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
+    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
+    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
   </g>
 </svg>
-        SpriteDatabase
+          SpriteDatabase
+        </span>
       </button>
       <ul id="sectSpriteDatabase" role="region" aria-labelledby="SpriteDatabaseid" class="accordion-panel">
         
         <li>
           <a href="/sprite/classes/SpriteDatabase/command.html">
-            command
+            <span class="menuItemText">
+              command
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteDatabase/commitTransaction.html">
-            commitTransaction
+            <span class="menuItemText">
+              commitTransaction
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteDatabase/documentModality.html">
-            documentModality
+            <span class="menuItemText">
+              documentModality
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteDatabase/explain.html">
-            explain
+            <span class="menuItemText">
+              explain
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteDatabase/getSchema.html">
-            getSchema
+            <span class="menuItemText">
+              getSchema
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteDatabase/graphModality.html">
-            graphModality
+            <span class="menuItemText">
+              graphModality
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteDatabase/newTransaction.html">
-            newTransaction
+            <span class="menuItemText">
+              newTransaction
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteDatabase/query.html">
-            query
+            <span class="menuItemText">
+              query
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteDatabase/rollbackTransaction.html">
-            rollbackTransaction
+            <span class="menuItemText">
+              rollbackTransaction
+            </span>
           </a>
         </li>
         
@@ -383,110 +495,144 @@
     <li  class="menuItem" >
       
       <button aria-expanded="true" class="accordion-trigger" aria-controls="sectSpriteServer" id="SpriteServerid">
-        <svg viewBox="0 0 16 24" width="1rem" height="1.5rem" class="icon">
+        <span class="menuItemText">
+          <svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
   <g>
-    <rect x="3" y="7" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="12" x2=11 y2="12" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="9" x2=8 y2="15" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
+    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
+    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
   </g>
 </svg>
-        SpriteServer
+          SpriteServer
+        </span>
       </button>
       <ul id="sectSpriteServer" role="region" aria-labelledby="SpriteServerid" class="accordion-panel">
         
         <li>
           <a href="/sprite/classes/SpriteServer/closeDatabase.html">
-            closeDatabase
+            <span class="menuItemText">
+              closeDatabase
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/command.html">
-            command
+            <span class="menuItemText">
+              command
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/connectCluster.html">
-            connectCluster
+            <span class="menuItemText">
+              connectCluster
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/createDatabase.html">
-            createDatabase
+            <span class="menuItemText">
+              createDatabase
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/createUser.html">
-            createUser
+            <span class="menuItemText">
+              createUser
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/database.html">
-            database
+            <span class="menuItemText">
+              database
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/databaseExists.html">
-            databaseExists
+            <span class="menuItemText">
+              databaseExists
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/disconnectCluster.html">
-            disconnectCluster
+            <span class="menuItemText">
+              disconnectCluster
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/dropDatabase.html">
-            dropDatabase
+            <span class="menuItemText">
+              dropDatabase
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/dropUser.html">
-            dropUser
+            <span class="menuItemText">
+              dropUser
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/getEvents.html">
-            getEvents
+            <span class="menuItemText">
+              getEvents
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/getInformation.html">
-            getInformation
+            <span class="menuItemText">
+              getInformation
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/listDatabases.html">
-            listDatabases
+            <span class="menuItemText">
+              listDatabases
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/openDatabase.html">
-            openDatabase
+            <span class="menuItemText">
+              openDatabase
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/serverReady.html">
-            serverReady
+            <span class="menuItemText">
+              serverReady
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteServer/shutdown.html">
-            shutdown
+            <span class="menuItemText">
+              shutdown
+            </span>
           </a>
         </li>
         
@@ -498,26 +644,32 @@
     <li  class="menuItem" >
       
       <button aria-expanded="true" class="accordion-trigger" aria-controls="sectSpriteTransaction" id="SpriteTransactionid">
-        <svg viewBox="0 0 16 24" width="1rem" height="1.5rem" class="icon">
+        <span class="menuItemText">
+          <svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
   <g>
-    <rect x="3" y="7" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="12" x2=11 y2="12" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="9" x2=8 y2="15" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
+    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
+    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
   </g>
 </svg>
-        SpriteTransaction
+          SpriteTransaction
+        </span>
       </button>
       <ul id="sectSpriteTransaction" role="region" aria-labelledby="SpriteTransactionid" class="accordion-panel">
         
         <li>
           <a href="/sprite/classes/SpriteTransaction/commit.html">
-            commit
+            <span class="menuItemText">
+              commit
+            </span>
           </a>
         </li>
         
         <li>
           <a href="/sprite/classes/SpriteTransaction/rollback.html">
-            rollback
+            <span class="menuItemText">
+              rollback
+            </span>
           </a>
         </li>
         
@@ -528,14 +680,16 @@
     
     <li class="menuItem">
       <button aria-expanded="true" class="accordion-trigger" aria-controls="sectTypes" id="typesId">
-        <svg viewBox="0 0 16 24" width="1rem" height="1.5rem" class="icon">
+        <span class="menuItemText">
+          <svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
   <g>
-    <rect x="3" y="7" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="12" x2=11 y2="12" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="9" x2=8 y2="15" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
+    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
+    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
+    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
   </g>
 </svg>
-        Type Definitions
+          Type Definitions
+        </span>
       </button>
       <ul id="sectTypes" role="region" aria-labelledby="typesId" class="accordion-panel">
         
@@ -943,13 +1097,15 @@
     </li>
     <li>
       <a href="/sprite/api">
-        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 18H6C5.44772 18 5 18.4477 5 19C5 19.5523 5.44772 20 6 20H21V22H6C4.34315 22 3 20.6569 3 19V4C3 2.89543 3.89543 2 5 2H21V18ZM16 9V7H8V9H16Z"/></svg>
-        Generated Docs
+        <span class="menuItemText">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="Generated Documentation Icon"><path d="M18 1C18 1.71561 17.9359 2.37948 17.8155 3H8.23193C8.87053 5.55223 10.7943 7.22876 13.5829 9.4281C13.0772 9.8647 12.5462 10.294 12 10.7267C8.72906 8.13494 6 5.66845 6 1H4C4 6.46624 7.21013 9.46355 10.3863 12C7.21013 14.5365 4 17.5338 4 23H6C6 18.0404 9.08011 15.566 12.6178 12.7863L12.7096 12.7142C16.149 10.0123 20 6.98705 20 1H18ZM17.8155 21.0002H8.23193C8.89098 18.3663 10.9188 16.665 13.8535 14.3592C14.2973 14.0106 14.7419 13.663 15.1811 13.3086C17.7659 15.5981 20 18.44 20 23.0002H18C18 22.2846 17.9359 21.6207 17.8155 21.0002Z"/></svg>
+          Generated Docs
+        </span>
       </a>
     </li>
   </ul>
 </nav>
-    <div class="content">
+    <div id="content">
       <div>
         <h3 id="typenames">TypeNames<br /><Schema></Schema></h3>
 

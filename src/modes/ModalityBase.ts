@@ -54,12 +54,12 @@ class ModalityBase<S> {
    *   }
    * }
    *
-   * const docs = database.documents<DocTypes>();
+   * const client = database.documentModality<DocTypes>();
    *
    * async function transactionExample() {
    *   try {
-   *     const transaction = await docs.transaction(async (trx) => {
-   *       docs.createType('aType', trx);
+   *     const transaction = await client.transaction(async (trx) => {
+   *       client.createType('aType', trx);
    *     });
    *     console.log(transaction.id);
    *     // 'AS-0000000-0000-0000-0000-00000000000'
@@ -106,12 +106,12 @@ class ModalityBase<S> {
    *   }
    * }
    *
-   * const docs = database.documents<DocTypes>();
+   * const client = database.documentModality<DocTypes>();
    *
    * async function deleteFromExample() {
    *   try {
-   *     await docs.transaction(async (trx) => {
-   *       const result = await docs.deleteFrom('aType', trx, {
+   *     await client.transaction(async (trx) => {
+   *       const result = await client.deleteFrom('aType', trx, {
    *         where: ['aField', '!=', 'aValue']
    *       });
    *       console.log(result);
@@ -152,12 +152,12 @@ class ModalityBase<S> {
    *   }
    * }
    *
-   * const docs = database.documents<DocTypes>();
+   * const client = database.documentModality<DocTypes>();
    *
    * async function deleteOneExample() {
    *   try {
-   *     await docs.transaction(async (trx) => {
-   *       const result = await docs.deleteOne('#0:0', trx);
+   *     await client.transaction(async (trx) => {
+   *       const result = await client.deleteOne('#0:0', trx);
    *       console.log(result);
    *       // number of records deleted as a result
    *       // of the operation
@@ -193,12 +193,12 @@ class ModalityBase<S> {
    *   }
    * }
    *
-   * const docs = database.documents<DocTypes>();
+   * const client = database.documentModality<DocTypes>();
    *
    * async function updateOneExample() {
    *   try {
-   *     await docs.transaction(async (trx) => {
-   *       const result = await docs.updateOne('#0:0', { aField: 'aValue' }, trx);
+   *     await client.transaction(async (trx) => {
+   *       const result = await client.updateOne('#0:0', { aField: 'aValue' }, trx);
    *       console.log(result);
    *       // {
    *       //   '@rid': '#0:0',
@@ -240,11 +240,11 @@ class ModalityBase<S> {
    *   }
    * }
    *
-   * const docs = database.documents<DocTypes>();
+   * const client = database.documentModality<DocTypes>();
    *
    * async function selectOneExample() {
    *   try {
-   *     const result = await docs.selectOne<'aType'>('#0:0');
+   *     const result = await client.selectOne<'aType'>('#0:0');
    *     console.log(result);
    *     // {
    *     //   '@rid': '#0:0',

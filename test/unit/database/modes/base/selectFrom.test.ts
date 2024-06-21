@@ -2,6 +2,7 @@ import { client, dbClient as SpriteDatabase } from './testClient.js';
 import { variables } from '../../../../variables.js';
 import {
   ArcadeCommandResponse,
+  ArcadeQueryResponse,
   ArcadeSupportedQueryLanguages,
 } from '../../../../../src/types/database.js';
 
@@ -15,7 +16,7 @@ describe('ModalityBase.selectFrom()', () => {
         async (
           lanugage: ArcadeSupportedQueryLanguages,
           options: any,
-        ): Promise<ArcadeCommandResponse<unknown>> => {
+        ): Promise<ArcadeQueryResponse<unknown[]>> => {
           return {
             user: variables.username,
             serverName: '',

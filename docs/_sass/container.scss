@@ -6,10 +6,10 @@
 
 // above 720px wide we want to display desktop styles
 
-@media (min-width: 1000px) {
+@media (min-width: 1040px) {
   .container {
-    min-width: 1000px;
-    max-width: 1000px;
+    max-width: 1040px;
+    min-width: 1040px;
     margin: auto;
   }
 }

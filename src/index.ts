@@ -38,8 +38,8 @@ interface ExampleVertexes {
 
 interface DocumentTypes {
   aDocument: {
-    aProperty: string
-  }
+    aProperty: string;
+  };
 }
 
 interface ExampleEdges {
@@ -53,8 +53,7 @@ interface ExampleEdges {
 
 const client = db.documentModality<ExampleEdges>();
 
-db.query<ADocumentType>('sql', '').then((result)=>{
-})
+db.query<ADocumentType>("sql", "").then((result) => {});
 
 // async function graphModalityExample() {
 //   try {

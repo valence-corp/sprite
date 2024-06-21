@@ -33,7 +33,7 @@ label.switch {
       left: 0rem;
       position: absolute;
       background: var(--accent);
-      border-radius: 50%;
+      border-radius: var(--button-radius);
       transition: transform 125ms ease;
     }
   }

@@ -111,20 +111,20 @@ a > code:hover {
   justify-content: space-between;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1040px) {
   .container {
-    min-width: 1000px;
-    max-width: 1000px;
+    max-width: 1040px;
+    min-width: 1040px;
     margin: auto;
   }
 }
-.content {
+#content {
   display: flex;
   flex: 1;
   overflow: scroll;
   padding: 0 var(--section-padding);
 }
-.content div {
+#content div {
   width: 100%;
 }
 
@@ -137,7 +137,6 @@ a > code:hover {
 #documentHeader {
   display: flex;
   justify-content: space-between;
-  padding: 0 var(--section-padding);
   border-bottom: 1px solid var(--frame-border-color);
   text-shadow: 1px 1px 0 var(--background-primary), 2px 2px 0 var(--accent);
   font-family: "Retro Pixel Petty 5X5";
@@ -146,18 +145,22 @@ a > code:hover {
   font-size: 2rem;
   display: flex;
   align-items: center;
+  margin: 0 0 0 var(--section-padding);
+  position: relative;
+  z-index: 9;
 }
 #documentHeader #controls {
   display: flex;
   max-width: fit-content;
-  padding: var(--padding-reg);
+  padding: var(--padding-reg) 0;
   align-content: center;
   align-items: center;
+  margin: 0 var(--section-padding);
 }
 
 @media (min-width: 860px) {
   #documentHeader h1 {
-    padding: var(--section-padding);
+    padding: var(--section-padding) 0;
   }
 }
 a {
@@ -217,10 +220,9 @@ a:hover {
   width: 100%;
   transform: translate3d(-100%, 0, 0);
   padding: var(--section-padding);
-  overflow-y: scroll;
   overflow-x: visible;
   transition: all 125ms ease;
-  z-index: 9;
+  z-index: 2;
   background: var(--frosted-background);
   backdrop-filter: var(--frosted-backdrop);
   height: 100%;
@@ -228,14 +230,14 @@ a:hover {
   opacity: 0;
 }
 #mainNavigation svg {
-  fill: var(--foreground-primary);
+  fill: var(--accent);
 }
 #mainNavigation ul,
 #mainNavigation ol {
   list-style: none;
   display: flex;
   flex-direction: column;
-  max-width: 100%;
+  width: 100%;
 }
 #mainNavigation ul li,
 #mainNavigation ol li {
@@ -245,8 +247,8 @@ a:hover {
 }
 #mainNavigation ul li svg,
 #mainNavigation ol li svg {
-  min-width: var(--font-size-base);
-  min-height: var(--font-size-base);
+  max-width: var(--font-size-base);
+  max-height: var(--font-size-base);
   margin: 0 var(--padding-min) 0 0;
 }
 #mainNavigation ul li svg.open .closedIndicator,
@@ -279,20 +281,15 @@ a:hover {
 #mainNavigation ul li a,
 #mainNavigation ol li button,
 #mainNavigation ol li a {
-  max-width: fit-content;
-  display: flex;
-  flex-direction: row;
+  width: 100%;
+  display: block;
   height: var(--full-line);
-  border-radius: var(--border-radius);
-  align-items: center;
   text-decoration: none;
-  padding: var(--padding-min) var(--padding-reg);
-  white-space: nowrap;
+  text-align: left;
   background: unset;
   box-shadow: unset;
   border: unset;
   color: var(--foreground-primary);
-  border-radius: var(--border-radius);
 }
 #mainNavigation ul li button .menuItemText,
 #mainNavigation ul li a .menuItemText,
@@ -302,19 +299,32 @@ a:hover {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  padding: var(--padding-min) var(--padding-reg);
+  border-radius: var(--button-radius);
 }
 #mainNavigation ul li button:focus,
 #mainNavigation ul li a:focus,
 #mainNavigation ol li button:focus,
 #mainNavigation ol li a:focus {
-  background: var(--nav-focus-background);
-  color: var(--nav-focus-color);
   outline: unset;
 }
-#mainNavigation ul li button:hover,
-#mainNavigation ul li a:hover,
-#mainNavigation ol li button:hover,
-#mainNavigation ol li a:hover {
+#mainNavigation ul li button:focus svg,
+#mainNavigation ul li a:focus svg,
+#mainNavigation ol li button:focus svg,
+#mainNavigation ol li a:focus svg {
+  fill: var(--accent);
+}
+#mainNavigation ul li button:focus .menuItemText,
+#mainNavigation ul li a:focus .menuItemText,
+#mainNavigation ol li button:focus .menuItemText,
+#mainNavigation ol li a:focus .menuItemText {
+  background: var(--nav-focus-background);
+  color: var(--nav-focus-color);
+}
+#mainNavigation ul li button:hover .menuItemText,
+#mainNavigation ul li a:hover .menuItemText,
+#mainNavigation ol li button:hover .menuItemText,
+#mainNavigation ol li a:hover .menuItemText {
   color: var(--nav-hover-foreground);
   text-decoration: 2px dotted underline var(--nav-hover-foreground);
 }
@@ -381,17 +391,31 @@ table th {
   padding: 1.618rem 0;
 }
 
-#searchBox {
+#searchFieldWrap {
   position: relative;
   width: 100%;
+  z-index: 9;
 }
-#searchBox input[type=search] {
+#searchFieldWrap input[type=search] {
   padding: var(--padding-reg) var(--section-padding) var(--padding-reg) var(--padding-reg);
   min-width: 100%;
   color: var(--foreground-primary);
-  margin: 0 var(--padding-min) var(--section-padding) var(--padding-min);
+  margin: 0 0 var(--section-padding) 0;
 }
-#searchBox #searchIcon {
+#searchFieldWrap #searchLabel {
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  left: 0;
+  padding: var(--padding-reg);
+  display: flex;
+  align-items: center;
+}
+#searchFieldWrap input[type=search]:focus + label,
+#searchFieldWrap #searchLabel.hidden {
+  visibility: hidden;
+}
+#searchFieldWrap #searchIcon {
   width: 1rem;
   height: 1rem;
   position: absolute;
@@ -401,6 +425,253 @@ table th {
   fill: var(--placeholder-color);
 }
 
+#searchResultsBox {
+  position: absolute;
+  background: var(--background-secondary);
+  left: calc(var(--section-padding) + 2px);
+  border-radius: var(--button-radius);
+  border: var(--button-border);
+  outline: var(--outline);
+  outline-offset: var(--outline-offset);
+  z-index: 9;
+  overflow-y: hidden;
+  animation: fadeInUp 125ms ease both;
+  border: var(--button-border);
+  max-height: 75%;
+  width: 100%;
+}
+#searchResultsBox:after {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid var(--accent);
+  width: 10px;
+  height: 10px;
+  top: -13px;
+  position: absolute;
+  left: var(--section-padding);
+  content: "";
+  display: block;
+}
+#searchResultsBox.hidden {
+  display: none;
+}
+#searchResultsBox header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: var(--button-border);
+  padding: var(--padding-reg) var(--section-padding);
+}
+#searchResultsBox header #searchBoxControls {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+#searchResultsBox header #searchBoxControls #searchClose {
+  --webkit-appearance: none;
+  border: unset;
+  outline: none;
+  position: relative;
+  background: var(--red);
+  border: var(--button-border);
+  width: var(--button-height);
+  height: var(--button-height);
+  border-radius: 50%;
+  margin: 0 0 0 var(--section-padding);
+  color: var(--background-primary);
+}
+#searchResultsBox header #searchBoxControls #searchClose:after {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  top: 50%;
+  left: 50%;
+  content: " ";
+  display: block;
+  transform: translate(-50%, -50%);
+}
+#searchResultsBox header #searchBoxControls #searchClose svg {
+  fill: var(--background-primary);
+  width: var(--full-line);
+  height: var(--full-line);
+  border-radius: var(--button-radius);
+}
+#searchResultsBox header #searchBoxControls #searchClose:focus {
+  outline: var(--outline);
+  outline-offset: var(--outline-offset);
+}
+#searchResultsBox header #searchBoxControls .toggleButtons {
+  position: relative;
+  border: unset;
+  display: flex;
+  flex-direction: row;
+}
+#searchResultsBox header #searchBoxControls .toggleButtons:hover {
+  background: inherit;
+}
+#searchResultsBox header #searchBoxControls .toggleButtons input {
+  opacity: 0;
+  width: 0px;
+  height: 0px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+#searchResultsBox header #searchBoxControls .toggleButtons input:checked + label {
+  background: var(--nav-tree-color);
+  color: var(--accent);
+}
+#searchResultsBox header #searchBoxControls .toggleButtons input:focus + label {
+  outline: var(--outline);
+  z-index: 9;
+}
+#searchResultsBox header #searchBoxControls .toggleButtons label {
+  display: flex;
+  height: var(--button-height);
+  border-right: var(--button-border);
+  padding: var(--padding-min) var(--padding-reg);
+  justify-content: center;
+  align-items: center;
+  border: var(--button-border);
+  position: relative;
+  font-weight: 700;
+}
+#searchResultsBox header #searchBoxControls .toggleButtons label:hover {
+  background: var(--button-background-hover);
+}
+#searchResultsBox header #searchBoxControls .toggleButtons label:first-of-type {
+  border-top-left-radius: var(--button-radius);
+  border-bottom-left-radius: var(--button-radius);
+  border-right: unset;
+}
+#searchResultsBox header #searchBoxControls .toggleButtons label:last-of-type {
+  border-left: unset;
+  border-top-right-radius: var(--button-radius);
+  border-bottom-right-radius: var(--button-radius);
+}
+#searchResultsBox header h6 {
+  font-size: 1rem;
+  font-weight: 900;
+  display: flex;
+  margin: 0;
+  align-items: center;
+  flex-direction: row;
+  color: var(--foreground-primary);
+}
+#searchResultsBox header h6 #numberOfResults, #searchResultsBox header h6 #numberResultsShowing {
+  margin-right: var(--padding-reg);
+}
+#searchResultsBox header h6 #numberOfResults {
+  margin-left: var(--padding-reg);
+}
+#searchResultsBox #resultList {
+  list-style: none;
+  padding: 0 var(--section-padding);
+  margin: 0;
+  overflow-y: scroll;
+  display: flex;
+  max-height: 500px;
+  flex-direction: column;
+}
+#searchResultsBox #resultList li {
+  padding: var(--padding-med) 0;
+  display: flex;
+  flex-direction: row;
+  border-bottom: var(--button-border);
+}
+#searchResultsBox #resultList li:focus {
+  background: var(--accent);
+}
+#searchResultsBox #resultList li section {
+  overflow: hidden;
+}
+#searchResultsBox #resultList li section a {
+  display: block;
+  padding: var(--padding-min) 0;
+  font-size: 1rem;
+  font-weight: 900;
+  text-decoration: none;
+  height: unset;
+}
+#searchResultsBox #resultList li section p {
+  margin: 0;
+  padding: var(--padding-min) 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#searchResultsBox #resultList li:before {
+  content: "U";
+  display: flex;
+  background: var(--purple);
+  font-size: 0.9rem;
+  min-width: 3.2rem;
+  min-height: 3.2rem;
+  font-family: "Retro Pixel Petty 5X5";
+  color: var(--background-primary);
+  border-radius: var(--button-radius);
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0 var(--padding-med) 0 0;
+}
+#searchResultsBox #resultList li.interface:before {
+  content: "I";
+  display: inline-flex;
+  background: var(--cyan);
+}
+#searchResultsBox #resultList li.method:before {
+  content: "M";
+  display: inline-flex;
+  background: var(--green);
+}
+#searchResultsBox #resultList li.type:before {
+  content: "T";
+  display: inline-flex;
+  background: var(--cyan);
+}
+#searchResultsBox #resultList li.class:before {
+  content: "C";
+  display: inline-flex;
+  background: var(--pink);
+}
+
+#backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--frosted-background);
+  backdrop-filter: var(--frosted-backdrop);
+  z-index: 0;
+  animation-name: fadeIn;
+  animation-duration: 250ms;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media screen and (min-width: 1000px) {
+  #searchResultsBox {
+    width: 1000px;
+  }
+}
 label.switch {
   position: relative;
   display: flex;
@@ -434,7 +705,7 @@ label.switch figure:after {
   left: 0rem;
   position: absolute;
   background: var(--accent);
-  border-radius: 50%;
+  border-radius: var(--button-radius);
   transition: transform 125ms ease;
 }
 label.switch input[type=checkbox]:checked + figure:after {
@@ -455,7 +726,6 @@ label.switch > input:checked:after {
 footer.tutorial {
   margin-top: var(--section-padding);
   padding: var(--section-padding) 0;
-  border-top: var(--button-border);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -506,7 +776,7 @@ h2 {
 
 h3 {
   margin: var(--section-padding) 0;
-  font-size: 1.88rem;
+  font-size: 1.95rem;
 }
 h3 em {
   font-weight: 500;
@@ -533,6 +803,16 @@ h6 {
 p {
   margin: var(--section-padding) 0;
   line-height: var(--paragraph-line-height);
+}
+
+.editLink {
+  text-decoration: unset;
+  padding: 0 var(--padding-reg);
+}
+.editLink svg {
+  max-width: 1rem;
+  height: 1rem;
+  margin: 0 var(--padding-min) 0 0;
 }
 
 .light .highlight {
@@ -647,18 +927,18 @@ p {
   --nav-hover-background: #9252db;
   --nav-hover-foreground: #000;
   --nav-focus-color: var(--foreground-primary);
-  --nav-tree-color: #dfdfdf;
+  --nav-tree-color: #ccc;
   --border-color: rgba(0, 0, 0, 0.1);
   --outline: var(--accent) solid 2px;
-  --grey: #888;
-  --comment: #777;
-  --dark-gray: #666;
+  --grey: #666;
+  --dark-gray: #555;
   --code-background: #efefef;
-  --cyan: #1382b6;
-  --pink: #c93979;
-  --purple: #723ead;
+  --cyan: #0e7294;
+  --pink: #be3858;
+  --purple: #552e81;
   --red: #ff5555;
-  --frosted-background: rgba(230, 230, 220, 0.65);
+  --green: #04966f;
+  --frosted-background: rgba(230, 230, 220, 0.01);
   --link-underline-color: var(--accent);
   --accent: var(--purple);
   --background-selected: rgba(255, 255, 255, 0.1);
@@ -801,14 +1081,14 @@ p {
   --nav-focus-background: #444;
   --nav-hover-foreground: #fff;
   --nav-focus-color: #fff;
-  --nav-tree-color: #666;
+  --nav-tree-color: #333;
   --border-color: rgba(255, 255, 255, 0.1);
   --outline: var(--accent) solid 2px;
   --title-emphasis-color: var(--foreground-primary);
   --grey-dark: #171717;
   --grey: #44475a;
   --grey-light: #f2eff6;
-  --blue: #6a73b0;
+  --blue: #7f8ad1;
   --cyan: #50baec;
   --green: #8fff9c;
   --orange: #ffa86d;
@@ -835,14 +1115,23 @@ body {
   --border-radius: 4px;
   --outline-offset: 2px;
   --code-font-size: 0.9rem;
-  --padding-small: 0.3105rem;
   --padding-min: 0.1505rem;
+  --padding-small: 0.3105rem;
   --padding-reg: 0.621rem;
+  --padding-med: 0.9315rem;
   --padding-large: 3.42rem;
   --button-height: 2rem;
-  --button-radius: 1rem;
+  --button-radius: .612rem;
   --nav-button-size: 3.42rem;
   --link-underline-style: dotted;
+}
+
+.tutorialHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
 }
 
 * {

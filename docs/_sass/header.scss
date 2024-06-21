@@ -1,30 +1,32 @@
 #documentHeader {
   display: flex;
   justify-content: space-between;
-  padding: 0 var(--section-padding);
   border-bottom: 1px solid var(--frame-border-color);
   text-shadow: 1px 1px 0 var(--background-primary), 2px 2px 0 var(--accent);
   font-family: "Retro Pixel Petty 5X5";
-
   h1 {
     font-size: 2.0rem;
     display: flex;
     align-items: center;
+    margin: 0 0 0 var(--section-padding);
+    position: relative;
+    z-index: 9;
   }
 
   #controls {
     display: flex;
     max-width: fit-content;
-    padding: var(--padding-reg);
+    padding: var(--padding-reg) 0;
     align-content: center;
     align-items: center;
+    margin: 0 var(--section-padding);
   }
 }
 
 @media (min-width: 860px) {
   #documentHeader {
     h1 {
-      padding: var(--section-padding);
+      padding: var(--section-padding) 0;
     }
   }
 }

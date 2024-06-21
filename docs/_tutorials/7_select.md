@@ -5,15 +5,15 @@ title: Sprite Tutorials - Select Records
 name: Select Records
 prevDesc: Create a Graph
 prevUrl: /tutorials/createGraph.html
+filename: 7_select.md
 ---
-
-### Select Records
 
 Abstractions for `selectOne` and `selectFrom` exists on `DocumentModality`, and `GraphModality`. You are welcome to write your own queries using the `SpriteDatabase.query` method as well.
 
 This tutorial will cover all three of these methods.
 
 #### Overview
+---
 
 1. [Prerequisites](#prerequisites)
 2. [Instantiating SpriteDatabase](#instantiating)
@@ -23,13 +23,15 @@ This tutorial will cover all three of these methods.
 6. [Conclusion](#conclusion)
 7. [What is next](#next)
 
-<h4 id="prerequisites">Prerequisites</h4>
+#### Prerequisites
+---
 
 1. Ensure you have [the installation](../installation.html) completed. This means you have ArcadeDB installed, running, and accessible, as well as a TypeScript / JavaScript project with Sprite installed.
 2. You have created a database called "ExampleDatabase", in the [Create a Database tutorial]().
 3. You have a document in "ExampleDatabase", in the [Create a Document tutorial]().
 
-<h4 id="instantiating">Instantiating SpriteDatabase</h4>
+#### Instantiating SpriteDatabase
+---
 
 Begin by inserting the following snippet into the `index.ts` file of your project. This imports the `SpriteDatabase` module, and creates an instance of it named `db`.
 
@@ -56,7 +58,8 @@ type DocumentTypes = {
 
 ```
 
-<h4 id="manual">SpriteDatabase.query()</h4>
+#### SpriteDatabase.query()
+---
 
 The following code is to be inserted under the database instantiation. The `manualTransaction` function creates a new transaction, issues a command using that transaction, and then commits the transaction. All commands are non-idempotent in ArcadeDB (and Sprite). Non-idempotent means that it can change the database, so things like CRUD operations.
 

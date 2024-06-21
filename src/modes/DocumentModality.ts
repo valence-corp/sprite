@@ -39,7 +39,7 @@ class DocumentModality<S> extends ModalityBase<S> {
    *   }
    * }
    *
-   * const client = database.documents<DocumentTypes>();
+   * const client = database.documentModality<DocumentTypes>();
    *
    * // non-idempotent operations must be conducted within a transaction
    * client.transaction(async (trx)=>{
@@ -84,7 +84,7 @@ class DocumentModality<S> extends ModalityBase<S> {
    *   }
    * }
    *
-   * const client = database.documents<DocumentTypes>();
+   * const client = database.documentModality<DocumentTypes>();
    *
    * async function createDocumentTypeExample() {
    *   try {

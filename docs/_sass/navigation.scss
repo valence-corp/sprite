@@ -4,17 +4,16 @@
   width: 100%;
   transform: translate3d(-100%, 0, 0);
   padding: var(--section-padding);
-  overflow-y: scroll;
   overflow-x: visible;
   transition: all 125ms ease;
-  z-index: 9;
+  z-index: 2;
   background: var(--frosted-background);
   backdrop-filter: var(--frosted-backdrop);
   height: 100%;
   left: 0px;
   opacity: 0;
   svg {
-    fill: var(--foreground-primary);
+    fill: var(--accent);
   }
 
   ul,
@@ -22,7 +21,7 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    max-width: 100%;
+    width: 100%;
 
     li {
       display: flex;
@@ -30,8 +29,8 @@
       margin: 0;
 
       svg {
-        min-width: var(--font-size-base);
-        min-height: var(--font-size-base);
+        max-width: var(--font-size-base);
+        max-height: var(--font-size-base);
         margin: 0 var(--padding-min) 0 0;
         &.open {
           .closedIndicator {
@@ -63,35 +62,39 @@
       button,
 
       a {
-        max-width: fit-content;
-        display: flex;
-        flex-direction: row;
+        width: 100%;
+        display: block;
         height: var(--full-line);
-        border-radius: var(--border-radius);
-        align-items: center;
         text-decoration: none;
-        padding: var(--padding-min) var(--padding-reg);
-        white-space: nowrap;
+        text-align: left;
         .menuItemText {
           display: block;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+          padding: var(--padding-min) var(--padding-reg);
+          border-radius: var(--button-radius);
         }
 
         background: unset;
         box-shadow: unset;
         border: unset;
         color: var(--foreground-primary);
-        border-radius: var(--border-radius);
         &:focus {
-          background: var(--nav-focus-background);
-          color: var(--nav-focus-color);
           outline: unset;
+          svg {
+            fill: var(--accent);
+          }
+          .menuItemText {
+            background: var(--nav-focus-background);
+            color: var(--nav-focus-color);
+          }
         }
         &:hover {
-          color: var(--nav-hover-foreground);
-          text-decoration: 2px dotted underline var(--nav-hover-foreground);
+          .menuItemText {
+            color: var(--nav-hover-foreground);
+            text-decoration: 2px dotted underline var(--nav-hover-foreground);
+          }
         }
       }
     }

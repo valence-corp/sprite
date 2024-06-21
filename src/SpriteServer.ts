@@ -390,7 +390,7 @@ class SpriteServer {
         );
       }
 
-      // TODO: (is this a github issue?)
+      // TODO:
       // ArcadeDB by default requires 4 character minimum length for passwords.
       // The problem is they return a 403 if it's under 4 characters. That could
       // be confusing because it isn't really explained and could be confused with a

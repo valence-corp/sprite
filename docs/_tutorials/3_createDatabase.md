@@ -7,9 +7,8 @@ nextDesc: Transactions
 nextUrl: /tutorials/transactions.html
 prevDesc: Installation
 prevUrl: /tutorials/installation.html
+filename: 3_createDatabase.md
 ---
-
-### Create a Database
 
 This tutorial will demonstrate the basics of the `SpriteServer` module by using it to create a database.
 

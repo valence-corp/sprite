@@ -12,9 +12,6 @@ class Accordion {
     this.root = domNode;
     this.button = this.root.querySelector('button[aria-expanded]');
     this.icon = this.root.querySelector('svg');
-
-    console.log(this.icon);
-
     const controlsId = this.button.getAttribute('aria-controls');
     this.content = document.getElementById(controlsId);
 
@@ -26,7 +23,6 @@ class Accordion {
   }
 
   onButtonClick() {
-    console.log(this.content);
     this.toggle(!this.open);
   }
 
