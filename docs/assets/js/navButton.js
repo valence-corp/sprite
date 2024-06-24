@@ -1,8 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
   const button = document.getElementById("navButton");
+  const desktopButton = document.getElementById("navToggleDesktop");
   const indicator = button.querySelector("svg");
   const nav = document.getElementById("mainNavigation");
   let open = false;
+
+  desktopButton.addEventListener("click", function () {
+    nav.classList.toggle("open");
+  });
 
   button.addEventListener("click", function () {
     nav.classList.toggle("open");

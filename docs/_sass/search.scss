@@ -1,12 +1,22 @@
-#searchFieldWrap {
+@import './utilities.scss';
+
+#searchOpen {
+  border: unset;
+  text-align: left;
+  padding-left: var(--space-1);
+}
+
+#searchBox {
   position: relative;
   width: 100%;
+  display: flex;
+  align-items: center;
 
   input[type="search"] {
-    padding: var(--padding-reg) var(--section-padding) var(--padding-reg) var(--padding-reg);
+    padding: var(--space-3) var(--space-1);
     min-width: 100%;
-    color: var(--foreground-primary);
-    margin: 0 0 var(--section-padding) 0;
+    color: var(--foreground-1);
+    font-family: 'Retro Pixel Petty 5x5';
   }
 
   #searchLabel {
@@ -14,7 +24,7 @@
     top: 0px;
     height: 100%;
     left: 0;
-    padding: var(--padding-reg);
+    padding: var(--space-3);
     display: flex;
     align-items: center;
   }
@@ -28,30 +38,26 @@
     width: 1rem;
     height: 1rem;
     position: absolute;
-    right: .31rem;
-    top: 0.5rem;
+    right: var(--space-3);
     z-index: 0;
-    fill: var(--placeholder-color);
   }
 
   z-index: 9;
 }
 
-#searchResultsBox {
+#searchResults {
   position: absolute;
-  background: var(--background-secondary);
-  left: calc(var(--section-padding) + 2px);
-  border-radius: var(--button-radius);
+  background: var(--background-2);
   border: var(--button-border);
-  outline: var(--outline);
-  outline-offset: var(--outline-offset);
+  border-radius: var(--radius-1);
+  border: var(--button-border);
   z-index: 9;
   overflow-y: hidden;
-  animation: fadeInUp 125ms ease both;
   border: var(--button-border);
   max-height: 75%;
   width: 100%;
-
+  left: 50%;
+  transform: translateX(-50%);
   &:after {
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
@@ -60,7 +66,7 @@
     height: 10px;
     top: -13px;
     position: absolute;
-    left: var(--section-padding);
+    left: var(--space-1);
     content: "";
     display: block;
   }
@@ -73,7 +79,6 @@
     display: flex;
     justify-content: space-between;
     border-bottom: var(--button-border);
-    padding: var(--padding-reg) var(--section-padding);
 
     #searchBoxControls {
       display: flex;
@@ -82,115 +87,35 @@
 
       #searchClose {
         --webkit-appearance: none;
+        margin: 0 0 0 var(--space-1);
         border: unset;
-        outline: none;
-        position: relative;
-        background: var(--foreground-primary);
-        border: var(--button-border);
-        width: var(--button-height);
-        height: var(--button-height);
-        border-radius: 50%;
-        margin: 0 0 0 var(--section-padding);
-
-        &:after {
-          position: absolute;
-          width: 52px;
-          height: 52px;
-          top: 50%;
-          left: 50%;
-          content: " ";
-          display: block;
-          transform: translate(-50%, -50%);
-        }
+        border-left: var(--button-border);
 
         svg {
           fill: var(--red);
-          width: var(--full-line);
-          height: var(--full-line);
-          border-radius: var(--button-radius);
-        }
-
-        &:focus {
-          outline: var(--outline);
-          outline-offset: var(--outline-offset);
-        }
-      }
-
-      .toggleButtons {
-        position: relative;
-        border: unset;
-        display: flex;
-        flex-direction: row;
-
-        &:hover {
-          background: inherit;
-        }
-
-        input {
-          opacity: 0;
-          width: 0px;
-          height: 0px;
-          margin: 0;
-          padding: 0;
-          position: absolute;
-
-          &:checked+label {
-            background: var(--nav-tree-color);
-            color: var(--accent);
-          }
-
-          &:focus+label {
-            outline: var(--outline);
-            z-index: 9;
-          }
-        }
-
-        label {
-          display: flex;
-          height: var(--button-height);
-          border-right: var(--button-border);
-          padding: var(--padding-min) var(--padding-reg);
-          justify-content: center;
-          align-items: center;
-          border: var(--button-border);
-          position: relative;
-          font-weight: 700;
-
-          &:hover {
-            background: var(--button-background-hover);
-          }
-
-          &:first-of-type {
-            border-top-left-radius: var(--button-radius);
-            border-bottom-left-radius: var(--button-radius);
-            border-right: unset;
-          }
-
-          &:last-of-type {
-            border-left: unset;
-            border-top-right-radius: var(--button-radius);
-            border-bottom-right-radius: var(--button-radius);
-          }
+          width: var(--font-size-base);
+          height: var(--font-size-base);
+          border-radius: var(--radius-1);
         }
       }
     }
 
-
-
     h6 {
-      font-size: 1rem;
-      font-weight: 900;
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-bold);
       display: flex;
-      margin: 0;
-      align-items: center;
       flex-direction: row;
-      color: var(--foreground-primary);
+      align-items: center;
+      margin: 0;
+      color: var(--foreground-1);
 
-      #numberOfResults, #numberResultsShowing {
-        margin-right: var(--padding-reg);
+      #numberOfResults,
+      #numberResultsShowing {
+        margin-right: var(--space-3);
       }
+
       #numberOfResults {
-        margin-left: var(--padding-reg);
+        margin-left: var(--space-3);
       }
     }
 
@@ -206,29 +131,27 @@
     flex-direction: column;
 
     li {
-      padding: var(--padding-med) 0;
+      padding: var(--space-2) 0;
       display: flex;
       flex-direction: row;
-
       &:focus {
         background: var(--accent);
       }
-
       section {
         overflow: hidden;
-
+        padding: 0 var(--space-2);
         a {
+          font-weight: var(--font-weight-bold);
+          font-size: 1.1525rem;
+          color: var(--foreground-1);
           display: block;
-          padding: var(--padding-min) 0;
-          font-size: 1rem;
-          font-weight: 900;
+          padding: var(--space-5) 0;
           text-decoration: none;
-          height: unset;
         }
 
         p {
           margin: 0;
-          padding: var(--padding-min) 0;
+          padding: var(--space-5) 0;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -236,26 +159,28 @@
       }
 
       &:before {
-        content: "U";
+        content: " ";
         display: flex;
         background: var(--purple);
         font-size: 0.9rem;
         min-width: 3.2rem;
         min-height: 3.2rem;
+        padding-left: 0.15rem;
         font-family: "Retro Pixel Petty 5X5";
-        color: var(--background-primary);
-        border-radius: var(--button-radius);
+        color: var(--background-1);
+        border-radius: var(--radius-1);
         justify-content: center;
         align-items: center;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        margin: 0 var(--padding-med) 0 0;
+        border: var(--button-border);
+        margin: 0 var(--space-3) 0 0;
+        box-shadow: inset 1px 1px 0px rgba(255,255,255,0.25), 0 3px 10px rgba(0,0,0,0.0375), 0 6px 15px rgba(0,0,0,0.0625);
       }
 
       &.interface {
         &:before {
           content: "I";
           display: inline-flex;
-          background: var(--cyan);
+          background: linear-gradient(45deg, var(--cyan), var(--purple));
         }
       }
 
@@ -263,7 +188,7 @@
         &:before {
           content: "M";
           display: inline-flex;
-          background: var(--green);
+          background: linear-gradient(45deg, var(--green), var(--orange));
         }
       }
 
@@ -271,7 +196,7 @@
         &:before {
           content: "T";
           display: inline-flex;
-          background: var(--cyan);
+          background: linear-gradient(45deg, var(--purple), var(--cyan));
         }
       }
 
@@ -279,7 +204,7 @@
         &:before {
           content: "C";
           display: inline-flex;
-          background: var(--pink);
+          background: linear-gradient(45deg, var(--pink), var(--purple));
         }
       }
 
@@ -325,7 +250,9 @@
 }
 
 @media screen and (min-width: 1000px) {
-  #searchResultsBox {
+  #searchResults {
     width: 1000px;
+    max-width: 1000px;
+    
   }
 }

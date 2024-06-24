@@ -1,16 +1,29 @@
 a {
-  text-decoration-style: dotted;
-  color: var(--accent);
-  border-radius: var(--border-radius);
-  border: 2px solid transparent;
-
-  &:focus {
-    outline: var(--outline);
-    outline-offset: var(--outline-offset);
-    background: var(--background-selected);
-    color: var(--foreground-primary);
-  }
+  outline: none;
+  text-decoration-style: var(--link-decoration-style);
+  text-decoration-thickness: var(--link-decoration-thickness);
   &:hover {
     color: var(--link-hover);
+  }
+}
+
+.hover-accent-2 {
+  &:hover {
+    color: var(--accent-2);
+  }
+}
+
+#content {
+  a {
+    color: var(--accent-2);
+    &:hover {
+      color: var(--foreground-1);
+    }
+    &:focus {
+      outline: var(--outline);
+      outline-offset: var(--outline-offset);
+      background: var(--background-2);
+      color: var(--foreground-1);
+    }
   }
 }

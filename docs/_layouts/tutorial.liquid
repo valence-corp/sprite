@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  {% include head.liquid %}
+  <body>
+    {% include header.liquid %}
+    <div class="container row flex">
+      {% include navigation.liquid %}
+      {% include search/dialog.liquid %}
+      <div id="content">
+        <div>
+          {% include tutorial_header.html %}
+          {{ content }}
+          {% include tutorial_next_prev.html %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

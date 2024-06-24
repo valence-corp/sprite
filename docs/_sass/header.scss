@@ -2,34 +2,40 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid var(--frame-border-color);
-  text-shadow: 1px 1px 0 var(--background-primary), 2px 2px 0 var(--accent);
+  text-shadow: var(--decorative-shadow);
   font-family: "Retro Pixel Petty 5X5";
+
   h1 {
-    display: flex;
-    align-items: center;
-    margin: 0 0 0 var(--padding-reg);
+    margin: 0 0 0 var(--space-2);
     position: relative;
     z-index: 9;
   }
 
   #controls {
-    display: flex;
-    max-width: fit-content;
-    padding: var(--padding-reg) 0;
-    align-content: center;
-    align-items: center;
-    margin: 0 var(--padding-reg);
+    a {
+      margin: var(--space-3);
+
+      svg {
+        width: var(--full-line);
+        height: var(--full-line);
+      }
+
+      &:last-of-type {
+        margin-right: unset;
+      }
+    }
   }
 }
 
 @media (min-width: 860px) {
   #documentHeader {
     h1 {
-      padding: var(--section-padding) 0;
-      margin: 0 0 0 var(--section-padding);
+      padding: var(--space-1) 0;
+      margin: 0 0 0 var(--space-1);
     }
+
     #controls {
-      margin: 0 var(--section-padding);
+      margin: 0 var(--space-1);
     }
   }
 }

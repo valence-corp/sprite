@@ -1,21 +1,25 @@
+@import './utilities.scss';
+
 div.highlight {
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  margin: var(--section-padding) 0;
   min-width: 100%;
+  margin: var(--space-1) 0;
+  border-radius: var(--radius-1);
+  border: var(--button-border);
 }
 
 pre {
-  padding: var(--section-padding);
+  padding: var(--space-1);
   overflow-x: scroll;
+  @include highlight-shadow;
+  border-radius: var(--radius-1);
 }
 
 a>code,
 code {
   font-size: var(--code-font-size);
-  background: var(--background-secondary);
+  background: var(--background-2);
   border-radius: var(--border-radius);
-  padding: 0 var(--padding-small);
+  padding: 0 var(--space-4);
   border: var(--button-border);
 }
 

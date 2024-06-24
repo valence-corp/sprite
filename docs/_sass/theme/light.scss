@@ -1,27 +1,29 @@
 @import './duskBringerMono.scss';
 
 .light {
-  --background-primary: #f9f9f9;
-  --background-secondary: #dfdfdf;
-  --background-tertiary: #e4e8eb;
-  --foreground-primary: #111;
-  --foreground-secondary: #efefef;
-  --foreground-tertiary: #93bcf9;
+  --background-1: #f9f9f9;
+  --background-2: #dfdfdf;
+  --background-3: #cecece;
+  --background-4: #bdbdbd;
 
-  --placeholder-color: #777;
+  --foreground-1: #111;
+  --foreground-2: #000;
+  --foreground-3: #222;
 
-  --button-background-hover: #ebebeb;
   --link-hover: #8d4cd8;
 
   --title-emphasis-color: var(var(--foreground-primary));
 
   --nav-focus-background: #dfdfdf;
   --nav-hover-background: #9252db;
-  --nav-hover-foreground: #000;
-  --nav-focus-color: var(--foreground-primary);
-  --nav-tree-color: #ccc;
+  --nav-hover-foreground: var(--foreground-2);
+  --nav-focus-color: var(--purple);
+  --nav-tree-color: var(--background-3);
 
-  --border-color: rgba(0, 0, 0, 0.1);
+  --border-color: rgba(0, 0, 0, 0.2);
+  --button-border-color: rgba(0, 0, 0, 0.1);
+  --button-background-hover: var(--background-3);
+  --button-background-focus: var(--background-4);
 
   --outline: var(--accent) solid 2px;
 
@@ -31,12 +33,18 @@
   --code-background: #efefef;
   --cyan: #0e7294;
   --pink: #be3858;
+  --orange: #cabd47;
   --purple: #552e81;
   --red: #ff5555;
   --green: #04966f;
 
   --frosted-background: rgba(230, 230, 220, 0.01);
   --link-underline-color: var(--accent);
-  --accent: var(--purple);
+  --accent-2: var(--purple);
+  --accent: #666;
   --background-selected: rgba(255, 255, 255, 0.1);
+
+  --box-highlight: inset 1px 1px 1px rgba(255, 255, 255, 0.25);
+  --box-shadow-1: 0 3px 6px rgba(0, 0, 0, 0.04);
+  --box-shadow-2: 0 3px 6px rgba(0, 0, 0, 0.065);
 }

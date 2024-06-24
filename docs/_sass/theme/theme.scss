@@ -8,9 +8,9 @@ body {
   --full-line: 1.612rem;
   --frosted-backdrop: blur(20px);
   --section-padding: var(--full-line);
-  --section-start-padding: calc(var(--full-line)*2);
+  --section-start-padding: 3.216rem;
 
-  --button-border: 1px solid var(--border-color);
+  --button-border: 1px solid var(--button-border-color);
   --frame-border-color: var(--border-color);
 
   --border-radius: 4px;
@@ -18,16 +18,17 @@ body {
 
   --code-font-size: 0.9rem;
 
-  --padding-min: 0.1505rem;
-  --padding-small: 0.3105rem;
-  --padding-reg: 0.621rem;
-  --padding-med: 0.9315rem;
-  --padding-large: 3.42rem;
+  --link-decoration-style: dotted;
+  --link-decoration-thickness: 1px;
 
-  --button-height: 2rem;
-  --button-radius: .612rem;
+  --radius-1: .612rem;
+  --transition-speed-1: 125ms;
 
-  --nav-button-size: 3.42rem;
-
-  --link-underline-style: dotted;
+  --decorative-shadow: 1px 1px 0 var(--background-1), 2px 2px 0 var(--purple);
+    
+  --space-1: 1.618rem;
+  --space-2: 0.809rem;
+  --space-3: 0.621rem;
+  --space-4: 0.3105rem;
+  --space-5: 0.1505rem;
 }

@@ -1,16 +1,25 @@
 #content {
-  display: flex;
+  padding: 0 var(--space-2);
   flex: 1;
+  max-height: 100%;
   overflow: scroll;
-  padding: 0 var(--padding-reg);
-
   div {
     width: 100%;
+    max-width: 840px;
+    margin: auto;
   }
 }
 
 @media (min-width: 860px) {
   #content {
-    padding: 0 var(--section-padding);
+    margin: auto;
+    padding: 0 var(--space-1);
   }
 }
+
+
+// @media (max-width: 1300px) {
+//   #content {
+//     max-width: 760px;
+//   }
+// }

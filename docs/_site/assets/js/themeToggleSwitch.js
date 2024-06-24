@@ -1,5 +1,3 @@
-`use strict`;
-
 // function setTheme(theme) {
 //   localStorage.setItem("theme", theme);
 //   document.body.className = theme;

@@ -26,15 +26,16 @@ h2 {
 }
 
 h2 {
-  font-size: var(--font-size);
+  font-size: 1rem;
   color: var(--accent);
-  margin: var(--padding-reg) 0;
+  font-weight: 700;
+  margin: var(--space-2) 0;
 }
 
 h3 {
-  margin: var(--section-padding) 0;
+  margin: var(--space-1) 0;
   font-size: 1.305rem;
-
+  font-weight: 900;
   em {
     font-weight: 500;
     color: var(--title-emphasis-color);
@@ -44,12 +45,12 @@ h3 {
 
 h4 {
   color: var(--accent);
-  margin: var(--section-start-padding) 0 var(--section-padding) 0;
+  margin: var(--section-start-padding) 0 0 0;
 }
 
 h5 {
   font-size: var(--font-size);
-  margin: var(--padding-small) 0;
+  margin: var(--space-1) 0;
 }
 
 h6 {

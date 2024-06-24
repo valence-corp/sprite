@@ -19,8 +19,39 @@
 <body>
   <header id="documentHeader">
   <div class="container row">
-    <h1>Sprite</h1>
-    
+    <h1 class="flex content-center-v">Sprite</h1>
+    <div id="controls" class="flex content-center-v">
+  <label id="themeChanger" for="themeToggle" class="margin-h-2">
+    <input type="checkbox" id="themeToggle" aria-label="Theme Toggle">
+    <figure>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" id="darkIcon">
+        <path
+          d="M11.3807 2.01886C9.91573 3.38768 9 5.3369 9 7.49999C9 11.6421 12.3579 15 16.5 15C18.6631 15 20.6123 14.0843 21.9811 12.6193C21.6613 17.8537 17.3149 22 12 22C6.47715 22 2 17.5228 2 12C2 6.68514 6.14629 2.33869 11.3807 2.01886Z">
+        </path>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" id="lightIcon">
+        <path
+          d="M12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 15.3137 15.3137 18 12 18ZM11 1H13V4H11V1ZM11 20H13V23H11V20ZM3.51472 4.92893L4.92893 3.51472L7.05025 5.63604L5.63604 7.05025L3.51472 4.92893ZM16.9497 18.364L18.364 16.9497L20.4853 19.0711L19.0711 20.4853L16.9497 18.364ZM19.0711 3.51472L20.4853 4.92893L18.364 7.05025L16.9497 5.63604L19.0711 3.51472ZM5.63604 16.9497L7.05025 18.364L4.92893 20.4853L3.51472 19.0711L5.63604 16.9497ZM23 11V13H20V11H23ZM4 11V13H1V11H4Z">
+        </path>
+      </svg>
+    </figure>
+  </label>
+  <a href="" aria-label="Home" class="foreground-accent hover-accent-2"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 24 24"
+   fill="currentColor"
+   version="1.1"
+   id="svg4"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <path
+     d="m 19.842023,20.6552 c 0,0.540811 -0.438388,0.9792 -0.9792,0.9792 H 5.1540245 c -0.5407925,0 -0.9791999,-0.438389 -0.9791999,-0.9792 V 11.842399 H 1.2372247 L 11.349716,2.6491811 c 0.373467,-0.3395376 0.943949,-0.3395376 1.317415,0 l 10.112492,9.1932179 h -2.9376 z m -8.812799,-6.8544 v 5.875199 h 1.9584 V 13.8008 Z"
+     id="path2"
+     style="stroke-width:0.979199" />
+</svg>
+</a>
+  <a href="https://www.github.com/tragedy-labs/sprite" aria-label="Source on Github" class="foreground-accent hover-accent-2"><svg xmlns="http://www.w3.org/2000/svg" aria-label="Github Icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"/></svg></a>
+  <a href="https://www.x.com/tragedylabs" aria-label="Twitter / X" class="foreground-accent hover-accent-2"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.2048 2.25H21.5128L14.2858 10.51L22.7878 21.75H16.1308L10.9168 14.933L4.95084 21.75H1.64084L9.37084 12.915L1.21484 2.25H8.04084L12.7538 8.481L18.2048 2.25ZM17.0438 19.77H18.8768L7.04484 4.126H5.07784L17.0438 19.77Z"/></svg></a>
   <button id="navButton" aria-label="Toggle Navigation">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" fill="none" 1.618 stroke="currentColor" stroke-width="2"
       stroke-linecap="round" stroke-linejoin="round">
@@ -28,33 +59,1095 @@
       <line x1="18" y1="22" x2="34" y2="22"></line>
     </svg>
   </button>
+</div>
   </div>
 </header>
-  <div class="container row">
-    <nav id="mainNavigation">
-  <div id="searchBox">
-  <div id="searchFieldWrap">
-    <input class="button" type="search" id="searchInput" aria-label="Search" />
-    <label for="searchInput" id="searchLabel">search</label>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" id="searchIcon" aria-label="Search Icon">
-      <path
-        d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z">
-      </path>
-    </svg>
+  <div class="container row flex">
+    <nav id="mainNavigation" class="frosted-glass flex col bold-text open">
+  <div id="navContent">
+    <div id="navigationFrame" class="flex col full-width padding-2 scroll-y">
+      <ul class="padding-v-2">
+        
+<li class="menuItem">
+  <button
+  aria-expanded="true"
+  class="accordion-trigger button-reset foreground-1 no-outline full-width"
+  aria-controls="sect-Tutorials"
+  id="Tutorials"
+>
+  <span class="row menuItemText with-icon padding-v-3 padding-h-2 block radius-1 content-center-v fill-accent">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22H6.5C4.567 22 3 20.433 3 18.5V5C3 3.34315 4.34315 2 6 2H20C20.5523 2 21 2.44772 21 3V21C21 21.5523 20.5523 22 20 22ZM19 20V17H6.5C5.67157 17 5 17.6716 5 18.5C5 19.3284 5.67157 20 6.5 20H19ZM10 4V12L13.5 10L17 12V4H10Z"></path></svg>
+    Tutorials
+  </span>
+</button>
+
+  
+  <ol id="sect-Tutorials" role="region" aria-labelledby="Tutorials" class="padding-h-2 accordion-panel">
+    
+    <li>
+      <a href="/sprite/tutorials/introduction.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          <span class="marker flex content-center-v">1.</span> Introduction
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/tutorials/installation.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          <span class="marker flex content-center-v">2.</span> Installation
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/tutorials/createDatabase.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          <span class="marker flex content-center-v">3.</span> Create a Database
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/tutorials/transactions.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          <span class="marker flex content-center-v">4.</span> Transactions
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/tutorials/createDocument.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          <span class="marker flex content-center-v">5.</span> Create a Document
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/tutorials/createGraph.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          <span class="marker flex content-center-v">6.</span> Create a Graph
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/tutorials/select.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          <span class="marker flex content-center-v">7.</span> Select Records
+        </span>
+      </a>
+    </li>
+    
+  </ol>
+  
+  
+</li>
+
+        
+  
+<li class="menuItem">
+  <button
+  aria-expanded="true"
+  class="accordion-trigger button-reset foreground-1 no-outline full-width"
+  aria-controls="sect-DocumentModality"
+  id="DocumentModality"
+>
+  <span class="row menuItemText with-icon padding-v-3 padding-h-2 block radius-1 content-center-v fill-accent">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 18V14.3C4 13.4716 3.32843 12.8 2.5 12.8H2V11.2H2.5C3.32843 11.2 4 10.5284 4 9.7V6C4 4.34315 5.34315 3 7 3H8V5H7C6.44772 5 6 5.44772 6 6V10.1C6 10.9858 5.42408 11.7372 4.62623 12C5.42408 12.2628 6 13.0142 6 13.9V18C6 18.5523 6.44772 19 7 19H8V21H7C5.34315 21 4 19.6569 4 18ZM20 14.3V18C20 19.6569 18.6569 21 17 21H16V19H17C17.5523 19 18 18.5523 18 18V13.9C18 13.0142 18.5759 12.2628 19.3738 12C18.5759 11.7372 18 10.9858 18 10.1V6C18 5.44772 17.5523 5 17 5H16V3H17C18.6569 3 20 4.34315 20 6V9.7C20 10.5284 20.6716 11.2 21.5 11.2H22V12.8H21.5C20.6716 12.8 20 13.4716 20 14.3Z"></path></svg>
+    DocumentModality
+  </span>
+</button>
+
+  
+  
+  <ul id="sect-DocumentModality" role="region" aria-labelledby="DocumentModality" class="padding-h-2 accordion-panel">
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          createType
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          deleteFrom
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          deleteOne
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          dropType
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          newDocument
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          newTransaction
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          selectFrom
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          selectOne
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          transaction
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          updateOne
+        </span>
+      </a>
+    </li>
+    
+  </ul>
+  
+</li>
+
+  
+<li class="menuItem">
+  <button
+  aria-expanded="true"
+  class="accordion-trigger button-reset foreground-1 no-outline full-width"
+  aria-controls="sect-GraphModality"
+  id="GraphModality"
+>
+  <span class="row menuItemText with-icon padding-v-3 padding-h-2 block radius-1 content-center-v fill-accent">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 18V14.3C4 13.4716 3.32843 12.8 2.5 12.8H2V11.2H2.5C3.32843 11.2 4 10.5284 4 9.7V6C4 4.34315 5.34315 3 7 3H8V5H7C6.44772 5 6 5.44772 6 6V10.1C6 10.9858 5.42408 11.7372 4.62623 12C5.42408 12.2628 6 13.0142 6 13.9V18C6 18.5523 6.44772 19 7 19H8V21H7C5.34315 21 4 19.6569 4 18ZM20 14.3V18C20 19.6569 18.6569 21 17 21H16V19H17C17.5523 19 18 18.5523 18 18V13.9C18 13.0142 18.5759 12.2628 19.3738 12C18.5759 11.7372 18 10.9858 18 10.1V6C18 5.44772 17.5523 5 17 5H16V3H17C18.6569 3 20 4.34315 20 6V9.7C20 10.5284 20.6716 11.2 21.5 11.2H22V12.8H21.5C20.6716 12.8 20 13.4716 20 14.3Z"></path></svg>
+    GraphModality
+  </span>
+</button>
+
+  
+  
+  <ul id="sect-GraphModality" role="region" aria-labelledby="GraphModality" class="padding-h-2 accordion-panel">
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          createEdgeType
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          createVertexType
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          deleteFrom
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          deleteOne
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          dropType
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          newEdge
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          newTransaction
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          newVertex
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          selectFrom
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          selectOne
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          transaction
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          updateOne
+        </span>
+      </a>
+    </li>
+    
+  </ul>
+  
+</li>
+
+  
+<li class="menuItem">
+  <button
+  aria-expanded="true"
+  class="accordion-trigger button-reset foreground-1 no-outline full-width"
+  aria-controls="sect-SpriteDatabase"
+  id="SpriteDatabase"
+>
+  <span class="row menuItemText with-icon padding-v-3 padding-h-2 block radius-1 content-center-v fill-accent">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 18V14.3C4 13.4716 3.32843 12.8 2.5 12.8H2V11.2H2.5C3.32843 11.2 4 10.5284 4 9.7V6C4 4.34315 5.34315 3 7 3H8V5H7C6.44772 5 6 5.44772 6 6V10.1C6 10.9858 5.42408 11.7372 4.62623 12C5.42408 12.2628 6 13.0142 6 13.9V18C6 18.5523 6.44772 19 7 19H8V21H7C5.34315 21 4 19.6569 4 18ZM20 14.3V18C20 19.6569 18.6569 21 17 21H16V19H17C17.5523 19 18 18.5523 18 18V13.9C18 13.0142 18.5759 12.2628 19.3738 12C18.5759 11.7372 18 10.9858 18 10.1V6C18 5.44772 17.5523 5 17 5H16V3H17C18.6569 3 20 4.34315 20 6V9.7C20 10.5284 20.6716 11.2 21.5 11.2H22V12.8H21.5C20.6716 12.8 20 13.4716 20 14.3Z"></path></svg>
+    SpriteDatabase
+  </span>
+</button>
+
+  
+  
+  <ul id="sect-SpriteDatabase" role="region" aria-labelledby="SpriteDatabase" class="padding-h-2 accordion-panel">
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          command
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          commitTransaction
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          documentModality
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          explain
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          getSchema
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          graphModality
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          newTransaction
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          query
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          rollbackTransaction
+        </span>
+      </a>
+    </li>
+    
+  </ul>
+  
+</li>
+
+  
+<li class="menuItem">
+  <button
+  aria-expanded="true"
+  class="accordion-trigger button-reset foreground-1 no-outline full-width"
+  aria-controls="sect-SpriteServer"
+  id="SpriteServer"
+>
+  <span class="row menuItemText with-icon padding-v-3 padding-h-2 block radius-1 content-center-v fill-accent">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 18V14.3C4 13.4716 3.32843 12.8 2.5 12.8H2V11.2H2.5C3.32843 11.2 4 10.5284 4 9.7V6C4 4.34315 5.34315 3 7 3H8V5H7C6.44772 5 6 5.44772 6 6V10.1C6 10.9858 5.42408 11.7372 4.62623 12C5.42408 12.2628 6 13.0142 6 13.9V18C6 18.5523 6.44772 19 7 19H8V21H7C5.34315 21 4 19.6569 4 18ZM20 14.3V18C20 19.6569 18.6569 21 17 21H16V19H17C17.5523 19 18 18.5523 18 18V13.9C18 13.0142 18.5759 12.2628 19.3738 12C18.5759 11.7372 18 10.9858 18 10.1V6C18 5.44772 17.5523 5 17 5H16V3H17C18.6569 3 20 4.34315 20 6V9.7C20 10.5284 20.6716 11.2 21.5 11.2H22V12.8H21.5C20.6716 12.8 20 13.4716 20 14.3Z"></path></svg>
+    SpriteServer
+  </span>
+</button>
+
+  
+  
+  <ul id="sect-SpriteServer" role="region" aria-labelledby="SpriteServer" class="padding-h-2 accordion-panel">
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          closeDatabase
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          command
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          connectCluster
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          createDatabase
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          createUser
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          database
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          databaseExists
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          disconnectCluster
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          dropDatabase
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          dropUser
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          getEvents
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          getInformation
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          listDatabases
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          openDatabase
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          serverReady
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          shutdown
+        </span>
+      </a>
+    </li>
+    
+  </ul>
+  
+</li>
+
+  
+<li class="menuItem">
+  <button
+  aria-expanded="true"
+  class="accordion-trigger button-reset foreground-1 no-outline full-width"
+  aria-controls="sect-SpriteTransaction"
+  id="SpriteTransaction"
+>
+  <span class="row menuItemText with-icon padding-v-3 padding-h-2 block radius-1 content-center-v fill-accent">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 18V14.3C4 13.4716 3.32843 12.8 2.5 12.8H2V11.2H2.5C3.32843 11.2 4 10.5284 4 9.7V6C4 4.34315 5.34315 3 7 3H8V5H7C6.44772 5 6 5.44772 6 6V10.1C6 10.9858 5.42408 11.7372 4.62623 12C5.42408 12.2628 6 13.0142 6 13.9V18C6 18.5523 6.44772 19 7 19H8V21H7C5.34315 21 4 19.6569 4 18ZM20 14.3V18C20 19.6569 18.6569 21 17 21H16V19H17C17.5523 19 18 18.5523 18 18V13.9C18 13.0142 18.5759 12.2628 19.3738 12C18.5759 11.7372 18 10.9858 18 10.1V6C18 5.44772 17.5523 5 17 5H16V3H17C18.6569 3 20 4.34315 20 6V9.7C20 10.5284 20.6716 11.2 21.5 11.2H22V12.8H21.5C20.6716 12.8 20 13.4716 20 14.3Z"></path></svg>
+    SpriteTransaction
+  </span>
+</button>
+
+  
+  
+  <ul id="sect-SpriteTransaction" role="region" aria-labelledby="SpriteTransaction" class="padding-h-2 accordion-panel">
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          commit
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          rollback
+        </span>
+      </a>
+    </li>
+    
+  </ul>
+  
+</li>
+
+
+        
+<li class="menuItem">
+  <button
+  aria-expanded="true"
+  class="accordion-trigger button-reset foreground-1 no-outline full-width"
+  aria-controls="sect-Types"
+  id="Types"
+>
+  <span class="row menuItemText with-icon padding-v-3 padding-h-2 block radius-1 content-center-v fill-accent">
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   fill="#000000"
+   width="800px"
+   height="800px"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="ts.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="0.62641461"
+     inkscape:cx="348.01232"
+     inkscape:cy="565.12092"
+     inkscape:window-width="1920"
+     inkscape:window-height="939"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <path
+     d="M 1.4,16.092611 V 30.785223 H 30.785223 V 1.4 H 1.4 Z m 23.67898,-1.171735 c 0.746568,0.186412 1.314989,0.521587 1.841168,1.061541 0.26814,0.286506 0.669432,0.812685 0.703409,0.942164 0.0092,0.03857 -1.267238,0.894412 -2.042273,1.37284 -0.02847,0.01928 -0.143253,-0.100093 -0.268141,-0.287424 -0.377416,-0.550054 -0.775035,-0.788809 -1.382023,-0.831969 -0.889822,-0.05785 -1.463752,0.406802 -1.45916,1.186429 -0.0046,0.191003 0.03857,0.382926 0.123969,0.550054 0.196513,0.406802 0.564747,0.650148 1.702506,1.143269 2.104717,0.903596 3.003721,1.501401 3.562958,2.348063 0.626273,0.946755 0.764934,2.458257 0.344358,3.586834 -0.468327,1.219486 -1.626288,2.051456 -3.252577,2.324187 -0.502303,0.09091 -1.697914,0.07622 -2.238786,-0.02388 -1.180919,-0.210288 -2.300312,-0.79432 -2.989028,-1.559254 -0.272732,-0.296607 -0.798911,-1.076233 -0.764934,-1.128576 0.01469,-0.01928 0.13407,-0.0955 0.26814,-0.172638 0.13407,-0.07714 0.626272,-0.363642 1.090926,-0.631782 l 0.846662,-0.492203 0.177229,0.262631 c 0.248857,0.377416 0.78881,0.894412 1.114802,1.066132 0.937573,0.497712 2.224094,0.426086 2.860468,-0.143253 0.258039,-0.214879 0.40221,-0.545463 0.382926,-0.87972 0,-0.339767 -0.04316,-0.492202 -0.220389,-0.746568 -0.229572,-0.325074 -0.693307,-0.602397 -2.018397,-1.176327 -1.516094,-0.655658 -2.171752,-1.05695 -2.764048,-1.702507 -0.372825,-0.426086 -0.650148,-0.927471 -0.808093,-1.468343 -0.110195,-0.415984 -0.138662,-1.45916 -0.05234,-1.875144 0.3113,-1.468343 1.420592,-2.486725 3.012904,-2.787923 0.516996,-0.100094 1.72179,-0.06244 2.228685,0.06244 z m -6.896345,1.229588 0.0092,1.200202 H 14.365311 V 28.22228 H 11.658198 V 17.350666 H 7.8372004 v -1.176327 c 0,-0.655658 0.014693,-1.200203 0.033058,-1.214895 0.014693,-0.01928 2.3388796,-0.02847 5.1607806,-0.02388 l 5.136904,0.01469 z"
+     id="path2"
+     style="stroke-width:0.918288" />
+</svg>
+
+    Types
+  </span>
+</button>
+
+  
+  
+  <ul id="sect-Types" role="region" aria-labelledby="Types" class="padding-h-2 accordion-panel">
+    
+    <li>
+      <a href="/sprite/types/ArcadeBucketSelectionStrategies.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeBucketSelectionStrategies.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeCommandResponse.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeCommandResponse.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeCreateEdgeResponse.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeCreateEdgeResponse.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeCreateTypeResponse.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeCreateTypeResponse.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeDeleteFromResponse.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeDeleteFromResponse.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeGetSchemaResponse.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeGetSchemaResponse.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeQueryResponse.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeQueryResponse.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeRecordCategory.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeRecordCategory.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeRecordType.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeRecordType.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeServerBasicInformation.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeServerBasicInformation.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeServerClusterInformation.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeServerClusterInformation.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeServerDefaultInformation.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeServerDefaultInformation.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeServerInfoMetrics.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeServerInfoMetrics.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeServerInfoSetting.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeServerInfoSetting.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeServerInformation.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeServerInformation.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeServerInformationLevel.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeServerInformationLevel.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeSqlExplanation.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeSqlExplanation.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeSqlExplanationExecutionPlan.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeSqlExplanationExecutionPlan.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeSupportedQueryLanguages.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeSupportedQueryLanguages.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeTypeDefinition.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeTypeDefinition.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ArcadeUpdateOneResponse.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ArcadeUpdateOneResponse.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/AsArcadeEdges.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          AsArcadeEdges.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/AsArcadeRecords.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          AsArcadeRecords.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/DeleteFromCount.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          DeleteFromCount.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/EdgeBase.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          EdgeBase.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/EdgeRecordMeta.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          EdgeRecordMeta.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ISpriteConnection.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ISpriteConnection.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ISpriteCreateArcadeUser.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ISpriteCreateArcadeUser.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ISpriteCreateTypeOptions.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ISpriteCreateTypeOptions.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ISpriteDatabaseClientParameters.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ISpriteDatabaseClientParameters.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ISpriteDatabaseConnectionParameters.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ISpriteDatabaseConnectionParameters.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ISpriteDeleteFromOptions.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ISpriteDeleteFromOptions.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ISpriteDropTypeOptions.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ISpriteDropTypeOptions.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ISpriteEdgeOptions.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ISpriteEdgeOptions.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ISpriteIndexdescriptor.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ISpriteIndexdescriptor.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ISpriteInsertRecordOptions.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ISpriteInsertRecordOptions.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ISpriteRestClientConnectionParameters.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ISpriteRestClientConnectionParameters.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/ISpriteSelectFromOptions.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          ISpriteSelectFromOptions.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/OmitMeta.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          OmitMeta.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/RecordBase.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          RecordBase.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/RecordMeta.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          RecordMeta.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/RecordOperationResponse.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          RecordOperationResponse.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/SpriteArcadeServerEvent.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          SpriteArcadeServerEvent.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/SpriteArcadeServerEvents.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          SpriteArcadeServerEvents.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/SpriteEdgeVertexDescriptor.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          SpriteEdgeVertexDescriptor.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/SpriteOperators.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          SpriteOperators.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/SpriteTransactionCallback.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          SpriteTransactionCallback.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/SpriteWhereClause.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          SpriteWhereClause.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/TypeNames.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          TypeNames.md
+        </span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/sprite/types/WithRid.html" class="foreground-1">
+        <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          WithRid.md
+        </span>
+      </a>
+    </li>
+    
+  </ul>
+  
+</li>
+
+      </ul>
+    </div>
+    <button id="searchOpen" class="with-icon padding-v-3 padding-h-2 fill-space background-2 foreground-purple">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-label="Search Icon">
+  <path
+    d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z">
+  </path>
+</svg>
+  Search Documentation
+</button>
+
   </div>
-  <div id="searchResultsBox" class="hidden">
+</nav>
+
+    <div id="searchResults" class="hidden radius-1 highlight-shadow">
   <header>
-    <h6><span id="numberResultsShowing">0</span> of <span id="numberOfResults">0</span> results</h6>
+    <div id="searchBox" class="center-items">
+      <input class="button-reset highlight-shadow" type="search" id="searchInput" aria-label="Search" />
+      <label for="searchInput" id="searchLabel">search</label>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" id="searchIcon"
+        aria-label="Search Icon">
+        <path
+          d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z">
+        </path>
+      </svg>
+    </div>
+    <fieldset class="toggleButtonGroup" id="searchFilters">
+      <input type="checkbox" id="toggleClassResults" value="class" checked /><label for="toggleClassResults"
+        class="button content-center-v">Classes</label>
+      <input type="checkbox" id="toggleMethodResults" value="method" checked /><label for="toggleMethodResults"
+        class="button content-center-v">Methods</label>
+      <input type="checkbox" id="toggleTypeResults" value="type" checked /><label for="toggleTypeResults"
+        class="button content-center-v">Types</label>
+    </fieldset>
     <div id="searchBoxControls">
-      <fieldset class="toggleButtons" id="searchFilters">
-        <input type="checkbox" id="toggleClassResults" value="class" checked /><label
-          for="toggleClassResults">Classes</label>
-        <input type="checkbox" id="toggleMethodResults" value="method" checked /><label
-          for="toggleMethodResults">Methods</label>
-        <input type="checkbox" id="toggleTypeResults" value="type" checked /><label
-          for="toggleTypeResults">Types</label>
-      </fieldset>
-      <button id="searchClose" aria-label="Close Search">
+      <button id="searchClose" class="padding-3" aria-label="Close Search">
         <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close Icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>
       </button>
     </div>
@@ -63,1047 +1156,6 @@
     <li class="no-results">No results found</li>
   </ul>
 </div>
-</div>
-  <ul>
-    <li>
-      <a href="/sprite">
-
-        <span class="menuItemText">
-          <svg xmlns="http://www.w3.org/2000/svg" aria-label="Home Icon" viewBox="0 0 24 24" fill="#666">
-  <path
-    d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM11 13V19H13V13H11Z">
-  </path>
-</svg>
-          Home
-        </span>
-      </a>
-    </li>
-    <li>
-      <a href="https://www.github.com/valence-corp/sprite">
-        <span class="menuItemText">
-          <svg xmlns="http://www.w3.org/2000/svg" aria-label="Github Icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"/></svg>
-          GitHub
-        </span>
-      </a>
-    </li>
-    <li class="menuItem">
-      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectGettingStarted" id="gettingStartedId">
-        <span class="menuItemText">
-          <svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
-  <g>
-    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
-  </g>
-</svg>
-          Getting Started
-        </span>
-      </button>
-      <ul id="sectGettingStarted" role="region" aria-labelledby="gettingStartedId" class="accordion-panel">
-        
-        <li>
-          <a href="/sprite/tutorials/introduction.html">
-            <span class="menuItemText">
-              Introduction
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/tutorials/installation.html">
-            <span class="menuItemText">
-              Installation
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/tutorials/createDatabase.html">
-            <span class="menuItemText">
-              Create a Database
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/tutorials/transactions.html">
-            <span class="menuItemText">
-              Transactions
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/tutorials/createDocument.html">
-            <span class="menuItemText">
-              Create a Document
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/tutorials/createGraph.html">
-            <span class="menuItemText">
-              Create a Graph
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/tutorials/select.html">
-            <span class="menuItemText">
-              Select Records
-            </span>
-          </a>
-        </li>
-        
-      </ul>
-    </li>
-  </ul>
-  <h2>
-    API Documentation
-  </h2>
-  <ul>
-    
-    <li  class="menuItem" >
-      
-      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectDocumentModality" id="DocumentModalityid">
-        <span class="menuItemText">
-          <svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
-  <g>
-    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
-  </g>
-</svg>
-          DocumentModality
-        </span>
-      </button>
-      <ul id="sectDocumentModality" role="region" aria-labelledby="DocumentModalityid" class="accordion-panel">
-        
-        <li>
-          <a href="/sprite/classes/DocumentModality/createType.html">
-            <span class="menuItemText">
-              createType
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/DocumentModality/deleteFrom.html">
-            <span class="menuItemText">
-              deleteFrom
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/DocumentModality/deleteOne.html">
-            <span class="menuItemText">
-              deleteOne
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/DocumentModality/dropType.html">
-            <span class="menuItemText">
-              dropType
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/DocumentModality/newDocument.html">
-            <span class="menuItemText">
-              newDocument
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/DocumentModality/newTransaction.html">
-            <span class="menuItemText">
-              newTransaction
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/DocumentModality/selectFrom.html">
-            <span class="menuItemText">
-              selectFrom
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/DocumentModality/selectOne.html">
-            <span class="menuItemText">
-              selectOne
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/DocumentModality/transaction.html">
-            <span class="menuItemText">
-              transaction
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/DocumentModality/updateOne.html">
-            <span class="menuItemText">
-              updateOne
-            </span>
-          </a>
-        </li>
-        
-      </ul>
-      
-      
-    </li>
-    
-    <li  class="menuItem" >
-      
-      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectGraphModality" id="GraphModalityid">
-        <span class="menuItemText">
-          <svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
-  <g>
-    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
-  </g>
-</svg>
-          GraphModality
-        </span>
-      </button>
-      <ul id="sectGraphModality" role="region" aria-labelledby="GraphModalityid" class="accordion-panel">
-        
-        <li>
-          <a href="/sprite/classes/GraphModality/createEdgeType.html">
-            <span class="menuItemText">
-              createEdgeType
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/GraphModality/createVertexType.html">
-            <span class="menuItemText">
-              createVertexType
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/GraphModality/deleteFrom.html">
-            <span class="menuItemText">
-              deleteFrom
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/GraphModality/deleteOne.html">
-            <span class="menuItemText">
-              deleteOne
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/GraphModality/dropType.html">
-            <span class="menuItemText">
-              dropType
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/GraphModality/newEdge.html">
-            <span class="menuItemText">
-              newEdge
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/GraphModality/newTransaction.html">
-            <span class="menuItemText">
-              newTransaction
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/GraphModality/newVertex.html">
-            <span class="menuItemText">
-              newVertex
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/GraphModality/selectFrom.html">
-            <span class="menuItemText">
-              selectFrom
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/GraphModality/selectOne.html">
-            <span class="menuItemText">
-              selectOne
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/GraphModality/transaction.html">
-            <span class="menuItemText">
-              transaction
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/GraphModality/updateOne.html">
-            <span class="menuItemText">
-              updateOne
-            </span>
-          </a>
-        </li>
-        
-      </ul>
-      
-      
-    </li>
-    
-    <li  class="menuItem" >
-      
-      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectSpriteDatabase" id="SpriteDatabaseid">
-        <span class="menuItemText">
-          <svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
-  <g>
-    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
-  </g>
-</svg>
-          SpriteDatabase
-        </span>
-      </button>
-      <ul id="sectSpriteDatabase" role="region" aria-labelledby="SpriteDatabaseid" class="accordion-panel">
-        
-        <li>
-          <a href="/sprite/classes/SpriteDatabase/command.html">
-            <span class="menuItemText">
-              command
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteDatabase/commitTransaction.html">
-            <span class="menuItemText">
-              commitTransaction
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteDatabase/documentModality.html">
-            <span class="menuItemText">
-              documentModality
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteDatabase/explain.html">
-            <span class="menuItemText">
-              explain
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteDatabase/getSchema.html">
-            <span class="menuItemText">
-              getSchema
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteDatabase/graphModality.html">
-            <span class="menuItemText">
-              graphModality
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteDatabase/newTransaction.html">
-            <span class="menuItemText">
-              newTransaction
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteDatabase/query.html">
-            <span class="menuItemText">
-              query
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteDatabase/rollbackTransaction.html">
-            <span class="menuItemText">
-              rollbackTransaction
-            </span>
-          </a>
-        </li>
-        
-      </ul>
-      
-      
-    </li>
-    
-    <li  class="menuItem" >
-      
-      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectSpriteServer" id="SpriteServerid">
-        <span class="menuItemText">
-          <svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
-  <g>
-    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
-  </g>
-</svg>
-          SpriteServer
-        </span>
-      </button>
-      <ul id="sectSpriteServer" role="region" aria-labelledby="SpriteServerid" class="accordion-panel">
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/closeDatabase.html">
-            <span class="menuItemText">
-              closeDatabase
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/command.html">
-            <span class="menuItemText">
-              command
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/connectCluster.html">
-            <span class="menuItemText">
-              connectCluster
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/createDatabase.html">
-            <span class="menuItemText">
-              createDatabase
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/createUser.html">
-            <span class="menuItemText">
-              createUser
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/database.html">
-            <span class="menuItemText">
-              database
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/databaseExists.html">
-            <span class="menuItemText">
-              databaseExists
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/disconnectCluster.html">
-            <span class="menuItemText">
-              disconnectCluster
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/dropDatabase.html">
-            <span class="menuItemText">
-              dropDatabase
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/dropUser.html">
-            <span class="menuItemText">
-              dropUser
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/getEvents.html">
-            <span class="menuItemText">
-              getEvents
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/getInformation.html">
-            <span class="menuItemText">
-              getInformation
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/listDatabases.html">
-            <span class="menuItemText">
-              listDatabases
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/openDatabase.html">
-            <span class="menuItemText">
-              openDatabase
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/serverReady.html">
-            <span class="menuItemText">
-              serverReady
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteServer/shutdown.html">
-            <span class="menuItemText">
-              shutdown
-            </span>
-          </a>
-        </li>
-        
-      </ul>
-      
-      
-    </li>
-    
-    <li  class="menuItem" >
-      
-      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectSpriteTransaction" id="SpriteTransactionid">
-        <span class="menuItemText">
-          <svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
-  <g>
-    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
-  </g>
-</svg>
-          SpriteTransaction
-        </span>
-      </button>
-      <ul id="sectSpriteTransaction" role="region" aria-labelledby="SpriteTransactionid" class="accordion-panel">
-        
-        <li>
-          <a href="/sprite/classes/SpriteTransaction/commit.html">
-            <span class="menuItemText">
-              commit
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/classes/SpriteTransaction/rollback.html">
-            <span class="menuItemText">
-              rollback
-            </span>
-          </a>
-        </li>
-        
-      </ul>
-      
-      
-    </li>
-    
-    <li class="menuItem">
-      <button aria-expanded="true" class="accordion-trigger" aria-controls="sectTypes" id="typesId">
-        <span class="menuItemText">
-          <svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
-  <g>
-    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
-  </g>
-</svg>
-          Type Definitions
-        </span>
-      </button>
-      <ul id="sectTypes" role="region" aria-labelledby="typesId" class="accordion-panel">
-        
-        <li>
-          <a href="/sprite/types/ArcadeBucketSelectionStrategies.html">
-            <span class="menuItemText">
-              ArcadeBucketSelectionStrategies.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeCommandResponse.html">
-            <span class="menuItemText">
-              ArcadeCommandResponse.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeCreateEdgeResponse.html">
-            <span class="menuItemText">
-              ArcadeCreateEdgeResponse.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeCreateTypeResponse.html">
-            <span class="menuItemText">
-              ArcadeCreateTypeResponse.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeDeleteFromResponse.html">
-            <span class="menuItemText">
-              ArcadeDeleteFromResponse.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeGetSchemaResponse.html">
-            <span class="menuItemText">
-              ArcadeGetSchemaResponse.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeQueryResponse.html">
-            <span class="menuItemText">
-              ArcadeQueryResponse.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeRecordCategory.html">
-            <span class="menuItemText">
-              ArcadeRecordCategory.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeRecordType.html">
-            <span class="menuItemText">
-              ArcadeRecordType.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeServerBasicInformation.html">
-            <span class="menuItemText">
-              ArcadeServerBasicInformation.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeServerClusterInformation.html">
-            <span class="menuItemText">
-              ArcadeServerClusterInformation.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeServerDefaultInformation.html">
-            <span class="menuItemText">
-              ArcadeServerDefaultInformation.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeServerInfoMetrics.html">
-            <span class="menuItemText">
-              ArcadeServerInfoMetrics.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeServerInfoSetting.html">
-            <span class="menuItemText">
-              ArcadeServerInfoSetting.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeServerInformation.html">
-            <span class="menuItemText">
-              ArcadeServerInformation.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeServerInformationLevel.html">
-            <span class="menuItemText">
-              ArcadeServerInformationLevel.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeSqlExplanation.html">
-            <span class="menuItemText">
-              ArcadeSqlExplanation.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeSqlExplanationExecutionPlan.html">
-            <span class="menuItemText">
-              ArcadeSqlExplanationExecutionPlan.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeSupportedQueryLanguages.html">
-            <span class="menuItemText">
-              ArcadeSupportedQueryLanguages.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeTypeDefinition.html">
-            <span class="menuItemText">
-              ArcadeTypeDefinition.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ArcadeUpdateOneResponse.html">
-            <span class="menuItemText">
-              ArcadeUpdateOneResponse.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/AsArcadeEdges.html">
-            <span class="menuItemText">
-              AsArcadeEdges.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/AsArcadeRecords.html">
-            <span class="menuItemText">
-              AsArcadeRecords.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/DeleteFromCount.html">
-            <span class="menuItemText">
-              DeleteFromCount.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/EdgeBase.html">
-            <span class="menuItemText">
-              EdgeBase.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/EdgeRecordMeta.html">
-            <span class="menuItemText">
-              EdgeRecordMeta.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ISpriteConnection.html">
-            <span class="menuItemText">
-              ISpriteConnection.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ISpriteCreateArcadeUser.html">
-            <span class="menuItemText">
-              ISpriteCreateArcadeUser.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ISpriteCreateTypeOptions.html">
-            <span class="menuItemText">
-              ISpriteCreateTypeOptions.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ISpriteDatabaseClientParameters.html">
-            <span class="menuItemText">
-              ISpriteDatabaseClientParameters.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ISpriteDatabaseConnectionParameters.html">
-            <span class="menuItemText">
-              ISpriteDatabaseConnectionParameters.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ISpriteDeleteFromOptions.html">
-            <span class="menuItemText">
-              ISpriteDeleteFromOptions.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ISpriteDropTypeOptions.html">
-            <span class="menuItemText">
-              ISpriteDropTypeOptions.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ISpriteEdgeOptions.html">
-            <span class="menuItemText">
-              ISpriteEdgeOptions.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ISpriteIndexdescriptor.html">
-            <span class="menuItemText">
-              ISpriteIndexdescriptor.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ISpriteInsertRecordOptions.html">
-            <span class="menuItemText">
-              ISpriteInsertRecordOptions.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ISpriteRestClientConnectionParameters.html">
-            <span class="menuItemText">
-              ISpriteRestClientConnectionParameters.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/ISpriteSelectFromOptions.html">
-            <span class="menuItemText">
-              ISpriteSelectFromOptions.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/OmitMeta.html">
-            <span class="menuItemText">
-              OmitMeta.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/RecordBase.html">
-            <span class="menuItemText">
-              RecordBase.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/RecordMeta.html">
-            <span class="menuItemText">
-              RecordMeta.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/RecordOperationResponse.html">
-            <span class="menuItemText">
-              RecordOperationResponse.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/SpriteArcadeServerEvent.html">
-            <span class="menuItemText">
-              SpriteArcadeServerEvent.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/SpriteArcadeServerEvents.html">
-            <span class="menuItemText">
-              SpriteArcadeServerEvents.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/SpriteEdgeVertexDescriptor.html">
-            <span class="menuItemText">
-              SpriteEdgeVertexDescriptor.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/SpriteOperators.html">
-            <span class="menuItemText">
-              SpriteOperators.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/SpriteTransactionCallback.html">
-            <span class="menuItemText">
-              SpriteTransactionCallback.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/SpriteWhereClause.html">
-            <span class="menuItemText">
-              SpriteWhereClause.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/TypeNames.html">
-            <span class="menuItemText">
-              TypeNames.md
-            </span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/sprite/types/WithRid.html">
-            <span class="menuItemText">
-              WithRid.md
-            </span>
-          </a>
-        </li>
-        
-      </ul>
-    </li>
-    <li>
-      <a href="/sprite/api">
-        <span class="menuItemText">
-          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="Generated Documentation Icon"><path d="M18 1C18 1.71561 17.9359 2.37948 17.8155 3H8.23193C8.87053 5.55223 10.7943 7.22876 13.5829 9.4281C13.0772 9.8647 12.5462 10.294 12 10.7267C8.72906 8.13494 6 5.66845 6 1H4C4 6.46624 7.21013 9.46355 10.3863 12C7.21013 14.5365 4 17.5338 4 23H6C6 18.0404 9.08011 15.566 12.6178 12.7863L12.7096 12.7142C16.149 10.0123 20 6.98705 20 1H18ZM17.8155 21.0002H8.23193C8.89098 18.3663 10.9188 16.665 13.8535 14.3592C14.2973 14.0106 14.7419 13.663 15.1811 13.3086C17.7659 15.5981 20 18.44 20 23.0002H18C18 22.2846 17.9359 21.6207 17.8155 21.0002Z"/></svg>
-          Generated Docs
-        </span>
-      </a>
-    </li>
-  </ul>
-  <label class="switch" for="themeToggle">
-    <input type="checkbox" id="themeToggle" aria-label="Theme Toggle"/>
-    <figure class="button" aria-hidden="true">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path
-          d="M11.3807 2.01886C9.91573 3.38768 9 5.3369 9 7.49999C9 11.6421 12.3579 15 16.5 15C18.6631 15 20.6123 14.0843 21.9811 12.6193C21.6613 17.8537 17.3149 22 12 22C6.47715 22 2 17.5228 2 12C2 6.68514 6.14629 2.33869 11.3807 2.01886Z">
-        </path>
-      </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path
-          d="M11 18H7.94101C7.64391 16.7274 6.30412 15.6857 5.75395 14.9992C4.65645 13.6297 4 11.8915 4 10C4 5.58172 7.58172 2 12 2C16.4183 2 20 5.58172 20 10C20 11.8925 19.3428 13.6315 18.2443 15.0014C17.6944 15.687 16.3558 16.7276 16.059 18H13V13H11V18ZM16 20V21C16 22.1046 15.1046 23 14 23H10C8.89543 23 8 22.1046 8 21V20H16Z">
-        </path>
-      </svg>
-    </figure>
-  </label>
-</nav>
     <div id="content">
       <div>
         <h3 id="documentmodalitysupdateone"><em>DocumentModality&lt;S&gt;</em>.updateOne</h3>

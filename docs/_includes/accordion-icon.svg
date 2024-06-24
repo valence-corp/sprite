@@ -1,7 +1,0 @@
-<svg viewBox="0 0 16 16" class="icon" aria-label="Accordion Item Indicator">
-  <g>
-    <rect x="3" y="3" width="10" height="10" stroke="var(--nav-tree-color)" stroke-width="2" fill="var(--background-primary)" />
-    <line x1="5" y1="8" x2="11" y2="8" stroke="var(--accent)" stroke-width="2"/>
-    <line x1="8" y1="5" x2="8" y2="11" stroke="var(--accent)" stroke-width="2" class="closedIndicator"/>
-  </g>
-</svg>

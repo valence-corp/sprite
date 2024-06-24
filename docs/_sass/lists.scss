@@ -1,15 +1,25 @@
 #content {
 
   ol, ul {
-    margin: var(--section-padding);
+    margin: var(--space-1);
     li {
-      padding: 0 var(--padding-reg);
-      margin: 0;
+      padding: 0;
+      margin: 0 0 0 var(--space-1);
       line-height: var(--paragraph-line-height);
       &::marker {
         font-weight: 600;
         color: var(--accent);
       }
+    }
+  }
+
+  ol {
+    li::marker {
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent);
+      line-height: 0;
     }
   }
 
