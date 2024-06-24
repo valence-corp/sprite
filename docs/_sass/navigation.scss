@@ -2,6 +2,7 @@
 
 #mainNavigation {
   min-width: 320px;
+  height: 100%;
   left: 0px;
   position: absolute;
   overflow: hidden;
@@ -13,9 +14,9 @@
   opacity: 0;
   display: flex;
   flex: 1;
-  flex-direction: column;
-  top: 0;
-  bottom: 0;
+  flex-direction: row;
+  top: 0px;
+  bottom: 0px;
   #navContent {
     flex: 1;
     display: flex;
