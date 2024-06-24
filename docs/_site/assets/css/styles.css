@@ -649,8 +649,7 @@ a:hover {
 #nav_button {
   width: var(--nav-button-size);
   height: var(--nav-button-size);
-  margin: 0 0 0 var(--section-padding);
-  color: var(--foreground-primary);
+  color: var(--foreground-1);
   border: unset;
   background: unset;
 }
