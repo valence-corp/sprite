@@ -10,21 +10,6 @@
     position: relative;
     z-index: 9;
   }
-
-  #controls {
-    a {
-      margin: var(--space-3);
-
-      svg {
-        width: var(--full-line);
-        height: var(--full-line);
-      }
-
-      &:last-of-type {
-        margin-right: unset;
-      }
-    }
-  }
 }
 
 @media (min-width: 860px) {

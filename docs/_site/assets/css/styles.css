@@ -187,6 +187,22 @@ body, html {
   margin-right: var(--space-4);
 }
 
+.margin-1 {
+  margin: var(--space-1);
+}
+
+.margin-2 {
+  margin: var(--space-2);
+}
+
+.margin-3 {
+  margin: var(--space-3);
+}
+
+.margin-4 {
+  margin: var(--space-4);
+}
+
 .no-decoration {
   text-decoration: none;
 }
@@ -408,16 +424,6 @@ a > code:hover {
   position: relative;
   z-index: 9;
 }
-#documentHeader #controls a {
-  margin: var(--space-3);
-}
-#documentHeader #controls a svg {
-  width: var(--full-line);
-  height: var(--full-line);
-}
-#documentHeader #controls a:last-of-type {
-  margin-right: unset;
-}
 
 @media (min-width: 860px) {
   #documentHeader h1 {
@@ -505,7 +511,7 @@ a:hover {
   transform: translate3d(-100%, 0, 0);
   border-right: 1px solid var(--frame-border-color);
   box-shadow: var(--box-shadow-1), var(--box-shadow-2);
-  transition: opacity 125ms ease;
+  transition: opacity 125ms ease, transform 125ms ease;
   z-index: 2;
   opacity: 0;
   display: flex;
@@ -522,17 +528,61 @@ a:hover {
   flex: 1;
   flex-direction: column;
 }
+#mainNavigation #navContent #navigationFrame footer a {
+  margin: var(--space-3);
+}
+#mainNavigation #navContent #navigationFrame footer a svg {
+  width: var(--full-line);
+  height: var(--full-line);
+}
+#mainNavigation #navContent #navigationFrame footer a:last-of-type {
+  margin-right: unset;
+}
+#mainNavigation #navContent #navigationFrame footer #themeChanger {
+  position: relative;
+  width: var(--full-line);
+  height: var(--full-line);
+}
+#mainNavigation #navContent #navigationFrame footer #themeChanger input[type=checkbox] {
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+}
+#mainNavigation #navContent #navigationFrame footer #themeChanger svg {
+  position: absolute;
+  top: 0px;
+}
+#mainNavigation #navContent #navigationFrame footer #themeChanger figure {
+  color: var(--accent);
+}
+#mainNavigation #navContent #navigationFrame footer #themeChanger figure #darkIcon {
+  display: none;
+}
+#mainNavigation #navContent #navigationFrame footer #themeChanger figure #lightIcon {
+  display: block;
+}
+#mainNavigation #navContent #navigationFrame footer #themeChanger figure:hover {
+  color: var(--accent-2);
+}
+#mainNavigation #navContent #navigationFrame footer #themeChanger input[type=checkbox]:checked + figure #lightIcon {
+  display: none;
+}
+#mainNavigation #navContent #navigationFrame footer #themeChanger input[type=checkbox]:checked + figure #darkIcon {
+  display: block;
+}
 #mainNavigation #navContent ul,
 #mainNavigation #navContent ol {
   width: 100%;
   list-style: none;
 }
-#mainNavigation #navContent ul li ul li, #mainNavigation #navContent ul li ol li,
+#mainNavigation #navContent ul li ul li,
+#mainNavigation #navContent ul li ol li,
 #mainNavigation #navContent ol li ul li,
 #mainNavigation #navContent ol li ol li {
   position: relative;
 }
-#mainNavigation #navContent ul li ul li:before, #mainNavigation #navContent ul li ol li:before,
+#mainNavigation #navContent ul li ul li:before,
+#mainNavigation #navContent ul li ol li:before,
 #mainNavigation #navContent ol li ul li:before,
 #mainNavigation #navContent ol li ol li:before {
   width: calc(1.309rem - 2px);
@@ -596,7 +646,7 @@ a:hover {
   opacity: 1;
 }
 
-#navButton {
+#nav_button {
   width: var(--nav-button-size);
   height: var(--nav-button-size);
   margin: 0 0 0 var(--section-padding);
@@ -604,7 +654,7 @@ a:hover {
   border: unset;
   background: unset;
 }
-#navButton:focus {
+#nav_button:focus {
   outline-offset: var(--outline-offset);
   outline: var(--outline);
 }
@@ -627,7 +677,7 @@ a:hover {
     transition: unset;
     box-shadow: unset;
   }
-  #navButton {
+  #nav_button {
     display: none;
   }
 }
@@ -874,39 +924,6 @@ table th {
   backdrop-filter: var(--frosted-backdrop);
 }
 
-#themeChanger {
-  position: relative;
-  width: var(--full-line);
-  height: var(--full-line);
-}
-#themeChanger input[type=checkbox] {
-  width: 0px;
-  height: 0px;
-  opacity: 0;
-}
-#themeChanger svg {
-  position: absolute;
-  top: 0px;
-}
-#themeChanger figure {
-  color: var(--accent);
-}
-#themeChanger figure #darkIcon {
-  display: none;
-}
-#themeChanger figure #lightIcon {
-  display: block;
-}
-#themeChanger figure:hover {
-  color: var(--accent-2);
-}
-#themeChanger input[type=checkbox]:checked + figure #lightIcon {
-  display: none;
-}
-#themeChanger input[type=checkbox]:checked + figure #darkIcon {
-  display: block;
-}
-
 footer.tutorial {
   justify-content: space-between;
 }
@@ -982,7 +999,7 @@ p {
   line-height: var(--paragraph-line-height);
 }
 
-@media (min-width: 860px) {
+@media (min-width: 680px) {
   h1 {
     font-size: 2rem;
   }
@@ -1305,6 +1322,7 @@ body {
   --code-font-size: 0.9rem;
   --link-decoration-style: dotted;
   --link-decoration-thickness: 1px;
+  --nav-button-size: 3.24rem;
   --radius-1: .612rem;
   --transition-speed-1: 125ms;
   --decorative-shadow: 1px 1px 0 var(--background-1), 2px 2px 0 var(--purple);
