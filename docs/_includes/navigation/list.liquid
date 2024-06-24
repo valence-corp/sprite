@@ -1,14 +1,14 @@
 {% comment %}
-    Renders an Accordion List
+Renders an Accordion List
 
-    Accepts:
-    - title: {String} The title of the list
-    - items: {Array} The items to render
-    - icon: {String} The icon to render in the title
-    - ordered: {Boolean} True if the list should be numbered / ordered (optional)
+Accepts:
+- title: {String} The title of the list
+- items: {Array} The items to render
+- icon: {String} The icon to render in the title
+- ordered: {Boolean} True if the list should be numbered / ordered (optional)
 
-    Usage:
-    {% render 'product-card', show_vendor: section.settings.show_vendor %}
+Usage:
+{% render 'product-card', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 <li class="menuItem">
   {% include navigation/list/title.liquid title=include.title icon=include.icon %}
@@ -18,7 +18,7 @@
     <li>
       <a href="{{ site.baseurl }}{{ item.permalink }}" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          <span class="marker flex content-center-v">{{ forloop.index }}.</span> {{ item.name }}
+          <span class="marker flex content-center-v">{{ forloop.index }}</span> {{ item.name }}
         </span>
       </a>
     </li>
@@ -31,7 +31,7 @@
     <li>
       <a href="{{ site.baseurl }}{{ item.permalink }}" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          {{ item.name }}
+          <span class="marker flex content-center-v">m</span> {{ item.name }}
         </span>
       </a>
     </li>

@@ -18,7 +18,14 @@
     <header id="documentHeader">
   <div class="container row">
     <h1 class="flex content-center-v">Sprite</h1>
-    <button id="nav_button" aria-label="Toggle Navigation">
+    <div class="controls content-center-v flex">
+      <button id="searchOpen" aria-label="Search Documentation" class="button-reset big-icon foreground-1 padding-h-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-label="Search Icon">
+  <path
+    d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z">
+  </path>
+</svg></button>
+
+      <button id="nav_button" aria-label="Toggle Navigation">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round">
     <line x1="18" y1="20" x2="34" y2="20"></line>
@@ -26,10 +33,11 @@
     <line x1="18" y1="32" x2="34" y2="32"></line>
   </svg>
 </button>
+    </div>
   </div>
 </header>
     <div class="container row flex">
-      <nav id="mainNavigation" class="frosted-glass flex col bold-text">
+      <nav id="mainNavigation" class="frosted-glass flex col bold-text open">
   <div id="navContent">
     <div id="navigationFrame" class="flex col full-width padding-2 scroll-y">
       <ul class="padding-v-2">
@@ -52,7 +60,7 @@
     <li>
       <a href="/sprite/tutorials/introduction.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          <span class="marker flex content-center-v">1.</span> Introduction
+          <span class="marker flex content-center-v">1</span> Introduction
         </span>
       </a>
     </li>
@@ -60,7 +68,7 @@
     <li>
       <a href="/sprite/tutorials/installation.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          <span class="marker flex content-center-v">2.</span> Installation
+          <span class="marker flex content-center-v">2</span> Installation
         </span>
       </a>
     </li>
@@ -68,7 +76,7 @@
     <li>
       <a href="/sprite/tutorials/createDatabase.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          <span class="marker flex content-center-v">3.</span> Create a Database
+          <span class="marker flex content-center-v">3</span> Create a Database
         </span>
       </a>
     </li>
@@ -76,7 +84,7 @@
     <li>
       <a href="/sprite/tutorials/transactions.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          <span class="marker flex content-center-v">4.</span> Transactions
+          <span class="marker flex content-center-v">4</span> Transactions
         </span>
       </a>
     </li>
@@ -84,7 +92,7 @@
     <li>
       <a href="/sprite/tutorials/createDocument.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          <span class="marker flex content-center-v">5.</span> Create a Document
+          <span class="marker flex content-center-v">5</span> Create a Document
         </span>
       </a>
     </li>
@@ -92,7 +100,7 @@
     <li>
       <a href="/sprite/tutorials/createGraph.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          <span class="marker flex content-center-v">6.</span> Create a Graph
+          <span class="marker flex content-center-v">6</span> Create a Graph
         </span>
       </a>
     </li>
@@ -100,7 +108,7 @@
     <li>
       <a href="/sprite/tutorials/select.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          <span class="marker flex content-center-v">7.</span> Select Records
+          <span class="marker flex content-center-v">7</span> Select Records
         </span>
       </a>
     </li>
@@ -131,7 +139,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          createType
+          <span class="marker flex content-center-v">m</span> createType
         </span>
       </a>
     </li>
@@ -139,7 +147,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          deleteFrom
+          <span class="marker flex content-center-v">m</span> deleteFrom
         </span>
       </a>
     </li>
@@ -147,7 +155,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          deleteOne
+          <span class="marker flex content-center-v">m</span> deleteOne
         </span>
       </a>
     </li>
@@ -155,7 +163,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          dropType
+          <span class="marker flex content-center-v">m</span> dropType
         </span>
       </a>
     </li>
@@ -163,7 +171,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          newDocument
+          <span class="marker flex content-center-v">m</span> newDocument
         </span>
       </a>
     </li>
@@ -171,7 +179,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          newTransaction
+          <span class="marker flex content-center-v">m</span> newTransaction
         </span>
       </a>
     </li>
@@ -179,7 +187,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          selectFrom
+          <span class="marker flex content-center-v">m</span> selectFrom
         </span>
       </a>
     </li>
@@ -187,7 +195,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          selectOne
+          <span class="marker flex content-center-v">m</span> selectOne
         </span>
       </a>
     </li>
@@ -195,7 +203,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          transaction
+          <span class="marker flex content-center-v">m</span> transaction
         </span>
       </a>
     </li>
@@ -203,7 +211,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          updateOne
+          <span class="marker flex content-center-v">m</span> updateOne
         </span>
       </a>
     </li>
@@ -233,7 +241,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          createEdgeType
+          <span class="marker flex content-center-v">m</span> createEdgeType
         </span>
       </a>
     </li>
@@ -241,7 +249,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          createVertexType
+          <span class="marker flex content-center-v">m</span> createVertexType
         </span>
       </a>
     </li>
@@ -249,7 +257,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          deleteFrom
+          <span class="marker flex content-center-v">m</span> deleteFrom
         </span>
       </a>
     </li>
@@ -257,7 +265,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          deleteOne
+          <span class="marker flex content-center-v">m</span> deleteOne
         </span>
       </a>
     </li>
@@ -265,7 +273,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          dropType
+          <span class="marker flex content-center-v">m</span> dropType
         </span>
       </a>
     </li>
@@ -273,7 +281,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          newEdge
+          <span class="marker flex content-center-v">m</span> newEdge
         </span>
       </a>
     </li>
@@ -281,7 +289,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          newTransaction
+          <span class="marker flex content-center-v">m</span> newTransaction
         </span>
       </a>
     </li>
@@ -289,7 +297,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          newVertex
+          <span class="marker flex content-center-v">m</span> newVertex
         </span>
       </a>
     </li>
@@ -297,7 +305,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          selectFrom
+          <span class="marker flex content-center-v">m</span> selectFrom
         </span>
       </a>
     </li>
@@ -305,7 +313,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          selectOne
+          <span class="marker flex content-center-v">m</span> selectOne
         </span>
       </a>
     </li>
@@ -313,7 +321,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          transaction
+          <span class="marker flex content-center-v">m</span> transaction
         </span>
       </a>
     </li>
@@ -321,7 +329,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          updateOne
+          <span class="marker flex content-center-v">m</span> updateOne
         </span>
       </a>
     </li>
@@ -351,7 +359,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          command
+          <span class="marker flex content-center-v">m</span> command
         </span>
       </a>
     </li>
@@ -359,7 +367,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          commitTransaction
+          <span class="marker flex content-center-v">m</span> commitTransaction
         </span>
       </a>
     </li>
@@ -367,7 +375,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          documentModality
+          <span class="marker flex content-center-v">m</span> documentModality
         </span>
       </a>
     </li>
@@ -375,7 +383,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          explain
+          <span class="marker flex content-center-v">m</span> explain
         </span>
       </a>
     </li>
@@ -383,7 +391,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          getSchema
+          <span class="marker flex content-center-v">m</span> getSchema
         </span>
       </a>
     </li>
@@ -391,7 +399,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          graphModality
+          <span class="marker flex content-center-v">m</span> graphModality
         </span>
       </a>
     </li>
@@ -399,7 +407,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          newTransaction
+          <span class="marker flex content-center-v">m</span> newTransaction
         </span>
       </a>
     </li>
@@ -407,7 +415,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          query
+          <span class="marker flex content-center-v">m</span> query
         </span>
       </a>
     </li>
@@ -415,7 +423,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          rollbackTransaction
+          <span class="marker flex content-center-v">m</span> rollbackTransaction
         </span>
       </a>
     </li>
@@ -445,7 +453,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          closeDatabase
+          <span class="marker flex content-center-v">m</span> closeDatabase
         </span>
       </a>
     </li>
@@ -453,7 +461,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          command
+          <span class="marker flex content-center-v">m</span> command
         </span>
       </a>
     </li>
@@ -461,7 +469,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          connectCluster
+          <span class="marker flex content-center-v">m</span> connectCluster
         </span>
       </a>
     </li>
@@ -469,7 +477,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          createDatabase
+          <span class="marker flex content-center-v">m</span> createDatabase
         </span>
       </a>
     </li>
@@ -477,7 +485,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          createUser
+          <span class="marker flex content-center-v">m</span> createUser
         </span>
       </a>
     </li>
@@ -485,7 +493,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          database
+          <span class="marker flex content-center-v">m</span> database
         </span>
       </a>
     </li>
@@ -493,7 +501,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          databaseExists
+          <span class="marker flex content-center-v">m</span> databaseExists
         </span>
       </a>
     </li>
@@ -501,7 +509,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          disconnectCluster
+          <span class="marker flex content-center-v">m</span> disconnectCluster
         </span>
       </a>
     </li>
@@ -509,7 +517,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          dropDatabase
+          <span class="marker flex content-center-v">m</span> dropDatabase
         </span>
       </a>
     </li>
@@ -517,7 +525,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          dropUser
+          <span class="marker flex content-center-v">m</span> dropUser
         </span>
       </a>
     </li>
@@ -525,7 +533,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          getEvents
+          <span class="marker flex content-center-v">m</span> getEvents
         </span>
       </a>
     </li>
@@ -533,7 +541,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          getInformation
+          <span class="marker flex content-center-v">m</span> getInformation
         </span>
       </a>
     </li>
@@ -541,7 +549,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          listDatabases
+          <span class="marker flex content-center-v">m</span> listDatabases
         </span>
       </a>
     </li>
@@ -549,7 +557,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          openDatabase
+          <span class="marker flex content-center-v">m</span> openDatabase
         </span>
       </a>
     </li>
@@ -557,7 +565,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          serverReady
+          <span class="marker flex content-center-v">m</span> serverReady
         </span>
       </a>
     </li>
@@ -565,7 +573,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          shutdown
+          <span class="marker flex content-center-v">m</span> shutdown
         </span>
       </a>
     </li>
@@ -595,7 +603,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          commit
+          <span class="marker flex content-center-v">m</span> commit
         </span>
       </a>
     </li>
@@ -603,7 +611,7 @@
     <li>
       <a href="/sprite" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          rollback
+          <span class="marker flex content-center-v">m</span> rollback
         </span>
       </a>
     </li>
@@ -674,7 +682,7 @@
     <li>
       <a href="/sprite/types/ArcadeBucketSelectionStrategies.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeBucketSelectionStrategies.md
+          <span class="marker flex content-center-v">m</span> ArcadeBucketSelectionStrategies.md
         </span>
       </a>
     </li>
@@ -682,7 +690,7 @@
     <li>
       <a href="/sprite/types/ArcadeCommandResponse.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeCommandResponse.md
+          <span class="marker flex content-center-v">m</span> ArcadeCommandResponse.md
         </span>
       </a>
     </li>
@@ -690,7 +698,7 @@
     <li>
       <a href="/sprite/types/ArcadeCreateEdgeResponse.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeCreateEdgeResponse.md
+          <span class="marker flex content-center-v">m</span> ArcadeCreateEdgeResponse.md
         </span>
       </a>
     </li>
@@ -698,7 +706,7 @@
     <li>
       <a href="/sprite/types/ArcadeCreateTypeResponse.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeCreateTypeResponse.md
+          <span class="marker flex content-center-v">m</span> ArcadeCreateTypeResponse.md
         </span>
       </a>
     </li>
@@ -706,7 +714,7 @@
     <li>
       <a href="/sprite/types/ArcadeDeleteFromResponse.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeDeleteFromResponse.md
+          <span class="marker flex content-center-v">m</span> ArcadeDeleteFromResponse.md
         </span>
       </a>
     </li>
@@ -714,7 +722,7 @@
     <li>
       <a href="/sprite/types/ArcadeGetSchemaResponse.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeGetSchemaResponse.md
+          <span class="marker flex content-center-v">m</span> ArcadeGetSchemaResponse.md
         </span>
       </a>
     </li>
@@ -722,7 +730,7 @@
     <li>
       <a href="/sprite/types/ArcadeQueryResponse.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeQueryResponse.md
+          <span class="marker flex content-center-v">m</span> ArcadeQueryResponse.md
         </span>
       </a>
     </li>
@@ -730,7 +738,7 @@
     <li>
       <a href="/sprite/types/ArcadeRecordCategory.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeRecordCategory.md
+          <span class="marker flex content-center-v">m</span> ArcadeRecordCategory.md
         </span>
       </a>
     </li>
@@ -738,7 +746,7 @@
     <li>
       <a href="/sprite/types/ArcadeRecordType.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeRecordType.md
+          <span class="marker flex content-center-v">m</span> ArcadeRecordType.md
         </span>
       </a>
     </li>
@@ -746,7 +754,7 @@
     <li>
       <a href="/sprite/types/ArcadeServerBasicInformation.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeServerBasicInformation.md
+          <span class="marker flex content-center-v">m</span> ArcadeServerBasicInformation.md
         </span>
       </a>
     </li>
@@ -754,7 +762,7 @@
     <li>
       <a href="/sprite/types/ArcadeServerClusterInformation.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeServerClusterInformation.md
+          <span class="marker flex content-center-v">m</span> ArcadeServerClusterInformation.md
         </span>
       </a>
     </li>
@@ -762,7 +770,7 @@
     <li>
       <a href="/sprite/types/ArcadeServerDefaultInformation.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeServerDefaultInformation.md
+          <span class="marker flex content-center-v">m</span> ArcadeServerDefaultInformation.md
         </span>
       </a>
     </li>
@@ -770,7 +778,7 @@
     <li>
       <a href="/sprite/types/ArcadeServerInfoMetrics.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeServerInfoMetrics.md
+          <span class="marker flex content-center-v">m</span> ArcadeServerInfoMetrics.md
         </span>
       </a>
     </li>
@@ -778,7 +786,7 @@
     <li>
       <a href="/sprite/types/ArcadeServerInfoSetting.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeServerInfoSetting.md
+          <span class="marker flex content-center-v">m</span> ArcadeServerInfoSetting.md
         </span>
       </a>
     </li>
@@ -786,7 +794,7 @@
     <li>
       <a href="/sprite/types/ArcadeServerInformation.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeServerInformation.md
+          <span class="marker flex content-center-v">m</span> ArcadeServerInformation.md
         </span>
       </a>
     </li>
@@ -794,7 +802,7 @@
     <li>
       <a href="/sprite/types/ArcadeServerInformationLevel.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeServerInformationLevel.md
+          <span class="marker flex content-center-v">m</span> ArcadeServerInformationLevel.md
         </span>
       </a>
     </li>
@@ -802,7 +810,7 @@
     <li>
       <a href="/sprite/types/ArcadeSqlExplanation.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeSqlExplanation.md
+          <span class="marker flex content-center-v">m</span> ArcadeSqlExplanation.md
         </span>
       </a>
     </li>
@@ -810,7 +818,7 @@
     <li>
       <a href="/sprite/types/ArcadeSqlExplanationExecutionPlan.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeSqlExplanationExecutionPlan.md
+          <span class="marker flex content-center-v">m</span> ArcadeSqlExplanationExecutionPlan.md
         </span>
       </a>
     </li>
@@ -818,7 +826,7 @@
     <li>
       <a href="/sprite/types/ArcadeSupportedQueryLanguages.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeSupportedQueryLanguages.md
+          <span class="marker flex content-center-v">m</span> ArcadeSupportedQueryLanguages.md
         </span>
       </a>
     </li>
@@ -826,7 +834,7 @@
     <li>
       <a href="/sprite/types/ArcadeTypeDefinition.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeTypeDefinition.md
+          <span class="marker flex content-center-v">m</span> ArcadeTypeDefinition.md
         </span>
       </a>
     </li>
@@ -834,7 +842,7 @@
     <li>
       <a href="/sprite/types/ArcadeUpdateOneResponse.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ArcadeUpdateOneResponse.md
+          <span class="marker flex content-center-v">m</span> ArcadeUpdateOneResponse.md
         </span>
       </a>
     </li>
@@ -842,7 +850,7 @@
     <li>
       <a href="/sprite/types/AsArcadeEdges.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          AsArcadeEdges.md
+          <span class="marker flex content-center-v">m</span> AsArcadeEdges.md
         </span>
       </a>
     </li>
@@ -850,7 +858,7 @@
     <li>
       <a href="/sprite/types/AsArcadeRecords.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          AsArcadeRecords.md
+          <span class="marker flex content-center-v">m</span> AsArcadeRecords.md
         </span>
       </a>
     </li>
@@ -858,7 +866,7 @@
     <li>
       <a href="/sprite/types/DeleteFromCount.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          DeleteFromCount.md
+          <span class="marker flex content-center-v">m</span> DeleteFromCount.md
         </span>
       </a>
     </li>
@@ -866,7 +874,7 @@
     <li>
       <a href="/sprite/types/EdgeBase.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          EdgeBase.md
+          <span class="marker flex content-center-v">m</span> EdgeBase.md
         </span>
       </a>
     </li>
@@ -874,7 +882,7 @@
     <li>
       <a href="/sprite/types/EdgeRecordMeta.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          EdgeRecordMeta.md
+          <span class="marker flex content-center-v">m</span> EdgeRecordMeta.md
         </span>
       </a>
     </li>
@@ -882,7 +890,7 @@
     <li>
       <a href="/sprite/types/ISpriteConnection.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ISpriteConnection.md
+          <span class="marker flex content-center-v">m</span> ISpriteConnection.md
         </span>
       </a>
     </li>
@@ -890,7 +898,7 @@
     <li>
       <a href="/sprite/types/ISpriteCreateArcadeUser.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ISpriteCreateArcadeUser.md
+          <span class="marker flex content-center-v">m</span> ISpriteCreateArcadeUser.md
         </span>
       </a>
     </li>
@@ -898,7 +906,7 @@
     <li>
       <a href="/sprite/types/ISpriteCreateTypeOptions.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ISpriteCreateTypeOptions.md
+          <span class="marker flex content-center-v">m</span> ISpriteCreateTypeOptions.md
         </span>
       </a>
     </li>
@@ -906,7 +914,7 @@
     <li>
       <a href="/sprite/types/ISpriteDatabaseClientParameters.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ISpriteDatabaseClientParameters.md
+          <span class="marker flex content-center-v">m</span> ISpriteDatabaseClientParameters.md
         </span>
       </a>
     </li>
@@ -914,7 +922,7 @@
     <li>
       <a href="/sprite/types/ISpriteDatabaseConnectionParameters.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ISpriteDatabaseConnectionParameters.md
+          <span class="marker flex content-center-v">m</span> ISpriteDatabaseConnectionParameters.md
         </span>
       </a>
     </li>
@@ -922,7 +930,7 @@
     <li>
       <a href="/sprite/types/ISpriteDeleteFromOptions.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ISpriteDeleteFromOptions.md
+          <span class="marker flex content-center-v">m</span> ISpriteDeleteFromOptions.md
         </span>
       </a>
     </li>
@@ -930,7 +938,7 @@
     <li>
       <a href="/sprite/types/ISpriteDropTypeOptions.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ISpriteDropTypeOptions.md
+          <span class="marker flex content-center-v">m</span> ISpriteDropTypeOptions.md
         </span>
       </a>
     </li>
@@ -938,7 +946,7 @@
     <li>
       <a href="/sprite/types/ISpriteEdgeOptions.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ISpriteEdgeOptions.md
+          <span class="marker flex content-center-v">m</span> ISpriteEdgeOptions.md
         </span>
       </a>
     </li>
@@ -946,7 +954,7 @@
     <li>
       <a href="/sprite/types/ISpriteIndexdescriptor.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ISpriteIndexdescriptor.md
+          <span class="marker flex content-center-v">m</span> ISpriteIndexdescriptor.md
         </span>
       </a>
     </li>
@@ -954,7 +962,7 @@
     <li>
       <a href="/sprite/types/ISpriteInsertRecordOptions.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ISpriteInsertRecordOptions.md
+          <span class="marker flex content-center-v">m</span> ISpriteInsertRecordOptions.md
         </span>
       </a>
     </li>
@@ -962,7 +970,7 @@
     <li>
       <a href="/sprite/types/ISpriteRestClientConnectionParameters.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ISpriteRestClientConnectionParameters.md
+          <span class="marker flex content-center-v">m</span> ISpriteRestClientConnectionParameters.md
         </span>
       </a>
     </li>
@@ -970,7 +978,7 @@
     <li>
       <a href="/sprite/types/ISpriteSelectFromOptions.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          ISpriteSelectFromOptions.md
+          <span class="marker flex content-center-v">m</span> ISpriteSelectFromOptions.md
         </span>
       </a>
     </li>
@@ -978,7 +986,7 @@
     <li>
       <a href="/sprite/types/OmitMeta.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          OmitMeta.md
+          <span class="marker flex content-center-v">m</span> OmitMeta.md
         </span>
       </a>
     </li>
@@ -986,7 +994,7 @@
     <li>
       <a href="/sprite/types/RecordBase.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          RecordBase.md
+          <span class="marker flex content-center-v">m</span> RecordBase.md
         </span>
       </a>
     </li>
@@ -994,7 +1002,7 @@
     <li>
       <a href="/sprite/types/RecordMeta.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          RecordMeta.md
+          <span class="marker flex content-center-v">m</span> RecordMeta.md
         </span>
       </a>
     </li>
@@ -1002,7 +1010,7 @@
     <li>
       <a href="/sprite/types/RecordOperationResponse.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          RecordOperationResponse.md
+          <span class="marker flex content-center-v">m</span> RecordOperationResponse.md
         </span>
       </a>
     </li>
@@ -1010,7 +1018,7 @@
     <li>
       <a href="/sprite/types/SpriteArcadeServerEvent.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          SpriteArcadeServerEvent.md
+          <span class="marker flex content-center-v">m</span> SpriteArcadeServerEvent.md
         </span>
       </a>
     </li>
@@ -1018,7 +1026,7 @@
     <li>
       <a href="/sprite/types/SpriteArcadeServerEvents.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          SpriteArcadeServerEvents.md
+          <span class="marker flex content-center-v">m</span> SpriteArcadeServerEvents.md
         </span>
       </a>
     </li>
@@ -1026,7 +1034,7 @@
     <li>
       <a href="/sprite/types/SpriteEdgeVertexDescriptor.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          SpriteEdgeVertexDescriptor.md
+          <span class="marker flex content-center-v">m</span> SpriteEdgeVertexDescriptor.md
         </span>
       </a>
     </li>
@@ -1034,7 +1042,7 @@
     <li>
       <a href="/sprite/types/SpriteOperators.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          SpriteOperators.md
+          <span class="marker flex content-center-v">m</span> SpriteOperators.md
         </span>
       </a>
     </li>
@@ -1042,7 +1050,7 @@
     <li>
       <a href="/sprite/types/SpriteTransactionCallback.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          SpriteTransactionCallback.md
+          <span class="marker flex content-center-v">m</span> SpriteTransactionCallback.md
         </span>
       </a>
     </li>
@@ -1050,7 +1058,7 @@
     <li>
       <a href="/sprite/types/SpriteWhereClause.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          SpriteWhereClause.md
+          <span class="marker flex content-center-v">m</span> SpriteWhereClause.md
         </span>
       </a>
     </li>
@@ -1058,7 +1066,7 @@
     <li>
       <a href="/sprite/types/TypeNames.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          TypeNames.md
+          <span class="marker flex content-center-v">m</span> TypeNames.md
         </span>
       </a>
     </li>
@@ -1066,7 +1074,7 @@
     <li>
       <a href="/sprite/types/WithRid.html" class="foreground-1">
         <span class="row menuItemText with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
-          WithRid.md
+          <span class="marker flex content-center-v">m</span> WithRid.md
         </span>
       </a>
     </li>
@@ -1075,28 +1083,8 @@
   
 </li>
 </ul>
-      <footer class="flex row">
-  <label id="themeChanger" for="themeToggle" class="margin-3">
-    <input type="checkbox" id="themeToggle" aria-label="Theme Toggle">
-    <figure>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        aria-hidden="true"
-        id="darkIcon"
-      >
-        <path
-          d="M11.3807 2.01886C9.91573 3.38768 9 5.3369 9 7.49999C9 11.6421 12.3579 15 16.5 15C18.6631 15 20.6123 14.0843 21.9811 12.6193C21.6613 17.8537 17.3149 22 12 22C6.47715 22 2 17.5228 2 12C2 6.68514 6.14629 2.33869 11.3807 2.01886Z">
-        </path>
-      </svg>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" id="lightIcon">
-        <path
-          d="M12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 15.3137 15.3137 18 12 18ZM11 1H13V4H11V1ZM11 20H13V23H11V20ZM3.51472 4.92893L4.92893 3.51472L7.05025 5.63604L5.63604 7.05025L3.51472 4.92893ZM16.9497 18.364L18.364 16.9497L20.4853 19.0711L19.0711 20.4853L16.9497 18.364ZM19.0711 3.51472L20.4853 4.92893L18.364 7.05025L16.9497 5.63604L19.0711 3.51472ZM5.63604 16.9497L7.05025 18.364L4.92893 20.4853L3.51472 19.0711L5.63604 16.9497ZM23 11V13H20V11H23ZM4 11V13H1V11H4Z">
-        </path>
-      </svg>
-    </figure>
-  </label>
+    </div>
+    <footer class="padding-h-1 padding-v-3">
   <a href="" aria-label="Home" class="foreground-accent hover-accent-2"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    viewBox="0 0 24 24"
@@ -1117,17 +1105,28 @@
     class="foreground-accent hover-accent-2"
   ><svg xmlns="http://www.w3.org/2000/svg" aria-label="Github Icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"/></svg></a>
   <a href="https://www.x.com/tragedylabs" aria-label="Twitter / X" class="foreground-accent hover-accent-2"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.2048 2.25H21.5128L14.2858 10.51L22.7878 21.75H16.1308L10.9168 14.933L4.95084 21.75H1.64084L9.37084 12.915L1.21484 2.25H8.04084L12.7538 8.481L18.2048 2.25ZM17.0438 19.77H18.8768L7.04484 4.126H5.07784L17.0438 19.77Z"/></svg></a>
+  <label id="themeChanger" for="themeToggle">
+    <input type="checkbox" id="themeToggle" aria-label="Theme Toggle">
+    <figure>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+        id="darkIcon"
+      >
+        <path
+          d="M11.3807 2.01886C9.91573 3.38768 9 5.3369 9 7.49999C9 11.6421 12.3579 15 16.5 15C18.6631 15 20.6123 14.0843 21.9811 12.6193C21.6613 17.8537 17.3149 22 12 22C6.47715 22 2 17.5228 2 12C2 6.68514 6.14629 2.33869 11.3807 2.01886Z">
+        </path>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" id="lightIcon">
+        <path
+          d="M12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 15.3137 15.3137 18 12 18ZM11 1H13V4H11V1ZM11 20H13V23H11V20ZM3.51472 4.92893L4.92893 3.51472L7.05025 5.63604L5.63604 7.05025L3.51472 4.92893ZM16.9497 18.364L18.364 16.9497L20.4853 19.0711L19.0711 20.4853L16.9497 18.364ZM19.0711 3.51472L20.4853 4.92893L18.364 7.05025L16.9497 5.63604L19.0711 3.51472ZM5.63604 16.9497L7.05025 18.364L4.92893 20.4853L3.51472 19.0711L5.63604 16.9497ZM23 11V13H20V11H23ZM4 11V13H1V11H4Z">
+        </path>
+      </svg>
+    </figure>
+  </label>
 </footer>
-
-    </div>
-    <button id="searchOpen" class="with-icon padding-v-3 padding-h-2 fill-space background-2 foreground-purple">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-label="Search Icon">
-  <path
-    d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z">
-  </path>
-</svg>
-  Search Documentation
-</button>
 
   </div>
 </nav>

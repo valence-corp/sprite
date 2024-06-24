@@ -1,4 +1,4 @@
-<nav id="mainNavigation" class="frosted-glass flex col bold-text">
+<nav id="mainNavigation" class="frosted-glass flex col bold-text open">
   <div id="navContent">
     <div id="navigationFrame" class="flex col full-width padding-2 scroll-y">
       <ul class="padding-v-2">
@@ -6,8 +6,7 @@
         {%- include navigation/modules.liquid -%}
         {%- include navigation/types.liquid -%}
       </ul>
-      {% include navigation/footer.liquid %}
     </div>
-    {% include search/button.liquid %}
+    {% include navigation/footer.liquid %}
   </div>
 </nav>

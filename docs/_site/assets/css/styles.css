@@ -386,6 +386,7 @@ a > code:hover {
   max-width: 100%;
   justify-content: space-between;
   overflow: hidden;
+  position: relative;
 }
 
 #content {
@@ -483,6 +484,8 @@ a:hover {
   list-style: none;
 }
 #content ul li {
+  margin: 0 0 0 var(--space-2);
+  padding-left: var(--space-3);
   position: relative;
 }
 #content ul li:before {
@@ -504,9 +507,8 @@ a:hover {
 
 #mainNavigation {
   min-width: 320px;
-  height: 100%;
   left: 0px;
-  position: fixed;
+  position: absolute;
   overflow: hidden;
   transform: translate3d(-100%, 0, 0);
   border-right: 1px solid var(--frame-border-color);
@@ -516,7 +518,9 @@ a:hover {
   opacity: 0;
   display: flex;
   flex: 1;
-  flex-direction: row;
+  flex-direction: column;
+  top: 0;
+  bottom: 0;
 }
 #mainNavigation #navContent {
   flex: 1;
@@ -527,48 +531,6 @@ a:hover {
   display: flex;
   flex: 1;
   flex-direction: column;
-}
-#mainNavigation #navContent #navigationFrame footer a {
-  margin: var(--space-3);
-}
-#mainNavigation #navContent #navigationFrame footer a svg {
-  width: var(--full-line);
-  height: var(--full-line);
-}
-#mainNavigation #navContent #navigationFrame footer a:last-of-type {
-  margin-right: unset;
-}
-#mainNavigation #navContent #navigationFrame footer #themeChanger {
-  position: relative;
-  width: var(--full-line);
-  height: var(--full-line);
-}
-#mainNavigation #navContent #navigationFrame footer #themeChanger input[type=checkbox] {
-  width: 0px;
-  height: 0px;
-  opacity: 0;
-}
-#mainNavigation #navContent #navigationFrame footer #themeChanger svg {
-  position: absolute;
-  top: 0px;
-}
-#mainNavigation #navContent #navigationFrame footer #themeChanger figure {
-  color: var(--accent);
-}
-#mainNavigation #navContent #navigationFrame footer #themeChanger figure #darkIcon {
-  display: none;
-}
-#mainNavigation #navContent #navigationFrame footer #themeChanger figure #lightIcon {
-  display: block;
-}
-#mainNavigation #navContent #navigationFrame footer #themeChanger figure:hover {
-  color: var(--accent-2);
-}
-#mainNavigation #navContent #navigationFrame footer #themeChanger input[type=checkbox]:checked + figure #lightIcon {
-  display: none;
-}
-#mainNavigation #navContent #navigationFrame footer #themeChanger input[type=checkbox]:checked + figure #darkIcon {
-  display: block;
 }
 #mainNavigation #navContent ul,
 #mainNavigation #navContent ol {
@@ -597,8 +559,9 @@ a:hover {
   position: absolute;
   z-index: -1;
 }
-#mainNavigation #navContent ul li ol .marker,
-#mainNavigation #navContent ol li ol .marker {
+#mainNavigation #navContent ul li ol .marker, #mainNavigation #navContent ul li ul .marker,
+#mainNavigation #navContent ol li ol .marker,
+#mainNavigation #navContent ol li ul .marker {
   font-family: monospace;
   font-weight: 700;
   font-size: 0.9rem;
@@ -640,6 +603,51 @@ a:hover {
 #mainNavigation #navContent ol li button:hover .menuItemText,
 #mainNavigation #navContent ol li a:hover .menuItemText {
   color: var(--nav-hover-foreground);
+}
+#mainNavigation #navContent footer {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+#mainNavigation #navContent footer a {
+  height: fit-content;
+}
+#mainNavigation #navContent footer a svg {
+  width: var(--full-line);
+  height: var(--full-line);
+}
+#mainNavigation #navContent footer #themeChanger {
+  position: relative;
+  display: inline-block;
+  width: var(--full-line);
+  height: var(--full-line);
+}
+#mainNavigation #navContent footer #themeChanger input[type=checkbox] {
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+}
+#mainNavigation #navContent footer #themeChanger svg {
+  position: absolute;
+  top: 0px;
+}
+#mainNavigation #navContent footer #themeChanger figure {
+  color: var(--accent);
+}
+#mainNavigation #navContent footer #themeChanger figure #darkIcon {
+  display: none;
+}
+#mainNavigation #navContent footer #themeChanger figure #lightIcon {
+  display: block;
+}
+#mainNavigation #navContent footer #themeChanger figure:hover {
+  color: var(--accent-2);
+}
+#mainNavigation #navContent footer #themeChanger input[type=checkbox]:checked + figure #lightIcon {
+  display: none;
+}
+#mainNavigation #navContent footer #themeChanger input[type=checkbox]:checked + figure #darkIcon {
+  display: block;
 }
 #mainNavigation.open {
   transform: translate3d(0, 0, 0);
@@ -1338,6 +1346,11 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--border-color);
+}
+
+.big-icon svg {
+  width: var(--full-line);
+  height: var(--full-line);
 }
 
 .radius-1 {

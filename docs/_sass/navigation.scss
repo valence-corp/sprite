@@ -2,9 +2,8 @@
 
 #mainNavigation {
   min-width: 320px;
-  height: 100%;
   left: 0px;
-  position: fixed;
+  position: absolute;
   overflow: hidden;
   transform: translate3d(-100%, 0, 0);
   border-right: 1px solid var(--frame-border-color);
@@ -14,8 +13,9 @@
   opacity: 0;
   display: flex;
   flex: 1;
-  flex-direction: row;
-
+  flex-direction: column;
+  top: 0;
+  bottom: 0;
   #navContent {
     flex: 1;
     display: flex;
@@ -25,68 +25,6 @@
       display: flex;
       flex: 1;
       flex-direction: column;
-
-      footer {
-        a {
-          margin: var(--space-3);
-
-          svg {
-            width: var(--full-line);
-            height: var(--full-line);
-          }
-
-          &:last-of-type {
-            margin-right: unset;
-          }
-        }
-        #themeChanger {
-          position: relative;
-          width: var(--full-line);
-          height: var(--full-line);
-          input[type="checkbox"] {
-            width: 0px;
-            height: 0px;
-            opacity: 0;
-          }
-        
-          svg {
-            position: absolute;
-            top: 0px;
-          }
-        
-          figure {
-            color: var(--accent);
-        
-            #darkIcon {
-              display: none;
-            }
-        
-            #lightIcon {
-              display: block;
-            }
-        
-            &:hover {
-              color: var(--accent-2);
-            }
-          }
-        
-        
-          input[type=checkbox] {
-            &:checked+ {
-              figure {
-        
-                #lightIcon {
-                  display: none;
-                }
-        
-                #darkIcon {
-                  display: block;
-                }
-              }
-            }
-          }
-        }
-      }
     }
 
     ul,
@@ -117,7 +55,7 @@
           }
         }
 
-        ol {
+        ol,ul {
           .marker {
             font-family: monospace;
             font-weight: 700;
@@ -155,6 +93,67 @@
           &:hover {
             .menuItemText {
               color: var(--nav-hover-foreground);
+            }
+          }
+        }
+      }
+    }
+    footer {   
+      align-items: center;
+      justify-content: space-between;
+      display: flex;
+      a {
+        height: fit-content;
+  
+        svg {
+          width: var(--full-line);
+          height: var(--full-line);
+        }
+      }
+      #themeChanger {
+        position: relative;
+        display: inline-block;
+        width: var(--full-line);
+        height: var(--full-line);
+        input[type="checkbox"] {
+          width: 0px;
+          height: 0px;
+          opacity: 0;
+        }
+      
+        svg {
+          position: absolute;
+          top: 0px;
+        }
+      
+        figure {
+          color: var(--accent);
+      
+          #darkIcon {
+            display: none;
+          }
+      
+          #lightIcon {
+            display: block;
+          }
+      
+          &:hover {
+            color: var(--accent-2);
+          }
+        }
+      
+      
+        input[type=checkbox] {
+          &:checked+ {
+            figure {
+      
+              #lightIcon {
+                display: none;
+              }
+      
+              #darkIcon {
+                display: block;
+              }
             }
           }
         }

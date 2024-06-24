@@ -1,5 +1,18 @@
-<footer class="flex row">
-  <label id="themeChanger" for="themeToggle" class="margin-3">
+<footer class="padding-h-1 padding-v-3">
+  <a href="{{ page.baseUrl }}" aria-label="Home" class="foreground-accent hover-accent-2">
+    {%- include icons/home.svg -%}
+  </a>
+  <a
+    href="https://www.github.com/tragedy-labs/sprite"
+    aria-label="Source on Github"
+    class="foreground-accent hover-accent-2"
+  >
+    {%- include icons/github.svg -%}
+  </a>
+  <a href="https://www.x.com/tragedylabs" aria-label="Twitter / X" class="foreground-accent hover-accent-2">
+    {%- include icons/twitter-x.svg -%}
+  </a>
+  <label id="themeChanger" for="themeToggle">
     <input type="checkbox" id="themeToggle" aria-label="Theme Toggle">
     <figure>
       <svg
@@ -20,17 +33,4 @@
       </svg>
     </figure>
   </label>
-  <a href="{{ page.baseUrl }}" aria-label="Home" class="foreground-accent hover-accent-2">
-    {%- include icons/home.svg -%}
-  </a>
-  <a
-    href="https://www.github.com/tragedy-labs/sprite"
-    aria-label="Source on Github"
-    class="foreground-accent hover-accent-2"
-  >
-    {%- include icons/github.svg -%}
-  </a>
-  <a href="https://www.x.com/tragedylabs" aria-label="Twitter / X" class="foreground-accent hover-accent-2">
-    {%- include icons/twitter-x.svg -%}
-  </a>
 </footer>

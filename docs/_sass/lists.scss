@@ -27,6 +27,8 @@
     list-style: none;
   
     li {
+      margin: 0 0 0 var(--space-2);
+      padding-left: var(--space-3);
       position: relative;
   
       &:before {
