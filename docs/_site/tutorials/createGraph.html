@@ -1137,26 +1137,21 @@
   </div>
 </nav>
 
-      <div id="searchResults" class="hidden radius-1 highlight-shadow">
+      <div id="searchResults" class="hidden highlight-shadow">
   <header class="flex col">
-    <div class="search_header_wrap">
-
-      <div id="searchBox" class="center-items">
-        <input class="button-reset highlight-shadow" type="search" id="searchInput" aria-label="Search" />
-        <label for="searchInput" id="searchLabel">search</label>
-      </div>
-      <div class="flex row content-center-v">
-        <button id="close_search_dialog" aria-label="Close Search Dialog"
+    <div id="searchBox" class="center-items">
+      <input class="button-reset highlight-shadow" type="search" id="searchInput" aria-label="Search" />
+      <label for="searchInput" id="searchLabel">search</label>
+      <button id="close_search_dialog" aria-label="Close Search Dialog"
   class="button-reset big-icon foreground-1 padding-4 margin-h-4 radius-1 focus-ring fit-content-h foreground-red">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z"></path></svg>
 </button>
-      </div>
     </div>
-    <div class="big-icon padding-h-1 padding-v-2 flex row bottom-border content-center-v">
+    <div class="big-icon padding-h-section padding-v-2 flex row bottom-border content-center-v">
       <span class="padding-h-3">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 18H14V16H10V18ZM3 6V8H21V6H3ZM6 13H18V11H6V13Z"></path></svg>
       </span>
-      <div class="toggleButtonGroup padding-h-1" id="searchFilters">
+      <div class="toggleButtonGroup padding-h-section" id="searchFilters">
         <input type="checkbox" id="toggleClassResults" value="class" checked /><label for="toggleClassResults"
           class="button content-center-v padding-3">Classes</label>
         <input type="checkbox" id="toggleMethodResults" value="method" checked /><label for="toggleMethodResults"

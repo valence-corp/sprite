@@ -152,6 +152,11 @@ body, html {
   padding-right: var(--space-4);
 }
 
+.padding-h-section {
+  padding-left: var(--space-section);
+  padding-right: var(--space-section);
+}
+
 .padding-v-1 {
   padding-top: var(--space-1);
   padding-bottom: var(--space-1);
@@ -726,57 +731,14 @@ table th {
   outline-offset: var(--outline-offset);
 }
 
-#searchBox {
-  position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  z-index: 9;
-}
-#searchBox input[type=search] {
-  padding: var(--space-3) var(--space-1);
-  min-width: 100%;
-  color: var(--foreground-1);
-  font-family: "Retro Pixel Petty 5x5";
-  border-top-left-radius: var(--radius-1);
-}
-#searchBox input[type=search]:focus {
-  outline: 2px solid var(--accent-2);
-  outline-offset: -2px;
-}
-#searchBox input[type=search]::-webkit-search-decoration,
-#searchBox input[type=search]::-webkit-search-cancel-button,
-#searchBox input[type=search]::-webkit-search-results-button,
-#searchBox input[type=search]::-webkit-search-results-decoration {
-  -webkit-appearance: none;
-}
-#searchBox #searchLabel {
-  position: absolute;
-  top: 0px;
-  height: 100%;
-  left: 0;
-  padding: var(--space-3) var(--space-1);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  font-family: "Retro Pixel Petty 5x5";
-}
-#searchBox input[type=search]:focus + label,
-#searchBox #searchLabel.hidden {
-  visibility: hidden;
-}
-
 #searchResults {
   position: absolute;
   background: var(--background-2);
-  border: var(--button-border);
-  border-radius: var(--radius-1);
-  border: var(--button-border);
   z-index: 9;
   overflow-y: hidden;
   border: var(--button-border);
   max-height: 75%;
-  max-width: 100%;
+  width: 100%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -795,30 +757,50 @@ table th {
 #searchResults.hidden {
   display: none;
 }
-#searchResults header div.search_header_wrap {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: var(--button-border);
+#searchResults header {
+  width: 100%;
+  z-index: 9;
 }
-#searchResults header h6 {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-bold);
+#searchResults header #searchBox {
+  position: relative;
+  flex: 1;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  margin: 0;
+}
+#searchResults header #searchBox input[type=search] {
+  padding: var(--space-3) var(--space-section);
+  width: 100%;
   color: var(--foreground-1);
+  font-family: "Retro Pixel Petty 5x5";
 }
-#searchResults header h6 #numberOfResults,
-#searchResults header h6 #numberResultsShowing {
-  margin-right: var(--space-3);
+#searchResults header #searchBox input[type=search]:focus {
+  outline: 2px solid var(--accent-2);
+  outline-offset: -2px;
 }
-#searchResults header h6 #numberOfResults {
-  margin-left: var(--space-3);
+#searchResults header #searchBox input[type=search]::-webkit-search-decoration,
+#searchResults header #searchBox input[type=search]::-webkit-search-cancel-button,
+#searchResults header #searchBox input[type=search]::-webkit-search-results-button,
+#searchResults header #searchBox input[type=search]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+#searchResults header #searchBox #searchLabel {
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  left: 0;
+  padding: var(--space-3) var(--space-section);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  font-family: "Retro Pixel Petty 5x5";
+}
+#searchResults header #searchBox input[type=search]:focus + label,
+#searchResults header #searchBox #searchLabel.hidden {
+  visibility: hidden;
 }
 #searchResults #resultList {
   list-style: none;
-  padding: 0 var(--section-padding);
+  padding: 0 var(--space-section);
   margin: 0;
   overflow-y: scroll;
   display: flex;
@@ -836,7 +818,7 @@ table th {
 }
 #searchResults #resultList li section {
   overflow: hidden;
-  padding: 0 var(--space-2);
+  padding: 0 var(--space-section);
 }
 #searchResults #resultList li section a {
   font-weight: var(--font-weight-bold);
@@ -927,6 +909,10 @@ table th {
   #searchResults {
     width: 1000px;
     max-width: 1000px;
+    border-radius: var(--radius-1);
+  }
+  #searchResults input {
+    border-top-left-radius: var(--radius-1);
   }
 }
 .frosted-glass {
@@ -1341,6 +1327,12 @@ body {
   --space-3: 0.621rem;
   --space-4: 0.3105rem;
   --space-5: 0.1505rem;
+  --space-section: var(--space-3);
+}
+@media (min-width: 800px) {
+  body {
+    --space-section: var(--space-1);
+  }
 }
 
 .tutorialHeader {

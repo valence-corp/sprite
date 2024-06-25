@@ -33,4 +33,10 @@ body {
   --space-3: 0.621rem;
   --space-4: 0.3105rem;
   --space-5: 0.1505rem;
+
+  --space-section: var(--space-3);
+
+  @media (min-width: 800px) {
+    --space-section: var(--space-1);
+  }
 }

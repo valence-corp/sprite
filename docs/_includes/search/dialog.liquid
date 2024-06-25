@@ -1,26 +1,21 @@
-<div id="searchResults" class="hidden radius-1 highlight-shadow">
+<div id="searchResults" class="hidden highlight-shadow">
   <header class="flex col">
-    <div class="search_header_wrap">
-
-      <div id="searchBox" class="center-items">
-        <input class="button-reset highlight-shadow" type="search" id="searchInput" aria-label="Search" />
-        <label for="searchInput" id="searchLabel">search</label>
-      </div>
-      <div class="flex row content-center-v">
-        {%
-        include button/button.liquid
-        icon="icons/close.svg"
-        title="Close Search Dialog"
-        id="close_search_dialog"
-        class="foreground-red"
-        %}
-      </div>
+    <div id="searchBox" class="center-items">
+      <input class="button-reset highlight-shadow" type="search" id="searchInput" aria-label="Search" />
+      <label for="searchInput" id="searchLabel">search</label>
+      {%
+      include button/button.liquid
+      icon="icons/close.svg"
+      title="Close Search Dialog"
+      id="close_search_dialog"
+      class="foreground-red"
+      %}
     </div>
-    <div class="big-icon padding-h-1 padding-v-2 flex row bottom-border content-center-v">
+    <div class="big-icon padding-h-section padding-v-2 flex row bottom-border content-center-v">
       <span class="padding-h-3">
         {% include icons/filter.svg %}
       </span>
-      <div class="toggleButtonGroup padding-h-1" id="searchFilters">
+      <div class="toggleButtonGroup padding-h-section" id="searchFilters">
         <input type="checkbox" id="toggleClassResults" value="class" checked /><label for="toggleClassResults"
           class="button content-center-v padding-3">Classes</label>
         <input type="checkbox" id="toggleMethodResults" value="method" checked /><label for="toggleMethodResults"
