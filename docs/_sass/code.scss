@@ -8,7 +8,7 @@ div.highlight {
 }
 
 pre {
-  padding: var(--space-1);
+  padding: var(--space-section);
   overflow-x: scroll;
   @include highlight-shadow;
   border-radius: var(--radius-1);

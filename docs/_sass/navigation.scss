@@ -10,7 +10,7 @@
   border-right: 1px solid var(--frame-border-color);
   box-shadow: var(--box-shadow-1), var(--box-shadow-2);
   transition: opacity 125ms ease, transform 125ms ease;
-  z-index: 2;
+  z-index: 1;
   opacity: 0;
   display: flex;
   flex: 1;

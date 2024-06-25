@@ -75,7 +75,7 @@ async function initializeSearch() {
     elements.backdrop = document.createElement("div");
     elements.backdrop.id = "backdrop";
     elements.backdrop.addEventListener("click", hideSearchBox);
-    root.appendChild(elements.backdrop);
+    document.body.appendChild(elements.backdrop);
   }
 
   function removeBackdrop() {
