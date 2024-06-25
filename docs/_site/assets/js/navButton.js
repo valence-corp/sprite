@@ -9,14 +9,14 @@ document.addEventListener("DOMContentLoaded", function () {
     open = !open;
     if (open) {
       indicator.innerHTML = `
-        <line x1="34" y1="18" x2="18" y2="34"></line>
-        <line x1="18" y1="18" x2="34" y2="34"></line>
+        <line x1="3" y1="4" x2="21" y2="21"></line>
+        <line x1="21" y1="4" x2="3" y2="21"></line>
       `;
     } else {
       indicator.innerHTML = `
-        <line x1="18" y1="20" x2="34" y2="20"></line>
-        <line x1="18" y1="26" x2="34" y2="26"></line>
-        <line x1="18" y1="32" x2="34" y2="32"></line>
+        <line x1="3" y1="4" x2="21" y2="4"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="20" x2="21" y2="20"></line>
       `;
     }
   });

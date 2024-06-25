@@ -50,15 +50,12 @@
   }
 }
 
-@mixin bold-text {
-  font-weight: var(--font-weight-bold);
+.focus-ring {
+  @include focus-ring;
 }
 
-@mixin focus-ring {
-  &:focus {
-    outline: var(--outline);
-    outline-offset: var(--outline-offset);
-  }
+@mixin bold-text {
+  font-weight: var(--font-weight-bold);
 }
 
 @mixin bold-text {

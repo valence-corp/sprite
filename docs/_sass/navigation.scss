@@ -103,15 +103,8 @@
       align-items: center;
       justify-content: space-between;
       display: flex;
-      a {
-        height: fit-content;
-  
-        svg {
-          width: var(--full-line);
-          height: var(--full-line);
-        }
-      }
-      #themeChanger {
+      border-top: 1px solid var(--frame-border-color);
+      #theme_changer {
         position: relative;
         display: inline-block;
         width: var(--full-line);
@@ -130,11 +123,11 @@
         figure {
           color: var(--accent);
       
-          #darkIcon {
+          #dark_icon {
             display: none;
           }
       
-          #lightIcon {
+          #light_icon {
             display: block;
           }
       
@@ -148,11 +141,11 @@
           &:checked+ {
             figure {
       
-              #lightIcon {
+              #light_icon {
                 display: none;
               }
       
-              #darkIcon {
+              #dark_icon {
                 display: block;
               }
             }
@@ -169,15 +162,9 @@
   }
 }
 
-#nav_button {
-  width: var(--nav-button-size);
-  height: var(--nav-button-size);
-  color: var(--foreground-1);
-  border: unset;
-  background: unset;
-
+.inset-focus-ring {
   &:focus {
-    outline-offset: var(--outline-offset);
+    outline-offset: -4px;
     outline: var(--outline);
   }
 }

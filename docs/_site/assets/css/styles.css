@@ -51,6 +51,11 @@ body, html {
   scroll-behavior: smooth; /* Makes normal scrolling smooth */
 }
 
+.focus-ring:focus {
+  outline: var(--outline);
+  outline-offset: var(--outline-offset);
+}
+
 .no-outline {
   outline: none;
 }
@@ -215,6 +220,11 @@ body, html {
   font-weight: 700;
 }
 
+.fit-content-h {
+  display: flex;
+  min-width: fit-content;
+}
+
 .button {
   background: var(--background-2);
   border: var(--button-border);
@@ -256,9 +266,14 @@ body, html {
   margin: 0 0 0 var(--space-2);
 }
 
+.bottom-border {
+  border-bottom: 1px solid var(--frame-border-color);
+}
+
 .toggleButtonGroup {
   position: relative;
   border: unset;
+  white-space: unset;
 }
 .toggleButtonGroup:hover {
   background: inherit;
@@ -270,17 +285,18 @@ body, html {
   margin: 0;
   padding: 0;
   position: absolute;
+  border: unset;
+}
+.toggleButtonGroup input + label {
+  color: var(--accent);
 }
 .toggleButtonGroup input:checked + label {
   background: var(--nav-tree-color);
-  color: var(--accent);
+  color: var(--accent-2);
 }
 .toggleButtonGroup input:focus + label {
   outline: var(--outline);
   z-index: 9;
-}
-.toggleButtonGroup label {
-  padding: var(--padding-3);
 }
 .toggleButtonGroup label:first-of-type {
   border-top-left-radius: var(--radius-1);
@@ -291,6 +307,11 @@ body, html {
   border-left: unset;
   border-top-right-radius: var(--radius-1);
   border-bottom-right-radius: var(--radius-1);
+}
+
+.focus-ring:focus {
+  outline: var(--outline);
+  outline-offset: var(--outline-offset);
 }
 
 div.highlight {
@@ -374,6 +395,10 @@ a > code:hover {
   color: var(--purple);
 }
 
+.foreground-red {
+  color: var(--red);
+}
+
 .fill-purple svg {
   fill: var(--purple);
 }
@@ -422,17 +447,14 @@ a > code:hover {
 }
 #documentHeader h1 {
   margin: 0 0 0 var(--space-2);
+  padding: var(--space-3) 0;
   position: relative;
   z-index: 9;
 }
 
 @media (min-width: 860px) {
   #documentHeader h1 {
-    padding: var(--space-1) 0;
     margin: 0 0 0 var(--space-1);
-  }
-  #documentHeader #controls {
-    margin: 0 var(--space-1);
   }
 }
 a {
@@ -503,6 +525,11 @@ a:hover {
   color: var(--foreground-primary);
   font-weight: 400;
   font-style: italic;
+}
+
+.focus-ring:focus {
+  outline: var(--outline);
+  outline-offset: var(--outline-offset);
 }
 
 #mainNavigation {
@@ -609,45 +636,39 @@ a:hover {
   align-items: center;
   justify-content: space-between;
   display: flex;
+  border-top: 1px solid var(--frame-border-color);
 }
-#mainNavigation #navContent footer a {
-  height: fit-content;
-}
-#mainNavigation #navContent footer a svg {
-  width: var(--full-line);
-  height: var(--full-line);
-}
-#mainNavigation #navContent footer #themeChanger {
+#mainNavigation #navContent footer #theme_changer {
   position: relative;
   display: inline-block;
   width: var(--full-line);
   height: var(--full-line);
 }
-#mainNavigation #navContent footer #themeChanger input[type=checkbox] {
+#mainNavigation #navContent footer #theme_changer input[type=checkbox] {
   width: 0px;
   height: 0px;
   opacity: 0;
 }
-#mainNavigation #navContent footer #themeChanger svg {
+#mainNavigation #navContent footer #theme_changer svg {
   position: absolute;
   top: 0px;
 }
-#mainNavigation #navContent footer #themeChanger figure {
+#mainNavigation #navContent footer #theme_changer figure {
   color: var(--accent);
 }
-#mainNavigation #navContent footer #themeChanger figure #darkIcon {
+#mainNavigation #navContent footer #theme_changer figure #dark_icon {
   display: none;
 }
-#mainNavigation #navContent footer #themeChanger figure #lightIcon {
+#mainNavigation #navContent footer #theme_changer figure #light_icon {
   display: block;
 }
-#mainNavigation #navContent footer #themeChanger figure:hover {
+#mainNavigation #navContent footer #theme_changer figure:hover {
   color: var(--accent-2);
 }
-#mainNavigation #navContent footer #themeChanger input[type=checkbox]:checked + figure #lightIcon {
+#mainNavigation #navContent footer #theme_changer input[type=checkbox]:checked + figure #light_icon {
   display: none;
 }
-#mainNavigation #navContent footer #themeChanger input[type=checkbox]:checked + figure #darkIcon {
+#mainNavigation #navContent footer #theme_changer input[type=checkbox]:checked + figure #dark_icon {
   display: block;
 }
 #mainNavigation.open {
@@ -655,15 +676,8 @@ a:hover {
   opacity: 1;
 }
 
-#nav_button {
-  width: var(--nav-button-size);
-  height: var(--nav-button-size);
-  color: var(--foreground-1);
-  border: unset;
-  background: unset;
-}
-#nav_button:focus {
-  outline-offset: var(--outline-offset);
+.inset-focus-ring:focus {
+  outline-offset: -4px;
   outline: var(--outline);
 }
 
@@ -707,10 +721,9 @@ table th {
   padding: 1.618rem 0;
 }
 
-#searchOpen {
-  border: unset;
-  text-align: left;
-  padding-left: var(--space-1);
+.focus-ring:focus {
+  outline: var(--outline);
+  outline-offset: var(--outline-offset);
 }
 
 #searchBox {
@@ -731,17 +744,19 @@ table th {
   top: 0px;
   height: 100%;
   left: 0;
-  padding: var(--space-3);
+  padding: var(--space-3) var(--space-1);
+  color: var(--accent);
   display: flex;
   align-items: center;
+  font-family: "Retro Pixel Petty 5x5";
 }
 #searchBox input[type=search]:focus + label,
 #searchBox #searchLabel.hidden {
   visibility: hidden;
 }
 #searchBox #searchIcon {
-  width: 1rem;
-  height: 1rem;
+  width: 1.618rem;
+  height: 1.618rem;
   position: absolute;
   right: var(--space-3);
   z-index: 0;
@@ -776,27 +791,10 @@ table th {
 #searchResults.hidden {
   display: none;
 }
-#searchResults header {
+#searchResults header div.search_header_wrap {
   display: flex;
   justify-content: space-between;
   border-bottom: var(--button-border);
-}
-#searchResults header #searchBoxControls {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-}
-#searchResults header #searchBoxControls #searchClose {
-  --webkit-appearance: none;
-  margin: 0 0 0 var(--space-1);
-  border: unset;
-  border-left: var(--button-border);
-}
-#searchResults header #searchBoxControls #searchClose svg {
-  fill: var(--red);
-  width: var(--font-size-base);
-  height: var(--font-size-base);
-  border-radius: var(--radius-1);
 }
 #searchResults header h6 {
   font-size: var(--font-size-base);
@@ -1350,7 +1348,7 @@ body {
 }
 
 .big-icon svg {
-  width: var(--full-line);
+  min-width: var(--full-line);
   height: var(--full-line);
 }
 

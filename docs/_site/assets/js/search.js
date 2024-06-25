@@ -34,7 +34,7 @@ const elements = {
 
 // Initialize search
 async function initializeSearch() {
-  const root = document.getElementById("searchOpen");
+  const root = document.getElementById("search_button");
   elements.input = document.getElementById("searchInput");
   elements.resultsBox = document.getElementById("searchResults");
   elements.resultList = document.getElementById("resultList");
@@ -43,14 +43,13 @@ async function initializeSearch() {
   elements.filters = document.getElementById("searchFilters")
     .getElementsByTagName("input");
   elements.searchLabel = document.getElementById("searchLabel");
-  elements.close = elements.resultsBox.querySelector("#searchClose");
-
+  elements.close = elements.resultsBox.querySelector("#close_search_dialog");
 
   // Add event listeners
   elements.input.addEventListener("input", search);
   elements.close.addEventListener("click", hideSearchBox);
 
-  const openSearch = document.getElementById('searchOpen');
+  const openSearch = document.getElementById('search_button');
 
   openSearch.addEventListener('click', showResultsBox);
   document.addEventListener('keydown', (e)=>{

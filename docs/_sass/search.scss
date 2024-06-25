@@ -1,11 +1,5 @@
 @import './utilities.scss';
 
-#searchOpen {
-  border: unset;
-  text-align: left;
-  padding-left: var(--space-1);
-}
-
 #searchBox {
   position: relative;
   width: 100%;
@@ -24,9 +18,11 @@
     top: 0px;
     height: 100%;
     left: 0;
-    padding: var(--space-3);
+    padding: var(--space-3) var(--space-1);
+    color: var(--accent);
     display: flex;
     align-items: center;
+    font-family: 'Retro Pixel Petty 5x5';
   }
 
   input[type="search"]:focus+label,
@@ -35,8 +31,8 @@
   }
 
   #searchIcon {
-    width: 1rem;
-    height: 1rem;
+    width: 1.618rem;
+    height: 1.618rem;
     position: absolute;
     right: var(--space-3);
     z-index: 0;
@@ -76,28 +72,10 @@
   }
 
   header {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: var(--button-border);
-
-    #searchBoxControls {
+    div.search_header_wrap {
       display: flex;
-      flex-direction: row;
-      align-content: center;
-
-      #searchClose {
-        --webkit-appearance: none;
-        margin: 0 0 0 var(--space-1);
-        border: unset;
-        border-left: var(--button-border);
-
-        svg {
-          fill: var(--red);
-          width: var(--font-size-base);
-          height: var(--font-size-base);
-          border-radius: var(--radius-1);
-        }
-      }
+      justify-content: space-between;
+      border-bottom: var(--button-border);
     }
 
     h6 {

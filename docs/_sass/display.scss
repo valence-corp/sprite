@@ -163,3 +163,8 @@
 .bold-text {
   font-weight: 700;
 }
+
+.fit-content-h {
+  display: flex;
+  min-width: fit-content;
+}

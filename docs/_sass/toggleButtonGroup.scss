@@ -1,6 +1,7 @@
 .toggleButtonGroup {
   position: relative;
   border: unset;
+  white-space:unset;
   &:hover {
     background: inherit;
   }
@@ -12,10 +13,14 @@
     margin: 0;
     padding: 0;
     position: absolute;
+    border: unset;
+    & + label {
+      color: var(--accent);
+    }
 
     &:checked+label {
       background: var(--nav-tree-color);
-      color: var(--accent);
+      color: var(--accent-2);
     }
 
     &:focus+label {
@@ -25,15 +30,6 @@
   }
 
   label {
-    // display: flex;
-    // height: var(--button-height);
-    // border-right: var(--button-border);
-    padding: var(--padding-3);
-    // justify-content: center;
-    // align-items: center;
-    // border: var(--button-border);
-    // position: relative;
-    // font-weight: 700;
 
     &:first-of-type {
       border-top-left-radius: var(--radius-1);
