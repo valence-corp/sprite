@@ -738,6 +738,17 @@ table th {
   min-width: 100%;
   color: var(--foreground-1);
   font-family: "Retro Pixel Petty 5x5";
+  border-top-left-radius: var(--radius-1);
+}
+#searchBox input[type=search]:focus {
+  outline: 2px solid var(--accent-2);
+  outline-offset: -2px;
+}
+#searchBox input[type=search]::-webkit-search-decoration,
+#searchBox input[type=search]::-webkit-search-cancel-button,
+#searchBox input[type=search]::-webkit-search-results-button,
+#searchBox input[type=search]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
 }
 #searchBox #searchLabel {
   position: absolute;
@@ -754,13 +765,6 @@ table th {
 #searchBox #searchLabel.hidden {
   visibility: hidden;
 }
-#searchBox #searchIcon {
-  width: 1.618rem;
-  height: 1.618rem;
-  position: absolute;
-  right: var(--space-3);
-  z-index: 0;
-}
 
 #searchResults {
   position: absolute;
@@ -772,7 +776,7 @@ table th {
   overflow-y: hidden;
   border: var(--button-border);
   max-height: 75%;
-  width: 100%;
+  max-width: 100%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -839,12 +843,10 @@ table th {
   font-size: 1.1525rem;
   color: var(--foreground-1);
   display: block;
-  padding: var(--space-5) 0;
   text-decoration: none;
 }
 #searchResults #resultList li section p {
   margin: 0;
-  padding: var(--space-5) 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -854,9 +856,11 @@ table th {
   display: flex;
   background: var(--purple);
   font-size: 0.9rem;
-  min-width: 3.2rem;
-  min-height: 3.2rem;
-  padding-left: 0.15rem;
+  height: 2.8rem;
+  width: 2.8rem;
+  min-height: 2.8rem;
+  min-width: 2.8rem;
+  padding-left: 0.125rem;
   font-family: "Retro Pixel Petty 5X5";
   color: var(--background-1);
   border-radius: var(--radius-1);
