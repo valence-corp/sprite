@@ -1,88 +1,90 @@
-
 document.addEventListener("DOMContentLoaded", function () {
-  const button = document.getElementById("nav_button");
-  const indicator = button.querySelector("svg");
-  const nav = document.getElementById("mainNavigation");
-  const closeIcon = `
+  const navButton = document.getElementById("nav_button");
+  const navIndicator = navButton.querySelector("svg");
+  const mainNav = document.getElementById("mainNavigation");
+
+  const closeIconMarkup = `
     <line x1="3" y1="4" x2="21" y2="21"></line>
     <line x1="21" y1="4" x2="3" y2="21"></line>
   `;
 
-  const openIcon = `
+  const openIconMarkup = `
     <line x1="3" y1="4" x2="21" y2="4"></line>
     <line x1="3" y1="12" x2="21" y2="12"></line>
     <line x1="3" y1="20" x2="21" y2="20"></line>
   `;
-  let open = false;
 
-  function createTouchEvents() {
-    let previousPos = null;
-    let translate = 0;
+  let isOpen = false;
+  let previousTouchPosition = null;
+  let currentTranslation = 0;
 
-    nav.addEventListener("touchstart", (e) => {
-      previousPos = e.touches[0].clientX;
-    });
+  function handleTouchEnd() {
+    previousTouchPosition = null;
 
-    nav.addEventListener("touchmove", (e) => {
-      let currentPos = e.touches[0].clientX;
-      delta = currentPos - previousPos;
-      previousPos = currentPos;
-
-      // Adjust the current translation based on the delta
-      translate += delta;
-
-      // Prevent rightward movement
-      if (translate > 0) {
-        translate = 0;
-      }
-
-      nav.style.transform = `translate3d(${translate}px, 0, 0)`;
-    });
-
-    nav.addEventListener("touchend", () => {
-      previousPos = null;
-      if (translate > -160) {
-        translate = 0;
-        nav.style.transform = `translate3d(${translate}px, 0, 0)`;
-      } else {
-        nav.style.transform = "";
-        translate = 0;
-        closeMenu();
-        destroyTouchEvents();
-      }
-    });
-  }
-
-  function destroyTouchEvents() {
-    nav.removeEventListener("touchend", createTouchEvents);
-    nav.removeEventListener("touchstart", createTouchEvents);
-    nav.removeEventListener("touchmove", createTouchEvents);
-  }
-
-  function closeMenu() {
-    destroyTouchEvents();
-    toggleOpenState();
-    indicator.innerHTML = openIcon;
-  }
-
-  function openMenu() {
-    createTouchEvents();
-    indicator.innerHTML = closeIcon;
-  }
-
-  function toggleOpenState() {
-    nav.classList.toggle("open");
-    open = !open;
-  }
-
-  function menuClickHandler() {
-    toggleOpenState();
-    if (open) {
-      openMenu();
+    if (currentTranslation > -80) {
+      currentTranslation = 0;
+      mainNav.style.transform = `translate3d(${currentTranslation}px, 0, 0)`;
     } else {
+      mainNav.style.transform = "";
+      currentTranslation = 0;
       closeMenu();
     }
   }
 
-  button.addEventListener("click", menuClickHandler);
+  function handleTouchStart(event) {
+    previousTouchPosition = event.touches[0].clientX;
+  }
+
+  function handleTouchMove(event) {
+    const currentTouchPosition = event.touches[0].clientX;
+    const delta = currentTouchPosition - previousTouchPosition;
+    previousTouchPosition = currentTouchPosition;
+
+    currentTranslation += delta;
+
+    if (currentTranslation > 0) {
+      currentTranslation = 0;
+    }
+
+    mainNav.style.transform = `translate3d(${currentTranslation}px, 0, 0)`;
+  }
+
+  function enableTouchEvents() {
+    mainNav.addEventListener("touchstart", handleTouchStart);
+    mainNav.addEventListener("touchmove", handleTouchMove);
+    mainNav.addEventListener("touchend", handleTouchEnd);
+  }
+
+  function disableTouchEvents() {
+    mainNav.removeEventListener("touchstart", handleTouchStart);
+    mainNav.removeEventListener("touchmove", handleTouchMove);
+    mainNav.removeEventListener("touchend", handleTouchEnd);
+  }
+
+  function closeMenu() {
+    toggleNavState();
+    disableTouchEvents();
+    navIndicator.innerHTML = openIconMarkup;
+  }
+
+  function openMenu() {
+    toggleNavState();
+    enableTouchEvents();
+    navIndicator.innerHTML = closeIconMarkup;
+  }
+
+  function toggleNavState() {
+    mainNav.classList.toggle("open");
+    isOpen = !isOpen;
+  }
+
+  function handleNavButtonClick() {
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  navButton.addEventListener("click", handleNavButtonClick);
 });
