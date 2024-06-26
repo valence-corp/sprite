@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
 
       let previousPos = null;
-      let currentTranslate = 0;
+      let translate = 0;
 
       nav.addEventListener("touchstart", (e) => {
         previousPos = e.touches[0].clientX;
@@ -22,22 +22,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
       nav.addEventListener("touchmove", (e) => {
         let currentPos = e.touches[0].clientX;
-        let delta = currentPos - previousPos;
+        delta = currentPos - previousPos;
         previousPos = currentPos;
 
         // Adjust the current translation based on the delta
-        currentTranslate += delta;
+        translate += delta;
 
         // Prevent rightward movement
-        if (currentTranslate > 0) {
-          currentTranslate = 0;
+        if (translate > 0) {
+          translate = 0;
         }
 
-        nav.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
+        nav.style.transform = `translate3d(${translate}px, 0, 0)`;
       });
 
       nav.addEventListener("touchend", () => {
         previousPos = null;
+        if (translate > -160) {
+          translate = 0;
+          nav.style.transform = `translate3d(${translate}px, 0, 0)`;
+        } else {
+          nav.style.transform = '';
+          nav.classList.toggle("open");
+          translate = 0;
+        }
       });
     } else {
       indicator.innerHTML = `
