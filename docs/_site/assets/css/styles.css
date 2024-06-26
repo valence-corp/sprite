@@ -1009,6 +1009,7 @@ h3 em {
 
 h4 {
   color: var(--accent);
+  font-size: 1.1525rem;
   margin: var(--section-start-padding) 0 0 0;
 }
 
