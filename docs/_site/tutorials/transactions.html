@@ -1202,9 +1202,10 @@
 
 <ol>
   <li><a href="#prerequisites">Prerequisites</a></li>
-  <li><a href="#instantiating">Instantiating SpriteDatabase</a></li>
-  <li><a href="#manual">Manual Transactions</a></li>
-  <li><a href="#help">Transaction Helper</a></li>
+  <li><a href="#instantiating-spritedatabase">Instantiating SpriteDatabase</a></li>
+  <li><a href="#manual-transactions">Manual Transactions</a></li>
+  <li><a href="#transaction-helper">Transaction Helper</a></li>
+  <li><a href="#spritetransaction">SpriteTransaction</a></li>
   <li><a href="#why">Why?</a></li>
   <li><a href="#conclusion">Conclusion</a></li>
   <li><a href="#next">What is next</a></li>
@@ -1214,8 +1215,8 @@
 <hr />
 
 <ol>
-  <li>Ensure you have completed the <a href="../installation.html">installation</a> process, which includes installing ArcadeDB, running it, and accessing it from a TypeScript/JavaScript project with Sprite installed.</li>
-  <li>You have created a database called “ExampleDatabase”, as accomplished in the <a href="tutorials/createDatabase.html">Create a Database tutorial</a></li>
+  <li>Ensure you have completed the <a href="./installation.html">installation</a> process, which includes installing ArcadeDB, running it, and accessing it from a TypeScript/JavaScript project with Sprite installed.</li>
+  <li>You have created a database called “ExampleDatabase”, as accomplished in the <a href="./createDatabase.html">Create a Database tutorial</a></li>
 </ol>
 
 <h4 id="instantiating-spritedatabase">Instantiating SpriteDatabase</h4>
@@ -1281,10 +1282,33 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
+<h4 id="spritetransaction">SpriteTransaction</h4>
+
+<p>It could be apparent from previous examples, but it is not strictly necessary to pass the transaction to another method in order to <code class="language-plaintext highlighter-rouge">commit</code> or <code class="language-plaintext highlighter-rouge">rollback</code>. The <code class="language-plaintext highlighter-rouge">SpriteTransaction</code> class has to shortcut these operations directly.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">transactionHelperExample</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">transaction</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">createTransaction</span><span class="p">();</span>
+    <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span>
+      <span class="dl">"</span><span class="s2">sql</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">CREATE document TYPE ExampleUnused</span><span class="dl">"</span><span class="p">,</span>
+      <span class="nx">transaction</span>
+    <span class="p">);</span>
+    <span class="k">await</span> <span class="nx">transaction</span><span class="p">.</span><span class="nf">commit</span><span class="p">();</span>
+    <span class="k">await</span> <span class="nx">transaction</span><span class="p">.</span><span class="nf">rollback</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span>
+      <span class="dl">"</span><span class="s2">There was an error during the example transaction</span><span class="dl">"</span><span class="p">,</span>
+      <span class="p">{</span> <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span> <span class="p">}</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
 <h4 id="why">Why?</h4>
 <hr />
 
-<p>Manually passing transactions allows for more control and flexibility, reducing resource consumption by avoiding the need to create a new instance of the client for each transaction.</p>
+<p>Manually passing transactions allows for more control and flexibility, and reduces resource consumption by avoiding the need to create a new instance of the client for each transaction. Some situations could necessitate using the manual rollback methods, but the abstractions are suitable for most.</p>
 
 <h4 id="conclusion">Conclusion</h4>
 <hr />
@@ -1294,7 +1318,7 @@
 <h4 id="whats-next">What’s Next?</h4>
 <hr />
 
-<p>In the next section, we will explore more advanced topics in Sprite.</p>
+<p>The next section explains the <code class="language-plaintext highlighter-rouge">DocumentModality</code>, which is an abstraction built over the database driver functionality of <code class="language-plaintext highlighter-rouge">SpriteDatabase</code>.</p>
 
           <footer
   class="tutorial padding-v-1 flex ">

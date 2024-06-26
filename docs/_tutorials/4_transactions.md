@@ -34,18 +34,19 @@ You don't need to run this code; it will be put into practice in the next tutori
 ---
 
 1. [Prerequisites](#prerequisites)
-2. [Instantiating SpriteDatabase](#instantiating)
-3. [Manual Transactions](#manual)
-4. [Transaction Helper](#help)
-5. [Why?](#why)
-6. [Conclusion](#conclusion)
-7. [What is next](#next)
+2. [Instantiating SpriteDatabase](#instantiating-spritedatabase)
+3. [Manual Transactions](#manual-transactions)
+4. [Transaction Helper](#transaction-helper)
+5. [SpriteTransaction](#spritetransaction)
+6. [Why?](#why)
+7. [Conclusion](#conclusion)
+8. [What is next](#next)
 
 #### Prerequisites
 ---
 
-1. Ensure you have completed the [installation](../installation.html) process, which includes installing ArcadeDB, running it, and accessing it from a TypeScript/JavaScript project with Sprite installed.
-2. You have created a database called "ExampleDatabase", as accomplished in the [Create a Database tutorial](tutorials/createDatabase.html)
+1. Ensure you have completed the [installation](./installation.html) process, which includes installing ArcadeDB, running it, and accessing it from a TypeScript/JavaScript project with Sprite installed.
+2. You have created a database called "ExampleDatabase", as accomplished in the [Create a Database tutorial](./createDatabase.html)
 
 #### Instantiating SpriteDatabase
 ---
@@ -113,10 +114,35 @@ async function transactionHelperExample() {
 }
 ```
 
+#### SpriteTransaction
+
+
+It could be apparent from previous examples, but it is not strictly necessary to pass the transaction to another method in order to `commit` or `rollback`. The `SpriteTransaction` class has to shortcut these operations directly.
+
+```ts
+async function transactionHelperExample() {
+  try {
+    const transaction = await db.createTransaction();
+    await db.command(
+      "sql",
+      "CREATE document TYPE ExampleUnused",
+      transaction
+    );
+    await transaction.commit();
+    await transaction.rollback();
+  } catch (error) {
+    throw new Error(
+      "There was an error during the example transaction",
+      { cause: error }
+    );
+  }
+}
+```
+
 #### Why?
 ---
 
-Manually passing transactions allows for more control and flexibility, reducing resource consumption by avoiding the need to create a new instance of the client for each transaction.
+Manually passing transactions allows for more control and flexibility, and reduces resource consumption by avoiding the need to create a new instance of the client for each transaction. Some situations could necessitate using the manual rollback methods, but the abstractions are suitable for most.
 
 #### Conclusion
 ---
@@ -126,4 +152,4 @@ In this tutorial, we demonstrated how to work with transactions in Sprite. We co
 #### What's Next?
 ---
 
-In the next section, we will explore more advanced topics in Sprite.
+The next section explains the `DocumentModality`, which is an abstraction built over the database driver functionality of `SpriteDatabase`.

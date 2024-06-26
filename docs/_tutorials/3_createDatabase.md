@@ -66,7 +66,7 @@ createDatabaseExample();
 #### Checking Server Status
 ---
 
-It might be desirable to ensure the ArcadeDB server is ready prior to sending commands. The `SpriteServer.serverReady` method is perfect for that. Update the `createDatabaseExample()` function to include a server status check:
+It might be desirable to ensure the ArcadeDB server is ready prior to sending commands. The `SpriteServer.serverReady` method is made for that. Update the `createDatabaseExample()` function to include a server status check:
 
 ```ts
 async function createDatabaseExample() {

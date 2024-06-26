@@ -1178,6 +1178,10 @@
           <h4 id="introduction">Introduction</h4>
 <hr />
 
+<p>Most developers agree that sending SQL (or other langage) directly to your database is the most flexible and efficient method of conduction queries and database operations in a JavaScript application, however, it’s not always the easiest method to get started in building out your functionality.</p>
+
+<p>There are abstractions built over the database driver functionality of the <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> class, called modalities. They contain specialized methods that build SQL queries for you based on the arguments passed to them. Understand there is a certain level of overhead intrinsic to performing this type of work in JavaScript, and you should consider the best method for your application.</p>
+
 <p>This tutorial will demonstrate the basics of using the <code class="language-plaintext highlighter-rouge">DocumentModality</code> via the <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> module to define a document type, and create a document.</p>
 
 <h4 id="overview">Overview</h4>
@@ -1185,20 +1189,20 @@
 
 <ol>
   <li><a href="#prerequisites">Prerequisites</a></li>
-  <li><a href="#instantiating">Instantiating SpriteDatabase</a></li>
-  <li><a href="#modality">Accessing the DocumentModality</a></li>
+  <li><a href="#instantiating-spritedatabase">Instantiating SpriteDatabase</a></li>
+  <li><a href="#accessing-the-documentmodality">Accessing the DocumentModality</a></li>
   <li><a href="#transactions">Transactions</a></li>
-  <li><a href="#createDatabase">Creating a database</a></li>
+  <li><a href="#creating-a-document">Creating a database</a></li>
   <li><a href="#conclusion">Conclusion</a></li>
-  <li><a href="#next">What is next</a></li>
+  <li><a href="#what-is-next">What is next</a></li>
 </ol>
 
 <h4 id="prerequisites">Prerequisites</h4>
 <hr />
 
 <ol>
-  <li>Ensure you have <a href="../installation.html">the installation</a> completed. This means you have ArcadeDB installed, running, and accessible, as well as a TypeScript / JavaScript project with Sprite installed.</li>
-  <li>You have created a database called “ExampleDatabase”, like accomplished in the <a href="">Create a Database tutorial</a></li>
+  <li>Ensure you have <a href="./installation.html">the installation</a> completed. This means you have ArcadeDB installed, running, and accessible, as well as a TypeScript / JavaScript project with Sprite installed.</li>
+  <li>You have created a database called “ExampleDatabase”, like in the <a href="./createDatabase.html">Create a Database tutorial</a></li>
 </ol>
 
 <h4 id="instantiating-spritedatabase">Instantiating SpriteDatabase</h4>
@@ -1225,14 +1229,6 @@
 <p>Add the following code bellow the previous section.</p>
 
 <p>The <code class="language-plaintext highlighter-rouge">DocumentModality</code> is accessed via the <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> instance we created. Types are defined in the <code class="language-plaintext highlighter-rouge">ExampleDocument</code> interface and provided as a parameter to the <code class="language-plaintext highlighter-rouge">documentModality</code> accessor method.</p>
-
-<hr />
-
-<h6 id="note">Note</h6>
-
-<p>The accessor method returns a <a href="https://en.wikipedia.org/wiki/Singleton_pattern">singleton instance</a> of <code class="language-plaintext highlighter-rouge">DocumentModality</code>. The library just uses the accessor method to define types for it, so you can create many typed modalities without any additional runtime overhead.</p>
-
-<hr />
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="c1">// define some types to use for this example</span>
@@ -1263,13 +1259,20 @@
 <span class="c1">// call the example function</span>
 <span class="nf">documentModalityExample</span><span class="p">();</span>
 </code></pre></div></div>
+<hr />
+
+<h6 id="note">Note</h6>
+
+<p>The accessor method returns a <a href="https://en.wikipedia.org/wiki/Singleton_pattern">singleton instance</a> of <code class="language-plaintext highlighter-rouge">DocumentModality</code>. The library just uses the accessor method to define types for it, so you can create many typed modalities without any additional runtime overhead.</p>
+
+<hr />
 
 <h4 id="transactions">Transactions</h4>
 <hr />
 
 <p>ArcadeDB is a transactional database. This is preferred for applications that require a high level of data integrity. All non-idempotent operations (operations that can change the database) must be part of a transaction.</p>
 
-<p>Sprite has various methods for orchestrating transactions, but this tutorial will demonstrate the <code class="language-plaintext highlighter-rouge">DocumentModality.transaction()</code> method, which incorporates some abstraction to reduce boilerplate (for information on that, see the <a href="/classes/DocumentModality/transaction.html">API documentation</a>).</p>
+<p>Sprite has various methods for orchestrating transactions, but this tutorial will utilize the <code class="language-plaintext highlighter-rouge">DocumentModality.transaction()</code> method, which incorporates some abstraction to reduce boilerplate.</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">documentModalityExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
@@ -1293,8 +1296,8 @@
 <p>There is additional information on transactions in the following locations.</p>
 
 <ol>
-  <li>SpriteDatabase.command() tutorial</li>
-  <li>Wikipedia Transactional Database</li>
+  <li><a href="./transactions.html">Transactions Tutorial</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Database_transaction">Wikipedia: Database Transaction</a></li>
 </ol>
 
 <hr />
@@ -1302,7 +1305,7 @@
 <h4 id="creating-a-type">Creating a Type</h4>
 <hr />
 
-<p>Within the transaction callback, we will call the <code class="language-plaintext highlighter-rouge">DocumentModality.createType()</code> method, and pass it the transaction (<code class="language-plaintext highlighter-rouge">trx</code>) that is supplied as a parameter to the callback. This operation should be awaited to avoid an error with the <code class="language-plaintext highlighter-rouge">newDocument</code> method we will add in the next step (the type must be present in the database to create a record with that type).</p>
+<p>The transaction callback defines the scope for operations within a transaction. It calls the <code class="language-plaintext highlighter-rouge">DocumentModality.createType()</code> method, passing the transaction (<code class="language-plaintext highlighter-rouge">trx</code>) as a parameter. This operation should be awaited to prevent an error with the <code class="language-plaintext highlighter-rouge">newDocument</code> method in the next step, as the type must be present in the database to create a record of that type.</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">documentModalityExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
@@ -1322,7 +1325,7 @@
 <h4 id="creating-a-document">Creating a Document</h4>
 <hr />
 
-<p>Following the <code class="language-plaintext highlighter-rouge">createType</code> operation, insert the <code class="language-plaintext highlighter-rouge">newDocument</code> method. Ensure the transaction is passed to it also. Optionally, data can be included at record creation. The properties will be automatially typed as defined in the <code class="language-plaintext highlighter-rouge">ExampleDocuments</code> interface created earlier.</p>
+<p>Following the <code class="language-plaintext highlighter-rouge">createType</code> operation, insert the <code class="language-plaintext highlighter-rouge">newDocument</code> method. Ensure the transaction is passed to it also. Optionally, data can be included at record creation (as shown). The arguments will be automatially typed as defined in the <code class="language-plaintext highlighter-rouge">ExampleDocuments</code> interface created earlier.</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">documentModalityExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
@@ -1348,6 +1351,8 @@
 
 <h4 id="running-the-example">Running the Example</h4>
 <hr />
+
+<p>The complete example is show below. Ensure your code matches this, and execute.</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">SpriteDatabase</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@valence-corp/sprite</span><span class="dl">"</span><span class="p">;</span>
 
@@ -1393,20 +1398,14 @@
 <h4 id="conclusion">Conclusion</h4>
 <hr />
 
-<p>There should now be a database on your server called “ExampleDatabase”.</p>
+<p>There should now be a document in “ExampleDatabase” of a “aDocument” type.</p>
 
-<p>Note You can verify the existence of a database on the server by utilizing one of the following:</p>
-
-<ul>
-  <li>SpriteServer.listDatabases()</li>
-  <li>SpriteServer.databaseExists()</li>
-  <li><a href="">ArcadeDB server console</a>.</li>
-</ul>
+<p>You can verify the existence of this document using the <a href="https://docs.arcadedb.com/#Studio">ArcadeDB web interface</a>.</p>
 
 <h4 id="what-is-next">What is next?</h4>
 <hr />
 
-<p>The next section will demonstrate how to use the <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> module to perform operations on the database.</p>
+<p>The next section will demonstrate how to use the <code class="language-plaintext highlighter-rouge">GraphModality</code> to build a simple graph database. perform operations.</p>
 
           <footer
   class="tutorial padding-v-1 flex ">
