@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+  const mainNav = document.getElementById("main_nav");
   const navButton = document.getElementById("nav_button");
   const navIndicator = navButton.querySelector("svg");
-  const mainNav = document.getElementById("mainNavigation");
 
   const closeIconMarkup = `
     <line x1="3" y1="4" x2="21" y2="21"></line>
@@ -15,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
   `;
 
   let isOpen = false;
-  let previousTouchPosition = null;
   let currentTranslation = 0;
+  let previousTouchPosition = null;
 
   function handleTouchEnd() {
     previousTouchPosition = null;
@@ -25,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
       currentTranslation = 0;
       mainNav.style.transform = `translate3d(${currentTranslation}px, 0, 0)`;
     } else {
-      mainNav.style.transform = "";
       currentTranslation = 0;
+      mainNav.style.transform = "";
       closeMenu();
     }
   }

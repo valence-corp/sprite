@@ -1,6 +1,6 @@
 @import './utilities.scss';
 
-#mainNavigation {
+#main_nav {
   min-width: 320px;
   height: 100%;
   left: 0px;
@@ -17,12 +17,12 @@
   flex-direction: row;
   top: 0px;
   bottom: 0px;
-  #navContent {
+  #nav_content {
     flex: 1;
     display: flex;
     flex-direction: column;
 
-    #navigationFrame {
+    #nav_frame {
       display: flex;
       flex: 1;
       flex-direction: column;
@@ -176,7 +176,7 @@
 }
 
 @media (min-width: 820px) {
-  #mainNavigation {
+  #main_nav {
     width: 37.8%;
     max-width: 400px;
     position: relative;
@@ -184,7 +184,7 @@
     backdrop-filter: unset;
     background: unset;
     transform: unset;
-    opacity: unset;
+    opacity: 1;
     transition: unset;
     box-shadow: unset;
   }
@@ -196,7 +196,7 @@
 
 
 @media (max-width: 1300px) {
-  #mainNavigation {
+  #main_nav {
     max-width: 300px;
   }
 }

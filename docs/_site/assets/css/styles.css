@@ -546,7 +546,7 @@ a:hover {
   outline-offset: var(--outline-offset);
 }
 
-#mainNavigation {
+#main_nav {
   min-width: 320px;
   height: 100%;
   left: 0px;
@@ -564,31 +564,31 @@ a:hover {
   top: 0px;
   bottom: 0px;
 }
-#mainNavigation #navContent {
+#main_nav #nav_content {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-#mainNavigation #navContent #navigationFrame {
+#main_nav #nav_content #nav_frame {
   display: flex;
   flex: 1;
   flex-direction: column;
 }
-#mainNavigation #navContent ul,
-#mainNavigation #navContent ol {
+#main_nav #nav_content ul,
+#main_nav #nav_content ol {
   width: 100%;
   list-style: none;
 }
-#mainNavigation #navContent ul li ul li,
-#mainNavigation #navContent ul li ol li,
-#mainNavigation #navContent ol li ul li,
-#mainNavigation #navContent ol li ol li {
+#main_nav #nav_content ul li ul li,
+#main_nav #nav_content ul li ol li,
+#main_nav #nav_content ol li ul li,
+#main_nav #nav_content ol li ol li {
   position: relative;
 }
-#mainNavigation #navContent ul li ul li:before,
-#mainNavigation #navContent ul li ol li:before,
-#mainNavigation #navContent ol li ul li:before,
-#mainNavigation #navContent ol li ol li:before {
+#main_nav #nav_content ul li ul li:before,
+#main_nav #nav_content ul li ol li:before,
+#main_nav #nav_content ol li ul li:before,
+#main_nav #nav_content ol li ol li:before {
   width: calc(1.309rem - 2px);
   height: calc(100% + 1px);
   border-left: 2px solid var(--nav-tree-color);
@@ -601,9 +601,9 @@ a:hover {
   position: absolute;
   z-index: -1;
 }
-#mainNavigation #navContent ul li ol .marker, #mainNavigation #navContent ul li ul .marker,
-#mainNavigation #navContent ol li ol .marker,
-#mainNavigation #navContent ol li ul .marker {
+#main_nav #nav_content ul li ol .marker, #main_nav #nav_content ul li ul .marker,
+#main_nav #nav_content ol li ol .marker,
+#main_nav #nav_content ol li ul .marker {
   font-family: monospace;
   font-weight: 700;
   font-size: 0.9rem;
@@ -615,77 +615,77 @@ a:hover {
   line-height: 0;
   margin: 0 var(--space-3) 0 0;
 }
-#mainNavigation #navContent ul li button,
-#mainNavigation #navContent ul li a,
-#mainNavigation #navContent ol li button,
-#mainNavigation #navContent ol li a {
+#main_nav #nav_content ul li button,
+#main_nav #nav_content ul li a,
+#main_nav #nav_content ol li button,
+#main_nav #nav_content ol li a {
   text-decoration: none;
 }
-#mainNavigation #navContent ul li button:focus .menuItemText,
-#mainNavigation #navContent ul li a:focus .menuItemText,
-#mainNavigation #navContent ol li button:focus .menuItemText,
-#mainNavigation #navContent ol li a:focus .menuItemText {
+#main_nav #nav_content ul li button:focus .menuItemText,
+#main_nav #nav_content ul li a:focus .menuItemText,
+#main_nav #nav_content ol li button:focus .menuItemText,
+#main_nav #nav_content ol li a:focus .menuItemText {
   background: var(--nav-focus-background);
   color: var(--nav-focus-color);
 }
-#mainNavigation #navContent ul li button:focus .menuItemText svg,
-#mainNavigation #navContent ul li a:focus .menuItemText svg,
-#mainNavigation #navContent ol li button:focus .menuItemText svg,
-#mainNavigation #navContent ol li a:focus .menuItemText svg {
+#main_nav #nav_content ul li button:focus .menuItemText svg,
+#main_nav #nav_content ul li a:focus .menuItemText svg,
+#main_nav #nav_content ol li button:focus .menuItemText svg,
+#main_nav #nav_content ol li a:focus .menuItemText svg {
   fill: var(--accent-2);
 }
-#mainNavigation #navContent ul li button:focus .menuItemText .marker,
-#mainNavigation #navContent ul li a:focus .menuItemText .marker,
-#mainNavigation #navContent ol li button:focus .menuItemText .marker,
-#mainNavigation #navContent ol li a:focus .menuItemText .marker {
+#main_nav #nav_content ul li button:focus .menuItemText .marker,
+#main_nav #nav_content ul li a:focus .menuItemText .marker,
+#main_nav #nav_content ol li button:focus .menuItemText .marker,
+#main_nav #nav_content ol li a:focus .menuItemText .marker {
   color: var(--accent-2);
 }
-#mainNavigation #navContent ul li button:hover .menuItemText,
-#mainNavigation #navContent ul li a:hover .menuItemText,
-#mainNavigation #navContent ol li button:hover .menuItemText,
-#mainNavigation #navContent ol li a:hover .menuItemText {
+#main_nav #nav_content ul li button:hover .menuItemText,
+#main_nav #nav_content ul li a:hover .menuItemText,
+#main_nav #nav_content ol li button:hover .menuItemText,
+#main_nav #nav_content ol li a:hover .menuItemText {
   color: var(--nav-hover-foreground);
 }
-#mainNavigation #navContent footer {
+#main_nav #nav_content footer {
   align-items: center;
   justify-content: space-between;
   display: flex;
   border-top: 1px solid var(--frame-border-color);
 }
-#mainNavigation #navContent footer #theme_changer {
+#main_nav #nav_content footer #theme_changer {
   position: relative;
   display: inline-block;
   width: var(--full-line);
   height: var(--full-line);
 }
-#mainNavigation #navContent footer #theme_changer input[type=checkbox] {
+#main_nav #nav_content footer #theme_changer input[type=checkbox] {
   width: 0px;
   height: 0px;
   opacity: 0;
 }
-#mainNavigation #navContent footer #theme_changer svg {
+#main_nav #nav_content footer #theme_changer svg {
   position: absolute;
   top: 0px;
 }
-#mainNavigation #navContent footer #theme_changer figure {
+#main_nav #nav_content footer #theme_changer figure {
   color: var(--accent);
 }
-#mainNavigation #navContent footer #theme_changer figure #dark_icon {
+#main_nav #nav_content footer #theme_changer figure #dark_icon {
   display: none;
 }
-#mainNavigation #navContent footer #theme_changer figure #light_icon {
+#main_nav #nav_content footer #theme_changer figure #light_icon {
   display: block;
 }
-#mainNavigation #navContent footer #theme_changer figure:hover {
+#main_nav #nav_content footer #theme_changer figure:hover {
   color: var(--accent-2);
 }
-#mainNavigation #navContent footer #theme_changer input[type=checkbox]:checked + figure #light_icon {
+#main_nav #nav_content footer #theme_changer input[type=checkbox]:checked + figure #light_icon {
   display: none;
 }
-#mainNavigation #navContent footer #theme_changer input[type=checkbox]:checked + figure #dark_icon {
+#main_nav #nav_content footer #theme_changer input[type=checkbox]:checked + figure #dark_icon {
   display: block;
 }
-#mainNavigation.open {
+#main_nav.open {
   transform: translate3d(0, 0, 0);
   opacity: 1;
 }
@@ -701,7 +701,7 @@ a:hover {
 }
 
 @media (min-width: 820px) {
-  #mainNavigation {
+  #main_nav {
     width: 37.8%;
     max-width: 400px;
     position: relative;
@@ -709,7 +709,7 @@ a:hover {
     backdrop-filter: unset;
     background: unset;
     transform: unset;
-    opacity: unset;
+    opacity: 1;
     transition: unset;
     box-shadow: unset;
   }
@@ -718,7 +718,7 @@ a:hover {
   }
 }
 @media (max-width: 1300px) {
-  #mainNavigation {
+  #main_nav {
     max-width: 300px;
   }
 }
