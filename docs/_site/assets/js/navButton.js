@@ -13,23 +13,31 @@ document.addEventListener("DOMContentLoaded", function () {
         <line x1="21" y1="4" x2="3" y2="21"></line>
       `;
 
-      let previousPos = 0;
+      let previousPos = null;
+      let currentTranslate = 0;
+
+      nav.addEventListener("touchstart", (e) => {
+        previousPos = e.touches[0].clientX;
+      });
 
       nav.addEventListener("touchmove", (e) => {
         let currentPos = e.touches[0].clientX;
+        let delta = currentPos - previousPos;
+        previousPos = currentPos;
 
-        if (!previousPos) {
-          previousPos = currentPos;
+        // Adjust the current translation based on the delta
+        currentTranslate += delta;
+
+        // Prevent rightward movement
+        if (currentTranslate > 0) {
+          currentTranslate = 0;
         }
 
-        delta = currentPos - previousPos;
-        console.log(delta);
+        nav.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
+      });
 
-        if (delta > 0) {
-          delta = 0;
-        }
-
-        nav.style.transform = `translate3d(${delta}px, 0, 0)`;
+      nav.addEventListener("touchend", () => {
+        previousPos = null;
       });
     } else {
       indicator.innerHTML = `
