@@ -1354,7 +1354,7 @@ body {
   --link-decoration-style: dotted;
   --link-decoration-thickness: 1px;
   --nav-button-size: 3.24rem;
-  --radius-1: .612rem;
+  --radius-1: 4px;
   --transition-speed-1: 125ms;
   --decorative-shadow: 1px 1px 0 var(--background-1), 2px 2px 0 var(--purple);
   --space-1: 1.618rem;
