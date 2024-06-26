@@ -33,6 +33,14 @@
   }
 }
 
+.with-icon-right {
+  svg {
+    width: 1rem;
+    height: 1rem;
+    margin-left: var(--space-4);
+  }
+}
+
 .rtl {
   .with-icon {
     svg {
