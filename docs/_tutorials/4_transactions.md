@@ -10,17 +10,25 @@ nextUrl: /tutorials/createDocument.html
 filename: 4_transactions.md
 ---
 
-**Note:** This tutorial assumes prior experience with transactional databases. If you're new to this topic, it may be challenging, but it's essential to understand how to use Sprite properly.
-
-**Important:** You don't need to run this code; it will be put into practice in the next tutorial.
-
----
-
 ArcadeDB is a transactional database. This is preferred for applications that require a high level of data integrity. Non-idempotent operations (which is a technical way of saying "operations that can change the database") must be part of a transaction.
 
 In ArcadeDB (and Sprite) commands are non-idempotent, and queries are idempotent. Commands, therefore, are required to be issued as part of a transaction. Sprite contains many methods that are built as abstractions over commands (for example: `createType`, `createDocument`, or `deleteOne`). They still use the `SpriteDatabase.command` method internally, and as a result must be performed as part of a transaction.
 
-Is Sprite you can manually control how transactions are accomplished, use the `SpriteDatabase.transaction` method (which incorporates some abstraction to reduce boilerplate), or use the helpers on the `SpriteTransaction` class. This tutorial will demonstate these methods, and explain why they are implemented as such in Sprite.
+There are a few different ways to conduct transactions in Sprite
+
+1. Manually, with `newTransaction`, `commitTransaction`, and `rollbackTransaction`
+2. The `SpriteDatabase.transaction` method (which incorporates some abstraction to reduce boilerplate)
+3. The `SpriteTransaction` class itself has a `commit`, and a `rollback` method on it.
+
+This tutorial will demonstate these methods, and explain why they are implemented as such in Sprite.
+
+---
+
+###### Note:
+
+You don't need to run this code; it will be put into practice in the next tutorial.
+
+---
 
 #### Overview
 ---
