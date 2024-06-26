@@ -337,15 +337,15 @@ body, html {
 div.highlight {
   min-width: 100%;
   margin: var(--space-1) 0;
-  border-radius: var(--radius-1);
+  border-radius: 4px;
   border: var(--button-border);
 }
 
 pre {
-  padding: var(--space-section);
+  padding: var(--space-3);
   overflow-x: scroll;
   box-shadow: var(--box-highlight), var(--box-shadow-1), var(--box-shadow-2);
-  border-radius: var(--radius-1);
+  border-radius: 4px;
 }
 
 a > code,

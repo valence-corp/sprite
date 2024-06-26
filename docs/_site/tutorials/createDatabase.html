@@ -1180,6 +1180,7 @@
 <ol>
   <li><a href="#prerequisites">Prerequisites</a></li>
   <li><a href="#instantiating-spriteserver">Instantiating SpriteServer</a></li>
+  <li><a href="#async-operations">Async Operations</a></li>
   <li><a href="#checking-server-status">Check server status</a></li>
   <li><a href="#create-a-database">Creating a database</a></li>
   <li><a href="#running-the-example">Running the Example</a></li>
@@ -1190,9 +1191,9 @@
 <h4 id="prerequisites">Prerequisites</h4>
 <hr />
 
-<ul>
+<ol>
   <li>Ensure you have completed the <a href="installation.html">installation</a> process, which includes installing ArcadeDB, running it, and accessing it from a TypeScript/JavaScript project with Sprite installed.</li>
-</ul>
+</ol>
 
 <h4 id="instantiating-spriteserver">Instantiating SpriteServer</h4>
 <hr />
@@ -1206,8 +1207,16 @@
   <span class="na">password</span><span class="p">:</span> <span class="dl">"</span><span class="s2">your_password</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// replace with your password</span>
   <span class="na">address</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:2480</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// default address for ArcadeDB</span>
 <span class="p">});</span>
+</code></pre></div></div>
 
-<span class="k">async</span> <span class="kd">function</span> <span class="nf">createDatabaseExample</span><span class="p">()</span> <span class="p">{</span>
+<h4 id="async-operations">Async Operations</h4>
+<hr />
+
+<p>Sprite uses the <a href="https://docs.arcadedb.com/#HTTP-API">ArcadeDB REST API</a> to send commands and receive responses from the ArcadeDB Server. This means that Sprite’s methods are always <code class="language-plaintext highlighter-rouge">async</code>. More often than not, you’ll being using async / await (or promises) in your operations.</p>
+
+<p>Insert the below code following the previous snippet.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">createDatabaseExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
     <span class="c1">// code from the tutorial goes here</span>
   <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
@@ -1224,14 +1233,13 @@
 <h4 id="checking-server-status">Checking Server Status</h4>
 <hr />
 
-<p>Update the <code class="language-plaintext highlighter-rouge">createDatabaseExample()</code> function to include a server status check:</p>
+<p>It might be desirable to ensure the ArcadeDB server is ready prior to sending commands. The <code class="language-plaintext highlighter-rouge">SpriteServer.serverReady</code> method is perfect for that. Update the <code class="language-plaintext highlighter-rouge">createDatabaseExample()</code> function to include a server status check:</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">createDatabaseExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
     <span class="kd">const</span> <span class="nx">ready</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">serverReady</span><span class="p">();</span>
     <span class="k">if </span><span class="p">(</span><span class="nx">ready</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// perform creation operation here</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">ready</span><span class="p">);</span> <span class="c1">// true if the server is ready</span>
     <span class="p">}</span>
   <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span>
@@ -1242,12 +1250,14 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>If the server is not ready, an error will be thrown with a detailed error message.</p>
+<p>If the server is not ready, an error will be thrown with a detailed error message. It’s important to always handle errors in your code.</p>
 
 <h4 id="creating-a-database">Creating a Database</h4>
 <hr />
 
-<p>Update the <code class="language-plaintext highlighter-rouge">createDatabaseExample()</code> function to create a database using the <code class="language-plaintext highlighter-rouge">SpriteServer.createDatabase</code> method:</p>
+<p>Update the <code class="language-plaintext highlighter-rouge">createDatabaseExample()</code> function to create a database using the <code class="language-plaintext highlighter-rouge">SpriteServer.createDatabase</code> method.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">createDatabase</code> method will return an instance of <code class="language-plaintext highlighter-rouge">SpriteDatabase</code>, this could be returned or used internally for database operations (which will be covered later).</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">createDatabaseExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
@@ -1269,7 +1279,32 @@
 <h4 id="running-the-example">Running the Example</h4>
 <hr />
 
-<p>Ensure your code matches the above example, and then execute it.</p>
+<p>The complete code is below. Ensure your code matches, and then execute it.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">SpriteServer</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@valence-corp/sprite</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SpriteServer</span><span class="p">({</span>
+  <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">root</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="dl">"</span><span class="s2">your_password</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// replace with your password</span>
+  <span class="na">address</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:2480</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// default address for ArcadeDB</span>
+<span class="p">});</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">createDatabaseExample</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">ready</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">serverReady</span><span class="p">();</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">ready</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">database</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createDatabase</span><span class="p">(</span><span class="dl">"</span><span class="s2">ExampleDatabase</span><span class="dl">"</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">database</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2"> was created`</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nx">database</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span>
+      <span class="s2">`There was a problem while creating the database.`</span><span class="p">,</span>
+      <span class="p">{</span> <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span> <span class="p">}</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <h4 id="conclusion">Conclusion</h4>
 <hr />
@@ -1277,15 +1312,15 @@
 <p>You should now have a database on your server called “ExampleDatabase”. You can verify the existence of the database using one of the following methods:</p>
 
 <ul>
-  <li><a href="/classes/SpriteServer/listDatabases.html">SpriteServer.listDatabases</a></li>
-  <li><a href="/classes/SpriteServer/databaseExists.html">SpriteServer.databaseExists</a></li>
+  <li><a href="../SpriteServer/listDatabases.html">SpriteServer.listDatabases</a></li>
+  <li><a href="../SpriteServer/databaseExists.html">SpriteServer.databaseExists</a></li>
   <li><a href="https://docs.arcadedb.com/#Console">ArcadeDB server console</a></li>
 </ul>
 
 <h4 id="whats-next">What’s Next?</h4>
 <hr />
 
-<p>The next section will demonstrate how to access the <code class="language-plaintext highlighter-rouge">DocumentModality</code> from the <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> to define a document type and create a new document.</p>
+<p>The next section will demonstrate the basics of transactional databases, and how transactions are conducted in Sprite.</p>
 
           <footer
   class="tutorial padding-v-1 flex ">

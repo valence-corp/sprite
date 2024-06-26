@@ -1177,8 +1177,10 @@
 
           <p>This tutorial will outline the steps necessary to install Sprite in your project. It works in Node.js, Bun, or Deno.</p>
 
+<h4 id="overview">Overview</h4>
+<hr />
+
 <ol>
-  <li><a href="#supported-environments">Supported Environments</a></li>
   <li><a href="#nodejs">Node.js</a></li>
   <li><a href="#bun">Bun</a></li>
   <li><a href="#deno">Deno</a></li>
@@ -1191,12 +1193,12 @@
 <ol>
   <li>Ensure ArcadeDB 24.5.x (or greater) is installed <a href="https://www.arcadedb.com/docs/installation">per the official documentation</a>.</li>
   <li>Ensure Node.js 16.x or greater is installed <a href="https://nodejs.org/en/download/">per the official documentation</a>.</li>
-  <li>Ensure you have a Node.js project ready to work with. There is an optional <a href="https://github.com/valence-corp/sprite-tutorials">example repository</a> for the tutorials.</li>
+  <li>Ensure you have a Node.js project ready to work with.</li>
   <li>In a terminal, navigate to your project’s root directory and install Sprite with <code class="language-plaintext highlighter-rouge">npm</code> (or your preferred package manager):</li>
 </ol>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd path/to/your/project
-$ npm install @valence-corp/sprite
+$ npm install @tragedy-labs/sprite
 </code></pre></div></div>
 
 <h4 id="bun">Bun</h4>
@@ -1204,13 +1206,13 @@ $ npm install @valence-corp/sprite
 
 <ol>
   <li>Ensure ArcadeDB 24.5.x (or greater) is installed <a href="https://www.arcadedb.com/docs/installation">per the official documentation</a>.</li>
-  <li>Ensure the latest version of Deno is installed <a href="https://docs.deno.com/runtime/manual/getting_started/installation">per the official documentation</a>.</li>
-  <li>Ensure you have a Deno project ready to work with.</li>
+  <li>Ensure the latest version of Bun is installed <a href="https://bun.sh/docs/installation">per the official documentation</a>.</li>
+  <li>Ensure you have a Bun project ready to work with.</li>
   <li>In a terminal, navigate to your project’s root directory and install Sprite with <code class="language-plaintext highlighter-rouge">bun</code>:</li>
 </ol>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd path/to/your/project
-bun install @valence-corp/sprite
+bun install @tragedy-labs/sprite
 </code></pre></div></div>
 
 <h4 id="deno">Deno</h4>
@@ -1223,10 +1225,10 @@ bun install @valence-corp/sprite
   <li>Import the necessary Sprite modules into your project.</li>
 </ol>
 
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">SpriteServer</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">npm:@valence-corp/sprite</span><span class="dl">"</span><span class="p">;</span>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">SpriteServer</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">npm:@tragedy-labs/sprite</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="c1">// and/or</span>
-<span class="c1">// import { SpriteDatabase } from "npm:@valence-corp/sprite;</span>
+<span class="c1">// import { SpriteDatabase } from "npm:@tragedy-labs/sprite;</span>
 </code></pre></div></div>
 
 <h4 id="whats-next">What’s Next?</h4>
