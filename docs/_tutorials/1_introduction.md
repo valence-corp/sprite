@@ -48,4 +48,4 @@ The modalities' design reduces overhead by instantiating functionality as requir
 #### What's next?
 ---
 
-The next step in this tutorial is to explore the installation process.
+The next step in this tutorial is briefly explains the installation process.

@@ -16,7 +16,13 @@ filename: 6_createGraph.md
 
 Sprite utilizes the `GraphModality` to create graphs, which consist of vertices (points) and edges connecting them (lines). Both vertices and edges can contain data properties, similar to documents.
 
-For more information, refer to [Wikipedia: Graph Database](https://en.wikipedia.org/wiki/Graph_database).
+---
+
+###### Note:
+
+  Consider reading [Wikipedia: Graph Database](https://en.wikipedia.org/wiki/Graph_database), if this is a new concept to you.
+
+---
 
 #### Overview
 
@@ -39,8 +45,8 @@ This tutorial will guide you through creating types that define the vertices and
 
 ---
 
-1. Ensure you have completed [the installation](../installation.html) and have ArcadeDB installed, running, and accessible, as well as a TypeScript/JavaScript project with Sprite installed.
-2. You have created a database called "ExampleDatabase" per the [Creating a Database tutorial]()
+1. Ensure you have completed [the installation](./installation.html) and have ArcadeDB installed, running, and accessible, as well as a TypeScript/JavaScript project with Sprite installed.
+2. You have created a database called "ExampleDatabase" per the [Creating a Database tutorial](./createDatabase.html)
 
 #### Setup
 
@@ -54,7 +60,7 @@ import { SpriteDatabase } from "@valence-corp/sprite";
 
 // Create an instance of SpriteDatabase with your credentials and the name of the target database
 const db = new SpriteDatabase({
-  username: "aAirportname", // root will be okay for this tutorial
+  username: "aUsername", // root will be okay for this tutorial
   password: "aPassword", // your password
   address: "http://localhost:2480", // default address for ArcadeDB
   databaseName: "ExampleDatabase", // the existing database
@@ -109,7 +115,7 @@ graphModalityExample();
 
 ArcadeDB is a transactional database, which is preferred for applications that require a high level of data integrity. All non-idempotent operations (operations that can change the database) must be part of a transaction.
 
-Sprite has various methods for orchestrating transactions, but this tutorial will demonstrate the `GraphModality.transaction()` method, which incorporates some abstraction to make it streamlined for many use cases.
+Sprite has various methods for orchestrating transactions, but this tutorial will utilize the `GraphModality.transaction()` method, which reduces boilerplate.
 
 ```ts
 async function graphModalityExample() {
@@ -133,9 +139,9 @@ async function graphModalityExample() {
 
 ---
 
-Within the transaction callback, we will call the `GraphModality.createVertexType()` and `GraphModality.createEdgeType()` methods. These operations should be awaited to avoid an error with the `newEdge` and `newVertex` operations we will add in the next step (the types must be present in the database to create records with that type).
+The transaction callback serves as a scope for non-idempotent operations that are part of the transaction, such as the `GraphModality.createVertexType` and `GraphModality.createEdgeType` methods. These operations should be awaited to avoid errors with the newEdge and newVertex operations which will be added in the next step, as the types must be present in the database to create records of that type.
 
-The `ifNotExists` option is set to `true` on the type creation operations. This prevents the database from throwing an error if the types were previously created. It is, however, an option.
+The `ifNotExists` option is set to true on the type creation operations. This prevents the database from throwing an error if the types were previously created. This, however, is optional.
 
 ```ts
 async function graphModalityExample() {
@@ -162,7 +168,7 @@ async function graphModalityExample() {
 
 ---
 
-The `newVertex` method (and the other record creation methods) allow for the creation of multiple records in the same operation. This is preferable to sending a command for each record, although also valid. Just send the data for the desired records as an array of objects representing the records.
+The `newVertex` method (and the other record creation methods) allow for the creation of multiple records in the same operation. This is preferable to sending a command for each record (although, that is also valid). Just send the data for the desired records as an array of objects representing the records.
 
 The result will be returned as an array of the created records. This example destructures the expected results for use in the next step.
 
@@ -203,7 +209,7 @@ async function graphModalityExample() {
 
 ---
 
-To create an edge, we will use the `GraphModality.newEdge()` method. This example utilizes the `@rid` of the created records, but that is only for brevity. The `GraphModality.newEdge()` method allows for defining edges between records that match "key descriptions", which can result in creating multiple edges between any records that match the provided key/index. See [the API documentation]() for details.
+To create an edge, we will use the `GraphModality.newEdge()` method. This example utilizes the `@rid` of the created records, but that is only for brevity. The `GraphModality.newEdge()` method allows for defining edges between records that match "key descriptions", which can result in creating multiple edges between any records that match the provided key/index. See [the API documentation](../GraphModality/newEdge.html) for details.
 
 There is also a `console.log` call added to log the records that were created.
 
@@ -272,7 +278,7 @@ Below is the complete code for this tutorial. Ensure your code matches this exam
 import { SpriteDatabase } from "@valence-corp/sprite";
 
 const db = new SpriteDatabase({
-  username: "aAirportname", // root will be okay for this tutorial
+  username: "aUsername", // root will be okay for this tutorial
   password: "aPassword", // your password
   address: "http://localhost:2480", // default address for ArcadeDB
   databaseName: "ExampleDatabase", // the existing database
@@ -324,7 +330,7 @@ async function graphModalityExample() {
 
 #### Conclusion
 
-This tutorial explored the basics of creating a graph database using Sprite and ArcadeDB, including: accessing the graph modality, defining the types of vertices and edges in the graph, and creating vertices and edges within a transaction.
+This tutorial demonstrated the basics of creating a graph database using Sprite and ArcadeDB, including: accessing the graph modality, defining the types of vertices and edges in the graph, and creating vertices and edges within a transaction.
 
 #### What's Next?
 

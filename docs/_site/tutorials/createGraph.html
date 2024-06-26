@@ -1181,7 +1181,13 @@
 
 <p>Sprite utilizes the <code class="language-plaintext highlighter-rouge">GraphModality</code> to create graphs, which consist of vertices (points) and edges connecting them (lines). Both vertices and edges can contain data properties, similar to documents.</p>
 
-<p>For more information, refer to <a href="https://en.wikipedia.org/wiki/Graph_database">Wikipedia: Graph Database</a>.</p>
+<hr />
+
+<h6 id="note">Note:</h6>
+
+<p>Consider reading <a href="https://en.wikipedia.org/wiki/Graph_database">Wikipedia: Graph Database</a>, if this is a new concept to you.</p>
+
+<hr />
 
 <h4 id="overview">Overview</h4>
 
@@ -1207,8 +1213,8 @@
 <hr />
 
 <ol>
-  <li>Ensure you have completed <a href="../installation.html">the installation</a> and have ArcadeDB installed, running, and accessible, as well as a TypeScript/JavaScript project with Sprite installed.</li>
-  <li>You have created a database called “ExampleDatabase” per the <a href="">Creating a Database tutorial</a></li>
+  <li>Ensure you have completed <a href="./installation.html">the installation</a> and have ArcadeDB installed, running, and accessible, as well as a TypeScript/JavaScript project with Sprite installed.</li>
+  <li>You have created a database called “ExampleDatabase” per the <a href="./createDatabase.html">Creating a Database tutorial</a></li>
 </ol>
 
 <h4 id="setup">Setup</h4>
@@ -1222,7 +1228,7 @@
 
 <span class="c1">// Create an instance of SpriteDatabase with your credentials and the name of the target database</span>
 <span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SpriteDatabase</span><span class="p">({</span>
-  <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aAirportname</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// root will be okay for this tutorial</span>
+  <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aUsername</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// root will be okay for this tutorial</span>
   <span class="na">password</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aPassword</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// your password</span>
   <span class="na">address</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:2480</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// default address for ArcadeDB</span>
   <span class="na">databaseName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ExampleDatabase</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// the existing database</span>
@@ -1276,7 +1282,7 @@
 
 <p>ArcadeDB is a transactional database, which is preferred for applications that require a high level of data integrity. All non-idempotent operations (operations that can change the database) must be part of a transaction.</p>
 
-<p>Sprite has various methods for orchestrating transactions, but this tutorial will demonstrate the <code class="language-plaintext highlighter-rouge">GraphModality.transaction()</code> method, which incorporates some abstraction to make it streamlined for many use cases.</p>
+<p>Sprite has various methods for orchestrating transactions, but this tutorial will utilize the <code class="language-plaintext highlighter-rouge">GraphModality.transaction()</code> method, which reduces boilerplate.</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">graphModalityExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
@@ -1299,9 +1305,9 @@
 
 <hr />
 
-<p>Within the transaction callback, we will call the <code class="language-plaintext highlighter-rouge">GraphModality.createVertexType()</code> and <code class="language-plaintext highlighter-rouge">GraphModality.createEdgeType()</code> methods. These operations should be awaited to avoid an error with the <code class="language-plaintext highlighter-rouge">newEdge</code> and <code class="language-plaintext highlighter-rouge">newVertex</code> operations we will add in the next step (the types must be present in the database to create records with that type).</p>
+<p>The transaction callback serves as a scope for non-idempotent operations that are part of the transaction, such as the <code class="language-plaintext highlighter-rouge">GraphModality.createVertexType</code> and <code class="language-plaintext highlighter-rouge">GraphModality.createEdgeType</code> methods. These operations should be awaited to avoid errors with the newEdge and newVertex operations which will be added in the next step, as the types must be present in the database to create records of that type.</p>
 
-<p>The <code class="language-plaintext highlighter-rouge">ifNotExists</code> option is set to <code class="language-plaintext highlighter-rouge">true</code> on the type creation operations. This prevents the database from throwing an error if the types were previously created. It is, however, an option.</p>
+<p>The <code class="language-plaintext highlighter-rouge">ifNotExists</code> option is set to true on the type creation operations. This prevents the database from throwing an error if the types were previously created. This, however, is optional.</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">graphModalityExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
@@ -1327,7 +1333,7 @@
 
 <hr />
 
-<p>The <code class="language-plaintext highlighter-rouge">newVertex</code> method (and the other record creation methods) allow for the creation of multiple records in the same operation. This is preferable to sending a command for each record, although also valid. Just send the data for the desired records as an array of objects representing the records.</p>
+<p>The <code class="language-plaintext highlighter-rouge">newVertex</code> method (and the other record creation methods) allow for the creation of multiple records in the same operation. This is preferable to sending a command for each record (although, that is also valid). Just send the data for the desired records as an array of objects representing the records.</p>
 
 <p>The result will be returned as an array of the created records. This example destructures the expected results for use in the next step.</p>
 
@@ -1367,7 +1373,7 @@
 
 <hr />
 
-<p>To create an edge, we will use the <code class="language-plaintext highlighter-rouge">GraphModality.newEdge()</code> method. This example utilizes the <code class="language-plaintext highlighter-rouge">@rid</code> of the created records, but that is only for brevity. The <code class="language-plaintext highlighter-rouge">GraphModality.newEdge()</code> method allows for defining edges between records that match “key descriptions”, which can result in creating multiple edges between any records that match the provided key/index. See <a href="">the API documentation</a> for details.</p>
+<p>To create an edge, we will use the <code class="language-plaintext highlighter-rouge">GraphModality.newEdge()</code> method. This example utilizes the <code class="language-plaintext highlighter-rouge">@rid</code> of the created records, but that is only for brevity. The <code class="language-plaintext highlighter-rouge">GraphModality.newEdge()</code> method allows for defining edges between records that match “key descriptions”, which can result in creating multiple edges between any records that match the provided key/index. See <a href="../GraphModality/newEdge.html">the API documentation</a> for details.</p>
 
 <p>There is also a <code class="language-plaintext highlighter-rouge">console.log</code> call added to log the records that were created.</p>
 
@@ -1434,7 +1440,7 @@
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">SpriteDatabase</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@valence-corp/sprite</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SpriteDatabase</span><span class="p">({</span>
-  <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aAirportname</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// root will be okay for this tutorial</span>
+  <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aUsername</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// root will be okay for this tutorial</span>
   <span class="na">password</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aPassword</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// your password</span>
   <span class="na">address</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:2480</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// default address for ArcadeDB</span>
   <span class="na">databaseName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ExampleDatabase</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// the existing database</span>
@@ -1486,7 +1492,7 @@
 
 <h4 id="conclusion">Conclusion</h4>
 
-<p>This tutorial explored the basics of creating a graph database using Sprite and ArcadeDB, including: accessing the graph modality, defining the types of vertices and edges in the graph, and creating vertices and edges within a transaction.</p>
+<p>This tutorial demonstrated the basics of creating a graph database using Sprite and ArcadeDB, including: accessing the graph modality, defining the types of vertices and edges in the graph, and creating vertices and edges within a transaction.</p>
 
 <h4 id="whats-next">What’s Next?</h4>
 
