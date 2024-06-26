@@ -119,6 +119,7 @@ async function initializeSearch() {
     appendBackdrop();
     state.visible = true;
     elements.resultsBox.classList.remove("hidden");
+    elements.input.focus();
     document.addEventListener("keydown", checkKeyPress);
   }
 

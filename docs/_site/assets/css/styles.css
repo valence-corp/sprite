@@ -524,8 +524,7 @@ a:hover {
   list-style: none;
 }
 #content ul li {
-  margin: 0 0 0 var(--space-2);
-  padding-left: var(--space-3);
+  margin: 0 0 0 var(--space-section);
   position: relative;
 }
 #content ul li:before {
@@ -533,11 +532,11 @@ a:hover {
   position: absolute;
   border-right: 2px solid var(--accent);
   border-bottom: 2px solid var(--accent);
-  width: 0.4rem;
-  height: 0.4rem;
-  top: 50%;
-  left: -1rem;
-  transform: translateY(-50%) rotate(-45deg);
+  width: var(--space-4);
+  height: var(--space-4);
+  top: var(--space-3);
+  left: var(--space-1-neg);
+  transform: rotate(-45deg);
 }
 #content ul li h4 span {
   color: var(--foreground-primary);
@@ -1353,6 +1352,7 @@ body {
   --space-3: 0.621rem;
   --space-4: 0.3105rem;
   --space-5: 0.1505rem;
+  --space-1-neg: -1.618rem;
   --space-section: var(--space-3);
 }
 @media (min-width: 800px) {

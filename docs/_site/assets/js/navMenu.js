@@ -52,11 +52,19 @@ document.addEventListener("DOMContentLoaded", function () {
     content.style.opacity = 0.65 * (1 - ratio) + 0.35;
   }
 
+  function escHandler(e) {
+    if (e.key === "Escape") {
+      closeMenu();
+    }
+  }
+
   function enableTouchEvents() {
     mainNav.addEventListener("touchstart", handleTouchStart);
     mainNav.addEventListener("touchmove", handleTouchMove);
     mainNav.addEventListener("touchend", handleTouchEnd);
     content.addEventListener("touchstart", closeMenu);
+    content.addEventListener("mousedown", closeMenu);
+    document.addEventListener("keydown", escHandler);
   }
 
   function disableTouchEvents() {
@@ -64,6 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
     mainNav.removeEventListener("touchmove", handleTouchMove);
     mainNav.removeEventListener("touchend", handleTouchEnd);
     content.removeEventListener("touchstart", closeMenu);
+    content.removeEventListener("mousedown", closeMenu);
+    document.removeEventListener("keydown", escHandler);
   }
 
   function closeMenu() {

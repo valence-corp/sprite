@@ -27,20 +27,18 @@
     list-style: none;
   
     li {
-      margin: 0 0 0 var(--space-2);
-      padding-left: var(--space-3);
+      margin: 0 0 0 var(--space-section);
       position: relative;
-  
       &:before {
         content: '';
         position: absolute;
         border-right: 2px solid var(--accent);
         border-bottom: 2px solid var(--accent);
-        width: .4rem;
-        height: .4rem;
-        top: 50%;
-        left: -1rem;
-        transform: translateY(-50%) rotate(-45deg);
+        width: var(--space-4);
+        height: var(--space-4);
+        top: var(--space-3);
+        left: var(--space-1-neg);
+        transform: rotate(-45deg);
       }
   
       h4 {
