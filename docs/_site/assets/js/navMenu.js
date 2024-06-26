@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-
   const mainNav = document.getElementById("main_nav");
   const navButton = document.getElementById("nav_button");
   const navIndicator = navButton.querySelector("svg");
@@ -22,14 +21,11 @@ document.addEventListener("DOMContentLoaded", function () {
   function handleTouchEnd() {
     previousTouchPosition = null;
 
-    if (currentTranslation > -80) {
-      currentTranslation = 0;
-      mainNav.style.transform = `translate3d(${currentTranslation}px, 0, 0)`;
-    } else {
-      currentTranslation = 0;
-      mainNav.style.transform = "";
+    if (currentTranslation < -80) {
       closeMenu();
     }
+    currentTranslation = 0;
+    mainNav.style.transform = "";
   }
 
   function handleTouchStart(event) {
