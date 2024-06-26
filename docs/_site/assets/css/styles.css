@@ -264,13 +264,22 @@ body, html {
 .with-icon svg {
   width: 1rem;
   height: 1rem;
-  margin-right: var(--space-3);
+  margin-right: var(--space-4);
 }
 
 .rtl .with-icon svg {
-  margin: 0 0 0 var(--space-2);
+  margin: 0 0 0 var(--space-4);
 }
 
+.mobile-hidden {
+  display: none;
+}
+
+@media (min-width: 680px) {
+  .mobile-hidden {
+    display: inline;
+  }
+}
 .bottom-border {
   border-bottom: 1px solid var(--frame-border-color);
 }
@@ -691,7 +700,7 @@ a:hover {
   display: none !important;
 }
 
-@media (min-width: 860px) {
+@media (min-width: 820px) {
   #mainNavigation {
     width: 37.8%;
     max-width: 400px;
