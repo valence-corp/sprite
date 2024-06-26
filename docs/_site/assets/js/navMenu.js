@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const content = document.getElementById("content");
   const mainNav = document.getElementById("main_nav");
   const navButton = document.getElementById("nav_button");
   const navIndicator = navButton.querySelector("svg");
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
       closeMenu();
     }
     currentTranslation = 0;
-    mainNav.style.transform = "";
+    mainNav.style.transform = null;
   }
 
   function handleTouchStart(event) {
@@ -44,24 +45,32 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     mainNav.style.transform = `translate3d(${currentTranslation}px, 0, 0)`;
+
+    const mainNavWidth = mainNav.offsetWidth;
+    const ratio = (mainNavWidth + currentTranslation) / mainNavWidth;
+
+    content.style.opacity = 0.65 * (1 - ratio) + 0.35;
   }
 
   function enableTouchEvents() {
     mainNav.addEventListener("touchstart", handleTouchStart);
     mainNav.addEventListener("touchmove", handleTouchMove);
     mainNav.addEventListener("touchend", handleTouchEnd);
+    content.addEventListener("touchstart", closeMenu);
   }
 
   function disableTouchEvents() {
     mainNav.removeEventListener("touchstart", handleTouchStart);
     mainNav.removeEventListener("touchmove", handleTouchMove);
     mainNav.removeEventListener("touchend", handleTouchEnd);
+    content.removeEventListener("touchstart", closeMenu);
   }
 
   function closeMenu() {
     toggleNavState();
     disableTouchEvents();
     navIndicator.innerHTML = openIconMarkup;
+    content.style.opacity = null;
   }
 
   function openMenu() {
@@ -71,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function toggleNavState() {
+    content.classList.toggle("fade");
     mainNav.classList.toggle("open");
     isOpen = !isOpen;
   }
