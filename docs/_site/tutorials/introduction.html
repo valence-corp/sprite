@@ -1211,17 +1211,19 @@
   <li>Executing queries</li>
 </ul>
 
+<p>This is a database driver for issuing SQL (or commands in another language).</p>
+
 <h4 id="modalities">Modalities</h4>
 <hr />
 
-<p>Higher-level abstractions are provided through two modalities: <code class="language-plaintext highlighter-rouge">DocumentModality</code> and <code class="language-plaintext highlighter-rouge">GraphModality</code>. These modules contain methods for performing CRUD operations and queries on specific record types. They are currently exclusively accessed through a <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> instance.</p>
+<p>Higher-level abstractions are provided through two modalities: <code class="language-plaintext highlighter-rouge">DocumentModality</code> and <code class="language-plaintext highlighter-rouge">GraphModality</code>. These modules contain methods for performing CRUD operations and queries on specific record types. They build queries for the user, based on options. Modalities are currently exclusively accessed through a <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> instance.</p>
 
 <p>The modalities’ design reduces overhead by instantiating functionality as required, keeping namespaces focused and organized.</p>
 
 <h4 id="whats-next">What’s next?</h4>
 <hr />
 
-<p>The next step in this tutorial is briefly explains the installation process.</p>
+<p>The next step in this tutorial briefly explains the installation process.</p>
 
           <footer
   class="tutorial padding-v-1 flex nextOnly">

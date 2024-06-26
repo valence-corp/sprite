@@ -38,14 +38,16 @@ The SpriteDatabase module offers methods for performing core database operations
 * Issuing database commands
 * Executing queries
 
+This is a database driver for issuing SQL (or commands in another language).
+
 #### Modalities
 ---
 
-Higher-level abstractions are provided through two modalities: `DocumentModality` and `GraphModality`. These modules contain methods for performing CRUD operations and queries on specific record types. They are currently exclusively accessed through a `SpriteDatabase` instance.
+Higher-level abstractions are provided through two modalities: `DocumentModality` and `GraphModality`. These modules contain methods for performing CRUD operations and queries on specific record types. They build queries for the user, based on options. Modalities are currently exclusively accessed through a `SpriteDatabase` instance.
 
 The modalities' design reduces overhead by instantiating functionality as required, keeping namespaces focused and organized.
 
 #### What's next?
 ---
 
-The next step in this tutorial is briefly explains the installation process.
+The next step in this tutorial briefly explains the installation process.

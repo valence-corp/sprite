@@ -5,7 +5,7 @@ title: Sprite — A typescript driver/client for ArcadeDB
 
 ### Documentation
 
-Sprite is a TypeScript (or JavaScript) driver/client for ArcadeDB. It supports working with data in document, and graph formats. Timeseries and vector functionality will be added when those features are officially released for ArcadeDB.
+Sprite is a TypeScript (or JavaScript) driver/client for ArcadeDB. It supports working with data in document, and graph formats.
 
 _This library is currently in early Alpha._
 
