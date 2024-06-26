@@ -14,8 +14,8 @@ permalink: /SpriteServer/database.html
 
 (**databaseName: *string***)
 
-Returns an SpriteDatabase client for the supplied `databaseName`,
-using the authorization details of the `SpriteServer` client.
+Returns an `SpriteDatabase` instance for the supplied `databaseName`,
+using the authorization details of the `SpriteServer` instance.
 
 #### Example
 
@@ -26,9 +26,17 @@ const server = new SpriteServer({
   address: 'http://localhost:2480',
 });
 
-const database = await server.database('aDatabase');
-// returns an instance of SpriteDatabase
-console.log(database.name);
-// 'aDatabase';
+async function databaseExample() {
+  try {
+    const database = await server.database('aDatabase');
+    // returns an instance of SpriteDatabase
+    console.log(database.name);
+  } catch (error) {
+    // handle errors
+    console.error(error);
+  }
+};
+
+databaseExample();
 ```
 

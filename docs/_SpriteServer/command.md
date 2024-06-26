@@ -14,7 +14,9 @@ permalink: /SpriteServer/command.html
 
 (**command: *string***)
 
-A method for sending commands (as strings) to the server.
+Sends a command to the ArcadeDB server and returns the response.
+
+This method provides a way to execute arbitrary commands on the server, such as creating databases, executing queries, or performing administrative tasks.
 
 #### Example
 
@@ -39,6 +41,10 @@ async function commandExample(databaseName: string) {
     // Will throw an error for conditions such as:
     // Invalid credentials, Database Already Exists, etc.
     console.error(error);
+    // {
+    //   message: 'Encountered an error when sending a command to the server.',
+    //   cause: Error: Invalid credentials
+    // }
   }
 }
 

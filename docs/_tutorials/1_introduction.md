@@ -10,7 +10,10 @@ filename: 1_introduction.md
 
 Sprite is a TypeScript (or JavaScript) driver/client for ArcadeDB, designed to work with data in document and graph formats. Future releases will include support for [timeseries](https://github.com/ArcadeData/arcadedb/discussions/1180) functionality.
 
-The Sprite architecture is organized into focused modules, each serving a specific purpose.
+The Sprite architecture is organized into focused modules.
+
+#### Overview
+---
 
 1. [SpriteServer](#spriteserver)
 2. [SpriteDatabase](#spritedatabase)
@@ -38,11 +41,11 @@ The SpriteDatabase module offers methods for performing core database operations
 #### Modalities
 ---
 
-To provide a higher-level abstraction, Sprite includes two modalities: `DocumentModality` and `GraphModality`. These modalities contain methods for performing CRUD (Create, Read, Update, Delete) operations and queries on specific record types.
+Higher-level abstractions are provided through two modalities: `DocumentModality` and `GraphModality`. These modules contain methods for performing CRUD operations and queries on specific record types. They are currently exclusively accessed through a `SpriteDatabase` instance.
 
 The modalities' design reduces overhead by instantiating functionality as required, keeping namespaces focused and organized.
 
 #### What's next?
 ---
 
-The next step in this tutorial is to explore the installation process, outlined in the following section.
+The next step in this tutorial is to explore the installation process.

@@ -1089,6 +1089,10 @@
   
 </li>
 
+        <li>
+          
+          <a href="/sprite/contributingGuide.html">Contributing</a>
+        </li>
       </ul>
     </div>
     <footer class="padding-h-1 padding-v-3">
@@ -1172,7 +1176,9 @@
 
 <p>(<strong>command: <em>string</em></strong>)</p>
 
-<p>A method for sending commands (as strings) to the server.</p>
+<p>Sends a command to the ArcadeDB server and returns the response.</p>
+
+<p>This method provides a way to execute arbitrary commands on the server, such as creating databases, executing queries, or performing administrative tasks.</p>
 
 <h4 id="example">Example</h4>
 
@@ -1196,6 +1202,10 @@
     <span class="c1">// Will throw an error for conditions such as:</span>
     <span class="c1">// Invalid credentials, Database Already Exists, etc.</span>
     <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+    <span class="c1">// {</span>
+    <span class="c1">//   message: 'Encountered an error when sending a command to the server.',</span>
+    <span class="c1">//   cause: Error: Invalid credentials</span>
+    <span class="c1">// }</span>
   <span class="p">}</span>
 <span class="p">}</span>
 

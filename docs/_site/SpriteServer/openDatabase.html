@@ -1089,6 +1089,10 @@
   
 </li>
 
+        <li>
+          
+          <a href="/sprite/contributingGuide.html">Contributing</a>
+        </li>
       </ul>
     </div>
     <footer class="padding-h-1 padding-v-3">
@@ -1172,7 +1176,15 @@
 
 <p>(<strong>databaseName: <em>string</em></strong>)</p>
 
-<p>Open a database</p>
+<p>When you “open” a database in ArcadeDB, it means you’re creating an instance of the database in memory, allocating resources, and making the database available for operations. Here’s what happens when you open a database:</p>
+
+<ol>
+  <li>Create a new database instance: A new database instance is created in memory, which includes the database’s metadata, schema, and cached data. This instance is used to manage the database’s resources and provide access to the data.</li>
+  <li>Allocate resources: The database instance allocates the necessary resources, such as memory, threads, and file handles, to support the database’s operations. This ensures that the database has the necessary resources to handle incoming requests.</li>
+  <li>Load database metadata and schema: The database’s metadata and schema are loaded into memory, which includes information about the database’s structure, indexes, and relationships.</li>
+  <li>Connect to the underlying storage: The database instance establishes a connection to the underlying storage, such as disk storage, to access the database files.</li>
+  <li>Make the database available for operations: The database is now available for users to perform operations, such as executing queries, creating new records, or modifying existing data.</li>
+</ol>
 
 <h4 id="example">Example</h4>
 
@@ -1188,8 +1200,8 @@
     <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">open</span><span class="p">);</span>
     <span class="c1">// true</span>
   <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
     <span class="c1">// handle errors</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">};</span>
 

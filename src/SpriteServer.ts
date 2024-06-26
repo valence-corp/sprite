@@ -14,7 +14,7 @@ import { validation } from "./validation/ArcadeParameterValidation.js";
  * Methods for interact with an ArcadeDB server. Manage databases, users, etc.
  * @param {ISpriteRestClientConnectionParameters} parameters Connection details to access the server with.
  * @example
- * 
+ *
  * const client = new SpriteServer({
  *   username: 'aUser',
  *   password: 'aPassword',
@@ -49,7 +49,7 @@ class SpriteServer {
    * Useful for remote monitoring of server readiness.
    * @returns {Promise<boolean>} `true` if the server is ready, otherwise `false`.
    * @example
-   * 
+   *
    * const client = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -82,11 +82,15 @@ class SpriteServer {
     }
   };
   /**
-   * Close a database
+   * When you close a database in ArcadeDB, it:
+   * 1. Frees up resources on the server: The database instance is released, and the associated resources, such as memory, threads, and file handles, are returned to the system. This helps to reduce the server's memory footprint and free up resources for other tasks.
+   * 2. Releases it from RAM: The database instance is removed from the server's RAM, which means that the database's metadata, schema, and cached data are no longer stored in memory. This helps to reduce memory usage.
+   * 3. Prevents further operations: Once the database is closed, users can no longer perform operations on the database, such as executing queries, creating new records, or modifying existing data. The database is effectively "offline" until it's reopened.
+   *
    * @param {string} databaseName The name of the database to close.
    * @returns {Promise<boolean>} The response from the server.
    * @example
-   * 
+   *
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -99,8 +103,8 @@ class SpriteServer {
    *     console.log(closed);
    *     // true
    *   } catch (error) {
-   *     console.error(error);
    *     // manage error conditions
+   *     console.error(error);
    *   }
    * };
    *
@@ -116,11 +120,19 @@ class SpriteServer {
     }
   };
   /**
-   * Open a database
+   *
+   * When you "open" a database in ArcadeDB, it means you're creating an instance of the database in memory, allocating resources, and making the database available for operations. Here's what happens when you open a database:
+   *
+   * 1. Create a new database instance: A new database instance is created in memory, which includes the database's metadata, schema, and cached data. This instance is used to manage the database's resources and provide access to the data.
+   * 2. Allocate resources: The database instance allocates the necessary resources, such as memory, threads, and file handles, to support the database's operations. This ensures that the database has the necessary resources to handle incoming requests.
+   * 3. Load database metadata and schema: The database's metadata and schema are loaded into memory, which includes information about the database's structure, indexes, and relationships.
+   * 4. Connect to the underlying storage: The database instance establishes a connection to the underlying storage, such as disk storage, to access the database files.
+   * 5. Make the database available for operations: The database is now available for users to perform operations, such as executing queries, creating new records, or modifying existing data.
+   *
    * @param {string} databaseName The name of the database to open.
    * @returns {Promise<boolean>} The response from the server.
    * @example
-   * 
+   *
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -133,8 +145,8 @@ class SpriteServer {
    *     console.log(open);
    *     // true
    *   } catch (error) {
-   *     console.error(error);
    *     // handle errors
+   *     console.error(error);
    *   }
    * };
    *
@@ -150,22 +162,30 @@ class SpriteServer {
     }
   };
   /**
-   * Returns an SpriteDatabase client for the supplied `databaseName`,
-   * using the authorization details of the `SpriteServer` client.
+   * Returns an `SpriteDatabase` instance for the supplied `databaseName`,
+   * using the authorization details of the `SpriteServer` instance.
    * @param {string} databaseName The name of the database to create a client for.
-   * @returns {SpriteDatabase} An instance of SpriteDatabase.
+   * @returns {SpriteDatabase} An instance of `SpriteDatabase`.
    * @example
-   * 
+   *
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
    *   address: 'http://localhost:2480',
    * });
    *
-   * const database = await server.database('aDatabase');
-   * // returns an instance of SpriteDatabase
-   * console.log(database.name);
-   * // 'aDatabase';
+   * async function databaseExample() {
+   *   try {
+   *     const database = await server.database('aDatabase');
+   *     // returns an instance of SpriteDatabase
+   *     console.log(database.name);
+   *   } catch (error) {
+   *     // handle errors
+   *     console.error(error);
+   *   }
+   * };
+   *
+   * databaseExample();
    */
   database = (databaseName: string): SpriteDatabase => {
     try {
@@ -181,9 +201,14 @@ class SpriteServer {
     }
   };
   /**
-   * A method for sending commands (as strings) to the server.
-   * @param {string} command The [command](https://docs.arcadedb.com/#HTTP-ServerCommand) to send to the server, such as `CREATE DATABASE aDatabase`.
-   * @returns {Promise<object>} The response is simplified from the raw response from the ArcadeDB server. JSON responses automatically return just the `result` property of the raw JSON object returned from the server. Results such as `OK` are returned as `boolean` values.
+   * Sends a command to the ArcadeDB server and returns the response.
+   *
+   * This method provides a way to execute arbitrary commands on the server, such as creating databases, executing queries, or performing administrative tasks.
+   *
+   * @param {string} command The command to send to the server, such as `CREATE DATABASE aDatabase`. The command string should be a valid ArcadeDB command, and it's case-sensitive.
+   * @returns {Promise<T>} The response from the server, simplified from the raw JSON response. The response object will contain the `result` property, which can be a boolean value (e.g., `OK`), a string, or an object. Other properties may include `user`, `version`, and `serverName`.
+   * @throws {Error} If the command fails to execute, an error will be thrown with a message describing the problem. The error object will contain a `cause` property with the underlying error.
+   *
    * @example
    *
    * const server = new SpriteServer({
@@ -206,6 +231,10 @@ class SpriteServer {
    *     // Will throw an error for conditions such as:
    *     // Invalid credentials, Database Already Exists, etc.
    *     console.error(error);
+   *     // {
+   *     //   message: 'Encountered an error when sending a command to the server.',
+   *     //   cause: Error: Invalid credentials
+   *     // }
    *   }
    * }
    *
@@ -234,7 +263,7 @@ class SpriteServer {
    * @param {string} command The [command](https://docs.arcadedb.com/#HTTP-ServerCommand) to send to the server, such as `CREATE DATABASE`.
    * @returns {boolean} `true` if the command was successful.
    * @example
-   * 
+   *
    * async function booleanCommandExample(databaseName: string) {
    *   try {
    *     const response = await server.booleanCommand(`CREATE DATABASE ${databaseName}`);
@@ -262,7 +291,7 @@ class SpriteServer {
    * @returns {Promise<SpriteConnectClusterResponse>} The response from the server.
    * @throws `Error` if the cluster could not be connected.
    * @example
-   * 
+   *
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -298,7 +327,7 @@ class SpriteServer {
    * @param {string} databaseName The name of the database to create.
    * @returns {Promise<SpriteDatabase>} An instance of `SpriteDatabase`, targeting the created database.
    * @example
-   * 
+   *
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -349,7 +378,7 @@ class SpriteServer {
    * @returns {Promise<boolean>} `true` if the user was created successfully.
    * @throws `Error` if the user could not be created.
    * @example
-   * 
+   *
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -432,7 +461,7 @@ class SpriteServer {
    * @returns {Promise<boolean>} `true` if database exists, `false` if not
    * @throws `Error` if the existence of the database could not be verified.
    * @example
-   * 
+   *
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -480,7 +509,7 @@ class SpriteServer {
    * @returns {Promise<SpriteDisconnectClusterResponse>} The response from the server.
    * @throws `Error` if the cluster could not be disconnected.
    * @example
-   * 
+   *
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -516,7 +545,7 @@ class SpriteServer {
    * @returns {Promise<boolean>} `true` if successfully dropped.
    * @throws `Error` if the database could not be dropped.
    * @example
-   * 
+   *
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -551,7 +580,7 @@ class SpriteServer {
    * @returns {Promise<SpriteDropUserResult>} `true` if the user was successfully dropped.
    * @throws `Error` if the user could not be dropped.
    * @example
-   * 
+   *
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -585,7 +614,7 @@ class SpriteServer {
    * @returns {Promise<SpriteGetServerEventsResult>} An object containing he server events from the server, and filenames of the associated logs.
    * @throws `Error` if there was a problem fetching the event logs.
    * @example
-   * 
+   *
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -639,7 +668,7 @@ class SpriteServer {
    * @returns {Promise<Response>} The response from the server.
    * @throws `Error` if the information could not be retrieved.
    * @example
-   * 
+   *
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -681,7 +710,7 @@ class SpriteServer {
    * @returns {Promise<Array<string>>} A list (array) of database names present on the server.
    * @throws `Error` if the database list could not be retrieved.
    * @example
-   * 
+   *
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',
@@ -719,7 +748,7 @@ class SpriteServer {
    * @returns `true` if the server is successfully shutdown.
    * @throws `Error` if there is a problem attempting the shutdown.
    * @example
-   * 
+   *
    * const server = new SpriteServer({
    *   username: 'aUser',
    *   password: 'aPassword',

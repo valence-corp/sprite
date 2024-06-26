@@ -1087,6 +1087,10 @@
   
 </li>
 
+        <li>
+          
+          <a href="/sprite/contributingGuide.html">Contributing</a>
+        </li>
       </ul>
     </div>
     <footer class="padding-h-1 padding-v-3">
@@ -1173,7 +1177,10 @@
 
           <p>Sprite is a TypeScript (or JavaScript) driver/client for ArcadeDB, designed to work with data in document and graph formats. Future releases will include support for <a href="https://github.com/ArcadeData/arcadedb/discussions/1180">timeseries</a> functionality.</p>
 
-<p>The Sprite architecture is organized into focused modules, each serving a specific purpose.</p>
+<p>The Sprite architecture is organized into focused modules.</p>
+
+<h4 id="overview">Overview</h4>
+<hr />
 
 <ol>
   <li><a href="#spriteserver">SpriteServer</a></li>
@@ -1207,14 +1214,14 @@
 <h4 id="modalities">Modalities</h4>
 <hr />
 
-<p>To provide a higher-level abstraction, Sprite includes two modalities: <code class="language-plaintext highlighter-rouge">DocumentModality</code> and <code class="language-plaintext highlighter-rouge">GraphModality</code>. These modalities contain methods for performing CRUD (Create, Read, Update, Delete) operations and queries on specific record types.</p>
+<p>Higher-level abstractions are provided through two modalities: <code class="language-plaintext highlighter-rouge">DocumentModality</code> and <code class="language-plaintext highlighter-rouge">GraphModality</code>. These modules contain methods for performing CRUD operations and queries on specific record types. They are currently exclusively accessed through a <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> instance.</p>
 
 <p>The modalities’ design reduces overhead by instantiating functionality as required, keeping namespaces focused and organized.</p>
 
 <h4 id="whats-next">What’s next?</h4>
 <hr />
 
-<p>The next step in this tutorial is to explore the installation process, outlined in the following section.</p>
+<p>The next step in this tutorial is to explore the installation process.</p>
 
           <footer
   class="tutorial padding-v-1 flex nextOnly">

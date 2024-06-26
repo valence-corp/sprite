@@ -1089,6 +1089,10 @@
   
 </li>
 
+        <li>
+          
+          <a href="/sprite/contributingGuide.html">Contributing</a>
+        </li>
       </ul>
     </div>
     <footer class="padding-h-1 padding-v-3">
@@ -1172,8 +1176,8 @@
 
 <p>(<strong>databaseName: <em>string</em></strong>)</p>
 
-<p>Returns an SpriteDatabase client for the supplied <code class="language-plaintext highlighter-rouge">databaseName</code>,
-using the authorization details of the <code class="language-plaintext highlighter-rouge">SpriteServer</code> client.</p>
+<p>Returns an <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> instance for the supplied <code class="language-plaintext highlighter-rouge">databaseName</code>,
+using the authorization details of the <code class="language-plaintext highlighter-rouge">SpriteServer</code> instance.</p>
 
 <h4 id="example">Example</h4>
 
@@ -1183,10 +1187,18 @@ using the authorization details of the <code class="language-plaintext highlight
   <span class="na">address</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://localhost:2480</span><span class="dl">'</span><span class="p">,</span>
 <span class="p">});</span>
 
-<span class="kd">const</span> <span class="nx">database</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">server</span><span class="p">.</span><span class="nf">database</span><span class="p">(</span><span class="dl">'</span><span class="s1">aDatabase</span><span class="dl">'</span><span class="p">);</span>
-<span class="c1">// returns an instance of SpriteDatabase</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">database</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-<span class="c1">// 'aDatabase';</span>
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">databaseExample</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">database</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">server</span><span class="p">.</span><span class="nf">database</span><span class="p">(</span><span class="dl">'</span><span class="s1">aDatabase</span><span class="dl">'</span><span class="p">);</span>
+    <span class="c1">// returns an instance of SpriteDatabase</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">database</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// handle errors</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nf">databaseExample</span><span class="p">();</span>
 </code></pre></div></div>
 
 
