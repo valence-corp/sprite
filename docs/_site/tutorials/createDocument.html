@@ -1178,9 +1178,9 @@
           <h4 id="introduction">Introduction</h4>
 <hr />
 
-<p>Most developers agree that sending SQL (or other langage) directly to your database is the most flexible and efficient method of conduction queries and database operations in a JavaScript application, however, it’s not always the easiest method to get started in building out your functionality.</p>
+<p>Most developers agree that sending SQL (or another query language) directly to your database is the most flexible and efficient method of conduction queries and database operations in a JavaScript application, however, it’s not always the easiest method to get started in building out your functionality.</p>
 
-<p>There are abstractions built over the database driver functionality of the <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> class, called modalities. They contain specialized methods that build SQL queries for you based on the arguments passed to them. Understand there is a certain level of overhead intrinsic to performing this type of work in JavaScript, and you should consider the best method for your application.</p>
+<p>Sprite has abstractions built over the database driver functionality of the <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> class, called modalities. They contain typed methods that build SQL queries based on the arguments passed to them. Understand there is a certain level of overhead intrinsic to performing this type of work in JavaScript, and you should consider the best method for your application.</p>
 
 <p>This tutorial will demonstrate the basics of using the <code class="language-plaintext highlighter-rouge">DocumentModality</code> via the <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> module to define a document type, and create a document.</p>
 
@@ -1352,7 +1352,7 @@
 <h4 id="running-the-example">Running the Example</h4>
 <hr />
 
-<p>The complete example is show below. Ensure your code matches this, and execute.</p>
+<p>The complete example is show below. Ensure your code mirrors this functionality, and execute.</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">SpriteDatabase</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@valence-corp/sprite</span><span class="dl">"</span><span class="p">;</span>
 
@@ -1398,14 +1398,14 @@
 <h4 id="conclusion">Conclusion</h4>
 <hr />
 
-<p>There should now be a document in “ExampleDatabase” of a “aDocument” type.</p>
+<p>There should now be a document in “ExampleDatabase” of “aDocument” type.</p>
 
 <p>You can verify the existence of this document using the <a href="https://docs.arcadedb.com/#Studio">ArcadeDB web interface</a>.</p>
 
 <h4 id="what-is-next">What is next?</h4>
 <hr />
 
-<p>The next section will demonstrate how to use the <code class="language-plaintext highlighter-rouge">GraphModality</code> to build a simple graph database. perform operations.</p>
+<p>The next section will demonstrate how to use the <code class="language-plaintext highlighter-rouge">GraphModality</code> to build a simple graph database.</p>
 
           <footer
   class="tutorial padding-v-1 flex ">

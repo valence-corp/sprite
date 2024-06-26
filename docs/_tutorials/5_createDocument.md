@@ -12,9 +12,9 @@ filename: 5_createDocument.md
 #### Introduction
 ---
 
-Most developers agree that sending SQL (or other langage) directly to your database is the most flexible and efficient method of conduction queries and database operations in a JavaScript application, however, it's not always the easiest method to get started in building out your functionality.
+Most developers agree that sending SQL (or another query language) directly to your database is the most flexible and efficient method of conduction queries and database operations in a JavaScript application, however, it's not always the easiest method to get started in building out your functionality.
 
-There are abstractions built over the database driver functionality of the `SpriteDatabase` class, called modalities. They contain specialized methods that build SQL queries for you based on the arguments passed to them. Understand there is a certain level of overhead intrinsic to performing this type of work in JavaScript, and you should consider the best method for your application.
+Sprite has abstractions built over the database driver functionality of the `SpriteDatabase` class, called modalities. They contain typed methods that build SQL queries based on the arguments passed to them. Understand there is a certain level of overhead intrinsic to performing this type of work in JavaScript, and you should consider the best method for your application.
 
 This tutorial will demonstrate the basics of using the `DocumentModality` via the `SpriteDatabase` module to define a document type, and create a document.
 
@@ -187,7 +187,7 @@ async function documentModalityExample() {
 #### Running the Example
 ---
 
-The complete example is show below. Ensure your code matches this, and execute.
+The complete example is show below. Ensure your code mirrors this functionality, and execute.
 
 ```ts
 import { SpriteDatabase } from "@valence-corp/sprite";
@@ -234,11 +234,11 @@ documentModalityExample();
 #### Conclusion
 ---
 
-There should now be a document in "ExampleDatabase" of a "aDocument" type.
+There should now be a document in "ExampleDatabase" of "aDocument" type.
 
 You can verify the existence of this document using the [ArcadeDB web interface](https://docs.arcadedb.com/#Studio).
 
 #### What is next?
 ---
 
-The next section will demonstrate how to use the `GraphModality` to build a simple graph database. perform operations.
+The next section will demonstrate how to use the `GraphModality` to build a simple graph database.
