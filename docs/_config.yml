@@ -1,6 +1,14 @@
 baseurl: "/sprite"
 collections:
-  classes:
+  SpriteServer:
+    output: true
+  SpriteDatabase:
+    output: true
+  DocumentModality:
+    output: true
+  GraphModality:
+    output: true
+  SpriteTransaction:
     output: true
   tutorials:
     output: true

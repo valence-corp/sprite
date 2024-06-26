@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const mainNav = document.getElementById("main_nav");
   const navButton = document.getElementById("nav_button");
   const navIndicator = navButton.querySelector("svg");
-  const links = mainNav.querySelectorAll('a')
+  const links = mainNav.querySelectorAll("a");
 
   const closeIconMarkup = `
     <line x1="3" y1="4" x2="21" y2="21"></line>
@@ -66,9 +66,11 @@ document.addEventListener("DOMContentLoaded", function () {
     content.addEventListener("touchstart", closeMenu);
     content.addEventListener("mousedown", closeMenu);
     document.addEventListener("keydown", escHandler);
-    links.forEach((link)=>{
-      link.addEventListener('click', closeMenu);
-    })
+    // TODO: This could be handled in the ajax script
+    // since it already handles link clicks
+    links.forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
   }
 
   function disableTouchEvents() {
@@ -78,9 +80,9 @@ document.addEventListener("DOMContentLoaded", function () {
     content.removeEventListener("touchstart", closeMenu);
     content.removeEventListener("mousedown", closeMenu);
     document.removeEventListener("keydown", escHandler);
-    links.forEach((link)=>{
-      link.removeEventListener('click', closeMenu);
-    })
+    links.forEach((link) => {
+      link.removeEventListener("click", closeMenu);
+    });
   }
 
   function closeMenu() {
