@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "test": "jest ./test/",
-    "lint": "pnpm eslint --fix ./test/ ./src",
+    "lint": "pnpm eslint eslint.config.ts --fix ./test/ ./src",
     "format": "pnpm prettier --write ./test/ ./src",
     "unit-test": "jest ./test/unit/database/client",
     "integration-test": "jest ./src/test/integration/",
