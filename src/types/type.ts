@@ -1,4 +1,4 @@
-import { OmitMeta, TypeNames } from "./database.js";
+import { OmitMeta, TypeNames } from './database.js';
 
 export type ValidSuperTypeKey<S, N extends TypeNames<S>> = keyof Omit<S, N>;
 
@@ -24,25 +24,25 @@ export type SpriteSchemaDefinitionMinMax = {
 };
 
 export type SpriteSchemaStringDefinition = {
-  type: "string";
+  type: 'string';
 } & SpriteSchemaDefinitionMinMax;
 
 export type SpriteSchemaNumberDefinition = {
-  type: "short" | "integer" | "long" | "float" | "double" | "decimal";
+  type: 'short' | 'integer' | 'long' | 'float' | 'double' | 'decimal';
 } & SpriteSchemaDefinitionMinMax;
 
 export type SpriteSchemaMapDefinition = {
-  type: "map";
+  type: 'map';
 };
 
 export type SpriteSchemaBooleanDefinition = {
-  type: "boolean";
+  type: 'boolean';
 };
 export type SpriteSchemaDateDefinition = {
-  type: "date" | "datetime";
+  type: 'date' | 'datetime';
 } & SpriteSchemaDefinitionMinMax;
 
-export type SpriteSchemaBinaryDefinition = { type: "binary" };
+export type SpriteSchemaBinaryDefinition = { type: 'binary' };
 
 export type ArcadeSchemaDefaultValue<T> =
   T extends Map<unknown, unknown> ? { [key: string]: string } : T;
@@ -97,7 +97,7 @@ export type ArcadeSchemaConstraints<T> = T extends string | number
 export type SpriteSchemaProperty<
   S,
   N extends TypeNames<S>,
-  P extends keyof S[N],
+  P extends keyof S[N]
 > = SpriteSchemaTypeDefinition<S[N][P]> & ArcadeSchemaConstraints<S[N][P]>;
 
 export type SpriteSchemaDefinition<S, N extends TypeNames<S>> = {
@@ -105,9 +105,9 @@ export type SpriteSchemaDefinition<S, N extends TypeNames<S>> = {
 };
 
 export type ArcadeSchemaDataType<T> = T extends string
-  ? "string"
+  ? 'string'
   : T extends number
-    ? "integer" | "float" | "short" | "long"
+    ? 'integer' | 'float' | 'short' | 'long'
     : T extends ArcadeEmbeddedMap<unknown>
-      ? "map"
+      ? 'map'
       : never;

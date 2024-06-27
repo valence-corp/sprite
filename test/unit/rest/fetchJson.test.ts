@@ -1,22 +1,22 @@
-import { endpoints } from "../../../src/endpoints/server.js";
-import { client } from "./utilities/testClient.js";
-import { variables, testAuth } from "../../variables.js";
-import { testPropagateErrors } from "../helpers/testPropagateErrors.js";
+import { endpoints } from '../../../src/endpoints/server.js';
+import { client } from './utilities/testClient.js';
+import { variables, testAuth } from '../../variables.js';
+import { testPropagateErrors } from '../helpers/testPropagateErrors.js';
 
-describe("SpriteBase.fetchJson()", () => {
-  it("should make a properly formatted fetch request with supplied options", async () => {
+describe('SpriteBase.fetchJson()', () => {
+  it('should make a properly formatted fetch request with supplied options', async () => {
     // Arrange
     const options: RequestInit = {
-      method: "POST",
+      method: 'POST',
       headers: {
         Authorization: `Basic ${testAuth}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ command: "non-empty string" }),
+      body: JSON.stringify({ command: 'non-empty string' })
     };
 
-    jest.spyOn(global, "fetch").mockResolvedValue({
-      json: async () => variables.jsonResponse,
+    jest.spyOn(global, 'fetch').mockResolvedValue({
+      json: async () => variables.jsonResponse
     } as Response);
 
     // Act
@@ -25,18 +25,18 @@ describe("SpriteBase.fetchJson()", () => {
     // Assert
     expect(fetch).toHaveBeenCalledWith(
       `${variables.address}${endpoints.command}`,
-      options,
+      options
     );
   });
 
   // I believe that if the fetchJson method is being used that it should always return the
   // "result" property from the object that the fetch method returns. This simplifies
   // the code for higher level methods.
-  it("should return the result property of the response json object", async () => {
+  it('should return the result property of the response json object', async () => {
     // Arrange
-    jest.spyOn(global, "fetch").mockResolvedValue({
+    jest.spyOn(global, 'fetch').mockResolvedValue({
       status: 200,
-      json: async () => variables.jsonResponse,
+      json: async () => variables.jsonResponse
     } as Response);
 
     // Act
@@ -47,23 +47,23 @@ describe("SpriteBase.fetchJson()", () => {
 
   it(`should throw an ArcadeDatabaseError when it receives an object with an error property`, async () => {
     // Arrange
-    jest.spyOn(global, "fetch").mockResolvedValueOnce({
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
       status: 200,
       json: async () => ({
-        error: "test",
-        detail: "test details",
-      }),
+        error: 'test',
+        detail: 'test details'
+      })
     } as Response);
 
     // Act & Assert
     expect(client.fetchJson(endpoints.command)).rejects.toMatchSnapshot();
   });
 
-  it("should propagate errors from internal methods", async () => {
+  it('should propagate errors from internal methods', async () => {
     // Arrange
     jest
-      .spyOn(global, "fetch")
-      .mockRejectedValueOnce(new TypeError("fetch failed"));
+      .spyOn(global, 'fetch')
+      .mockRejectedValueOnce(new TypeError('fetch failed'));
 
     // Assert & Act
     await expect(client.fetchJson(endpoints.command)).rejects.toMatchSnapshot();

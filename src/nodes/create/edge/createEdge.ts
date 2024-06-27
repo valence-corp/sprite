@@ -4,7 +4,7 @@ export function createEdge<T>(typeName: T) {
     return `CREATE EDGE ${typeName}`;
   } catch (error) {
     throw new TypeError(`Could not set CREATE EDGE [typeName] command.`, {
-      cause: error,
+      cause: error
     });
   }
 }

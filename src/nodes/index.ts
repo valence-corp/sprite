@@ -1,11 +1,11 @@
-import { createEdgeNodes } from "./create/edge/index.js";
-import { insertRecordNodes } from "./insert/index.js";
-import { createTypeNodes } from "./create/type/index.js";
-import { dropTypeNodes } from "./drop/type/index.js";
-import { createNodes } from "./create/index.js";
-import { updateRecordNodes } from "./update/record/index.js";
-import { selectFromNodes } from "./select/from/index.js";
-import { deleteFromNodes } from "./delete/index.js";
+import { createEdgeNodes } from './create/edge/index.js';
+import { insertRecordNodes } from './insert/index.js';
+import { createTypeNodes } from './create/type/index.js';
+import { dropTypeNodes } from './drop/type/index.js';
+import { createNodes } from './create/index.js';
+import { updateRecordNodes } from './update/record/index.js';
+import { selectFromNodes } from './select/from/index.js';
+import { deleteFromNodes } from './delete/index.js';
 
 export interface ISpriteSqlNodes {
   create: {
@@ -24,21 +24,21 @@ export const nodes = {
   create: {
     ...createNodes,
     edge: createEdgeNodes,
-    type: createTypeNodes,
+    type: createTypeNodes
   },
   drop: {
-    type: dropTypeNodes,
+    type: dropTypeNodes
   },
   insert: {
-    record: insertRecordNodes,
+    record: insertRecordNodes
   },
   update: {
-    record: updateRecordNodes,
+    record: updateRecordNodes
   },
   select: {
-    from: selectFromNodes,
+    from: selectFromNodes
   },
   delete: {
-    from: deleteFromNodes,
-  },
+    from: deleteFromNodes
+  }
 } as const;

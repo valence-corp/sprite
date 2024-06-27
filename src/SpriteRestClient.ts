@@ -1,10 +1,10 @@
-import { ArcadeDatabaseError } from "./errors/ArcadeDatabaseError.js";
-import { ArcadeFetchError } from "./errors/ArcadeFetchError.js";
-import { endpoints } from "./endpoints/server.js";
+import { ArcadeDatabaseError } from './errors/ArcadeDatabaseError.js';
+import { ArcadeFetchError } from './errors/ArcadeFetchError.js';
+import { endpoints } from './endpoints/server.js';
 import {
   ISpriteConnection,
-  ISpriteRestClientConnectionParameters,
-} from "./types/client.js";
+  ISpriteRestClientConnectionParameters
+} from './types/client.js';
 
 /**
  * Handles the fetch implementation and formatting of credentials.
@@ -21,7 +21,7 @@ class SpriteRestClient {
    * @throws `Error` if valid parameter types are not received, or something else causes an error when building the object.
    */
   getConnection = (
-    params: ISpriteRestClientConnectionParameters,
+    params: ISpriteRestClientConnectionParameters
   ): ISpriteConnection => {
     try {
       // this.validate.nonEmptyString(params.username);
@@ -30,19 +30,19 @@ class SpriteRestClient {
 
       const base64EncodedCredentials = this.encodeCredentials(
         params.username,
-        params.password,
+        params.password
       );
 
       return {
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Basic ${base64EncodedCredentials}`,
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${base64EncodedCredentials}`
         },
-        address: params.address,
+        address: params.address
       };
     } catch (error) {
-      throw new Error("There was an error building the connection object.", {
-        cause: error,
+      throw new Error('There was an error building the connection object.', {
+        cause: error
       });
     }
   };
@@ -63,18 +63,18 @@ class SpriteRestClient {
     // TODO: I have not tried this is Deno or a browser environment.
     try {
       const credentials = `${username}:${password}`;
-      if (typeof window !== "undefined" && typeof window.btoa === "function") {
+      if (typeof window !== 'undefined' && typeof window.btoa === 'function') {
         return window.btoa(credentials);
-      } else if (typeof Buffer === "function") {
-        return Buffer.from(credentials, "utf-8").toString("base64");
+      } else if (typeof Buffer === 'function') {
+        return Buffer.from(credentials, 'utf-8').toString('base64');
       } else {
         throw new Error(
-          "Could not determine the encoding function to use given the current JavaScript environment.",
+          'Could not determine the encoding function to use given the current JavaScript environment.'
         );
       }
     } catch (error) {
-      throw new Error("Could not base64 encode the credentials.", {
-        cause: error,
+      throw new Error('Could not base64 encode the credentials.', {
+        cause: error
       });
     }
   };
@@ -90,17 +90,17 @@ class SpriteRestClient {
    */
   fetch = async (
     endpoint: string,
-    { method = "GET", body, headers }: RequestInit = {},
+    { method = 'GET', body, headers }: RequestInit = {}
   ): Promise<Response> => {
     const response = await fetch(`${this.connection.address}${endpoint}`, {
       method,
       headers: headers
         ? {
             ...this.connection.headers,
-            ...headers,
+            ...headers
           }
         : this.connection.headers,
-      body,
+      body
     });
     switch (response.status) {
       case 403:
@@ -125,13 +125,13 @@ class SpriteRestClient {
    */
   fetchJson = async <T>(
     endpoint: string,
-    parameters?: RequestInit,
+    parameters?: RequestInit
   ): Promise<T> => {
     const response = await this.fetch(endpoint, parameters);
     const json = await response.json();
-    if ("result" in json) {
+    if ('result' in json) {
       return json.result;
-    } else if ("error" in json) {
+    } else if ('error' in json) {
       throw new ArcadeDatabaseError(json);
     } else {
       return json;
@@ -146,37 +146,37 @@ class SpriteRestClient {
    */
   serverCommand = async <T>(
     command: string,
-    parameters?: string | object,
+    parameters?: string | object
   ): Promise<T> => {
     try {
       //this.validate.nonEmptyString(command);
 
-      if (typeof parameters === "string") {
+      if (typeof parameters === 'string') {
         //this.validate.nonEmptyString(parameters);
       }
 
-      if (typeof parameters === "object") {
+      if (typeof parameters === 'object') {
         //this.validate.nonEmptyObject(parameters);
       }
 
       const parametersString = parameters
-        ? typeof parameters === "object"
+        ? typeof parameters === 'object'
           ? ` ${JSON.stringify(parameters)}`
           : ` ${parameters}`
-        : "";
+        : '';
 
       const body = JSON.stringify({
-        command: `${command}${parametersString}`,
+        command: `${command}${parametersString}`
       });
 
       return await this.fetchJson<T>(endpoints.command, {
-        method: "POST",
-        body,
+        method: 'POST',
+        body
       });
     } catch (error) {
       throw new Error(
         `Encountered an error when sending a command to the server.`,
-        { cause: error },
+        { cause: error }
       );
     }
   };

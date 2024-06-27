@@ -1,8 +1,8 @@
-import { ArcadeSelectTimeoutStrategy } from "../nodes/types.js";
-import { ISpriteRestClientConnectionParameters } from "./client.js";
-import { SpriteRestClient } from "../SpriteRestClient.js";
-import { SpriteTransaction } from "../SpriteTransaction.js";
-import { ValidSuperTypeKey } from "./type.js";
+import { ArcadeSelectTimeoutStrategy } from '../nodes/types.js';
+import { ISpriteRestClientConnectionParameters } from './client.js';
+import { SpriteRestClient } from '../SpriteRestClient.js';
+import { SpriteTransaction } from '../SpriteTransaction.js';
+import { ValidSuperTypeKey } from './type.js';
 
 /**
  * The possible values for a parameter of a command or query
@@ -13,13 +13,13 @@ export type SpriteAllowedParamValues = string | boolean | number;
  * The possible categories of a record in ArcadeDB,
  * as they appear in the record's `@cat` property.
  */
-export type ArcadeRecordCategory = "d" | "e" | "v";
+export type ArcadeRecordCategory = 'd' | 'e' | 'v';
 
 /**
  * The possible record types, as expected to be
  * supplied to a `CREATE TYPE` sql operation.
  */
-export type ArcadeRecordType = "document" | "edge" | "vertex";
+export type ArcadeRecordType = 'document' | 'edge' | 'vertex';
 
 /**
  * The base metadata for record in
@@ -27,11 +27,11 @@ export type ArcadeRecordType = "document" | "edge" | "vertex";
  */
 export type RecordMeta = {
   /** The id of the record. */
-  "@rid": string;
+  '@rid': string;
   /** The category of the record. */
-  "@cat": ArcadeRecordCategory;
+  '@cat': ArcadeRecordCategory;
   /** The type of the record. */
-  "@type": string;
+  '@type': string;
 };
 
 /**
@@ -40,9 +40,9 @@ export type RecordMeta = {
  */
 export type EdgeRecordMeta = RecordMeta & {
   /** The `@rid` of the vertex the edge goes to */
-  "@in": string;
+  '@in': string;
   /** The `@rid` of the vertex the edge comes from */
-  "@out": string;
+  '@out': string;
 };
 
 /**
@@ -101,12 +101,12 @@ export interface ISpriteDatabaseClientParameters {
  * to `SpriteDatabase.query()` and `SpriteDatabase.command()`
  */
 export type ArcadeSupportedQueryLanguages =
-  | "sql"
-  | "sqlscript"
-  | "graphql"
-  | "cypher"
-  | "gremlin"
-  | "mongo";
+  | 'sql'
+  | 'sqlscript'
+  | 'graphql'
+  | 'cypher'
+  | 'gremlin'
+  | 'mongo';
 
 /**
  * Options to create a new type with.
@@ -170,9 +170,9 @@ export type SpriteTransactionCallback =
  * @default 'round-robin'
  */
 export type ArcadeBucketSelectionStrategies =
-  | "round-robin"
-  | "thread"
-  | "partitioned<primary-key>";
+  | 'round-robin'
+  | 'thread'
+  | 'partitioned<primary-key>';
 
 /**
  * A type definition returned by ArcadeDB when a getSchema command
@@ -212,7 +212,7 @@ export type ArcadeGetSchemaResponse = ArcadeTypeDefinition[];
 
 /** SQL Explanation Execution Plan */
 export type ArcadeSqlExplanationExecutionPlan = {
-  type: "QueryExecutionPlan" | "DDLExecutionPlan";
+  type: 'QueryExecutionPlan' | 'DDLExecutionPlan';
   javaType: string;
   cost: number;
   prettyPrint: string;
@@ -255,42 +255,42 @@ export type ArcadeQueryResponse<T = unknown> = ArcadeCommandResponse<T>;
 
 // TODO: have not checked these for compatibility with ArcadeDB
 export declare const COMPARISON_OPERATORS: readonly [
-  "=",
-  "==",
-  "!=",
-  "<>",
-  ">",
-  ">=",
-  "<",
-  "<=",
-  "in",
-  "not in",
-  "is",
-  "is not",
-  "like",
-  "not like",
-  "match",
-  "ilike",
-  "not ilike",
-  "@>",
-  "<@",
-  "&&",
-  "?",
-  "?&",
-  "!<",
-  "!>",
-  "<=>",
-  "!~",
-  "~",
-  "~*",
-  "!~*",
-  "@@",
-  "@@@",
-  "!!",
-  "<->",
-  "regexp",
-  "is distinct from",
-  "is not distinct from",
+  '=',
+  '==',
+  '!=',
+  '<>',
+  '>',
+  '>=',
+  '<',
+  '<=',
+  'in',
+  'not in',
+  'is',
+  'is not',
+  'like',
+  'not like',
+  'match',
+  'ilike',
+  'not ilike',
+  '@>',
+  '<@',
+  '&&',
+  '?',
+  '?&',
+  '!<',
+  '!>',
+  '<=>',
+  '!~',
+  '~',
+  '~*',
+  '!~*',
+  '@@',
+  '@@@',
+  '!!',
+  '<->',
+  'regexp',
+  'is distinct from',
+  'is not distinct from'
 ];
 
 /** Operators for a `WHERE` sql statement */
@@ -300,7 +300,7 @@ export type SpriteOperators = (typeof COMPARISON_OPERATORS)[number];
 export interface ISpriteSelectFromOptions<
   S,
   N extends keyof S,
-  P extends keyof WithRid<S, N>,
+  P extends keyof WithRid<S, N>
 > {
   /**
    * Designates conditions to filter the result-set.
@@ -316,7 +316,7 @@ export interface ISpriteSelectFromOptions<
      * Defines the direction to sort the result (ASCending or DESCending).
      * @default 'ASC'.
      */
-    direction?: "ASC" | "DESC";
+    direction?: 'ASC' | 'DESC';
   };
   /**
    * Defines the number of records you want to skip from the start of the result-set.
@@ -351,7 +351,7 @@ export interface ISpriteSelectFromOptions<
  * A base type, with an `@rid` property added.
  */
 export type WithRid<S, N extends TypeNames<S>> = OmitMeta<S[N]> & {
-  "@rid": string;
+  '@rid': string;
 };
 
 /**
@@ -361,7 +361,7 @@ export type WithRid<S, N extends TypeNames<S>> = OmitMeta<S[N]> & {
 export type SpriteWhereClause<
   S,
   N extends TypeNames<S>,
-  P extends keyof WithRid<S, N>,
+  P extends keyof WithRid<S, N>
 > = [P, SpriteOperators, WithRid<S, N>[P]];
 
 /**
@@ -371,7 +371,7 @@ export type SpriteWhereClause<
 export interface ISpriteDeleteFromOptions<
   S,
   N extends TypeNames<S>,
-  P extends keyof WithRid<S, N>,
+  P extends keyof WithRid<S, N>
 > {
   /**
    * Designates conditions to filter the result-set.
@@ -390,5 +390,5 @@ export interface ISpriteDeleteFromOptions<
    * Defines what is returned following the command: the count of the records before (`BEFORE`) or following deletion (`COUNT`).
    * @default 'COUNT'
    */
-  return?: "COUNT" | "BEFORE";
+  return?: 'COUNT' | 'BEFORE';
 }

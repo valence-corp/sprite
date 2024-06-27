@@ -1,6 +1,6 @@
-import { TypeNames } from "../../types/database.js";
-import { SpriteEdgeVertexDescriptor } from "../../types/edge.js";
-import { selectIndex } from "../../nodes/select/selectIndex.js";
+import { TypeNames } from '../../types/database.js';
+import { SpriteEdgeVertexDescriptor } from '../../types/edge.js';
+import { selectIndex } from '../../nodes/select/selectIndex.js';
 
 // TODO: Need object validation if going this route.
 
@@ -14,9 +14,9 @@ import { selectIndex } from "../../nodes/select/selectIndex.js";
  * @returns
  */
 export function buildEdgePoint<V, N extends TypeNames<V>>(
-  point: SpriteEdgeVertexDescriptor<V, N>,
+  point: SpriteEdgeVertexDescriptor<V, N>
 ): string {
-  return typeof point === "string"
+  return typeof point === 'string'
     ? point
     : `(${selectIndex(point.type, point.key, point.value)})`;
 }

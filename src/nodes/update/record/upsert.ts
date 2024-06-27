@@ -1,3 +1,3 @@
 export const upsert = () => {
-  return "UPSERT";
+  return 'UPSERT';
 };

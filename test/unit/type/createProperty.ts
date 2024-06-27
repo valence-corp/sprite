@@ -1,4 +1,4 @@
-describe("SpriteType.createProperty", () => {
+describe('SpriteType.createProperty', () => {
   // it("send a properly formatted command via SpriteDatabase.command", async () => {
   //   jest.spyOn(SpriteDatabase, "command").mockResolvedValueOnce({
   //     result: [{}],

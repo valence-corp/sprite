@@ -1,20 +1,20 @@
-import { endpoints } from "../../../src/endpoints/server.js";
-import { testAuth, variables } from "../../variables.js";
-import { client } from "./testClient.js";
+import { endpoints } from '../../../src/endpoints/server.js';
+import { testAuth, variables } from '../../variables.js';
+import { client } from './testClient.js';
 
-describe("SpriteServer.listDatabases()", () => {
-  it("should make a properly formatted fetch request with supplied options", async () => {
+describe('SpriteServer.listDatabases()', () => {
+  it('should make a properly formatted fetch request with supplied options', async () => {
     // Arrange
     const options: RequestInit = {
-      method: "GET",
+      method: 'GET',
       headers: {
         Authorization: `Basic ${testAuth}`,
-        "Content-Type": "application/json",
-      },
+        'Content-Type': 'application/json'
+      }
     };
 
-    jest.spyOn(global, "fetch").mockResolvedValueOnce({
-      json: async () => variables.jsonResponse,
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+      json: async () => variables.jsonResponse
     } as Response);
 
     // Act
@@ -23,14 +23,14 @@ describe("SpriteServer.listDatabases()", () => {
     // Assert
     expect(fetch).toHaveBeenCalledWith(
       `${variables.address}${endpoints.databases}`,
-      options,
+      options
     );
   });
 
-  it("should return the result for a 200 status", async () => {
-    jest.spyOn(global, "fetch").mockResolvedValueOnce({
+  it('should return the result for a 200 status', async () => {
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
       status: 200,
-      json: async () => variables.jsonResponse,
+      json: async () => variables.jsonResponse
     } as Response);
 
     const response = await client.listDatabases();
@@ -38,9 +38,9 @@ describe("SpriteServer.listDatabases()", () => {
     expect(response).toBe(variables.jsonResponse.result);
   });
 
-  it("should return an error for a 403 status", async () => {
-    jest.spyOn(global, "fetch").mockResolvedValueOnce({
-      status: 403,
+  it('should return an error for a 403 status', async () => {
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+      status: 403
     } as Response);
     expect(() => client.listDatabases()).rejects.toMatchSnapshot();
   });

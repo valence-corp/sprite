@@ -10,7 +10,7 @@ export class ArcadeDatabaseError extends Error {
   detail: string;
   constructor({ error, detail, exception }: SpriteArcadeErrorResult) {
     super(`${error}. ${detail}.`);
-    this.name = "ArcadeDatabaseError";
+    this.name = 'ArcadeDatabaseError';
     this.error = error;
     this.detail = detail;
     this.exception = exception;

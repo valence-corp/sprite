@@ -1,4 +1,4 @@
-describe("SpriteType.define", () => {
+describe('SpriteType.define', () => {
   // it("make a properly formatted fetch request", async () => {
   //   jest.spyOn(client, "createProperty").mockResolvedValueOnce({
   //     result: [{}],

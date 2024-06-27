@@ -31,7 +31,7 @@ export type SpriteArcadeServerEvents = {
  * `SpriteServer.getInformation()` request
  * @default 'default'
  */
-export type ArcadeServerInformationLevel = "basic" | "default" | "cluster";
+export type ArcadeServerInformationLevel = 'basic' | 'default' | 'cluster';
 
 /**
  * The metadata returned from the server on every operation.

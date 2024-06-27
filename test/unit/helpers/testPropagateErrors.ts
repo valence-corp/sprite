@@ -9,13 +9,13 @@
  */
 export const testPropagateErrors = (
   actor: (params?: unknown) => void,
-  params?: unknown,
+  params?: unknown
 ) =>
-  it("should propagate errors from internal methods", async () => {
+  it('should propagate errors from internal methods', async () => {
     // Arrange
     jest
-      .spyOn(global, "fetch")
-      .mockRejectedValueOnce(new TypeError("fetch failed"));
+      .spyOn(global, 'fetch')
+      .mockRejectedValueOnce(new TypeError('fetch failed'));
 
     // Assert & Act
     await expect(actor(params)).rejects.toMatchSnapshot();

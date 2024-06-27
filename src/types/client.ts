@@ -19,7 +19,7 @@ export interface ISpriteConnection {
   address: string;
   /** The headers of the Fetch request */
   headers: {
-    "Content-Type": string;
+    'Content-Type': string;
     Authorization: string;
   };
 }

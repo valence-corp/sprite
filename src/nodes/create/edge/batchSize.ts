@@ -5,7 +5,7 @@ export function batchSize(batchSize: number) {
   } catch (error) {
     throw new TypeError(
       `Could not validate parameter 'batchSize' to set BATCH on the command.`,
-      { cause: error },
+      { cause: error }
     );
   }
 }

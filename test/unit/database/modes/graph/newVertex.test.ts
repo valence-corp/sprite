@@ -1,62 +1,62 @@
-import { client, dbClient as SpriteDatabase } from "./testClient.js";
-import { variables } from "../../../../variables.js";
-import { ArcadeCommandResponse } from "../../../../../src/types/database.js";
-import { testTransaction } from "../../client/testClient.js";
+import { client, dbClient as SpriteDatabase } from './testClient.js';
+import { variables } from '../../../../variables.js';
+import { ArcadeCommandResponse } from '../../../../../src/types/database.js';
+import { testTransaction } from '../../client/testClient.js';
 
-const typeName = "aVertex";
+const typeName = 'aVertex';
 
 const newVertex = {
-  "@rid": variables.rid,
-  "@cat": "v",
-  "@type": typeName,
-  aProperty: "aValue",
+  '@rid': variables.rid,
+  '@cat': 'v',
+  '@type': typeName,
+  aProperty: 'aValue'
 };
 
 const newVertexCommandResponse = {
   user: variables.username,
-  serverName: "",
-  version: "",
-  result: [newVertex],
+  serverName: '',
+  version: '',
+  result: [newVertex]
 };
 
-describe("GraphModality.newVertex()", () => {
+describe('GraphModality.newVertex()', () => {
   // Arrange
   beforeEach(() => {
     jest
-      .spyOn(SpriteDatabase, "command")
+      .spyOn(SpriteDatabase, 'command')
       .mockImplementationOnce(
         async (): Promise<ArcadeCommandResponse<unknown>> =>
-          newVertexCommandResponse,
+          newVertexCommandResponse
       );
   });
   it(`correctly passes typeName, options.data, and options.transactionId to SpriteOperations._insertRecord`, async () => {
     // Act
     await client.newVertex(typeName, testTransaction, {
       data: {
-        aProperty: "aValue",
-      },
+        aProperty: 'aValue'
+      }
     });
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       `sql`,
       `INSERT INTO ${typeName} CONTENT ${JSON.stringify({
-        aProperty: "aValue",
+        aProperty: 'aValue'
       })}`,
-      testTransaction,
+      testTransaction
     );
   });
   it(`correctly passes handles options.bucket`, async () => {
     // Act
     await client.newVertex(typeName, testTransaction, {
-      bucket: variables.bucketName,
+      bucket: variables.bucketName
     });
 
     // Asserts
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       `sql`,
       `INSERT INTO BUCKET:${variables.bucketName}`,
-      testTransaction,
+      testTransaction
     );
   });
 });

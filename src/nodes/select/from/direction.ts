@@ -1,4 +1,4 @@
-export type ArcadeResultSortDirection = "ASC" | "DESC";
+export type ArcadeResultSortDirection = 'ASC' | 'DESC';
 
 // TODO: Perhaps SpriteCommand.append() should just return
 // the string instead of a calling another function to

@@ -1,12 +1,12 @@
-import { SpriteDatabase } from "../SpriteDatabase.js";
-import { ModalityBase } from "./ModalityBase.js";
+import { SpriteDatabase } from '../SpriteDatabase.js';
+import { ModalityBase } from './ModalityBase.js';
 import {
   ISpriteCreateTypeOptions,
   ISpriteInsertRecordOptions,
-  TypeNames,
-} from "../types/database.js";
-import { SpriteTransaction } from "../SpriteTransaction.js";
-import { SqlDialect } from "../SqlDialect.js";
+  TypeNames
+} from '../types/database.js';
+import { SpriteTransaction } from '../SpriteTransaction.js';
+import { SqlDialect } from '../SqlDialect.js';
 
 /**
  * Handles the operations related to document records in the database.
@@ -60,7 +60,7 @@ class DocumentModality<S> extends ModalityBase<S> {
   newDocument = <N extends keyof S>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteInsertRecordOptions<S[N]>,
+    options?: ISpriteInsertRecordOptions<S[N]>
   ) => this._sql.insertRecord<S, N>(typeName, transaction, options);
   /**
    * Create a new document type in the schema.
@@ -105,8 +105,8 @@ class DocumentModality<S> extends ModalityBase<S> {
   createType = <N extends TypeNames<S>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteCreateTypeOptions<S, N>,
-  ) => this._sql.createType<S, N>(typeName, "document", transaction, options);
+    options?: ISpriteCreateTypeOptions<S, N>
+  ) => this._sql.createType<S, N>(typeName, 'document', transaction, options);
 }
 
 export { DocumentModality };

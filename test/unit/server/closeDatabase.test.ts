@@ -1,23 +1,23 @@
-import { endpoints } from "../../../src/endpoints/server.js";
-import { testAuth, variables } from "../../variables.js";
-import { client } from "./testClient.js";
+import { endpoints } from '../../../src/endpoints/server.js';
+import { testAuth, variables } from '../../variables.js';
+import { client } from './testClient.js';
 
-describe("SpriteServer.closeDatabase()", () => {
+describe('SpriteServer.closeDatabase()', () => {
   it(`should make a properly formatted POST request to ${endpoints.command}`, async () => {
     // Arrange
     const options: RequestInit = {
-      method: "POST",
+      method: 'POST',
       headers: {
         Authorization: `Basic ${testAuth}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        command: `CLOSE DATABASE ${variables.databaseName}`,
-      }),
+        command: `CLOSE DATABASE ${variables.databaseName}`
+      })
     };
 
-    jest.spyOn(global, "fetch").mockResolvedValueOnce({
-      json: async () => ({ result: "ok" }),
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+      json: async () => ({ result: 'ok' })
     } as Response);
 
     // Act
@@ -26,7 +26,7 @@ describe("SpriteServer.closeDatabase()", () => {
     // Assert
     expect(fetch).toHaveBeenCalledWith(
       `${variables.address}${endpoints.command}`,
-      options,
+      options
     );
   });
 
@@ -53,7 +53,7 @@ describe("SpriteServer.closeDatabase()", () => {
 
   it('should throw an error if supplied "databaseName" is an object', async () => {
     // Act
-    expect(() => client.createDatabase("")).rejects.toMatchSnapshot();
+    expect(() => client.createDatabase('')).rejects.toMatchSnapshot();
   });
 
   it('should throw an error if supplied "databaseName" is boolean', async () => {

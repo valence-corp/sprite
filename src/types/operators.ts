@@ -1,4 +1,4 @@
-import { TypeNames } from "./database.js";
+import { TypeNames } from './database.js';
 
 /**
  * The object returned in the response of a `DELETE`

@@ -1,4 +1,4 @@
-import { validation } from "../../../validation/ArcadeParameterValidation.js";
+import { validation } from '../../../validation/ArcadeParameterValidation.js';
 
 export function retry(attempts: number) {
   try {
@@ -8,8 +8,8 @@ export function retry(attempts: number) {
     throw new TypeError(
       `Unable to set RETRY [attempts] on the CREATE EDGE command. `,
       {
-        cause: error,
-      },
+        cause: error
+      }
     );
   }
 }

@@ -1,15 +1,15 @@
-import { endpoints } from "../../../src/endpoints/server.js";
-import { testAuth, variables } from "../../variables.js";
-import { client } from "./testClient.js";
+import { endpoints } from '../../../src/endpoints/server.js';
+import { testAuth, variables } from '../../variables.js';
+import { client } from './testClient.js';
 
-describe("SpriteServer.createUser()", () => {
+describe('SpriteServer.createUser()', () => {
   it(`should make a properly formatted POST request to ${endpoints.command}`, async () => {
     // Arrange
     const options: RequestInit = {
-      method: "POST",
+      method: 'POST',
       headers: {
         Authorization: `Basic ${testAuth}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         command: `CREATE USER ${JSON.stringify({
@@ -20,14 +20,14 @@ describe("SpriteServer.createUser()", () => {
           name: variables.username,
           password: variables.password,
           databases: {
-            myDatabase: "user",
-          },
-        })}`,
-      }),
+            myDatabase: 'user'
+          }
+        })}`
+      })
     };
 
-    jest.spyOn(global, "fetch").mockResolvedValueOnce({
-      json: async () => variables.jsonResponse,
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+      json: async () => variables.jsonResponse
     } as Response);
 
     // Act
@@ -38,14 +38,14 @@ describe("SpriteServer.createUser()", () => {
       username: variables.username,
       password: variables.password,
       databases: {
-        myDatabase: "user",
-      },
+        myDatabase: 'user'
+      }
     });
 
     // Assert
     expect(fetch).toHaveBeenCalledWith(
       `${variables.address}${endpoints.command}`,
-      options,
+      options
     );
   });
 
@@ -54,11 +54,11 @@ describe("SpriteServer.createUser()", () => {
     expect(() =>
       // @ts-expect-error - Testing error handling for no username property in createUser
       client.createDatabase({
-        password: "myPassword",
+        password: 'myPassword',
         databases: {
-          myDatabase: "admin",
-        },
-      }),
+          myDatabase: 'admin'
+        }
+      })
     ).rejects.toMatchSnapshot();
   });
 
@@ -67,11 +67,11 @@ describe("SpriteServer.createUser()", () => {
     expect(() =>
       // @ts-expect-error - Testing error handling for no password property
       client.createDatabase({
-        username: "myUsername",
+        username: 'myUsername',
         databases: {
-          myDatabase: "admin",
-        },
-      }),
+          myDatabase: 'admin'
+        }
+      })
     ).rejects.toMatchSnapshot();
   });
 
@@ -80,9 +80,9 @@ describe("SpriteServer.createUser()", () => {
     expect(() =>
       // @ts-expect-error - Testing error handling for no databases property
       client.createDatabase({
-        username: "myUsername",
-        password: "myPassword",
-      }),
+        username: 'myUsername',
+        password: 'myPassword'
+      })
     ).rejects.toMatchSnapshot();
   });
 });

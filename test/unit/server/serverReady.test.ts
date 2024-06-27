@@ -1,7 +1,7 @@
-import { testPropagateErrors } from "../helpers/testPropagateErrors.js";
-import { endpoints } from "../../../src/endpoints/server.js";
-import { testAuth, variables } from "../../variables.js";
-import { client } from "./testClient.js";
+import { testPropagateErrors } from '../helpers/testPropagateErrors.js';
+import { endpoints } from '../../../src/endpoints/server.js';
+import { testAuth, variables } from '../../variables.js';
+import { client } from './testClient.js';
 
 /**
  * Test suit for the Sprite.ready() method.
@@ -10,10 +10,10 @@ import { client } from "./testClient.js";
  * 2. Returns `true` if the server returns a 204
  * 3. Should propegate errors from internal methods
  */
-describe("SpriteBase.serverReady()", () => {
+describe('SpriteBase.serverReady()', () => {
   it(`should make a properly formatted GET request to ${endpoints.ready}`, async () => {
     // Arrange
-    jest.spyOn(global, "fetch").mockResolvedValue(new Response());
+    jest.spyOn(global, 'fetch').mockResolvedValue(new Response());
 
     // Act
     await client.serverReady();
@@ -22,19 +22,19 @@ describe("SpriteBase.serverReady()", () => {
     expect(fetch).toHaveBeenCalledWith(
       `${variables.address}${endpoints.ready}`,
       {
-        method: "GET",
+        method: 'GET',
         headers: {
           Authorization: `Basic ${testAuth}`,
-          "Content-Type": "application/json",
-        },
-      },
+          'Content-Type': 'application/json'
+        }
+      }
     );
   });
 
   it(`should return true when the server returns a 204`, async () => {
     // Arrange
-    jest.spyOn(global, "fetch").mockResolvedValueOnce({
-      status: 204,
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+      status: 204
     } as Response);
 
     // Act

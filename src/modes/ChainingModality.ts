@@ -1,15 +1,15 @@
 import {
   ArcadeResultSortDirection,
-  ArcadeSelectTimeoutStrategy,
-} from "../nodes/types.js";
+  ArcadeSelectTimeoutStrategy
+} from '../nodes/types.js';
 import {
   ISpriteSelectFromOptions,
   SpriteOperators,
   TypeNames,
-  WithRid,
-} from "../types/database.js";
-import { SpriteDatabase } from "../SpriteDatabase.js";
-import { SqlDialect } from "../SqlDialect.js";
+  WithRid
+} from '../types/database.js';
+import { SpriteDatabase } from '../SpriteDatabase.js';
+import { SqlDialect } from '../SqlDialect.js';
 
 class ChainingModality<S> {
   private database: SpriteDatabase;
@@ -24,7 +24,7 @@ class ChainingModality<S> {
    * @returns An array containing the records found during the query.
    */
   selectFrom = <N extends TypeNames<S>, P extends keyof WithRid<S, N>>(
-    typeName: N,
+    typeName: N
   ) => new SelectFrom<S, N, P>(this._sql, typeName);
 }
 
@@ -54,11 +54,11 @@ class SelectFrom<S, N extends TypeNames<S>, P extends keyof WithRid<S, N>> {
   where = (
     reference: P,
     operator: SpriteOperators,
-    value: WithRid<S, N>[P],
+    value: WithRid<S, N>[P]
   ) => {
     this.options = {
       ...this.options,
-      where: [reference, operator, value],
+      where: [reference, operator, value]
     };
     return this;
   };
@@ -72,8 +72,8 @@ class SelectFrom<S, N extends TypeNames<S>, P extends keyof WithRid<S, N>> {
       ...this.options,
       orderBy: {
         field,
-        direction,
-      },
+        direction
+      }
     };
     return this;
   };
@@ -87,7 +87,7 @@ class SelectFrom<S, N extends TypeNames<S>, P extends keyof WithRid<S, N>> {
   skip = (numberOfRecords: number) => {
     this.options = {
       ...this.options,
-      skip: numberOfRecords,
+      skip: numberOfRecords
     };
     return this;
   };
@@ -99,7 +99,7 @@ class SelectFrom<S, N extends TypeNames<S>, P extends keyof WithRid<S, N>> {
   limit = (numberOfRecords: number) => {
     this.options = {
       ...this.options,
-      skip: numberOfRecords,
+      skip: numberOfRecords
     };
     return this;
   };
@@ -112,7 +112,7 @@ class SelectFrom<S, N extends TypeNames<S>, P extends keyof WithRid<S, N>> {
   timeout = (duration: number, strategy?: ArcadeSelectTimeoutStrategy) => {
     this.options = {
       ...this.options,
-      timeout: { duration, strategy },
+      timeout: { duration, strategy }
     };
     return this;
   };

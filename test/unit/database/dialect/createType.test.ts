@@ -1,60 +1,60 @@
-import { client } from "./testClient.js";
-import { endpoints } from "../../../../src/endpoints/database.js";
+import { client } from './testClient.js';
+import { endpoints } from '../../../../src/endpoints/database.js';
 import {
   variables,
-  headersWithTransaction as headers,
-} from "../../../variables.js";
-import { SpriteType } from "../../../../src/SpriteType.js";
+  headersWithTransaction as headers
+} from '../../../variables.js';
+import { SpriteType } from '../../../../src/SpriteType.js';
 
-import { DocumentTypes } from "../types.js";
-import { SpriteTransaction } from "../../../../src/SpriteTransaction.js";
+import { DocumentTypes } from '../types.js';
+import { SpriteTransaction } from '../../../../src/SpriteTransaction.js';
 
-const recordType = "document";
-const typeName = "aDocument";
+const recordType = 'document';
+const typeName = 'aDocument';
 const SpriteDatabase = client.database;
 type TypeName = typeof typeName;
 
 const testTransaction = new SpriteTransaction(
   client.database,
-  variables.sessionId,
+  variables.sessionId
 );
 
 const createTypeResult = {
   user: variables.username,
-  serverName: "",
-  version: "",
-  result: [{ typeName }],
+  serverName: '',
+  version: '',
+  result: [{ typeName }]
 };
 
-describe("TypedOperations.createType()", () => {
+describe('TypedOperations.createType()', () => {
   it(`makes a properly formatted POST request to ${endpoints.command}/${variables.databaseName}`, async () => {
     // Arrange
-    jest.spyOn(global, "fetch").mockResolvedValueOnce({
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
       status: 200,
-      json: async () => createTypeResult,
+      json: async () => createTypeResult
     } as Response);
 
     // Act
     await client.createType<DocumentTypes, TypeName>(
       typeName,
       recordType,
-      testTransaction,
+      testTransaction
     );
     // Assert
     expect(global.fetch).toHaveBeenCalledWith(
       `${variables.address}${endpoints.command}/${variables.databaseName}`,
       {
-        method: "POST",
+        method: 'POST',
         headers,
         body: JSON.stringify({
-          language: "sql",
-          command: `CREATE document TYPE ${typeName}`,
-        }),
-      },
+          language: 'sql',
+          command: `CREATE document TYPE ${typeName}`
+        })
+      }
     );
   });
 
-  it("it returns an instance of SpriteType when it receives a a JSON object with a result property from the server.", async () => {
+  it('it returns an instance of SpriteType when it receives a a JSON object with a result property from the server.', async () => {
     // TODO: This seems confusing.
     // reasoning for this is because the if it's passed a
     // 'ifNotExists' option, it won't throw an error, and
@@ -64,7 +64,7 @@ describe("TypedOperations.createType()", () => {
 
     // Arrange
     jest
-      .spyOn(SpriteDatabase, "command")
+      .spyOn(SpriteDatabase, 'command')
       .mockResolvedValueOnce(createTypeResult);
 
     // Act
@@ -73,8 +73,8 @@ describe("TypedOperations.createType()", () => {
       recordType,
       testTransaction,
       {
-        buckets: variables.bucketName,
-      },
+        buckets: variables.bucketName
+      }
     );
     // Assert
     expect(result).toBeInstanceOf(SpriteType);
@@ -83,7 +83,7 @@ describe("TypedOperations.createType()", () => {
   it('handles "buckets" option by appending "BUCKET" + [bucketName] to the command when passed a string bucketName property.', async () => {
     // Arrange
     jest
-      .spyOn(SpriteDatabase, "command")
+      .spyOn(SpriteDatabase, 'command')
       .mockResolvedValueOnce(createTypeResult);
 
     // Act
@@ -92,22 +92,22 @@ describe("TypedOperations.createType()", () => {
       recordType,
       testTransaction,
       {
-        buckets: variables.bucketName,
-      },
+        buckets: variables.bucketName
+      }
     );
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
-      "sql",
+      'sql',
       `CREATE document TYPE ${typeName} BUCKET ${variables.bucketName}`,
-      testTransaction,
+      testTransaction
     );
   });
 
   it('handles "buckets" option by appending "BUCKET" + [bucketNames] to the command when passed an array of strings as the bucketName property.', async () => {
     // Arrange
     jest
-      .spyOn(SpriteDatabase, "command")
+      .spyOn(SpriteDatabase, 'command')
       .mockResolvedValueOnce(createTypeResult);
 
     // Act
@@ -116,25 +116,25 @@ describe("TypedOperations.createType()", () => {
       recordType,
       testTransaction,
       {
-        buckets: [variables.bucketName, variables.bucketName],
-      },
+        buckets: [variables.bucketName, variables.bucketName]
+      }
     );
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
-      "sql",
+      'sql',
       `CREATE document TYPE ${typeName} BUCKET ${[
         variables.bucketName,
-        variables.bucketName,
-      ].join(",")}`,
-      testTransaction,
+        variables.bucketName
+      ].join(',')}`,
+      testTransaction
     );
   });
 
   it('handles "ifNotExists" option by appending "IF NOT EXISTS" to the command when passed "false"', async () => {
     // Arrange
     jest
-      .spyOn(SpriteDatabase, "command")
+      .spyOn(SpriteDatabase, 'command')
       .mockResolvedValueOnce(createTypeResult);
 
     // Act
@@ -143,22 +143,22 @@ describe("TypedOperations.createType()", () => {
       recordType,
       testTransaction,
       {
-        ifNotExists: true,
-      },
+        ifNotExists: true
+      }
     );
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
-      "sql",
+      'sql',
       `CREATE document TYPE ${typeName} IF NOT EXISTS`,
-      testTransaction,
+      testTransaction
     );
   });
 
   it('handles "extends" option by appending "EXTENDS" + [typeName] to the command when passed an extends property', async () => {
     // Arrange
     jest
-      .spyOn(SpriteDatabase, "command")
+      .spyOn(SpriteDatabase, 'command')
       .mockResolvedValueOnce(createTypeResult);
 
     // Act
@@ -167,22 +167,22 @@ describe("TypedOperations.createType()", () => {
       recordType,
       testTransaction,
       {
-        extends: "anotherDocument",
-      },
+        extends: 'anotherDocument'
+      }
     );
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
-      "sql",
+      'sql',
       `CREATE document TYPE ${typeName} EXTENDS anotherDocument`,
-      testTransaction,
+      testTransaction
     );
   });
 
   it('handles "totalBuckets" option by appending "BUCKETS" + [totalBuckets] to the command when passed a totalBuckets property', async () => {
     // Arrange
     jest
-      .spyOn(SpriteDatabase, "command")
+      .spyOn(SpriteDatabase, 'command')
       .mockResolvedValueOnce(createTypeResult);
 
     // Act
@@ -191,23 +191,23 @@ describe("TypedOperations.createType()", () => {
       recordType,
       testTransaction,
       {
-        totalBuckets: 4,
-      },
+        totalBuckets: 4
+      }
     );
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
-      "sql",
+      'sql',
       `CREATE document TYPE ${typeName} BUCKETS 4`,
-      testTransaction,
+      testTransaction
     );
   });
 
-  it("should throw an error if it receives an empty string for parameters", async () => {
+  it('should throw an error if it receives an empty string for parameters', async () => {
     //@ts-expect-error - Testing for empty string
-    await expect(client.createType("")).rejects.toMatchSnapshot();
+    await expect(client.createType('')).rejects.toMatchSnapshot();
   });
 
-  it("should throw an error if it receives no arguments", async () => {
+  it('should throw an error if it receives no arguments', async () => {
     //@ts-expect-error - Testing for no arguments
     await expect(client.createType()).rejects.toMatchSnapshot();
   });

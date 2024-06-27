@@ -1,21 +1,21 @@
-import { client, dbClient as SpriteDatabase } from "./testClient.js";
-import { variables } from "../../../../variables.js";
+import { client, dbClient as SpriteDatabase } from './testClient.js';
+import { variables } from '../../../../variables.js';
 
-describe("ModalityBase.selectOne()", () => {
+describe('ModalityBase.selectOne()', () => {
   it(`correctly passes all arguments and options to TypedOperations.selectOne`, async () => {
-    jest.spyOn(SpriteDatabase, "query").mockImplementationOnce(async () => {
+    jest.spyOn(SpriteDatabase, 'query').mockImplementationOnce(async () => {
       return {
         result: [
           {
-            "@rid": variables.rid,
-            "@cat": "d",
-            "@type": "aDocument",
-            aProperty: "aValue",
-          },
+            '@rid': variables.rid,
+            '@cat': 'd',
+            '@type': 'aDocument',
+            aProperty: 'aValue'
+          }
         ],
-        serverName: "",
-        version: "",
-        user: "",
+        serverName: '',
+        version: '',
+        user: ''
       };
     });
 
@@ -23,33 +23,33 @@ describe("ModalityBase.selectOne()", () => {
 
     expect(SpriteDatabase.query).toHaveBeenCalledWith(
       `sql`,
-      `SELECT FROM ${variables.rid}`,
+      `SELECT FROM ${variables.rid}`
     );
   });
-  it("returns the record from the query result", async () => {
-    jest.spyOn(SpriteDatabase, "query").mockImplementationOnce(async () => {
+  it('returns the record from the query result', async () => {
+    jest.spyOn(SpriteDatabase, 'query').mockImplementationOnce(async () => {
       return {
         result: [
           {
-            "@rid": variables.rid,
-            "@cat": "d",
-            "@type": "aDocument",
-            aProperty: "aValue",
-          },
+            '@rid': variables.rid,
+            '@cat': 'd',
+            '@type': 'aDocument',
+            aProperty: 'aValue'
+          }
         ],
-        serverName: "",
-        version: "",
-        user: "",
+        serverName: '',
+        version: '',
+        user: ''
       };
     });
 
     const result = await client.selectOne(variables.rid);
 
     expect(result).toMatchObject({
-      "@rid": variables.rid,
-      "@cat": "d",
-      "@type": "aDocument",
-      aProperty: "aValue",
+      '@rid': variables.rid,
+      '@cat': 'd',
+      '@type': 'aDocument',
+      aProperty: 'aValue'
     });
   });
 });

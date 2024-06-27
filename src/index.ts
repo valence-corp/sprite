@@ -1,9 +1,9 @@
-import { SpriteServer } from "./SpriteServer.js";
-import { SpriteDatabase } from "./SpriteDatabase.js";
+import { SpriteServer } from './SpriteServer.js';
+import { SpriteDatabase } from './SpriteDatabase.js';
 
 export { SpriteServer };
 export { SpriteDatabase };
-export * from "./types/index.js";
+export * from './types/index.js';
 
 // type DocumentTypes = {
 //   aDocument: ADocumentType;
@@ -16,10 +16,10 @@ export * from "./types/index.js";
 // };
 
 const db = new SpriteDatabase({
-  username: "root", // root will be ok for this tutorial
-  password: "999999999", // your password,
-  address: "http://localhost:2480", // default address for ArcadeDB
-  databaseName: "ExampleDatabase", // the existing database
+  username: 'root', // root will be ok for this tutorial
+  password: '999999999', // your password,
+  address: 'http://localhost:2480', // default address for ArcadeDB
+  databaseName: 'ExampleDatabase' // the existing database
 });
 
 interface ExampleVertexes {
@@ -43,7 +43,7 @@ interface ExampleEdges {
 const client = db.graphModality<ExampleVertexes, ExampleEdges>();
 
 client.transaction(async (trx) => {
-  client.dropType("Something", trx).then(console.log);
+  client.dropType('Something', trx).then(console.log);
 });
 
 // async function graphModalityExample() {

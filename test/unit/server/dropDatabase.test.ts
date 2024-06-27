@@ -1,23 +1,23 @@
-import { endpoints } from "../../../src/endpoints/server.js";
-import { testAuth, variables } from "../../variables.js";
-import { client } from "./testClient.js";
+import { endpoints } from '../../../src/endpoints/server.js';
+import { testAuth, variables } from '../../variables.js';
+import { client } from './testClient.js';
 
-describe("SpriteServer.dropDatabase()", () => {
+describe('SpriteServer.dropDatabase()', () => {
   it(`should make a properly formatted POST request to ${endpoints.command}`, async () => {
     // Arrange
     const options: RequestInit = {
-      method: "POST",
+      method: 'POST',
       headers: {
         Authorization: `Basic ${testAuth}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        command: `DROP DATABASE ${variables.databaseName}`,
-      }),
+        command: `DROP DATABASE ${variables.databaseName}`
+      })
     };
 
-    jest.spyOn(global, "fetch").mockResolvedValueOnce({
-      json: async () => variables.jsonResponse,
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+      json: async () => variables.jsonResponse
     } as Response);
 
     // Act
@@ -26,7 +26,7 @@ describe("SpriteServer.dropDatabase()", () => {
     // Assert
     expect(fetch).toHaveBeenCalledWith(
       `${variables.address}${endpoints.command}`,
-      options,
+      options
     );
   });
 
@@ -38,12 +38,12 @@ describe("SpriteServer.dropDatabase()", () => {
 
   it('should throw an error if "databaseName" is an empty string', async () => {
     // Act
-    expect(() => client.dropDatabase("")).rejects.toMatchSnapshot();
+    expect(() => client.dropDatabase('')).rejects.toMatchSnapshot();
   });
 
   it('should throw an error if "databaseName" is a string containing only whitespace', async () => {
     // Act
-    expect(() => client.dropDatabase("   ")).rejects.toMatchSnapshot();
+    expect(() => client.dropDatabase('   ')).rejects.toMatchSnapshot();
   });
 
   it('should throw an error if supplied "databaseName" is a number', async () => {

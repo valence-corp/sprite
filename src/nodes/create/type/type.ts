@@ -1,4 +1,4 @@
-import { validation } from "../../../validation/ArcadeParameterValidation.js";
+import { validation } from '../../../validation/ArcadeParameterValidation.js';
 
 export function type<T>(typeName: T) {
   try {
@@ -6,7 +6,7 @@ export function type<T>(typeName: T) {
     return `TYPE ${typeName}`;
   } catch (error) {
     throw new Error(`Could not generate TYPE node for type: [${typeName}]`, {
-      cause: error,
+      cause: error
     });
   }
 }

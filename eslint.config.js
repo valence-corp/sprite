@@ -7,4 +7,7 @@ export default [
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
+  {
+    'no-trailing-comma': 'on'
+  }
 ];

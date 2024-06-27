@@ -1,6 +1,6 @@
-import { SpriteDatabase } from "./SpriteDatabase.js";
-import { createPropertyNodes } from "./nodes/create/property/index.js";
-import { TypeNames } from "./types/database.js";
+import { SpriteDatabase } from './SpriteDatabase.js';
+import { createPropertyNodes } from './nodes/create/property/index.js';
+import { TypeNames } from './types/database.js';
 
 /**
  * @description Used to define properties of a type in the schema.

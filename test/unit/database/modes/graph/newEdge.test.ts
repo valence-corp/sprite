@@ -1,34 +1,34 @@
-import { client, dbClient as SpriteDatabase } from "./testClient.js";
-import { variables } from "../../../../variables.js";
-import { ArcadeCommandResponse } from "../../../../../src/types/database.js";
-import { testTransaction } from "../../client/testClient.js";
+import { client, dbClient as SpriteDatabase } from './testClient.js';
+import { variables } from '../../../../variables.js';
+import { ArcadeCommandResponse } from '../../../../../src/types/database.js';
+import { testTransaction } from '../../client/testClient.js';
 
-const typeName = "anEdge";
+const typeName = 'anEdge';
 
 const newEdge = {
-  "@rid": variables.rid,
-  "@cat": "e",
-  "@type": typeName,
-  "@in": variables.rid,
-  "@out": variables.rid,
-  aProperty: "aValue",
+  '@rid': variables.rid,
+  '@cat': 'e',
+  '@type': typeName,
+  '@in': variables.rid,
+  '@out': variables.rid,
+  aProperty: 'aValue'
 };
 
 const newEdgeCommandResponse = {
   user: variables.username,
-  serverName: "",
-  version: "",
-  result: [newEdge],
+  serverName: '',
+  version: '',
+  result: [newEdge]
 };
 
-describe("GraphModality.newEdge()", () => {
+describe('GraphModality.newEdge()', () => {
   // Arrange
   beforeEach(() => {
     jest
-      .spyOn(SpriteDatabase, "command")
+      .spyOn(SpriteDatabase, 'command')
       .mockImplementationOnce(
         async (): Promise<ArcadeCommandResponse<unknown>> =>
-          newEdgeCommandResponse,
+          newEdgeCommandResponse
       );
   });
 
@@ -41,9 +41,9 @@ describe("GraphModality.newEdge()", () => {
       testTransaction,
       {
         data: {
-          aProperty: "aValue",
-        },
-      },
+          aProperty: 'aValue'
+        }
+      }
     );
 
     // Assert
@@ -52,9 +52,9 @@ describe("GraphModality.newEdge()", () => {
       `CREATE EDGE ${typeName} FROM ${variables.rid} TO ${
         variables.rid
       } CONTENT ${JSON.stringify({
-        aProperty: "aValue",
+        aProperty: 'aValue'
       })}`,
-      testTransaction,
+      testTransaction
     );
   });
 
@@ -66,19 +66,19 @@ describe("GraphModality.newEdge()", () => {
       variables.rid,
       testTransaction,
       {
-        bucket: variables.bucketName,
-      },
+        bucket: variables.bucketName
+      }
     );
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       `sql`,
       `CREATE EDGE ${typeName} BUCKET ${variables.bucketName} FROM ${variables.rid} TO ${variables.rid}`,
-      testTransaction,
+      testTransaction
     );
   });
 
-  it("should return the newly created edge", async () => {
+  it('should return the newly created edge', async () => {
     // Act
     const record = await client.newEdge(
       typeName,
@@ -87,9 +87,9 @@ describe("GraphModality.newEdge()", () => {
       testTransaction,
       {
         data: {
-          aProperty: "aValue",
-        },
-      },
+          aProperty: 'aValue'
+        }
+      }
     );
 
     // Assert
