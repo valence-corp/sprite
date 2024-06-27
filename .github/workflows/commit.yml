@@ -1,21 +1,19 @@
 name: Sprite Commit
 run-name: 👾 ${{ github.actor }} is making a commit 🛸
 on: [push]
-
 jobs:
   tests:
     runs-on: ubuntu-latest
+    env:
+      JAVA_OPTS: >
+        -Darcadedb.server.rootPassword=playwithdata
+        -Darcadedb.dumpConfigAtStartup=true
+        -Darcadedb.server.defaultDatabases=Imported[root]{import:https://github.com/ArcadeData/arcadedb-datasets/raw/main/orientdb/OpenBeer.gz}
     services:
       arcade:
         image: arcadedata/arcadedb:latest
         ports:
           - 2480:2480 # host : container port
-        environment:
-          JAVA_OPTS: >
-            -Darcadedb.server.rootPassword=playwithdata
-            -Darcadedb.dumpConfigAtStartup=true
-            -Darcadedb.server.defaultDatabases=Imported[root]{import:https://github.com/ArcadeData/arcadedb-datasets/raw/main/orientdb/OpenBeer.gz}
-        restart: always
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v4
