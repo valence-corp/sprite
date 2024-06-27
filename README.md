@@ -4,14 +4,16 @@ Sprite is a TypeScript driver for ArcadeDB. It is still in early development, an
 
 ## Installation
 
-`pnpm install @valence-corp/sprite`
+(Use whichever package manager you prefer)
+
+`pnpm install @tragedy-labs/sprite`
 
 ## Examples
 
 ### SpriteServer
 
 ```ts
-@import { SpriteServer } from '@valence-corp/sprite';
+@import { SpriteServer } from '@tragedy-labs/sprite';
 
 const server = new SpriteServer({
   username: 'aUser',
@@ -29,6 +31,17 @@ async function example() {
     const db = await server.createDatabase('aDatabase');
     console.log(db.name);
     // 'aDatabase'
+
+    db.transaction(async (trx) => {
+      const result = await db.command('sql', 'CREATE document TYPE aType', trx);
+      console.log(result);
+      // {
+      //  user: 'aUser',
+      //  version: '24.x.x (build [...])',
+      //  serverName: 'ArcadeDB_0',
+      //  result: [ { operation: 'create document type', typeName: 'aType' } ]
+      // }
+    });
   } catch (error) {
     throw new Error('Could not create database', { cause: error });
   }
@@ -38,11 +51,10 @@ example();
 
 ```
 
-
 ### SpriteDatabase
 
 ```ts
-@import { SpriteDatabase } from '@valence-corp/sprite';
+@import { SpriteDatabase } from '@tragedy-labs/sprite';
 
 const database = new SpriteDatabase({
   username: 'aUser',
@@ -68,7 +80,7 @@ example();
 #### Working with Documents
 
 ```ts
-@import { SpriteDatabase } from '@valence-corp/sprite';
+@import { SpriteDatabase } from '@tragedy-labs/sprite';
 
 const database = new SpriteDatabase({
   username: 'aUser',
@@ -83,7 +95,7 @@ type DocumentTypes = {
   }
 }
 
-const client = database.documents<DocumentTypes>()
+const client = database.documentModality<DocumentTypes>()
 
 async function example() {
   try {
@@ -101,7 +113,7 @@ async function example() {
       //   '@rid': '#0:0',
       //   '@cat': 'd',
       //   '@type': 'aDocument',
-      //   aProperty: 'aValue' 
+      //   aProperty: 'aValue'
       // }
     });
   } catch (error) {
@@ -113,11 +125,10 @@ example();
 
 ```
 
-
 #### Working with Graphs
 
 ```ts
-@import { SpriteDatabase } from '@valence-corp/sprite';
+@import { SpriteDatabase } from '@tragedy-labs/sprite';
 
 const database = new SpriteDatabase({
   username: 'aUser',
@@ -139,7 +150,7 @@ type EdgeTypes = {
   }
 }
 
-const graph = database.graph<VertexTypes, EdgeTypes>()
+const graph = database.graphModality<VertexTypes, EdgeTypes>()
 
 function example() {
   try {
@@ -176,7 +187,7 @@ function example() {
       //  '@type': 'anEdge',
       //  '@in': '#2:0',
       //  '@out': '#1:0,
-      //  aProperty: 'aValue' 
+      //  aProperty: 'aValue'
       // }
     });
   } catch (error) {
@@ -187,4 +198,3 @@ function example() {
 example();
 
 ```
-

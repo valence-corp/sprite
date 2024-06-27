@@ -10,7 +10,7 @@
     "test": "jest ./test/",
     "lint": "pnpm eslint eslint.config.ts --fix ./test/ ./src",
     "format": "pnpm prettier --write ./test/ ./src",
-    "unit-test": "jest ./test/unit/database/client",
+    "unit-test": "jest ./test/unit/",
     "integration-test": "jest ./src/test/integration/",
     "dev": "nodemon --watch ./ --ext ts --exec 'rimraf ./dist && tsc && node ./dist/index.js'",
     "build": "rimraf ./dist && tsc -p ./tsconfig.build.json",
