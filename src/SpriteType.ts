@@ -79,7 +79,7 @@ export class SpriteType<S, N extends TypeNames<S>> {
       );
     }
 
-    const response = await this._database.command<[{}]>(
+    const response = await this._database.command<Array<object>>(
       "sql",
       command.toString(),
       transaction

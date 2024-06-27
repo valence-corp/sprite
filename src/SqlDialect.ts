@@ -23,6 +23,7 @@ import {
   ArcadeCreateEdgeResponse,
   ArcadeCreateTypeResponse,
   ArcadeDeleteFromResponse,
+  ArcadeDropTypeResponse,
   ArcadeUpdateOneResponse,
   DeleteFromCount,
   RecordOperationResponse,
@@ -340,7 +341,7 @@ class SqlDialect {
         );
       }
 
-      const result = await this._command<any>(
+      const result = await this._command<ArcadeDropTypeResponse>(
         dropTypeCommand.toString(),
         transaction
       );

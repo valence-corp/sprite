@@ -5,11 +5,6 @@ export { SpriteServer };
 export { SpriteDatabase };
 export * from "./types/index.js";
 
-type ADocumentType = {
-  aProperty: string;
-  bProperty: number;
-};
-
 // type DocumentTypes = {
 //   aDocument: ADocumentType;
 // };
@@ -36,11 +31,6 @@ interface ExampleVertexes {
   };
 }
 
-interface DocumentTypes {
-  aDocument: {
-    aProperty: string;
-  };
-}
 
 interface ExampleEdges {
   Friends: {
@@ -51,9 +41,12 @@ interface ExampleEdges {
   };
 }
 
-const client = db.documentModality<ExampleEdges>();
+const client = db.graphModality<ExampleVertexes, ExampleEdges>();
 
-db.query<ADocumentType>("sql", "").then((result) => {});
+client.transaction(async (trx) => {
+  client.dropType("Something", trx).then(console.log);
+});
+
 
 // async function graphModalityExample() {
 //   try {

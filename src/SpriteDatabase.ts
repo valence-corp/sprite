@@ -454,7 +454,7 @@ class SpriteDatabase {
 
       // Must check if it's a string because it be null from
       // headers.get()
-      if (sessionId !== "string") {
+      if (typeof sessionId !== "string") {
         throw new Error("Invalid transaction key received from server.");
       } else {
         return new SpriteTransaction(this, sessionId);

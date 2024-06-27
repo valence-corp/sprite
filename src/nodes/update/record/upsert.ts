@@ -1,3 +1,3 @@
-export const upsert = (bool: boolean) => {
+export const upsert = () => {
   return 'UPSERT';
 };

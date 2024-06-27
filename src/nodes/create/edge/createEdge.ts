@@ -1,5 +1,3 @@
-import { validation } from '../../../validation/ArcadeParameterValidation.js';
-
 export function createEdge<T>(typeName: T) {
   try {
     //validation.typeName(typeName);

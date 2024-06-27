@@ -1,5 +1,3 @@
-import { validation } from '../../../validation/ArcadeParameterValidation.js';
-
 export function batchSize(batchSize: number) {
   try {
     //validation.integer(batchSize);

@@ -9,14 +9,14 @@ import { deleteFromNodes } from './delete/index.js';
 
 export interface ISpriteSqlNodes {
   create: {
-    edge: {};
-    type: {};
+    edge: object;
+    type: object;
   };
   drop: {
-    type: {};
+    type: object;
   };
   insert: {
-    record: {};
+    record: object;
   };
 }
 

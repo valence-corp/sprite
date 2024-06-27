@@ -47,14 +47,14 @@ export type ArcadeServerBasicInformation = {
 
 export type ArcadeServerInfoSetting = {
   key: string;
-  value: any;
+  value: unknown;
   description: string;
   overridden: boolean;
-  default: any;
+  default: unknown;
 };
 
 export type ArcadeServerInfoMetrics = {
-  meters: {};
+  meters: object;
   events: { errors: number; warnings: number; info: number; hints: number };
   profiler: {
     readCacheUsed: object;
@@ -118,7 +118,7 @@ export type ArcadeServerDefaultInformation = ArcadeServerBasicInformation & {
   settings: ArcadeServerInfoSetting[];
 };
 
-export type ArcadeServerClusterInformation = {};
+export type ArcadeServerClusterInformation = object;
 
 export type ArcadeServerInformation<T extends ArcadeServerInformationLevel> = {
   basic: ArcadeServerBasicInformation;

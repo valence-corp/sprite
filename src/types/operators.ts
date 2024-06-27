@@ -25,6 +25,9 @@ export type RecordOperationResponse = {
 /** Result from the ArcadeDB server for a `CREATE TYPE` command */
 export type ArcadeCreateTypeResponse = Array<RecordOperationResponse>;
 
+/** Result from the ArcadeDB server for a `DROP TYPE` command */
+export type ArcadeDropTypeResponse = Array<RecordOperationResponse>;
+
 /** Result from the ArcadeDB server for a `CREATE EDGE` command */
 export type ArcadeCreateEdgeResponse<E, N extends TypeNames<E>> = Array<E[N]>;
 
