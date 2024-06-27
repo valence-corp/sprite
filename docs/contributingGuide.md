@@ -1,13 +1,29 @@
-**Contribution Guide**
-=====================
+---
 
-**Welcome!**
-------------
+layout: default
 
-Thank you for considering contributing to our TypeScript project! We're excited to have you on board. This guide will help you get started with contributing to our project.
+---
+### Contributing
 
-**Getting Started**
------------------
+Thank you for considering contributing to Sprite! Open-source software thrives thanks to individuals who generously share their time and passion for problem-solving with the community.
+
+#### Who can help?
+
+Everyone. There are many areas that need attention, and each person can make a difference. Here are some ideas for you to consider:
+
+1. Adding features to the library.
+2. Fixing bugs.
+3. General improvements and refactoring.
+4. Expanding and refining documentation.
+5. Improving the design and implementation of the documentation site.
+
+#### Technicalities
+
+1. Sprite is a pure ESM package.
+2. The development enviroment is Node.js.
+3. Testing happens via Jest.
+4. TypeScript required everywhere (except the documentation site).
+5. pnpm is the package manager
 
 ### 1. Fork the repository
 
@@ -17,35 +33,25 @@ Fork our repository on GitHub by clicking the "Fork" button in the top-right cor
 
 Clone your forked repository to your local machine using the command:
 
-git clone https://github.com/your-username/your-repo-name.git
+```
+git clone https://github.com/your-username/sprite.git
+```
 
 ### 3. Install dependencies
 
 Install the project dependencies by running the command:
 
-npm install
+```
+pnpm install
+```
 
-or
-
-yarn install
-
-### 4. Build and test the project
-
-Build the project by running the command:
-
-npm run build
-
-or
-
-yarn build
+### 4. Test the project
 
 Run the tests by running the command:
 
-npm run test
-
-or
-
-yarn test
+```
+pnpm test
+```
 
 **Making Changes**
 ----------------
@@ -132,6 +138,4 @@ Write clean, readable code that is easy to understand and maintain.
 **Thank You!**
 --------------
 
-Thank you for contributing to our project! We appreciate your time and effort in helping us make our project better.
-
-Feel free to customize this template to fit your project's specific needs and style.
+Thank you for contributing to our project! Your time and effort in helping make Sprite better is genuinely appreciated.

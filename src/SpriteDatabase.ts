@@ -8,11 +8,10 @@ import {
   AsArcadeRecords,
   ISpriteDatabaseClientParameters,
   ISpriteDatabaseConnectionParameters,
+  SpriteAllowedParamValues,
 } from "./types/database.js";
 import { ArcadeDatabaseError } from "./errors/ArcadeDatabaseError.js";
-import {
-  SpriteTransaction,
-} from "./SpriteTransaction.js";
+import { SpriteTransaction } from "./SpriteTransaction.js";
 import { endpoints } from "./endpoints/database.js";
 import { isNewClient } from "./utilities/isNewClient.js";
 import { SpriteRestClient } from "./SpriteRestClient.js";
@@ -115,10 +114,7 @@ class SpriteDatabase {
    */
   documentModality = <T>(): DocumentModality<AsArcadeRecords<T>> => {
     if (!this._documentModality) {
-      this._documentModality = new DocumentModality<unknown>(
-        this,
-        this.sql
-      );
+      this._documentModality = new DocumentModality<unknown>(this, this.sql);
     }
     return this._documentModality as DocumentModality<AsArcadeRecords<T>>;
   };
@@ -131,10 +127,7 @@ class SpriteDatabase {
     AsArcadeEdges<E>
   > => {
     if (!this._graphModality) {
-      this._graphModality = new GraphModality<unknown, unknown>(
-        this,
-        this.sql
-      );
+      this._graphModality = new GraphModality<unknown, unknown>(this, this.sql);
     }
     return this._graphModality as GraphModality<
       AsArcadeRecords<V>,
@@ -173,7 +166,7 @@ class SpriteDatabase {
    *       'SELECT FROM schema:types'
    *     );
    *     console.log(result);
-   *     // { 
+   *     // {
    *     //   user: 'aUser',
    *     //   version: '24.x.x',
    *     //   serverName: 'ArcadeDB_0',
@@ -191,7 +184,7 @@ class SpriteDatabase {
   query = async <ReturnType>(
     language: ArcadeSupportedQueryLanguages,
     command: string,
-    params?: Record<string, any>
+    params?: Record<string, SpriteAllowedParamValues>
   ): Promise<ArcadeQueryResponse<ReturnType[]>> => {
     const response = await this._client.fetch(this._endpoint(endpoints.query), {
       method: "POST",
@@ -214,11 +207,12 @@ class SpriteDatabase {
         throw new Error(
           `Invalid language or query. Status: ${response.status}`
         );
-      case 500:
+      case 500: {
         const message = await response.json();
         throw new Error(
           `${message.error}. ${message.detail}. Status: ${response.status}`
         );
+      }
       default:
         throw new Error(
           `Unknown error. Status: ${response.status}, StatusText: ${response.statusText}`
@@ -333,7 +327,7 @@ class SpriteDatabase {
     command: string,
     transaction: SpriteTransaction,
     options?: {
-      params?: Record<string, any>;
+      params?: Record<string, SpriteAllowedParamValues>;
     }
   ): Promise<ArcadeCommandResponse<T>> => {
     const body = JSON.stringify({

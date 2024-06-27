@@ -5,6 +5,11 @@ import { SpriteTransaction } from "../SpriteTransaction.js";
 import { ValidSuperTypeKey } from "./type.js";
 
 /**
+ * The possible values for a parameter of a command or query
+ */
+export type SpriteAllowedParamValues = string | boolean | number;
+
+/**
  * The possible categories of a record in ArcadeDB,
  * as they appear in the record's `@cat` property.
  */

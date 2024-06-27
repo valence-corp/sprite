@@ -44,13 +44,13 @@ export type SpriteSchemaDateDefinition = {
 
 export type SpriteSchemaBinaryDefinition = { type: "binary" };
 
-export type ArcadeSchemaDefaultValue<T> = T extends Map<any, any>
+export type ArcadeSchemaDefaultValue<T> = T extends Map<unknown, unknown>
   ? { [key: string]: string }
   : T;
 
 export type SpriteSchemaTypeDefinition<T> = T extends string
   ? SpriteSchemaStringDefinition
-  : T extends ArcadeEmbeddedMap<any>
+  : T extends ArcadeEmbeddedMap<unknown>
   ? SpriteSchemaMapDefinition
   : T extends boolean
   ? SpriteSchemaBooleanDefinition
@@ -109,6 +109,6 @@ export type ArcadeSchemaDataType<T> = T extends string
   ? "string"
   : T extends number
   ? "integer" | "float" | "short" | "long"
-  : T extends ArcadeEmbeddedMap<any>
+  : T extends ArcadeEmbeddedMap<unknown>
   ? "map"
   : never;

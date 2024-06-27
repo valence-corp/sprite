@@ -408,9 +408,9 @@ class SpriteServer {
   createUser = async (params: ISpriteCreateArcadeUser): Promise<boolean> => {
     try {
       if (
-        !params.hasOwnProperty("username") ||
-        !params.hasOwnProperty("password") ||
-        !params.hasOwnProperty("databases")
+        !Object.prototype.hasOwnProperty.call(params, "username") ||
+        !Object.prototype.hasOwnProperty.call(params, "password") ||
+        !Object.prototype.hasOwnProperty.call(params, "databases")
       ) {
         throw new TypeError(
           `The object supplied as an argument must contain 'username', 'password', and 'databases' properties. Received: ${JSON.stringify(
