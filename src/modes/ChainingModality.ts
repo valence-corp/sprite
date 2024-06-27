@@ -5,7 +5,6 @@ import {
 import {
   ISpriteSelectFromOptions,
   SpriteOperators,
-  SpriteWhereClause,
   TypeNames,
   WithRid,
 } from '../types/database.js';
