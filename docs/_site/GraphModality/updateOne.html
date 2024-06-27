@@ -1211,7 +1211,11 @@
 <span class="k">async</span> <span class="kd">function</span> <span class="nf">updateOneExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
     <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">transaction</span><span class="p">(</span><span class="k">async </span><span class="p">(</span><span class="nx">trx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">updateOne</span><span class="p">(</span><span class="dl">'</span><span class="s1">#0:0</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">aField</span><span class="p">:</span> <span class="dl">'</span><span class="s1">aValue</span><span class="dl">'</span> <span class="p">},</span> <span class="nx">trx</span><span class="p">);</span>
+      <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">updateOne</span><span class="p">(</span>
+        <span class="dl">'</span><span class="s1">#0:0</span><span class="dl">'</span><span class="p">,</span>
+        <span class="p">{</span> <span class="na">aField</span><span class="p">:</span> <span class="dl">'</span><span class="s1">aValue</span><span class="dl">'</span> <span class="p">},</span>
+        <span class="nx">trx</span> 
+      <span class="p">);</span>
       <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
       <span class="c1">// {</span>
       <span class="c1">//   '@rid': '#0:0',</span>
