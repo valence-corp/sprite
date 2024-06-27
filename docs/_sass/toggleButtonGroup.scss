@@ -1,7 +1,6 @@
 .toggleButtonGroup {
   position: relative;
-  border: unset;
-  white-space:unset;
+  white-space-collapse: collapse;
   &:hover {
     background: inherit;
   }
@@ -14,6 +13,7 @@
     padding: 0;
     position: absolute;
     border: unset;
+    display: block;
     & + label {
       color: var(--accent);
     }

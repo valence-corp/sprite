@@ -29,6 +29,9 @@
   </path>
 </svg>
 </button>
+
+
+
       <button id="nav_button" aria-label="Navigation Toggle"
   class="button-reset big-icon foreground-1 padding-4 margin-h-4 radius-1 focus-ring fit-content-h ">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -1154,13 +1157,19 @@
       <span class="padding-h-3">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 18H14V16H10V18ZM3 6V8H21V6H3ZM6 13H18V11H6V13Z"></path></svg>
       </span>
-      <div class="toggleButtonGroup padding-h-section" id="searchFilters">
-        <input type="checkbox" id="toggleClassResults" value="class" checked /><label for="toggleClassResults"
-          class="button content-center-v padding-3">Classes</label>
-        <input type="checkbox" id="toggleMethodResults" value="method" checked /><label for="toggleMethodResults"
-          class="button content-center-v padding-3">Methods</label>
-        <input type="checkbox" id="toggleTypeResults" value="type" checked /><label for="toggleTypeResults"
-          class="button content-center-v padding-3">Types</label>
+      <div class="toggleButtonGroup padding-h-section flex row" id="searchFilters">
+        <input type="checkbox" id="toggleClassResults" value="class" checked />
+        <label for="toggleClassResults" class="button content-center-v padding-3">
+          Classes
+        </label>
+        <input type="checkbox" id="toggleMethodResults" value="method" checked />
+        <label for="toggleMethodResults" class="button content-center-v padding-3">
+          Methods
+        </label>
+        <input type="checkbox" id="toggleTypeResults" value="type" checked />
+        <label for="toggleTypeResults" class="button content-center-v padding-3">
+          Types
+        </label>
       </div>
     </div>
   </header>

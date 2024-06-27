@@ -3,14 +3,21 @@
   justify-content: space-between;
   border-bottom: 1px solid var(--frame-border-color);
   text-shadow: var(--decorative-shadow);
-  font-family: "Retro Pixel Petty 5X5";
 
   h1 {
     margin: 0 0 0 var(--space-2);
     padding: var(--space-3) 0;
     position: relative;
     z-index: 9;
+    font-family: "Retro Pixel Petty 5X5";
   }
+}
+
+
+
+#search_shortcut {
+  border-left: 1px solid var(--frame-border-color);
+  margin-left: var(--space-3)
 }
 
 @media (min-width: 860px) {
