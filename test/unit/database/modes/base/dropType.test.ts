@@ -1,26 +1,20 @@
-import { client, dbClient as SpriteDatabase } from './testClient.js';
-import { variables } from '../../../../variables.js';
-import {
-  ArcadeCommandResponse,
-  ArcadeSupportedQueryLanguages,
-} from '../../../../../src/types/database.js';
-import { testTransaction } from '../../client/testClient.js';
+import { client, dbClient as SpriteDatabase } from "./testClient.js";
+import { variables } from "../../../../variables.js";
+import { ArcadeCommandResponse } from "../../../../../src/types/database.js";
+import { testTransaction } from "../../client/testClient.js";
 
-const typeName = 'aDocument';
+const typeName = "aDocument";
 
-describe('ModalityBase.dropType()', () => {
+describe("ModalityBase.dropType()", () => {
   it(`correctly passes all options to TypedOperations._dropType`, async () => {
     jest
-      .spyOn(SpriteDatabase, 'command')
+      .spyOn(SpriteDatabase, "command")
       .mockImplementationOnce(
-        async (
-          lanugage: ArcadeSupportedQueryLanguages,
-          options: any,
-        ): Promise<ArcadeCommandResponse<unknown>> => {
+        async (): Promise<ArcadeCommandResponse<unknown>> => {
           return {
             user: variables.username,
-            serverName: '',
-            version: '',
+            serverName: "",
+            version: "",
             result: [{ typeName }],
           };
         },

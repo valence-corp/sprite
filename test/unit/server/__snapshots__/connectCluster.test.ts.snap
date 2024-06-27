@@ -1,13 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SpriteServer.connectCluster() should throw an error if "address" is a string containing only whitespace 1`] = `[Error: There was an error attempting to connect cluster at:    ]`;
-
-exports[`SpriteServer.connectCluster() should throw an error if "address" is an empty string 1`] = `[Error: There was an error attempting to connect cluster at: ]`;
-
 exports[`SpriteServer.connectCluster() should throw an error if no "address" is supplied 1`] = `[Error: There was an error attempting to connect cluster at: undefined]`;
-
-exports[`SpriteServer.connectCluster() should throw an error if supplied "address" is a number 1`] = `[Error: There was an error attempting to connect cluster at: 9]`;
-
-exports[`SpriteServer.connectCluster() should throw an error if supplied "address" is an object 1`] = `[Error: There was an error attempting to connect cluster at: [object Object]]`;
-
-exports[`SpriteServer.connectCluster() should throw an error if supplied "address" is boolean 1`] = `[Error: There was an error attempting to connect cluster at: false]`;

@@ -1,5 +1,5 @@
-import { variables } from '../../variables.js';
-import { SpriteServer } from '../../../src/SpriteServer.js';
+import { variables } from "../../variables.js";
+import { SpriteServer } from "../../../src/SpriteServer.js";
 
 export const client = new SpriteServer({
   username: process.env.ARCADE_TEST_DB_USERNAME || variables.username,

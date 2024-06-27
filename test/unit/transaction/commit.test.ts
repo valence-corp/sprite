@@ -1,12 +1,12 @@
-import { SpriteTransaction } from '../../../src/SpriteTransaction.js';
-import { variables } from '../../variables.js';
-import { client as SpriteDatabase } from '../database/client/testClient.js';
+import { SpriteTransaction } from "../../../src/SpriteTransaction.js";
+import { variables } from "../../variables.js";
+import { client as SpriteDatabase } from "../database/client/testClient.js";
 
-describe('SpriteTransaction.commit()', () => {
-  it('should send the provided sessionId to SpriteDatabase.commitTransaction()', async () => {
+describe("SpriteTransaction.commit()", () => {
+  it("should send the provided sessionId to SpriteDatabase.commitTransaction()", async () => {
     jest
-      .spyOn(SpriteDatabase, 'commitTransaction')
-      .mockImplementationOnce(async (sessionId: string): Promise<boolean> => {
+      .spyOn(SpriteDatabase, "commitTransaction")
+      .mockImplementationOnce(async (): Promise<boolean> => {
         return true;
       });
     const transaction = new SpriteTransaction(
@@ -20,10 +20,10 @@ describe('SpriteTransaction.commit()', () => {
       variables.sessionId,
     );
   });
-  it('should update the committed status)', async () => {
+  it("should update the committed status)", async () => {
     jest
-      .spyOn(SpriteDatabase, 'commitTransaction')
-      .mockImplementationOnce(async (sessionId: string): Promise<boolean> => {
+      .spyOn(SpriteDatabase, "commitTransaction")
+      .mockImplementationOnce(async (): Promise<boolean> => {
         return true;
       });
     const transaction = new SpriteTransaction(

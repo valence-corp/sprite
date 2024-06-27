@@ -1,13 +1,8 @@
-import { testTransaction } from "../database/client/testClient.js";
-import { client } from "./testClient.js";
-import { client as SpriteDatabase } from "../database/client/testClient.js";
-
 describe("SpriteType.createProperty", () => {
   // it("send a properly formatted command via SpriteDatabase.command", async () => {
   //   jest.spyOn(SpriteDatabase, "command").mockResolvedValueOnce({
   //     result: [{}],
   //   } as any);
-
   //   const options = {
   //     constraints: {
   //       default: "string",
@@ -17,7 +12,6 @@ describe("SpriteType.createProperty", () => {
   //     embeddedType: "false",
   //     ifNotExists: true,
   //   };
-
   //   await client.createProperty("aProperty", "string", testTransaction, {
   //     constraints: { min: 0, max: 1, default: "string" },
   //   });
@@ -31,7 +25,6 @@ describe("SpriteType.createProperty", () => {
   //   jest.spyOn(SpriteDatabase, "command").mockResolvedValueOnce({
   //     result: [{}],
   //   } as any);
-
   //   await client.createProperty("aProperty", "string", testTransaction, {
   //     constraints: { min: 0, max: 1, default: "string" },
   //     ifNotExists: true,
@@ -46,7 +39,6 @@ describe("SpriteType.createProperty", () => {
   //   jest.spyOn(SpriteDatabase, "command").mockResolvedValueOnce({
   //     result: [{}],
   //   } as any);
-
   //   await client.createProperty("bProperty", "float", testTransaction, {
   //     constraints: { default: 4.1 },
   //   });

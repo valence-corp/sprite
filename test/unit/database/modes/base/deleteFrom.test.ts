@@ -1,36 +1,30 @@
-import { client, dbClient as SpriteDatabase } from './testClient.js';
-import { variables } from '../../../../variables.js';
-import {
-  ArcadeCommandResponse,
-  ArcadeSupportedQueryLanguages,
-} from '../../../../../src/types/database.js';
-import { testTransaction } from '../../client/testClient.js';
-import { DeleteFromCount } from '../../../../../src/types/operators.js';
+import { client, dbClient as SpriteDatabase } from "./testClient.js";
+import { variables } from "../../../../variables.js";
+import { ArcadeCommandResponse } from "../../../../../src/types/database.js";
+import { testTransaction } from "../../client/testClient.js";
+import { DeleteFromCount } from "../../../../../src/types/operators.js";
 
-const typeName = 'aDocument';
+const typeName = "aDocument";
 
-describe('ModalityBase.deleteFrom()', () => {
+describe("ModalityBase.deleteFrom()", () => {
   it(`correctly passes all options to TypedOperations._deleteFrom`, async () => {
     jest
-      .spyOn(SpriteDatabase, 'command')
+      .spyOn(SpriteDatabase, "command")
       .mockImplementationOnce(
-        async (
-          lanugage: ArcadeSupportedQueryLanguages,
-          options: any,
-        ): Promise<ArcadeCommandResponse<DeleteFromCount[]>> => {
+        async (): Promise<ArcadeCommandResponse<DeleteFromCount[]>> => {
           return {
             user: variables.username,
-            serverName: '',
-            version: '',
+            serverName: "",
+            version: "",
             result: [{ count: 1 }],
           };
         },
       );
 
     await client.deleteFrom(typeName, testTransaction, {
-      where: ['@rid', '!!', variables.rid],
+      where: ["@rid", "!!", variables.rid],
       limit: 1,
-      return: 'BEFORE',
+      return: "BEFORE",
       timeout: 10000,
     });
 

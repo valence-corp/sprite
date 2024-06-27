@@ -1,17 +1,12 @@
-import { testTransaction } from "../database/client/testClient.js";
-import { client } from "./testClient.js";
-
 describe("SpriteType.define", () => {
   // it("make a properly formatted fetch request", async () => {
   //   jest.spyOn(client, "createProperty").mockResolvedValueOnce({
   //     result: [{}],
   //   } as any);
-
   //   // property: keyof S[N],
   //   // dataType: ArcadePropertyDataType,
   //   // transaction: SpriteTransaction,
   //   // options?: ISpritePropertyOptions
-
   //   await client.model(
   //     {
   //       aProperty: {

@@ -1,41 +1,34 @@
-import { client, dbClient as SpriteDatabase } from './testClient.js';
-import { variables } from '../../../../variables.js';
-import {
-  ArcadeCommandResponse,
-  ArcadeQueryResponse,
-  ArcadeSupportedQueryLanguages,
-} from '../../../../../src/types/database.js';
+import { client, dbClient as SpriteDatabase } from "./testClient.js";
+import { variables } from "../../../../variables.js";
+import { ArcadeQueryResponse } from "../../../../../src/types/database.js";
 
-const typeName = 'aDocument';
+const typeName = "aDocument";
 
-describe('ModalityBase.selectFrom()', () => {
+describe("ModalityBase.selectFrom()", () => {
   it(`correctly passes all options to TypedOperations._selectFrom`, async () => {
     jest
-      .spyOn(SpriteDatabase, 'query')
+      .spyOn(SpriteDatabase, "query")
       .mockImplementationOnce(
-        async (
-          lanugage: ArcadeSupportedQueryLanguages,
-          options: any,
-        ): Promise<ArcadeQueryResponse<unknown[]>> => {
+        async (): Promise<ArcadeQueryResponse<unknown[]>> => {
           return {
             user: variables.username,
-            serverName: '',
-            version: '',
+            serverName: "",
+            version: "",
             result: [],
           };
         },
       );
 
     await client.selectFrom(typeName, {
-      where: ['@rid', '!!', variables.rid],
+      where: ["@rid", "!!", variables.rid],
       limit: 1,
       timeout: {
         duration: 10000,
-        strategy: 'RETURN',
+        strategy: "RETURN",
       },
       orderBy: {
-        field: 'aProperty',
-        direction: 'DESC',
+        field: "aProperty",
+        direction: "DESC",
       },
     });
 

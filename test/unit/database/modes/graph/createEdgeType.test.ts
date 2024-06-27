@@ -1,27 +1,21 @@
-import { client, dbClient as SpriteDatabase } from './testClient.js';
-import { variables } from '../../../../variables.js';
-import {
-  ArcadeCommandResponse,
-  ArcadeSupportedQueryLanguages,
-} from '../../../../../src/types/database.js';
-import { testTransaction } from '../../client/testClient.js';
+import { client, dbClient as SpriteDatabase } from "./testClient.js";
+import { variables } from "../../../../variables.js";
+import { ArcadeCommandResponse } from "../../../../../src/types/database.js";
+import { testTransaction } from "../../client/testClient.js";
 
-const typeName = 'anEdge';
+const typeName = "anEdge";
 
-describe('GraphModality.createEdgeType()', () => {
+describe("GraphModality.createEdgeType()", () => {
   it(`correctly passes all options to SpriteOperations._createType`, async () => {
     // Arrange
     jest
-      .spyOn(SpriteDatabase, 'command')
+      .spyOn(SpriteDatabase, "command")
       .mockImplementationOnce(
-        async (
-          lanugage: ArcadeSupportedQueryLanguages,
-          options: any,
-        ): Promise<ArcadeCommandResponse<unknown>> => {
+        async (): Promise<ArcadeCommandResponse<unknown>> => {
           return {
             user: variables.username,
-            serverName: '',
-            version: '',
+            serverName: "",
+            version: "",
             result: [{ typeName }],
           };
         },
@@ -31,7 +25,7 @@ describe('GraphModality.createEdgeType()', () => {
     await client.createEdgeType(typeName, testTransaction, {
       buckets: [variables.bucketName, variables.bucketName],
       totalBuckets: 2,
-      extends: 'anotherEdge',
+      extends: "anotherEdge",
       ifNotExists: true,
     });
 

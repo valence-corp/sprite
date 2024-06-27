@@ -1,44 +1,39 @@
-import { client, dbClient as SpriteDatabase } from './testClient.js';
-import { variables } from '../../../../variables.js';
-import {
-  ArcadeCommandResponse,
-  ArcadeSupportedQueryLanguages,
-} from '../../../../../src/types/database.js';
-import { testTransaction } from '../../client/testClient.js';
+import { client, dbClient as SpriteDatabase } from "./testClient.js";
+import { variables } from "../../../../variables.js";
+import { ArcadeCommandResponse } from "../../../../../src/types/database.js";
+import { testTransaction } from "../../client/testClient.js";
 
-const typeName = 'aVertex';
+const typeName = "aVertex";
 
 const newVertex = {
-  '@rid': variables.rid,
-  '@cat': 'v',
-  '@type': typeName,
-  aProperty: 'aValue',
+  "@rid": variables.rid,
+  "@cat": "v",
+  "@type": typeName,
+  aProperty: "aValue",
 };
 
 const newVertexCommandResponse = {
   user: variables.username,
-  serverName: '',
-  version: '',
+  serverName: "",
+  version: "",
   result: [newVertex],
 };
 
-describe('GraphModality.newVertex()', () => {
+describe("GraphModality.newVertex()", () => {
   // Arrange
   beforeEach(() => {
     jest
-      .spyOn(SpriteDatabase, 'command')
+      .spyOn(SpriteDatabase, "command")
       .mockImplementationOnce(
-        async (
-          lanugage: ArcadeSupportedQueryLanguages,
-          options: any,
-        ): Promise<ArcadeCommandResponse<unknown>> => newVertexCommandResponse,
+        async (): Promise<ArcadeCommandResponse<unknown>> =>
+          newVertexCommandResponse,
       );
   });
   it(`correctly passes typeName, options.data, and options.transactionId to SpriteOperations._insertRecord`, async () => {
     // Act
     await client.newVertex(typeName, testTransaction, {
       data: {
-        aProperty: 'aValue',
+        aProperty: "aValue",
       },
     });
 
@@ -46,7 +41,7 @@ describe('GraphModality.newVertex()', () => {
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       `sql`,
       `INSERT INTO ${typeName} CONTENT ${JSON.stringify({
-        aProperty: 'aValue',
+        aProperty: "aValue",
       })}`,
       testTransaction,
     );

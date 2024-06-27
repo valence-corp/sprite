@@ -1,28 +1,28 @@
-import { client } from './testClient.js';
-import { endpoints } from '../../../../src/endpoints/database.js';
+import { client } from "./testClient.js";
+import { endpoints } from "../../../../src/endpoints/database.js";
 import {
   variables,
   headersWithTransaction as headers,
-} from '../../../variables.js';
-import { EdgeTypes, VertexTypes } from '../types.js';
-import { testTransaction } from '../client/testClient.js';
+} from "../../../variables.js";
+import { EdgeTypes, VertexTypes } from "../types.js";
+import { testTransaction } from "../client/testClient.js";
 
-const vertexName = 'aVertex';
-const propertyName = 'aProperty';
-const typeName = 'anEdge';
+const vertexName = "aVertex";
+const propertyName = "aProperty";
+const typeName = "anEdge";
 const SpriteDatabase = client.database;
 type TypeName = typeof typeName;
 
 const data = {
-  aProperty: 'aValue',
+  aProperty: "aValue",
 };
 
 const stringifiedData = JSON.stringify(data);
 
 const indexDescriptor = {
-  type: 'aVertex',
-  key: 'aProperty',
-  value: 'aValue',
+  type: "aVertex",
+  key: "aProperty",
+  value: "aValue",
 } as const;
 
 const indexSelectStatement = `(SELECT FROM ${vertexName} WHERE ${propertyName} = 'aValue')`;
@@ -31,21 +31,21 @@ const createEdgeTyped = client.createEdge<
   EdgeTypes,
   VertexTypes,
   TypeName,
-  'aVertex',
-  'aVertex'
+  "aVertex",
+  "aVertex"
 >;
 
 const createEdgeResult = {
   user: variables.username,
-  version: '',
-  serverName: '',
+  version: "",
+  serverName: "",
   result: [{ count: 0 }],
 };
 
-describe('TypedOperations.insertRecord()', () => {
+describe("TypedOperations.insertRecord()", () => {
   it(`should make a properly formatted POST request to ${endpoints.command}/${variables.databaseName}`, async () => {
     // Arrange
-    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+    jest.spyOn(global, "fetch").mockResolvedValueOnce({
       status: 200,
       json: async () => createEdgeResult,
     } as Response);
@@ -66,10 +66,10 @@ describe('TypedOperations.insertRecord()', () => {
     expect(global.fetch).toHaveBeenCalledWith(
       `${variables.address}${endpoints.command}/${variables.databaseName}`,
       {
-        method: 'POST',
+        method: "POST",
         headers,
         body: JSON.stringify({
-          language: 'sql',
+          language: "sql",
           command: `CREATE EDGE ${typeName} FROM ${variables.rid} TO ${variables.rid} CONTENT ${stringifiedData}`,
         }),
       },
@@ -79,7 +79,7 @@ describe('TypedOperations.insertRecord()', () => {
   it(`handles string rids in the to and from fields by appending TO ${variables.rid} FROM ${variables.rid} to the command when supplied with ${variables.rid} in the TO and FROM fields`, async () => {
     // Arrange
     jest
-      .spyOn(SpriteDatabase, 'command')
+      .spyOn(SpriteDatabase, "command")
       .mockImplementationOnce(async () => createEdgeResult);
 
     // Act
@@ -92,7 +92,7 @@ describe('TypedOperations.insertRecord()', () => {
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
-      'sql',
+      "sql",
       `CREATE EDGE ${typeName} FROM ${variables.rid} TO ${variables.rid}`,
       testTransaction,
     );
@@ -101,7 +101,7 @@ describe('TypedOperations.insertRecord()', () => {
   it(`handles index descriptor objects in the TO and FROM arguments option by appending TO ${indexSelectStatement} FROM ${indexSelectStatement} to the command when an index descriptor object is supplied"`, async () => {
     // Arrange
     jest
-      .spyOn(SpriteDatabase, 'command')
+      .spyOn(SpriteDatabase, "command")
       .mockImplementationOnce(async () => createEdgeResult);
 
     // Act
@@ -114,7 +114,7 @@ describe('TypedOperations.insertRecord()', () => {
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
-      'sql',
+      "sql",
       `CREATE EDGE ${typeName} FROM ${indexSelectStatement} TO ${indexSelectStatement}`,
       testTransaction,
     );
@@ -123,7 +123,7 @@ describe('TypedOperations.insertRecord()', () => {
   it(`handles "data" option by appending CONTENT ${stringifiedData} to the command when data is set to ${data}`, async () => {
     // Arrange
     jest
-      .spyOn(SpriteDatabase, 'command')
+      .spyOn(SpriteDatabase, "command")
       .mockImplementationOnce(async () => createEdgeResult);
 
     // Act
@@ -137,7 +137,7 @@ describe('TypedOperations.insertRecord()', () => {
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
-      'sql',
+      "sql",
       `CREATE EDGE ${typeName} FROM ${variables.rid} TO ${variables.rid} CONTENT ${stringifiedData}`,
       testTransaction,
     );
@@ -146,7 +146,7 @@ describe('TypedOperations.insertRecord()', () => {
   it(`handles "upsert" option by appending "UPSERT" to the command when upsert is set to true`, async () => {
     // Arrange
     jest
-      .spyOn(SpriteDatabase, 'command')
+      .spyOn(SpriteDatabase, "command")
       .mockImplementationOnce(async () => createEdgeResult);
 
     // Act
@@ -162,7 +162,7 @@ describe('TypedOperations.insertRecord()', () => {
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
-      'sql',
+      "sql",
       `CREATE EDGE ${typeName} UPSERT FROM ${variables.rid} TO ${variables.rid}`,
       testTransaction,
     );
@@ -171,7 +171,7 @@ describe('TypedOperations.insertRecord()', () => {
   it(`handles "unidirectional" option by appending "UNIDIRECTIONAL" to the command when unidirectional is set to true`, async () => {
     // Arrange
     jest
-      .spyOn(SpriteDatabase, 'command')
+      .spyOn(SpriteDatabase, "command")
       .mockImplementationOnce(async () => createEdgeResult);
 
     // Act
@@ -185,7 +185,7 @@ describe('TypedOperations.insertRecord()', () => {
       },
     );
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
-      'sql',
+      "sql",
       `CREATE EDGE ${typeName} FROM ${variables.rid} TO ${variables.rid} UNIDIRECTIONAL`,
       testTransaction,
     );
@@ -194,7 +194,7 @@ describe('TypedOperations.insertRecord()', () => {
   it(`handles "retry" option by appending "RETRY 4 WAIT 1000" to the command when retry.attempts is set to 4 and retry.wait is set to 1000`, async () => {
     // Arrange
     jest
-      .spyOn(SpriteDatabase, 'command')
+      .spyOn(SpriteDatabase, "command")
       .mockImplementationOnce(async () => createEdgeResult);
 
     // Act
@@ -210,7 +210,7 @@ describe('TypedOperations.insertRecord()', () => {
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
-      'sql',
+      "sql",
       `CREATE EDGE ${typeName} FROM ${variables.rid} TO ${variables.rid} RETRY 4 WAIT 1000`,
       testTransaction,
     );
@@ -219,7 +219,7 @@ describe('TypedOperations.insertRecord()', () => {
   it(`handles "batchSize" option by appending "BATCH 1000" to the command when batchSize is set to 1000`, async () => {
     // Arrange
     jest
-      .spyOn(SpriteDatabase, 'command')
+      .spyOn(SpriteDatabase, "command")
       .mockImplementationOnce(async () => createEdgeResult);
 
     // Act
@@ -235,7 +235,7 @@ describe('TypedOperations.insertRecord()', () => {
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
-      'sql',
+      "sql",
       `CREATE EDGE ${typeName} FROM ${variables.rid} TO ${variables.rid} BATCH 1000`,
       testTransaction,
     );

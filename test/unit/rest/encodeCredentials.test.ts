@@ -1,30 +1,30 @@
-import { SpriteRestClient } from '../../../src/SpriteRestClient.js';
-import { endpoints } from '../../../src/endpoints/server.js';
-import { variables } from '../../variables.js';
-import { client } from './utilities/testClient.js';
+import { SpriteRestClient } from "../../../src/SpriteRestClient.js";
+import { endpoints } from "../../../src/endpoints/server.js";
+import { variables } from "../../variables.js";
+import { client } from "./utilities/testClient.js";
 
 // TODO: These tests are kind of a skeleton for browser / node.
 // I'm guessing how to test this in the browser / deno from a
 // nodejs environment.
 
-describe('SpriteBase.encodeCredentials()', () => {
+describe("SpriteBase.encodeCredentials()", () => {
   const credentialString = `${variables.username}:${variables.password}`;
-  it('should properly encode the credentials in a nodejs environment (such as those passed to this.fetch in the `Authorization` header)', async () => {
-    jest.spyOn(global, 'fetch').mockResolvedValue(new Response());
-    jest.spyOn(Buffer, 'from');
+  it("should properly encode the credentials in a nodejs environment (such as those passed to this.fetch in the `Authorization` header)", async () => {
+    jest.spyOn(global, "fetch").mockResolvedValue(new Response());
+    jest.spyOn(Buffer, "from");
 
     client.encodeCredentials(variables.username, variables.password);
 
-    expect(Buffer.from).toHaveBeenCalledWith(credentialString, 'utf-8');
+    expect(Buffer.from).toHaveBeenCalledWith(credentialString, "utf-8");
   });
 
-  it('should properly encode the credentials in a browser/deno environment (such as those passed to this.fetch in the `Authorization` header)', async () => {
+  it("should properly encode the credentials in a browser/deno environment (such as those passed to this.fetch in the `Authorization` header)", async () => {
     const originalWindow = global.window;
     global.window = {
-      btoa: jest.fn((input) => Buffer.from(input, 'utf-8').toString('base64')),
-    } as any as Window & typeof globalThis;
+      btoa: jest.fn((input) => Buffer.from(input, "utf-8").toString("base64")),
+    } as unknown as Window & typeof globalThis;
 
-    jest.spyOn(global, 'fetch').mockResolvedValue(new Response());
+    jest.spyOn(global, "fetch").mockResolvedValue(new Response());
 
     // We create a new `SpriteBase` instance with the `address`, `username`, and `password`
     // to test that the credentials are being encoded when client is created. Typically
@@ -46,13 +46,13 @@ describe('SpriteBase.encodeCredentials()', () => {
     expect(fetch).toHaveBeenCalledWith(
       `${variables.address}${endpoints.ready}`,
       {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Authorization': `Basic ${Buffer.from(
+          Authorization: `Basic ${Buffer.from(
             credentialString,
-            'utf-8',
-          ).toString('base64')}`,
-          'Content-Type': 'application/json',
+            "utf-8",
+          ).toString("base64")}`,
+          "Content-Type": "application/json",
         },
       },
     );
@@ -60,7 +60,7 @@ describe('SpriteBase.encodeCredentials()', () => {
     global.window = originalWindow;
   });
 
-  it('should throw an error if no password is provided', async () => {
+  it("should throw an error if no password is provided", async () => {
     expect(
       () =>
         // @ts-expect-error - We're testing the error thrown when the password is not provided
@@ -71,7 +71,7 @@ describe('SpriteBase.encodeCredentials()', () => {
     ).toThrowErrorMatchingSnapshot();
   });
 
-  it('should throw an error if no username is provided', async () => {
+  it("should throw an error if no username is provided", async () => {
     expect(
       () =>
         // @ts-expect-error - We're testing the error thrown when the username is not provided

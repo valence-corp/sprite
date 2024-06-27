@@ -1,10 +1,10 @@
-import { client } from './testClient.js';
-import { endpoints } from '../../../../src/endpoints/database.js';
-import { variables, testAuth } from '../../../variables.js';
+import { client } from "./testClient.js";
+import { endpoints } from "../../../../src/endpoints/database.js";
+import { variables, testAuth } from "../../../variables.js";
 
-describe('SpriteDatabase.rollbackTransaction()', () => {
+describe("SpriteDatabase.rollbackTransaction()", () => {
   it(`should make a properly formatted POST request to ${endpoints.rollbackTransaction}/${variables.databaseName}`, async () => {
-    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+    jest.spyOn(global, "fetch").mockResolvedValueOnce({
       status: 204,
     } as Response);
     await client.rollbackTransaction(variables.sessionId);
@@ -12,11 +12,11 @@ describe('SpriteDatabase.rollbackTransaction()', () => {
     expect(global.fetch).toHaveBeenCalledWith(
       `${variables.address}${endpoints.rollbackTransaction}/${variables.databaseName}`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Authorization': `Basic ${testAuth}`,
-          'Content-Type': 'application/json',
-          'arcadedb-session-id': variables.sessionId,
+          Authorization: `Basic ${testAuth}`,
+          "Content-Type": "application/json",
+          "arcadedb-session-id": variables.sessionId,
         },
       },
     );

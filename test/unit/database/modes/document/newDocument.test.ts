@@ -1,37 +1,31 @@
-import { client, dbClient as SpriteDatabase } from './testClient.js';
-import { variables } from '../../../../variables.js';
-import {
-  ArcadeCommandResponse,
-  ArcadeSupportedQueryLanguages,
-} from '../../../../../src/types/database.js';
-import { testTransaction } from '../../client/testClient.js';
+import { client, dbClient as SpriteDatabase } from "./testClient.js";
+import { variables } from "../../../../variables.js";
+import { ArcadeCommandResponse } from "../../../../../src/types/database.js";
+import { testTransaction } from "../../client/testClient.js";
 
-const typeName = 'aDocument';
+const typeName = "aDocument";
 
 const newDocument = {
-  '@rid': variables.rid,
-  '@cat': 'v',
-  '@type': typeName,
-  'aProperty': 'aValue',
+  "@rid": variables.rid,
+  "@cat": "v",
+  "@type": typeName,
+  aProperty: "aValue",
 };
 
 const newDocumentCommandResponse = {
   user: variables.username,
-  serverName: '',
-  version: '',
+  serverName: "",
+  version: "",
   result: [newDocument],
 };
 
-describe('DocumentModality.newDocument()', () => {
+describe("DocumentModality.newDocument()", () => {
   // Arrange
   beforeEach(() => {
     jest
-      .spyOn(SpriteDatabase, 'command')
+      .spyOn(SpriteDatabase, "command")
       .mockImplementationOnce(
-        async (
-          lanugage: ArcadeSupportedQueryLanguages,
-          options: any,
-        ): Promise<ArcadeCommandResponse<unknown>> =>
+        async (): Promise<ArcadeCommandResponse<unknown>> =>
           newDocumentCommandResponse,
       );
   });
@@ -39,7 +33,7 @@ describe('DocumentModality.newDocument()', () => {
     // Act
     await client.newDocument(typeName, testTransaction, {
       data: {
-        aProperty: 'aValue',
+        aProperty: "aValue",
       },
     });
 
@@ -47,7 +41,7 @@ describe('DocumentModality.newDocument()', () => {
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       `sql`,
       `INSERT INTO ${typeName} CONTENT ${JSON.stringify({
-        aProperty: 'aValue',
+        aProperty: "aValue",
       })}`,
       testTransaction,
     );
