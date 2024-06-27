@@ -14,7 +14,7 @@ import { selectIndex } from "../../nodes/select/selectIndex.js";
  * @returns
  */
 export function buildEdgePoint<V, N extends TypeNames<V>>(
-  point: SpriteEdgeVertexDescriptor<V, N>
+  point: SpriteEdgeVertexDescriptor<V, N>,
 ): string {
   return typeof point === "string"
     ? point

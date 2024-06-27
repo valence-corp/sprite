@@ -1,5 +1,5 @@
-import { ArcadeRecordType } from '../../../types/database.js';
-import { validation } from '../../../validation/ArcadeParameterValidation.js';
+import { ArcadeRecordType } from "../../../types/database.js";
+import { validation } from "../../../validation/ArcadeParameterValidation.js";
 
 export function create(recordType: ArcadeRecordType) {
   try {

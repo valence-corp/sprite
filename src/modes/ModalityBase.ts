@@ -21,14 +21,14 @@ class ModalityBase<S> {
   }
   selectFrom = async <N extends TypeNames<S>, P extends keyof WithRid<S, N>>(
     typeName: N,
-    options?: ISpriteSelectFromOptions<S, N, P>
+    options?: ISpriteSelectFromOptions<S, N, P>,
   ) => {
     return this._sql.selectFrom<S, N, P>(typeName, options);
   };
   dropType = async <N extends TypeNames<S>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteDropTypeOptions
+    options?: ISpriteDropTypeOptions,
   ) => this._sql.dropType<S, N>(typeName, transaction, options);
   newTransaction = (isolationLevel?: ArcadeTransactionIsolationLevel) =>
     this._database.newTransaction(isolationLevel);
@@ -73,7 +73,7 @@ class ModalityBase<S> {
    */
   transaction = async (
     callback: SpriteTransactionCallback,
-    isolationLevel?: ArcadeTransactionIsolationLevel
+    isolationLevel?: ArcadeTransactionIsolationLevel,
   ): Promise<SpriteTransaction> => {
     try {
       const trx = await this.newTransaction(isolationLevel);
@@ -130,7 +130,7 @@ class ModalityBase<S> {
   deleteFrom = async <N extends TypeNames<S>, P extends keyof WithRid<S, N>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options: ISpriteDeleteFromOptions<S, N, P>
+    options: ISpriteDeleteFromOptions<S, N, P>,
   ) => this._sql.deleteFrom<S, N, P>(typeName, transaction, options);
   /**
    * Delete a specific record by providing the `rid`
@@ -218,7 +218,7 @@ class ModalityBase<S> {
   updateOne = async <N extends TypeNames<S>>(
     rid: string,
     data: OmitMeta<S[N]>,
-    transaction: SpriteTransaction
+    transaction: SpriteTransaction,
   ) => this._sql.updateOne<S, N>(rid, data, transaction);
   /**
    * Select a specific record by providing the `rid`

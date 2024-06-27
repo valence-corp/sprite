@@ -1,4 +1,4 @@
-import { validation } from '../../../validation/ArcadeParameterValidation.js';
+import { validation } from "../../../validation/ArcadeParameterValidation.js";
 
 export function type<T>(typeName: T) {
   try {

@@ -60,7 +60,7 @@ class DocumentModality<S> extends ModalityBase<S> {
   newDocument = <N extends keyof S>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteInsertRecordOptions<S[N]>
+    options?: ISpriteInsertRecordOptions<S[N]>,
   ) => this._sql.insertRecord<S, N>(typeName, transaction, options);
   /**
    * Create a new document type in the schema.
@@ -105,7 +105,7 @@ class DocumentModality<S> extends ModalityBase<S> {
   createType = <N extends TypeNames<S>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteCreateTypeOptions<S, N>
+    options?: ISpriteCreateTypeOptions<S, N>,
   ) => this._sql.createType<S, N>(typeName, "document", transaction, options);
 }
 

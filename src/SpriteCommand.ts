@@ -10,9 +10,9 @@ export interface ISpriteCommandOptions {
  */
 export class SpriteCommand {
   private _command: string;
-  private separator = ' ';
+  private separator = " ";
   constructor(options?: ISpriteCommandOptions) {
-    this._command = options?.initial || '';
+    this._command = options?.initial || "";
   }
   /**
    * Accepts a node and the nodes parameters, runs the function

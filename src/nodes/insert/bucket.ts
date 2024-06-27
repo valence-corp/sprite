@@ -7,7 +7,7 @@ export function bucket(bucketName: string) {
   } catch (error) {
     throw new TypeError(
       `Could not set BUCKET:[bucketName(s)] on the command.`,
-      { cause: error }
+      { cause: error },
     );
   }
 }

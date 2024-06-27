@@ -1,15 +1,15 @@
 import {
   ArcadeResultSortDirection,
   ArcadeSelectTimeoutStrategy,
-} from '../nodes/types.js';
+} from "../nodes/types.js";
 import {
   ISpriteSelectFromOptions,
   SpriteOperators,
   TypeNames,
   WithRid,
-} from '../types/database.js';
-import { SpriteDatabase } from '../SpriteDatabase.js';
-import { SqlDialect } from '../SqlDialect.js';
+} from "../types/database.js";
+import { SpriteDatabase } from "../SpriteDatabase.js";
+import { SqlDialect } from "../SqlDialect.js";
 
 class ChainingModality<S> {
   private database: SpriteDatabase;

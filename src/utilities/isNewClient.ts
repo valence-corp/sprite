@@ -6,7 +6,7 @@ import {
 export function isNewClient(
   parameters:
     | ISpriteDatabaseClientParameters
-    | ISpriteDatabaseConnectionParameters
+    | ISpriteDatabaseConnectionParameters,
 ) {
   if (
     Object.hasOwn(parameters, "address") &&

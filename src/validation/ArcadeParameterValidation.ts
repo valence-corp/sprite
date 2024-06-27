@@ -10,7 +10,7 @@ class ArcadeParameterValidation {
     }
     if (transaction.committed) {
       throw new Error(
-        "The transaction supplied to this operation has already been commited, try again with an open transaction."
+        "The transaction supplied to this operation has already been commited, try again with an open transaction.",
       );
     }
   };
@@ -30,8 +30,8 @@ class ArcadeParameterValidation {
     } else {
       throw new TypeError(
         `The supplied argument could not be validated as a non-empty object. ${this.getVariableDescription(
-          variable
-        )}`
+          variable,
+        )}`,
       );
     }
   };
@@ -41,8 +41,8 @@ class ArcadeParameterValidation {
     } else {
       throw new TypeError(
         `The supplied argument could not be validated as an array. ${this.getVariableDescription(
-          variable
-        )}`
+          variable,
+        )}`,
       );
     }
   };
@@ -57,8 +57,8 @@ class ArcadeParameterValidation {
     } else {
       throw new TypeError(
         `The supplied argument could not be validated as a string. ${this.getVariableDescription(
-          variable
-        )}`
+          variable,
+        )}`,
       );
     }
   };
@@ -69,8 +69,8 @@ class ArcadeParameterValidation {
       } else {
         throw new TypeError(
           `The supplied argument could not be validated as a properly formatted database name for ArcadeDB. ${this.getVariableDescription(
-            variable
-          )}`
+            variable,
+          )}`,
         );
       }
     }
@@ -83,8 +83,8 @@ class ArcadeParameterValidation {
 
     throw new TypeError(
       `The supplied argument could not be validated as a properly formatted database name for ArcadeDB. ${this.getVariableDescription(
-        variable
-      )}`
+        variable,
+      )}`,
     );
   };
   /**
@@ -98,8 +98,8 @@ class ArcadeParameterValidation {
     } else {
       throw new TypeError(
         `The supplied argument could not be validated as a properly formatted database name for ArcadeDB. ${this.getVariableDescription(
-          variable
-        )}`
+          variable,
+        )}`,
       );
     }
   };
@@ -109,8 +109,8 @@ class ArcadeParameterValidation {
     } else {
       throw new TypeError(
         `The supplied argument could not be validated as an identifier for ArcadeDB Sprite currently only allows simple identifiers as described in the documentation: https://docs.arcadedb.com/#SQL-Syntax. ${this.getVariableDescription(
-          variable
-        )}`
+          variable,
+        )}`,
       );
     }
   };
@@ -125,8 +125,8 @@ class ArcadeParameterValidation {
     } else {
       throw new TypeError(
         `The supplied argument could not be validated as a properly formatted type name for ArcadeDB. ${this.getVariableDescription(
-          variable
-        )}`
+          variable,
+        )}`,
       );
     }
   };
@@ -145,8 +145,8 @@ class ArcadeParameterValidation {
     } else {
       throw new TypeError(
         `The supplied argument could not be validated as a record type of ArcadeDB ('document', 'edge', or 'vertex'). ${this.getVariableDescription(
-          variable
-        )}`
+          variable,
+        )}`,
       );
     }
   };
@@ -162,8 +162,8 @@ class ArcadeParameterValidation {
     } catch (error) {
       throw new TypeError(
         `The supplied argument could not be validated as properly formatted URL. ${this.getVariableDescription(
-          variable
-        )}`
+          variable,
+        )}`,
       );
     }
   };
@@ -173,14 +173,14 @@ class ArcadeParameterValidation {
     } else {
       throw new TypeError(
         `The supplied argument could not be validated as an. ${this.getVariableDescription(
-          variable
-        )}`
+          variable,
+        )}`,
       );
     }
   };
   private getVariableDescription = (variable: unknown) => {
     return `The supplied argument was: [${JSON.stringify(
-      variable
+      variable,
     )}], which is of type: [${typeof variable}].`;
   };
 }

@@ -44,23 +44,22 @@ export type SpriteSchemaDateDefinition = {
 
 export type SpriteSchemaBinaryDefinition = { type: "binary" };
 
-export type ArcadeSchemaDefaultValue<T> = T extends Map<unknown, unknown>
-  ? { [key: string]: string }
-  : T;
+export type ArcadeSchemaDefaultValue<T> =
+  T extends Map<unknown, unknown> ? { [key: string]: string } : T;
 
 export type SpriteSchemaTypeDefinition<T> = T extends string
   ? SpriteSchemaStringDefinition
   : T extends ArcadeEmbeddedMap<unknown>
-  ? SpriteSchemaMapDefinition
-  : T extends boolean
-  ? SpriteSchemaBooleanDefinition
-  : T extends number
-  ? SpriteSchemaNumberDefinition
-  : T extends Buffer
-  ? SpriteSchemaBinaryDefinition
-  : T extends Date
-  ? SpriteSchemaDateDefinition
-  : never;
+    ? SpriteSchemaMapDefinition
+    : T extends boolean
+      ? SpriteSchemaBooleanDefinition
+      : T extends number
+        ? SpriteSchemaNumberDefinition
+        : T extends Buffer
+          ? SpriteSchemaBinaryDefinition
+          : T extends Date
+            ? SpriteSchemaDateDefinition
+            : never;
 
 export type SpriteSchemaDefinitionConstraints<T> = {
   /**
@@ -98,7 +97,7 @@ export type ArcadeSchemaConstraints<T> = T extends string | number
 export type SpriteSchemaProperty<
   S,
   N extends TypeNames<S>,
-  P extends keyof S[N]
+  P extends keyof S[N],
 > = SpriteSchemaTypeDefinition<S[N][P]> & ArcadeSchemaConstraints<S[N][P]>;
 
 export type SpriteSchemaDefinition<S, N extends TypeNames<S>> = {
@@ -108,7 +107,7 @@ export type SpriteSchemaDefinition<S, N extends TypeNames<S>> = {
 export type ArcadeSchemaDataType<T> = T extends string
   ? "string"
   : T extends number
-  ? "integer" | "float" | "short" | "long"
-  : T extends ArcadeEmbeddedMap<unknown>
-  ? "map"
-  : never;
+    ? "integer" | "float" | "short" | "long"
+    : T extends ArcadeEmbeddedMap<unknown>
+      ? "map"
+      : never;

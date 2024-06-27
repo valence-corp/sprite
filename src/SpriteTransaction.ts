@@ -7,7 +7,7 @@ export class SpriteTransaction {
   constructor(database: SpriteDatabase, transactionId: string) {
     if (!transactionId) {
       throw new Error(
-        `A transaction ID must be supplied as a parameter in order to return an instance of SpriteTransaction. Recieved ${transactionId}`
+        `A transaction ID must be supplied as a parameter in order to return an instance of SpriteTransaction. Recieved ${transactionId}`,
       );
     }
     this.database = database;

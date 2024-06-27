@@ -21,7 +21,7 @@ class SpriteRestClient {
    * @throws `Error` if valid parameter types are not received, or something else causes an error when building the object.
    */
   getConnection = (
-    params: ISpriteRestClientConnectionParameters
+    params: ISpriteRestClientConnectionParameters,
   ): ISpriteConnection => {
     try {
       // this.validate.nonEmptyString(params.username);
@@ -30,7 +30,7 @@ class SpriteRestClient {
 
       const base64EncodedCredentials = this.encodeCredentials(
         params.username,
-        params.password
+        params.password,
       );
 
       return {
@@ -69,7 +69,7 @@ class SpriteRestClient {
         return Buffer.from(credentials, "utf-8").toString("base64");
       } else {
         throw new Error(
-          "Could not determine the encoding function to use given the current JavaScript environment."
+          "Could not determine the encoding function to use given the current JavaScript environment.",
         );
       }
     } catch (error) {
@@ -90,7 +90,7 @@ class SpriteRestClient {
    */
   fetch = async (
     endpoint: string,
-    { method = "GET", body, headers }: RequestInit = {}
+    { method = "GET", body, headers }: RequestInit = {},
   ): Promise<Response> => {
     const response = await fetch(`${this.connection.address}${endpoint}`, {
       method,
@@ -125,7 +125,7 @@ class SpriteRestClient {
    */
   fetchJson = async <T>(
     endpoint: string,
-    parameters?: RequestInit
+    parameters?: RequestInit,
   ): Promise<T> => {
     const response = await this.fetch(endpoint, parameters);
     const json = await response.json();
@@ -146,7 +146,7 @@ class SpriteRestClient {
    */
   serverCommand = async <T>(
     command: string,
-    parameters?: string | object
+    parameters?: string | object,
   ): Promise<T> => {
     try {
       //this.validate.nonEmptyString(command);
@@ -176,7 +176,7 @@ class SpriteRestClient {
     } catch (error) {
       throw new Error(
         `Encountered an error when sending a command to the server.`,
-        { cause: error }
+        { cause: error },
       );
     }
   };

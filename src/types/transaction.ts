@@ -6,5 +6,5 @@
  * @default READ_COMMITTED
  */
 export type ArcadeTransactionIsolationLevel =
-  | 'READ_COMMITTED'
-  | 'REPEATABLE_READ';
+  | "READ_COMMITTED"
+  | "REPEATABLE_READ";

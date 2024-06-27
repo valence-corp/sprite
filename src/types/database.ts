@@ -22,7 +22,7 @@ export type ArcadeRecordCategory = "d" | "e" | "v";
 export type ArcadeRecordType = "document" | "edge" | "vertex";
 
 /**
- * The base metadata for record in 
+ * The base metadata for record in
  * ArcadeDB.
  */
 export type RecordMeta = {
@@ -35,7 +35,7 @@ export type RecordMeta = {
 };
 
 /**
- * The metadata for an Edge record in 
+ * The metadata for an Edge record in
  * ArcadeDB
  */
 export type EdgeRecordMeta = RecordMeta & {
@@ -290,7 +290,7 @@ export declare const COMPARISON_OPERATORS: readonly [
   "<->",
   "regexp",
   "is distinct from",
-  "is not distinct from"
+  "is not distinct from",
 ];
 
 /** Operators for a `WHERE` sql statement */
@@ -300,7 +300,7 @@ export type SpriteOperators = (typeof COMPARISON_OPERATORS)[number];
 export interface ISpriteSelectFromOptions<
   S,
   N extends keyof S,
-  P extends keyof WithRid<S, N>
+  P extends keyof WithRid<S, N>,
 > {
   /**
    * Designates conditions to filter the result-set.
@@ -361,17 +361,17 @@ export type WithRid<S, N extends TypeNames<S>> = OmitMeta<S[N]> & {
 export type SpriteWhereClause<
   S,
   N extends TypeNames<S>,
-  P extends keyof WithRid<S, N>
+  P extends keyof WithRid<S, N>,
 > = [P, SpriteOperators, WithRid<S, N>[P]];
 
 /**
- * Options for a `deleteFrom` operation as executed 
+ * Options for a `deleteFrom` operation as executed
  * via a `SpriteDatabase` modality.
  */
 export interface ISpriteDeleteFromOptions<
   S,
   N extends TypeNames<S>,
-  P extends keyof WithRid<S, N>
+  P extends keyof WithRid<S, N>,
 > {
   /**
    * Designates conditions to filter the result-set.

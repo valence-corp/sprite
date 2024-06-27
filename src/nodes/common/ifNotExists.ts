@@ -1,3 +1,3 @@
 export function ifNotExists() {
-  return 'IF NOT EXISTS';
+  return "IF NOT EXISTS";
 }

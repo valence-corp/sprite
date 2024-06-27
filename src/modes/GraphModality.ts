@@ -72,7 +72,7 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
   newVertex = async <N extends TypeNames<V>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteInsertRecordOptions<V[N]>
+    options?: ISpriteInsertRecordOptions<V[N]>,
   ) => this._sql.insertRecord<V, N>(typeName, transaction, options);
   /**
    * Insert a new edge into the database.
@@ -127,20 +127,20 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
   newEdge = async <
     N extends TypeNames<E>,
     V1 extends keyof V,
-    V2 extends keyof V
+    V2 extends keyof V,
   >(
     typeName: N,
     to: SpriteEdgeVertexDescriptor<V, V1>,
     from: SpriteEdgeVertexDescriptor<V, V2>,
     transaction: SpriteTransaction,
-    options?: ISpriteEdgeOptions<E[N]>
+    options?: ISpriteEdgeOptions<E[N]>,
   ) =>
     this._sql.createEdge<E, V, N, V1, V2>(
       typeName,
       to,
       from,
       transaction!,
-      options
+      options,
     );
   /**
    * Create a new edge type.
@@ -191,7 +191,7 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
   createEdgeType = async <N extends TypeNames<E>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteCreateTypeOptions<E, N>
+    options?: ISpriteCreateTypeOptions<E, N>,
   ) => this._sql.createType<E, N>(typeName, "edge", transaction, options);
   /**
    * Create a new vertex type.
@@ -242,7 +242,7 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
   createVertexType = async <N extends TypeNames<V>>(
     typeName: N,
     transaction: SpriteTransaction,
-    options?: ISpriteCreateTypeOptions<V, N>
+    options?: ISpriteCreateTypeOptions<V, N>,
   ): Promise<SpriteType<V, N>> =>
     this._sql.createType<V, N>(typeName, "vertex", transaction, options);
 }

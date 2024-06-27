@@ -1,10 +1,10 @@
-import { validation } from '../../validation/ArcadeParameterValidation.js';
+import { validation } from "../../validation/ArcadeParameterValidation.js";
 
 export function bucket(bucketName: string | Array<string>) {
   try {
     validation.bucketName(bucketName);
     return Array.isArray(bucketName)
-      ? `BUCKET ${bucketName.join(',')}`
+      ? `BUCKET ${bucketName.join(",")}`
       : `BUCKET ${bucketName}`;
   } catch (error) {
     throw new TypeError(

@@ -31,7 +31,6 @@ interface ExampleVertexes {
   };
 }
 
-
 interface ExampleEdges {
   Friends: {
     since: number;
@@ -46,7 +45,6 @@ const client = db.graphModality<ExampleVertexes, ExampleEdges>();
 client.transaction(async (trx) => {
   client.dropType("Something", trx).then(console.log);
 });
-
 
 // async function graphModalityExample() {
 //   try {

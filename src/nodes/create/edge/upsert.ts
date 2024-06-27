@@ -1,1 +1,1 @@
-export const upsert = () => 'UPSERT';
+export const upsert = () => "UPSERT";

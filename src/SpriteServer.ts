@@ -196,7 +196,7 @@ class SpriteServer {
         `Could not return an insance of "SpriteDatabase" for database: ${databaseName}`,
         {
           cause: error,
-        }
+        },
       );
     }
   };
@@ -252,7 +252,7 @@ class SpriteServer {
     } catch (error) {
       throw new Error(
         `Encountered an error when sending a command to the server.`,
-        { cause: error }
+        { cause: error },
       );
     }
   };
@@ -318,7 +318,7 @@ class SpriteServer {
     } catch (error) {
       throw new Error(
         `There was an error attempting to connect cluster at: ${address}`,
-        { cause: error }
+        { cause: error },
       );
     }
   };
@@ -351,13 +351,13 @@ class SpriteServer {
     try {
       this._validate.databaseName(databaseName);
       const created = await this._booleanCommand(
-        `CREATE DATABASE ${databaseName}`
+        `CREATE DATABASE ${databaseName}`,
       );
       if (created) {
         return this.database(databaseName);
       } else {
         throw new Error(
-          `Received an unexpected response from the server when attempting to create database "${databaseName}"`
+          `Received an unexpected response from the server when attempting to create database "${databaseName}"`,
         );
       }
     } catch (error) {
@@ -414,8 +414,8 @@ class SpriteServer {
       ) {
         throw new TypeError(
           `The object supplied as an argument must contain 'username', 'password', and 'databases' properties. Received: ${JSON.stringify(
-            params
-          )}`
+            params,
+          )}`,
         );
       }
 
@@ -428,7 +428,7 @@ class SpriteServer {
       // character minimum, but in practice it's 4 (for non-root users)
       if (!(params.password.length > 3)) {
         throw new TypeError(
-          `The password must be at least 4 characters in length, received: ${params.password}, which is ${params.password.length} characters long.`
+          `The password must be at least 4 characters in length, received: ${params.password}, which is ${params.password.length} characters long.`,
         );
       }
 
@@ -445,13 +445,13 @@ class SpriteServer {
       };
 
       return await this._booleanCommand(
-        `CREATE USER ${JSON.stringify(expectedParameters)}`
+        `CREATE USER ${JSON.stringify(expectedParameters)}`,
       );
     } catch (error) {
       const databaseListString = Object.keys(params.databases).join(", ");
       throw new Error(
         `Could not create user ${params.username}. In database(s): ${databaseListString}`,
-        { cause: error }
+        { cause: error },
       );
     }
   };
@@ -485,7 +485,7 @@ class SpriteServer {
   databaseExists = async (databaseName: string): Promise<boolean> => {
     try {
       const { status } = await this._client.fetch(
-        `${endpoints.exists}/${databaseName}`
+        `${endpoints.exists}/${databaseName}`,
       );
       switch (status) {
         case 200:
@@ -494,13 +494,13 @@ class SpriteServer {
           return false;
         default:
           throw new Error(
-            `Received an unexpected result from the server when attempting to check if database "${databaseName}" exists.`
+            `Received an unexpected result from the server when attempting to check if database "${databaseName}" exists.`,
           );
       }
     } catch (error) {
       throw new Error(
         `Encountered an error when checking to see if database "${databaseName}" exists`,
-        { cause: error }
+        { cause: error },
       );
     }
   };
@@ -535,7 +535,7 @@ class SpriteServer {
     } catch (error) {
       throw new Error(
         "There was an error when attempting to disconnect from the cluster.",
-        { cause: error }
+        { cause: error },
       );
     }
   };
@@ -655,7 +655,7 @@ class SpriteServer {
     } catch (error) {
       throw new Error(
         `There was an error when attempting to retrieve ArcadeDB server event logs.`,
-        { cause: error }
+        { cause: error },
       );
     }
   };
@@ -693,11 +693,11 @@ class SpriteServer {
    * getInformationExample('basic');
    */
   getInformation = async <M extends ArcadeServerInformationLevel = "default">(
-    mode?: M
+    mode?: M,
   ): Promise<ArcadeServerInformation<M>> => {
     try {
       return await this._client.fetchJson(
-        `${endpoints.command}?mode=${mode || "default"}`
+        `${endpoints.command}?mode=${mode || "default"}`,
       );
     } catch (error) {
       throw new Error(`Could not get ArcadeDB server information.`, {
@@ -736,7 +736,7 @@ class SpriteServer {
     } catch (error) {
       throw new Error(
         "Encountered an error when attemping to fetch list of databases from the server.",
-        { cause: error }
+        { cause: error },
       );
     }
   };
@@ -779,7 +779,7 @@ class SpriteServer {
     } catch (error) {
       throw new Error(
         `There was an error when attempting to shutdown the ArcadeDB server at.`,
-        { cause: error }
+        { cause: error },
       );
     }
   };

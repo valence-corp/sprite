@@ -1,4 +1,4 @@
-import { OmitMeta, TypeNames } from './database.js';
+import { OmitMeta, TypeNames } from "./database.js";
 
 export interface ISpriteIndexdescriptor<S, N extends TypeNames<S>> {
   /**

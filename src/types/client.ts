@@ -1,4 +1,3 @@
-
 /**
  * The parameters required to connect to the ArcadeDB server.
  */
@@ -20,7 +19,7 @@ export interface ISpriteConnection {
   address: string;
   /** The headers of the Fetch request */
   headers: {
-    'Content-Type': string;
-    'Authorization': string;
+    "Content-Type": string;
+    Authorization: string;
   };
 }
