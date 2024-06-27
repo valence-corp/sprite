@@ -40,7 +40,7 @@ class ChainingModality<S> {
 class SelectFrom<S, N extends TypeNames<S>, P extends keyof WithRid<S, N>> {
   private typeName: N;
   private _sql: SqlDialect;
-  private options?: ISpriteSelectFromOptions<S, N, any>;
+  private options?: ISpriteSelectFromOptions<S, N, P>;
   constructor(operators: SqlDialect, typeName: N) {
     this.typeName = typeName;
     this._sql = operators;
@@ -51,7 +51,7 @@ class SelectFrom<S, N extends TypeNames<S>, P extends keyof WithRid<S, N>> {
    * @param operator The operator (i.e. !=, !!, <=, etc)
    * @param value The value to check again the operator.
    */
-  where = <P extends keyof WithRid<S, N>>(
+  where = (
     reference: P,
     operator: SpriteOperators,
     value: WithRid<S, N>[P],

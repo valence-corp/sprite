@@ -1,3 +1,9 @@
-export function selectIndex(type: string, key: string, value: string | number | boolean) {
-  return `SELECT FROM ${type} WHERE ${key} = '${value}'`;
+import { TypeNames } from "../../types/database.js";
+
+export function selectIndex<V, N extends TypeNames<V>>(
+  type: N,
+  key: keyof V[N],
+  value: V[N][keyof V[N]]
+) {
+  return `SELECT FROM ${type as string} WHERE ${key as string} = '${value}'`;
 }

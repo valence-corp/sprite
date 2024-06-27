@@ -1,7 +1,8 @@
-import { SpriteEdgeVertexDescriptor } from '../../types/edge.js';
-import { selectIndex } from '../../nodes/select/selectIndex.js';
+import { TypeNames } from "../../types/database.js";
+import { SpriteEdgeVertexDescriptor } from "../../types/edge.js";
+import { selectIndex } from "../../nodes/select/selectIndex.js";
 
-// TODO: Need object validation if we are going to go this route.
+// TODO: Need object validation if going this route.
 
 /**
  * If the supplied value is a string (rid) it just returns the string,
@@ -12,10 +13,10 @@ import { selectIndex } from '../../nodes/select/selectIndex.js';
  * @param {SpriteEdgeVertexDescriptor} point
  * @returns
  */
-export function buildEdgePoint(
-  point: SpriteEdgeVertexDescriptor<any, any>,
+export function buildEdgePoint<V, N extends TypeNames<V>>(
+  point: SpriteEdgeVertexDescriptor<V, N>
 ): string {
-  return typeof point === 'string'
+  return typeof point === "string"
     ? point
-    : `(${selectIndex(point.type, point.key as string, point.value)})`;
+    : `(${selectIndex(point.type, point.key, point.value)})`;
 }
