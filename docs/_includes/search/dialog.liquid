@@ -14,20 +14,7 @@
       <span class="padding-h-3">
         {% include icons/filter.svg %}
       </span>
-      <div class="toggleButtonGroup padding-h-section flex row" id="searchFilters">
-        <input type="checkbox" id="toggleClassResults" value="class" checked />
-        <label for="toggleClassResults" class="button content-center-v padding-3">
-          Classes
-        </label>
-        <input type="checkbox" id="toggleMethodResults" value="method" checked />
-        <label for="toggleMethodResults" class="button content-center-v padding-3">
-          Methods
-        </label>
-        <input type="checkbox" id="toggleTypeResults" value="type" checked />
-        <label for="toggleTypeResults" class="button content-center-v padding-3">
-          Types
-        </label>
-      </div>
+      {% include search/filters.liquid %}
     </div>
   </header>
   <ul id="resultList">
