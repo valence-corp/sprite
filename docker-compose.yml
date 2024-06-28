@@ -5,4 +5,4 @@ services:
     ports:
       - '2480:2480'
     environment:
-      - JAVA_OPTS=-Darcadedb.server.rootPassword=999999999 -Darcadedb.server.defaultDatabases=Imported[root]{import:https://github.com/valence-corp/sprite/raw/main/test/integration/SpriteIntegrationTestingDatabase.zip}
+      - JAVA_OPTS=-Darcadedb.server.rootPassword=playwithdata -Darcadedb.server.defaultDatabases=Imported[root]{import:https://github.com/valence-corp/sprite/raw/main/test/integration/SpriteIntegrationTestingDatabase.zip}
