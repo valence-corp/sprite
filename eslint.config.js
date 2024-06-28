@@ -6,8 +6,5 @@ export default [
   { files: ["**/*.{js,mjs,cjs,ts}"] },
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  {
-    'no-trailing-comma': 'on'
-  }
+  ...tseslint.configs.recommended
 ];
