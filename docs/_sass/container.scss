@@ -1,13 +1,6 @@
 .container {
   max-width: 100%;
   justify-content: space-between;
-  overflow: hidden;
+  overflow-y: hidden;
   position: relative;
-}
-
-// above 720px wide we want to display desktop styles
-
-@media (max-width: 860px) {
-  .container {
-  }
 }

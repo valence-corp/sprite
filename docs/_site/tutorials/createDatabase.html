@@ -16,11 +16,11 @@
 </head>
   <body class="light">
     <header id="documentHeader">
-  <div class="container row">
+  <div class="container row padding-h-section">
     <h1 class="flex content-center-v">Sprite</h1>
-    <div class="controls content-center-v flex margin-h-4">
+    <div class="content-center-v flex button-group">
       <button id="search_button" aria-label="Search Documentation"
-  class="button-reset big-icon foreground-1 padding-4 margin-h-4 radius-1 focus-ring fit-content-h ">
+  class="button-reset big-icon foreground-1 padding-4 radius-1 focus-ring fit-content-h ">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-label="Search Icon">
   <path
     d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z">
@@ -31,7 +31,7 @@
 
 
       <button id="nav_button" aria-label="Navigation Toggle"
-  class="button-reset big-icon foreground-1 padding-4 margin-h-4 radius-1 focus-ring fit-content-h ">
+  class="button-reset big-icon foreground-1 padding-4 radius-1 focus-ring fit-content-h ">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round">
     <line x1="3" y1="4" x2="21" y2="4"></line>
@@ -1031,9 +1031,12 @@
   
 </li>
 
-        <li class="row menu-item with-icon med-icon padding-v-3 padding-h-2 block radius-1 content-center-v">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6256 3.1285L9.29145 10.4626L9.29886 14.7098L13.537 14.7024L20.8682 7.37114C21.5912 8.75438 22 10.3278 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C13.6689 1.9967 15.2423 2.40553 16.6256 3.1285ZM20.4853 2.09721L21.8995 3.51142L12.7071 12.7038L11.2954 12.7063L11.2929 11.2896L20.4853 2.09721Z"></path></svg>
-          <a href="/sprite/contributingGuide.html" class="foreground-1">Contributing</a>
+        <li class="row">
+          <a href="/sprite/contributingGuide.html" class="foreground-1 full-width">
+            <span class="row menu-item with-icon med-icon padding-v-3 padding-h-2 block radius-1 content-center-v full-width">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6256 3.1285L9.29145 10.4626L9.29886 14.7098L13.537 14.7024L20.8682 7.37114C21.5912 8.75438 22 10.3278 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C13.6689 1.9967 15.2423 2.40553 16.6256 3.1285ZM20.4853 2.09721L21.8995 3.51142L12.7071 12.7038L11.2954 12.7063L11.2929 11.2896L20.4853 2.09721Z"></path></svg>Contributing
+              </span>
+          </a>
         </li>
       </ul>
     </div>
@@ -1088,7 +1091,7 @@
       <input class="button-reset highlight-shadow" type="search" id="searchInput" aria-label="Search" />
       <label for="searchInput" id="searchLabel">search</label>
       <button id="close_search_dialog" aria-label="Close Search Dialog"
-  class="button-reset big-icon foreground-1 padding-4 margin-h-4 radius-1 focus-ring fit-content-h ">
+  class="button-reset big-icon foreground-1 padding-4 radius-1 focus-ring fit-content-h ">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z"></path></svg>
 </button>
     </div>

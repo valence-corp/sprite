@@ -37,7 +37,10 @@ body {
   --space-1-neg: -1.618rem;
   --space-section: var(--space-3);
 
-  @media (min-width: 800px) {
+  --mobile-break: 820px;
+
+  @media (min-width: 820px) {
     --space-section: var(--space-1);
   }
+
 }

@@ -16,6 +16,14 @@
   @include highlight-shadow;
 }
 
+.button-group {
+
+  button,
+  a {
+    margin-left: var(--space-2);
+  }
+}
+
 .button-reset {
   background: unset;
   box-shadow: unset;

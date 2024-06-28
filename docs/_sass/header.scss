@@ -5,7 +5,7 @@
   text-shadow: var(--decorative-shadow);
 
   h1 {
-    margin: 0 0 0 var(--space-2);
+    margin: unset;
     padding: var(--space-3) 0;
     position: relative;
     z-index: 9;
@@ -13,17 +13,10 @@
   }
 }
 
-
-
-#search_shortcut {
-  border-left: 1px solid var(--frame-border-color);
-  margin-left: var(--space-3)
-}
-
 @media (min-width: 860px) {
   #documentHeader {
-    h1 {
-      margin: 0 0 0 var(--space-1);
-    }
+    // h1 {
+    //   margin: 0 0 0 var(--space-1);
+    // }
   }
 }
