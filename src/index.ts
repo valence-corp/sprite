@@ -6,43 +6,34 @@ export { SpriteServer };
 export { SpriteDatabase };
 export * from './types/index.js';
 
-// type DocumentTypes = {
-//   aDocument: ADocumentType;
-// };
+type ADocumentType = {
+  aProperty: string;
+};
 
-// type AnotherType = {
-//   anotherDoc: {
-//     aProperty: string;
-//   };
-// };
+type DocumentTypes = {
+  aDocument: ADocumentType;
+};
 
 const db = new SpriteServer({
   username: 'root', // root will be ok for this tutorial
   password: '999999999', // your password,
-  address: 'http://localhost:2480', // default address for ArcadeDB
+  address: 'http://localhost:2480' // default address for ArcadeDB
   //databaseName: 'ExampleDatabase' // the existing database
 });
 
 interface ExampleVertexes {
-  User: {
-    name: string;
-  };
-  Something: {
-    name: string;
+  aVertex: {
+    aProperty: string;
   };
 }
 
 interface ExampleEdges {
-  Friends: {
-    since: number;
-  };
-  NotFriends: {
-    since: number;
+  anEdge: {
+    aProperty: string;
   };
 }
 
 //const client = db.graphModality<ExampleVertexes, ExampleEdges>();
-
 
 // docs.transaction((trx)=>{
 //   docs.dropType('aType', trx);
@@ -55,25 +46,88 @@ async function neener() {
   const client = new SpriteServer({
     username: 'root',
     password: '999999999',
-    address: 'http://localhost:2480',
+    address: 'http://localhost:2480'
   });
 
-  const db = await client.database('SpriteIntegrationTestingDatabase');
+  client.createDatabase('SpriteIntegrationTestingDatabase').then(async (db) => {
+    const docs = db.documentModality<DocumentTypes>();
 
-  const docs = db.documentModality<any>();
+    await docs.createType('aDocument');
+    await docs.transaction(async (trx) => {
+      await docs.newDocument('aDocument', trx, {
+        data: {
+          aProperty: 'aValue'
+        }
+      });
+      await docs.newDocument('aDocument', trx, {
+        data: {
+          aProperty: 'bValue'
+        }
+      });
+      await docs.newDocument('aDocument', trx, {
+        data: {
+          aProperty: 'cValue'
+        }
+      });
+    });
 
-  await docs.createType('aType');
+    const graph = db.graphModality<ExampleVertexes, ExampleEdges>();
 
-  const trx = await db.newTransaction();
+    await graph.createVertexType('aVertex');
+    await graph.createEdgeType('anEdge');
 
+    await graph.transaction(async (trx) => {
+      const [vertex1, vertex2, vertex3] = await graph.newVertex(
+        'aVertex',
+        trx,
+        {
+          data: [
+            {
+              aProperty: 'aValue'
+            },
+            {
+              aProperty: 'bValue'
+            },
+            {
+              aProperty: 'cValue'
+            }
+          ]
+        }
+      );
 
+      const edge1 = await graph.newEdge(
+        'anEdge',
+        vertex1['@rid'],
+        vertex2['@rid'],
+        trx,
+        {
+          data: {
+            aProperty: 'aValue'
+          }
+        }
+      );
 
-  await db.command('sql', 'DROP TYPE aType');
-  await db.command('sql', 'CREATE document TYPE aType');
+      const edge2 = await graph.newEdge(
+        'anEdge',
+        vertex2['@rid'],
+        vertex3['@rid'],
+        trx,
+        {
+          data: {
+            aProperty: 'aValue'
+          }
+        }
+      );
 
-  await db.command('sql', 'INSERT INTO aType CONTENT { my: "eye" }', trx);
+    });
+  });
 
-  await db.commitTransaction(trx.id);
+  // await db.command('sql', 'DROP TYPE aType');
+  // await db.command('sql', 'CREATE document TYPE aType');
+
+  // await db.command('sql', 'INSERT INTO aType CONTENT { my: "eye" }', trx);
+
+  // await db.commitTransaction(trx.id);
 
   //await db.commitTransaction(trx.id);
   //await db.rollbackTransaction(trx.id);
