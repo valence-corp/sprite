@@ -53,7 +53,6 @@ class SqlDialect {
   createType = async <S, N extends TypeNames<S>>(
     typeName: N,
     recordType: ArcadeRecordType,
-    transaction: SpriteTransaction,
     options?: ISpriteCreateTypeOptions<S, N>
   ) => {
     try {
@@ -61,7 +60,6 @@ class SqlDialect {
       // [ IF NOT EXISTS ]
       // [EXTENDS <super-type>] [BUCKET <bucket-id>[,]*] [BUCKETS <total-bucket-number>]
 
-      this._validate.transaction(transaction);
       this._validate.typeName(typeName);
 
       const createTypeCommand = new SpriteCommand({
@@ -102,8 +100,7 @@ class SqlDialect {
       }
 
       const response = await this._command<ArcadeCreateTypeResponse>(
-        createTypeCommand.toString(),
-        transaction
+        createTypeCommand.toString()
       );
       // TODO: this seems a bit lax
       // It could be an empty array, or something that
@@ -317,11 +314,9 @@ class SqlDialect {
    */
   dropType = async <S, N extends TypeNames<S>>(
     typeName: N,
-    transaction: SpriteTransaction,
     options?: ISpriteDropTypeOptions
   ) => {
     try {
-      this._validate.transaction(transaction);
       // DROP TYPE <type> [UNSAFE] [IF EXISTS]
       const dropTypeCommand = new SpriteCommand({
         initial: this._nodes.drop.type.drop<N>(typeName)
@@ -342,8 +337,7 @@ class SqlDialect {
       }
 
       const result = await this._command<ArcadeDropTypeResponse>(
-        dropTypeCommand.toString(),
-        transaction
+        dropTypeCommand.toString()
       );
 
       if (result) {
@@ -437,9 +431,11 @@ class SqlDialect {
    */
   private _command = async <T>(
     command: string,
-    transaction: SpriteTransaction
+    transaction?: SpriteTransaction
   ): Promise<T> => {
-    this._validate.transaction(transaction);
+    if (transaction) {
+      this._validate.transaction(transaction);
+    }
     const response = await this.database.command<T>(
       'sql',
       command,

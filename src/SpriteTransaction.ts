@@ -33,8 +33,10 @@ export class SpriteTransaction {
   };
   rollback = async () => {
     try {
-      await this.database.rollbackTransaction(this.id);
+      const result = await this.database.rollbackTransaction(this.id);
       this._committed = false;
+      console.log(this.id, result);
+      return result;
     } catch (error) {
       throw new Error(`Could not rollback transaction: ${this.id}`, {
         cause: error

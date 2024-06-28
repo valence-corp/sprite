@@ -1,5 +1,6 @@
 import { SpriteServer } from './SpriteServer.js';
 import { SpriteDatabase } from './SpriteDatabase.js';
+import { SpriteTransaction } from './SpriteTransaction.js';
 
 export { SpriteServer };
 export { SpriteDatabase };
@@ -15,11 +16,11 @@ export * from './types/index.js';
 //   };
 // };
 
-const db = new SpriteDatabase({
+const db = new SpriteServer({
   username: 'root', // root will be ok for this tutorial
   password: '999999999', // your password,
   address: 'http://localhost:2480', // default address for ArcadeDB
-  databaseName: 'ExampleDatabase' // the existing database
+  //databaseName: 'ExampleDatabase' // the existing database
 });
 
 interface ExampleVertexes {
@@ -40,11 +41,55 @@ interface ExampleEdges {
   };
 }
 
-const client = db.graphModality<ExampleVertexes, ExampleEdges>();
+//const client = db.graphModality<ExampleVertexes, ExampleEdges>();
 
-client.transaction(async (trx) => {
-  client.dropType('Something', trx).then(console.log);
-});
+
+// docs.transaction((trx)=>{
+//   docs.dropType('aType', trx);
+//   // docs.dropType('bType', trx);
+//   // docs.dropType('cType', trx);
+//   // docs.dropType('dType', trx);
+// })
+
+async function neener() {
+  const client = new SpriteServer({
+    username: 'root',
+    password: '999999999',
+    address: 'http://localhost:2480',
+  });
+
+  const db = await client.database('SpriteIntegrationTestingDatabase');
+
+  const docs = db.documentModality<any>();
+
+  await docs.createType('aType');
+
+  const trx = await db.newTransaction();
+
+
+
+  await db.command('sql', 'DROP TYPE aType');
+  await db.command('sql', 'CREATE document TYPE aType');
+
+  await db.command('sql', 'INSERT INTO aType CONTENT { my: "eye" }', trx);
+
+  await db.commitTransaction(trx.id);
+
+  //await db.commitTransaction(trx.id);
+  //await db.rollbackTransaction(trx.id);
+  // const trx = await docs.transaction(async (trx) => {
+  //   await docs.createType('aType', trx);
+  //   // await docs.newDocument('aType', trx, {
+  //   //   data: {
+  //   //     aProperty: 'aProperty',
+  //   //     bProperty: {
+  //   //       thing: 4
+  //   //     }
+  //   //   }
+  // });
+}
+
+neener();
 
 // async function graphModalityExample() {
 //   try {

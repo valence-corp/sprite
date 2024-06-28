@@ -278,7 +278,12 @@ class SpriteDatabase {
    * Executes a command on the target database. This method only executes
    * non-idempotent statements (that can change the database), such as `INSERT`,
    * `CREATE`, and `DELETE`. The execution of idempotent commands will throw an
-   * `IllegalArgumentException` exception. If you are trying to execute
+   * `IllegalArgumentException` exception.
+   * 
+   * Please note that not all non-idempotent commands require a transaction. For example,
+   * schema updates are non-idempotent, but are also non-transactional.
+   * 
+   * If you are trying to execute
    * idempotent commands, see the `SpriteDatabase.query()` method.
    * @param {ArcadeSupportedQueryLanguages} language The language the command is written in.
    * @param {string} command The command to execute in the given language.
@@ -325,32 +330,27 @@ class SpriteDatabase {
   command = async <T>(
     language: ArcadeSupportedQueryLanguages,
     command: string,
-    transaction: SpriteTransaction,
-    options?: {
-      params?: Record<string, SpriteAllowedParamValues>;
-    }
+    transaction?: SpriteTransaction
   ): Promise<ArcadeCommandResponse<T>> => {
-    const body = JSON.stringify({
-      language,
-      command,
-      params: options?.params
-    });
     const response = await this._client.fetch(
       this._endpoint(endpoints.command),
       {
         method: 'POST',
-        body,
-        headers: {
-          'arcadedb-session-id': transaction.id
-        }
+        body: JSON.stringify({
+          language,
+          command
+        }),
+        headers: transaction
+          ? { 'arcadedb-session-id': transaction.id }
+          : undefined
       }
     );
 
     switch (response.status) {
       case 200:
         return response.json();
+      // TODO: need to find an example of a command that returns 202
       // case 202:
-      // // TODO: need to find an example of a command that returns 202
       //  break;
       case 400:
         throw new Error(
@@ -566,6 +566,7 @@ class SpriteDatabase {
           }
         }
       );
+      console.log(result.status);
       if (result.status === 204) {
         return true;
       } else {

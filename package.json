@@ -14,7 +14,8 @@
     "docs:site": "ts-node ./src/dev/*",
     "test": "jest ./test/",
     "test:unit": "jest ./test/unit/",
-    "test:integration": "jest ./src/test/integration/",
+    "test:integration": "jest ./test/integration/",
+    "testcontainer": "tsx ./test/integration/database/initialize.ts",
     "lint": "pnpm eslint eslint.config.ts --fix ./test/ ./src",
     "format": "pnpm prettier --write ./test/ ./src",
     "exec": "pnpm build && node ./dist/index.js"
@@ -38,6 +39,7 @@
     "ts-jest": "^29.1.5",
     "ts-jest-resolver": "^2.0.1",
     "ts-node": "^10.9.2",
+    "tsx": "^4.15.7",
     "typedoc": "^0.25.13",
     "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "^5.5.2",

@@ -41,7 +41,7 @@ class DocumentModality<S> extends ModalityBase<S> {
    *
    * const client = database.documentModality<DocumentTypes>();
    *
-   * // non-idempotent operations must be conducted within a transaction
+   * // inserts / record creation must be conducted within a transaction
    * client.transaction(async (trx)=>{
    *   // to create a document, a type must be created first
    *   await client.createType('aDocument', trx);
@@ -88,12 +88,9 @@ class DocumentModality<S> extends ModalityBase<S> {
    *
    * async function createDocumentTypeExample() {
    *   try {
-   *     // non-idempotent operations must be conducted within a transaction
-   *     client.transaction(async (trx)=>{
-   *       const type = await client.createType('aDocument', trx);
-   *       console.log(type.name);
-   *       // 'aType'
-   *     });
+   *     const type = await client.createType('aDocument');
+   *     console.log(type.name);
+   *     // 'aType'
    *   } catch (error) {
    *     // handle error conditions
    *     console.error(error);
@@ -104,9 +101,8 @@ class DocumentModality<S> extends ModalityBase<S> {
    */
   createType = <N extends TypeNames<S>>(
     typeName: N,
-    transaction: SpriteTransaction,
     options?: ISpriteCreateTypeOptions<S, N>
-  ) => this._sql.createType<S, N>(typeName, 'document', transaction, options);
+  ) => this._sql.createType<S, N>(typeName, 'document', options);
 }
 
 export { DocumentModality };

@@ -53,7 +53,7 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
    *
    * const client = db.graphModality<VertexTypes, EdgeTypes>();
    *
-   * // non-idempotent operations must be conducted within a transaction
+   * // inserts / record creation must be conducted within a transaction
    * client.transaction(async (trx)=>{
    *   // to create a vertex, a type must be created first
    *   await client.createType('aVertex', trx);
@@ -106,7 +106,7 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
    *
    * const client = db.graphModality<VertexTypes, EdgeTypes>();
    *
-   * // non-idempotent operations must be conducted within a transaction
+   * // inserts / record creation must be conducted within a transaction
    * client.transaction(async ()=>{
    *   // to create a edge, a type must be created first
    *   await client.createType('anEdge');
@@ -148,7 +148,6 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
    * @param {ISpriteCreateTypeOptions} options Options to create the type with.
    * @returns {SpriteType} an instance of SpriteType.
    * @throws `Error` if the type could not be created.
-   * @note non-idempotent commands (such a creating types) must be issued as part of a transaction
    * @example
    *
    * const db = new SpriteDatabase({
@@ -174,12 +173,9 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
    *
    * async function createEdgeTypeExample() {
    *   try {
-   *     // non-idempotent operations must be conducted within a transaction
-   *     client.transaction(async (trx)=>{
-   *       const type = await client.createEdgeType('aType', trx);
-   *       console.log(type.name);
-   *       // 'aType'
-   *     });
+   *     const type = await client.createEdgeType('aType', trx);
+   *     console.log(type.name);
+   *     // 'aType'
    *   } catch (error) {
    *     // handle error conditions
    *     console.error(error);
@@ -190,16 +186,14 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
    */
   createEdgeType = async <N extends TypeNames<E>>(
     typeName: N,
-    transaction: SpriteTransaction,
     options?: ISpriteCreateTypeOptions<E, N>
-  ) => this._sql.createType<E, N>(typeName, 'edge', transaction, options);
+  ) => this._sql.createType<E, N>(typeName, 'edge', options);
   /**
    * Create a new vertex type.
    * @param {TypeInRecordCategory} typeName The name of the type to create.
    * @param {ISpriteCreateTypeOptions} options Options to create the type with.
    * @returns {SpriteType} an instance of SpriteType.
    * @throws `Error` if the type could not be created.
-   * @note non-idempotent commands (such a creating types) must be issued as part of a transaction
    * @example
    *
    * const db = new SpriteDatabase({
@@ -225,12 +219,9 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
    *
    * async function createVertexTypeExample() {
    *   try {
-   *     // non-idempotent operations must be conducted within a transaction
-   *     client.transaction(async (trx)=>{
-   *       const type = await client.createVertexType('aType', trx);
-   *       console.log(type.name);
-   *       // 'aType'
-   *     });
+   *     const type = await client.createVertexType('aType', trx);
+   *     console.log(type.name);
+   *     // 'aType'
    *   } catch (error) {
    *     // handle error conditions
    *     console.error(error);
@@ -241,10 +232,9 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
    */
   createVertexType = async <N extends TypeNames<V>>(
     typeName: N,
-    transaction: SpriteTransaction,
     options?: ISpriteCreateTypeOptions<V, N>
   ): Promise<SpriteType<V, N>> =>
-    this._sql.createType<V, N>(typeName, 'vertex', transaction, options);
+    this._sql.createType<V, N>(typeName, 'vertex', options);
 }
 
 export { GraphModality };

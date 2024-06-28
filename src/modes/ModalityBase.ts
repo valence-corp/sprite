@@ -27,9 +27,8 @@ class ModalityBase<S> {
   };
   dropType = async <N extends TypeNames<S>>(
     typeName: N,
-    transaction: SpriteTransaction,
     options?: ISpriteDropTypeOptions
-  ) => this._sql.dropType<S, N>(typeName, transaction, options);
+  ) => this._sql.dropType<S, N>(typeName, options);
   newTransaction = (isolationLevel?: ArcadeTransactionIsolationLevel) =>
     this._database.newTransaction(isolationLevel);
   /**
@@ -58,8 +57,15 @@ class ModalityBase<S> {
    *
    * async function transactionExample() {
    *   try {
+   *     await client.createType('aType');
    *     const transaction = await client.transaction(async (trx) => {
-   *       client.createType('aType', trx);
+   *       client.newDocument(
+   *         'aType',
+   *         trx,
+   *         {
+   *           aField: 'aValue'
+   *         }
+   *       );
    *     });
    *     console.log(transaction.id);
    *     // 'AS-0000000-0000-0000-0000-00000000000'
@@ -198,7 +204,11 @@ class ModalityBase<S> {
    * async function updateOneExample() {
    *   try {
    *     await client.transaction(async (trx) => {
-   *       const result = await client.updateOne('#0:0', { aField: 'aValue' }, trx);
+   *       const result = await client.updateOne(
+   *         '#0:0',
+   *         { aField: 'aValue' },
+   *         trx
+   *       );
    *       console.log(result);
    *       // {
    *       //   '@rid': '#0:0',
