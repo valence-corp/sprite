@@ -7,6 +7,8 @@
   color: var(--foreground-1);
   line-height: 1rem;
   width: fit-content;
+  align-items: center;
+  line-height: 1.309rem;
   @include hover-bg;
   @include focus-bg;
   @include focus-ring;
@@ -27,9 +29,17 @@
 
 .with-icon {
   svg {
-    width: 1rem;
-    height: 1rem;
+    width: 1.309rem;
+    height: 1.309rem;
     margin-right: var(--space-4);
+  }
+}
+
+.med-icon {
+  svg {
+    width: 1.309rem;
+    height: 1.309rem;
+    margin-right: var(--space-2);
   }
 }
 

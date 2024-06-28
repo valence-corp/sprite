@@ -283,8 +283,7 @@ class SpriteDatabase {
    * Please note that not all non-idempotent commands require a transaction. For example,
    * schema updates are non-idempotent, but are also non-transactional.
    * 
-   * If you are trying to execute
-   * idempotent commands, see the `SpriteDatabase.query()` method.
+   * If you are trying to execute idempotent commands, see the `SpriteDatabase.query()` method.
    * @param {ArcadeSupportedQueryLanguages} language The language the command is written in.
    * @param {string} command The command to execute in the given language.
    * @param {SpriteTransaction} transaction The transaction to perform this command within.
@@ -302,15 +301,10 @@ class SpriteDatabase {
    *
    * async function spriteCommandExample() {
    *   try {
-   *     // commands are non-idempotent, and must be
-   *     // conducted as part of a transaction
-   *     const transaction = await database.newTransaction();
    *     const result = await database.command(
    *       'sql',
    *       'CREATE document TYPE aType',
-   *       transaction
    *     );
-   *     transaction.commit();
    *     console.log(result);
    *     // {
    *     //  user: 'aUser',

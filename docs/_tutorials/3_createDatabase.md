@@ -12,6 +12,8 @@ filename: 3_createDatabase.md
 
 This tutorial will demonstrate the basics of the `SpriteServer` module by using it to create a database.
 
+#### Overview
+
 1. [Prerequisites](#prerequisites)
 2. [Instantiating SpriteServer](#instantiating-spriteserver)
 2. [Async Operations](#async-operations)
@@ -22,12 +24,10 @@ This tutorial will demonstrate the basics of the `SpriteServer` module by using 
 7. [What's Next?](#whats-next)
 
 #### Prerequisites
----
 
 1. Ensure you have completed the [installation](installation.html) process, which includes installing ArcadeDB, running it, and accessing it from a TypeScript/JavaScript project with Sprite installed.
 
 #### Instantiating SpriteServer
----
 
 Begin by inserting the following code into your project's `index.ts` file:
 
@@ -42,7 +42,6 @@ const client = new SpriteServer({
 ```
 
 #### Async Operations
----
 
 Sprite uses the [ArcadeDB REST API](https://docs.arcadedb.com/#HTTP-API) to send commands and receive responses from the ArcadeDB Server. This means that Sprite's methods are always `async`. More often than not, you'll being using async / await (or promises) in your operations.
 
@@ -64,7 +63,6 @@ createDatabaseExample();
 ```
 
 #### Checking Server Status
----
 
 It might be desirable to ensure the ArcadeDB server is ready prior to sending commands. The `SpriteServer.serverReady` method is made for that. Update the `createDatabaseExample()` function to include a server status check:
 
@@ -87,7 +85,6 @@ async function createDatabaseExample() {
 If the server is not ready, an error will be thrown with a detailed error message. It's important to always handle errors in your code.
 
 #### Creating a Database
----
 
 Update the `createDatabaseExample()` function to create a database using the `SpriteServer.createDatabase` method.
 
@@ -112,7 +109,6 @@ async function createDatabaseExample() {
 ```
 
 #### Running the Example
----
 
 The complete code is below. Ensure your code matches, and then execute it.
 
@@ -145,7 +141,6 @@ async function createDatabaseExample() {
 
 
 #### Conclusion
----
 
 You should now have a database on your server called "ExampleDatabase". You can verify the existence of the database using one of the following methods:
 
@@ -154,6 +149,5 @@ You should now have a database on your server called "ExampleDatabase". You can 
 * [ArcadeDB server console](https://docs.arcadedb.com/#Console)
 
 #### What's Next?
----
 
 The next section will demonstrate the basics of transactional databases, and how transactions are conducted in Sprite.

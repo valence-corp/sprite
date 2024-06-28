@@ -210,13 +210,23 @@ export type ArcadeTypeDefinition = {
 /** The response from a `SpriteDatabase.getSchema()` query */
 export type ArcadeGetSchemaResponse = ArcadeTypeDefinition[];
 
+export type ArcadeSqlExaplantionExecutionPlanStep = {
+  cost: number;
+  description: string;
+  javaType: string;
+  name: string;
+  subSteps: ArcadeSqlExaplantionExecutionPlanStep[];
+  targetNode: string;
+  type: string;
+};
+
 /** SQL Explanation Execution Plan */
 export type ArcadeSqlExplanationExecutionPlan = {
   type: 'QueryExecutionPlan' | 'DDLExecutionPlan';
   javaType: string;
   cost: number;
   prettyPrint: string;
-  steps: object[];
+  steps: ArcadeSqlExaplantionExecutionPlanStep[];
 };
 
 /**

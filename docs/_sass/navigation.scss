@@ -21,7 +21,8 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-
+    font-size: 1.0795rem;
+    letter-spacing: 0.01rem;
     #nav_frame {
       display: flex;
       flex: 1;
@@ -41,11 +42,11 @@
             position: relative;
 
             &:before {
-              width: calc(1.309rem - 2px);
+              width: calc(1.1545rem - 2px);
               height: calc(100% + 1px);
               border-left: 2px solid var(--nav-tree-color);
               border-bottom: 2px solid var(--nav-tree-color);
-              left: calc(0.309rem + 2px);
+              left: calc(0.4635rem + 2px);
               top: 0px;
               transform: translateY(-50%);
               content: '';
@@ -61,8 +62,7 @@
             font-family: monospace;
             font-weight: 700;
             font-size: 0.9rem;
-            //ackground: var(--accent);
-            color: var(--accent);
+            color: var(--foreground-1);
             justify-content: center;
             text-decoration: none;
             display: flex;
@@ -75,9 +75,11 @@
         button,
         a {
           text-decoration: none;
-
+          .menu-item {
+            line-height: 1.309rem;
+          }
           &:focus {
-            .menuItemText {
+            .menu-item {
               background: var(--nav-focus-background);
               color: var(--nav-focus-color);
 
@@ -92,7 +94,7 @@
           }
 
           &:hover {
-            .menuItemText {
+            .menu-item {
               color: var(--nav-hover-foreground);
             }
           }

@@ -13,7 +13,6 @@ Abstractions for `selectOne` and `selectFrom` exists on `DocumentModality`, and 
 This tutorial will cover all three of these methods.
 
 #### Overview
----
 
 1. [Prerequisites](#prerequisites)
 2. [Instantiating SpriteDatabase](#instantiating)
@@ -24,14 +23,12 @@ This tutorial will cover all three of these methods.
 7. [What is next](#next)
 
 #### Prerequisites
----
 
 1. Ensure you have [the installation](../installation.html) completed. This means you have ArcadeDB installed, running, and accessible, as well as a TypeScript / JavaScript project with Sprite installed.
 2. You have created a database called "ExampleDatabase", in the [Create a Database tutorial]().
 3. You have a document in "ExampleDatabase", in the [Create a Document tutorial]().
 
 #### Instantiating SpriteDatabase
----
 
 Begin by inserting the following snippet into the `index.ts` file of your project. This imports the `SpriteDatabase` module, and creates an instance of it named `db`.
 
@@ -59,7 +56,6 @@ type DocumentTypes = {
 ```
 
 #### SpriteDatabase.query()
----
 
 The following code is to be inserted under the database instantiation. The `manualTransaction` function creates a new transaction, issues a command using that transaction, and then commits the transaction. All commands are non-idempotent in ArcadeDB (and Sprite). Non-idempotent means that it can change the database, so things like CRUD operations.
 

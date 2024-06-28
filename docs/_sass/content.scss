@@ -8,11 +8,13 @@
   flex-direction: column;
   align-content: flex-start;
   min-height: 100%;
-  div {
+
+  >div {
     width: 100%;
-    max-width: 840px;
+    max-width: 720px;
     margin: 0 auto var(--space-1) auto;
   }
+
   &.fade {
     opacity: 0.35;
   }

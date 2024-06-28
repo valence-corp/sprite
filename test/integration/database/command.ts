@@ -1,6 +1,7 @@
 import { SpriteDatabase } from '../../../src/SpriteDatabase.js';
 import { ArcadeSupportedQueryLanguages } from '../../../src/types/database.js';
 import { SpriteTransaction } from '../../../src/SpriteTransaction.js';
+import { variables } from '../variables.js';
 
 describe('SpriteDatabase.command', () => {
   let database: SpriteDatabase;
@@ -8,16 +9,15 @@ describe('SpriteDatabase.command', () => {
 
   beforeEach(async () => {
     database = new SpriteDatabase({
-      username: 'root',
-      password: '999999999',
-      address: 'http://localhost:2480',
-      databaseName: 'ExampleDatabase'
+      username: variables.username,
+      password: variables.password,
+      address: variables.url,
+      databaseName: variables.databaseName
     });
     transaction = await database.newTransaction();
   });
 
   afterEach(async () => {
-    console.log('Rolling back transaction');
     await transaction.rollback();
   });
 

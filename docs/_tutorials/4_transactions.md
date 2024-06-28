@@ -31,7 +31,6 @@ You don't need to run this code; it will be put into practice in the next tutori
 ---
 
 #### Overview
----
 
 1. [Prerequisites](#prerequisites)
 2. [Instantiating SpriteDatabase](#instantiating-spritedatabase)
@@ -43,13 +42,11 @@ You don't need to run this code; it will be put into practice in the next tutori
 8. [What is next](#next)
 
 #### Prerequisites
----
 
 1. Ensure you have completed the [installation](./installation.html) process, which includes installing ArcadeDB, running it, and accessing it from a TypeScript/JavaScript project with Sprite installed.
 2. You have created a database called "ExampleDatabase", as accomplished in the [Create a Database tutorial](./createDatabase.html)
 
 #### Instantiating SpriteDatabase
----
 
 Begin by inserting the following code into your project's `index.ts` file:
 
@@ -65,7 +62,6 @@ const db = new SpriteDatabase({
 ```
 
 #### Manual Transactions
----
 
 The following code demonstrates manual transactions:
 
@@ -90,7 +86,6 @@ async function manualTransaction() {
 ```
 
 #### Transaction Helper
----
 
 The `SpriteDatabase.transaction` method reduces boilerplate for transactions:
 
@@ -116,7 +111,6 @@ async function transactionHelperExample() {
 
 #### SpriteTransaction
 
-
 It could be apparent from previous examples, but it is not strictly necessary to pass the transaction to another method in order to `commit` or `rollback`. The `SpriteTransaction` class has to shortcut these operations directly.
 
 ```ts
@@ -140,16 +134,13 @@ async function transactionHelperExample() {
 ```
 
 #### Why?
----
 
 Manually passing transactions allows for more control and flexibility, and reduces resource consumption by avoiding the need to create a new instance of the client for each transaction. Some situations could necessitate using the manual rollback methods, but the abstractions are suitable for most.
 
 #### Conclusion
----
 
 In this tutorial, we demonstrated how to work with transactions in Sprite. We covered manual transactions, transaction helpers, and the reasoning behind manually passing transactions.
 
 #### What's Next?
----
 
 The next section explains the `DocumentModality`, which is an abstraction built over the database driver functionality of `SpriteDatabase`.

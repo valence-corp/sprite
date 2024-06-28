@@ -236,6 +236,8 @@ body, html {
   color: var(--foreground-1);
   line-height: 1rem;
   width: fit-content;
+  align-items: center;
+  line-height: 1.309rem;
   font-weight: var(--font-weight-bold);
   box-shadow: var(--box-highlight), var(--box-shadow-1), var(--box-shadow-2);
 }
@@ -262,9 +264,15 @@ body, html {
 }
 
 .with-icon svg {
-  width: 1rem;
-  height: 1rem;
+  width: 1.309rem;
+  height: 1.309rem;
   margin-right: var(--space-4);
+}
+
+.med-icon svg {
+  width: 1.309rem;
+  height: 1.309rem;
+  margin-right: var(--space-2);
 }
 
 .with-icon-right svg {
@@ -445,9 +453,9 @@ a > code:hover {
   align-content: flex-start;
   min-height: 100%;
 }
-#content div {
+#content > div {
   width: 100%;
-  max-width: 840px;
+  max-width: 720px;
   margin: 0 auto var(--space-1) auto;
 }
 #content.fade {
@@ -507,7 +515,7 @@ a:hover {
   color: var(--accent-2);
 }
 #content a:hover {
-  color: var(--foreground-1);
+  color: var(--foreground-2);
 }
 #content a:focus {
   outline: var(--outline);
@@ -586,6 +594,8 @@ a:hover {
   flex: 1;
   display: flex;
   flex-direction: column;
+  font-size: 1.0795rem;
+  letter-spacing: 0.01rem;
 }
 #main_nav #nav_content #nav_frame {
   display: flex;
@@ -607,11 +617,11 @@ a:hover {
 #main_nav #nav_content ul li ol li:before,
 #main_nav #nav_content ol li ul li:before,
 #main_nav #nav_content ol li ol li:before {
-  width: calc(1.309rem - 2px);
+  width: calc(1.1545rem - 2px);
   height: calc(100% + 1px);
   border-left: 2px solid var(--nav-tree-color);
   border-bottom: 2px solid var(--nav-tree-color);
-  left: calc(0.309rem + 2px);
+  left: calc(0.4635rem + 2px);
   top: 0px;
   transform: translateY(-50%);
   content: "";
@@ -625,7 +635,7 @@ a:hover {
   font-family: monospace;
   font-weight: 700;
   font-size: 0.9rem;
-  color: var(--accent);
+  color: var(--foreground-1);
   justify-content: center;
   text-decoration: none;
   display: flex;
@@ -639,29 +649,35 @@ a:hover {
 #main_nav #nav_content ol li a {
   text-decoration: none;
 }
-#main_nav #nav_content ul li button:focus .menuItemText,
-#main_nav #nav_content ul li a:focus .menuItemText,
-#main_nav #nav_content ol li button:focus .menuItemText,
-#main_nav #nav_content ol li a:focus .menuItemText {
+#main_nav #nav_content ul li button .menu-item,
+#main_nav #nav_content ul li a .menu-item,
+#main_nav #nav_content ol li button .menu-item,
+#main_nav #nav_content ol li a .menu-item {
+  line-height: 1.309rem;
+}
+#main_nav #nav_content ul li button:focus .menu-item,
+#main_nav #nav_content ul li a:focus .menu-item,
+#main_nav #nav_content ol li button:focus .menu-item,
+#main_nav #nav_content ol li a:focus .menu-item {
   background: var(--nav-focus-background);
   color: var(--nav-focus-color);
 }
-#main_nav #nav_content ul li button:focus .menuItemText svg,
-#main_nav #nav_content ul li a:focus .menuItemText svg,
-#main_nav #nav_content ol li button:focus .menuItemText svg,
-#main_nav #nav_content ol li a:focus .menuItemText svg {
+#main_nav #nav_content ul li button:focus .menu-item svg,
+#main_nav #nav_content ul li a:focus .menu-item svg,
+#main_nav #nav_content ol li button:focus .menu-item svg,
+#main_nav #nav_content ol li a:focus .menu-item svg {
   fill: var(--accent-2);
 }
-#main_nav #nav_content ul li button:focus .menuItemText .marker,
-#main_nav #nav_content ul li a:focus .menuItemText .marker,
-#main_nav #nav_content ol li button:focus .menuItemText .marker,
-#main_nav #nav_content ol li a:focus .menuItemText .marker {
+#main_nav #nav_content ul li button:focus .menu-item .marker,
+#main_nav #nav_content ul li a:focus .menu-item .marker,
+#main_nav #nav_content ol li button:focus .menu-item .marker,
+#main_nav #nav_content ol li a:focus .menu-item .marker {
   color: var(--accent-2);
 }
-#main_nav #nav_content ul li button:hover .menuItemText,
-#main_nav #nav_content ul li a:hover .menuItemText,
-#main_nav #nav_content ol li button:hover .menuItemText,
-#main_nav #nav_content ol li a:hover .menuItemText {
+#main_nav #nav_content ul li button:hover .menu-item,
+#main_nav #nav_content ul li a:hover .menu-item,
+#main_nav #nav_content ol li button:hover .menu-item,
+#main_nav #nav_content ol li a:hover .menu-item {
   color: var(--nav-hover-foreground);
 }
 #main_nav #nav_content footer {
@@ -989,15 +1005,24 @@ h5 {
 }
 
 h1,
-h2 {
+h2,
+h3 {
   font-size: var(--full-line);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   letter-spacing: 0.02rem;
 }
 
 h2 {
   font-size: 1rem;
   color: var(--accent);
-  font-weight: 700;
+  font-weight: 900;
   margin: var(--space-2) 0;
 }
 
@@ -1013,8 +1038,8 @@ h3 em {
 }
 
 h4 {
-  color: var(--accent);
-  font-size: 1.1525rem;
+  color: var(--foreground-1);
+  font-size: 1.45rem;
   margin: var(--section-start-padding) 0 0 0;
 }
 
@@ -1382,7 +1407,9 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--border-color);
+}
+.tutorialHeader h2 span {
+  font-weight: 300;
 }
 
 .big-icon svg {
@@ -1396,6 +1423,12 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+.hero-image {
+  image-rendering: pixelated;
+  border-radius: var(--radius-1);
+  opacity: 1;
 }
 
 html,

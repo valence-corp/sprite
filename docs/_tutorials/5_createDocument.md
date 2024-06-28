@@ -10,7 +10,6 @@ prevUrl: /tutorials/transactions.html
 filename: 5_createDocument.md
 ---
 #### Introduction
----
 
 Most developers agree that sending SQL (or another query language) directly to your database is the most flexible and efficient method of conduction queries and database operations in a JavaScript application, however, it's not always the easiest method to get started in building out your functionality.
 
@@ -19,7 +18,6 @@ Sprite has abstractions built over the database driver functionality of the `Spr
 This tutorial will demonstrate the basics of using the `DocumentModality` via the `SpriteDatabase` module to define a document type, and create a document.
 
 #### Overview
----
 
 1. [Prerequisites](#prerequisites)
 2. [Instantiating SpriteDatabase](#instantiating-spritedatabase)
@@ -30,13 +28,11 @@ This tutorial will demonstrate the basics of using the `DocumentModality` via th
 7. [What is next](#what-is-next)
 
 #### Prerequisites
----
 
 1. Ensure you have [the installation](./installation.html) completed. This means you have ArcadeDB installed, running, and accessible, as well as a TypeScript / JavaScript project with Sprite installed.
 2. You have created a database called "ExampleDatabase", like in the [Create a Database tutorial](./createDatabase.html)
 
 #### Instantiating SpriteDatabase
----
 
 Begin by inserting the following snippet into the `index.ts` file of your project. This imports the `SpriteDatabase` module, and creates an instance of it named `db`.
 
@@ -55,7 +51,6 @@ const db = new SpriteDatabase({
 ```
 
 #### Accessing the DocumentModality
----
 
 Add the following code bellow the previous section.
 
@@ -101,7 +96,6 @@ The accessor method returns a [singleton instance](https://en.wikipedia.org/wiki
 ---
 
 #### Transactions
----
 
 ArcadeDB is a transactional database. This is preferred for applications that require a high level of data integrity. All non-idempotent operations (operations that can change the database) must be part of a transaction.
 
@@ -135,7 +129,6 @@ There is additional information on transactions in the following locations.
 ---
 
 #### Creating a Type
----
 
 The transaction callback defines the scope for operations within a transaction. It calls the `DocumentModality.createType()` method, passing the transaction (`trx`) as a parameter. This operation should be awaited to prevent an error with the `newDocument` method in the next step, as the type must be present in the database to create a record of that type.
 
@@ -156,7 +149,6 @@ async function documentModalityExample() {
 ```
 
 #### Creating a Document
----
 
 Following the `createType` operation, insert the `newDocument` method. Ensure the transaction is passed to it also. Optionally, data can be included at record creation (as shown). The arguments will be automatially typed as defined in the `ExampleDocuments` interface created earlier.
 
@@ -185,7 +177,6 @@ async function documentModalityExample() {
 
 
 #### Running the Example
----
 
 The complete example is show below. Ensure your code mirrors this functionality, and execute.
 
@@ -232,13 +223,11 @@ documentModalityExample();
 ```
 
 #### Conclusion
----
 
 There should now be a document in "ExampleDatabase" of "aDocument" type.
 
 You can verify the existence of this document using the [ArcadeDB web interface](https://docs.arcadedb.com/#Studio).
 
 #### What is next?
----
 
 The next section will demonstrate how to use the `GraphModality` to build a simple graph database.
