@@ -42,7 +42,9 @@
           .menu-item {
             background: var(--nav-focus-background);
             color: var(--nav-focus-color);
-
+            &:hover {
+              background: var(--nav-focus-background);
+            }
             svg {
               fill: var(--accent-2)
             }
@@ -55,6 +57,7 @@
 
         &:hover {
           .menu-item {
+            background: var(--nav-hover-background);
             color: var(--nav-hover-foreground);
           }
         }

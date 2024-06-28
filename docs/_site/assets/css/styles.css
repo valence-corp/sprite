@@ -615,6 +615,10 @@ a:hover {
   background: var(--nav-focus-background);
   color: var(--nav-focus-color);
 }
+#main_nav #nav_content #nav_frame button:focus .menu-item:hover,
+#main_nav #nav_content #nav_frame a:focus .menu-item:hover {
+  background: var(--nav-focus-background);
+}
 #main_nav #nav_content #nav_frame button:focus .menu-item svg,
 #main_nav #nav_content #nav_frame a:focus .menu-item svg {
   fill: var(--accent-2);
@@ -625,6 +629,7 @@ a:hover {
 }
 #main_nav #nav_content #nav_frame button:hover .menu-item,
 #main_nav #nav_content #nav_frame a:hover .menu-item {
+  background: var(--nav-hover-background);
   color: var(--nav-hover-foreground);
 }
 #main_nav #nav_content ul,
@@ -1011,9 +1016,8 @@ h6 {
 
 h2 {
   font-size: 1rem;
-  color: var(--accent);
   font-weight: 900;
-  margin: var(--space-2) 0;
+  margin: 0;
 }
 
 h3 {
@@ -1165,8 +1169,9 @@ p {
   --link-hover: #8d4cd8;
   --title-emphasis-color: var(var(--foreground-primary));
   --nav-focus-background: #dfdfdf;
-  --nav-hover-background: #9252db;
+  --nav-hover-background: #efefef;
   --nav-hover-foreground: var(--foreground-2);
+  --nav-focus-hover-background: #dfdfdf;
   --nav-focus-color: var(--purple);
   --nav-tree-color: var(--background-3);
   --border-color: rgba(0, 0, 0, 0.2);
