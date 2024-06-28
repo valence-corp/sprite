@@ -798,7 +798,6 @@ table th {
 }
 #searchResults header {
   width: 100%;
-  padding: 0 var(--space-4) 0 0;
   z-index: 9;
 }
 #searchResults header #searchBox {
