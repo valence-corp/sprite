@@ -14,35 +14,26 @@ interface VertexWithMeta extends AsArcadeRecords<VertexTable> {}
 const dbClient = testClient.database;
 const typeName = 'Flavour';
 
-describe('SqlDialect.deleteFrom()', () => {
-  it(`should delete a record`, async () => {
+describe('SqlDialect.selectFrom()', () => {
+  it(`should select record`, async () => {
     // Arrange
 
-    const [record] = await dbClient.query<Flavour & RecordMeta>(
-      'sql',
-      `SELECT * FROM ${typeName} LIMIT 1`
-    );
-
-    const trx = await dbClient.newTransaction();
-
     // Act
-    await testClient.deleteFrom<VertexWithMeta, 'Flavour', '@rid'>(
-      typeName,
-      trx,
-      {
-        where: ['@rid', '==', record['@rid']]
-      }
-    );
-
-    await trx.commit();
+    const records = await testClient.selectFrom<
+      VertexWithMeta,
+      'Flavour',
+      'name'
+    >(typeName, {
+      where: ['name', '!=', 'undefined']
+    });
 
     // Assert
-    await expect(
-      dbClient.query(
-        'sql',
-        `SELECT * FROM ${typeName} WHERE @rid == ${record['@rid']}`
-      )
-    ).resolves.toHaveLength(0);
+    expect(Array.isArray(records)).toBe(true); // Ensure it's an array
+
+    records.forEach((record) => {
+      expect(record).toHaveProperty('name'); // Ensure each record has the 'name' property
+      expect(record.name).not.toBe('undefined'); // Ensure 'name' is not 'undefined'
+    });
   });
 
   it(`should propagate errors from the database`, async () => {
@@ -50,7 +41,7 @@ describe('SqlDialect.deleteFrom()', () => {
     // Assert
     await expect(
       // @ts-expect-error - testing the error
-      testClient.deleteFrom('INVALID_TYPE', trx, {
+      testClient.selectFrom('INVALID_TYPE', trx, {
         where: ['@rid', '==', 'invalid']
       })
     ).rejects.toMatchSnapshot();
