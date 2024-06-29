@@ -8,6 +8,7 @@ import {
   ISpriteInsertRecordOptions,
   ISpriteSelectFromOptions,
   OmitMeta,
+  RecordMeta,
   TypeNames,
   WithRid
 } from './types/database.js';
@@ -268,7 +269,7 @@ class SqlDialect {
     typeName: N,
     transaction: SpriteTransaction,
     options?: ISpriteInsertRecordOptions<S[N]>
-  ): Promise<S[N][]> => {
+  ): Promise<Array<S[N] & RecordMeta>> => {
     this._validate.transaction(transaction);
     // INSERT INTO [TYPE:]<type>|BUCKET:<bucket>
     // [CONTENT {<JSON>}|[{<JSON>}[,]*]]
@@ -287,7 +288,7 @@ class SqlDialect {
       );
     }
 
-    const result = await this._command<S[N][]>(
+    const result = await this._command<Array<S[N] & RecordMeta>>(
       insertIntoCommand.toString(),
       transaction
     );
