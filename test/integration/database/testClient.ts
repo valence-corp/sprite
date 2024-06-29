@@ -13,6 +13,6 @@ export type DocumentTypesWithMeta = AsArcadeRecords<DocumentTypes>;
 export const testClient = new SpriteDatabase({
   username: variables.username,
   password: variables.password,
-  address: variables.url,
+  address: variables.address,
   databaseName: variables.databaseName
 });

@@ -1,8 +1,8 @@
 export const variables = {
   databaseName: 'SpriteIntegrationTesting',
-  url: 'http:///localhost:2480',
-  username: 'root',
-  password: 'playwithdata',
+  address: process.env.SPRITE_ARCADE_TEST_DB_USERNAME || 'http:///localhost:2480',
+  username: process.env.SPRITE_ARCADE_TEST_DB_USERNAME || 'root',
+  password: process.env.SPRITE_ARCADE_TEST_DB_USERNAME || 'playwithdata',
   documentType: 'ORIDs',
   newDatabaseName: 'SpriteCreateDatabaseTestDatabase',
   newUsername: 'newUser',

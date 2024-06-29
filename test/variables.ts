@@ -7,9 +7,9 @@ config();
 export const variables = {
   databaseName: 'Test',
   user: 'Test',
-  username: process.env.ARCADE_TEST_DB_USERNAME || 'root',
-  password: process.env.ARCADE_TEST_DB_PASSWORD || 'playwithdata',
-  address: process.env.ARCADE_TEST_DB_ADDRESS || 'http://localhost:2480',
+  username: process.env.SPRITE_ARCADE_TEST_DB_USERNAME || 'root',
+  password: process.env.SPRITE_ARCADE_TEST_DB_PASSWORD || 'playwithdata',
+  address: process.env.SPRITE_ARCADE_TEST_DB_ADDRESS || 'http://localhost:2480',
   jsonResponse: { result: 'test' },
   jsonResponseArray: { result: ['test'] },
   nonEmptyString: 'non-empty string',

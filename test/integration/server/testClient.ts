@@ -4,5 +4,5 @@ import { variables } from '../variables.js';
 export const client = new SpriteServer({
   username: variables.username,
   password: variables.password,
-  address: variables.url
+  address: variables.address
 });
