@@ -251,7 +251,7 @@ class SpriteServer {
       });
     } catch (error) {
       throw new Error(
-        `Encountered an error when sending a command to the server.`,
+        `There was an error when attemping to execute a command on the ArcadeDB Server. See aggregate error for details.`,
         { cause: error }
       );
     }

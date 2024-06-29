@@ -3,5 +3,8 @@ export const variables = {
   url: 'http:///localhost:2480',
   username: 'root',
   password: 'playwithdata',
-  documentType: 'ORIDs'
+  documentType: 'ORIDs',
+  newDatabaseName: 'SpriteCreateDatabaseTestDatabase',
+  newUsername: 'newUser',
+  newPassword: 'newPassword'
 } as const;

@@ -49,19 +49,21 @@ interface ExampleEdges {
 async function neener() {
   const client = new SpriteServer({
     username: 'root',
-    password: '999999999',
+    password: 'playwithdata',
     address: 'http://localhost:2480'
   });
 
-  const db = client.database('SpriteIntegrationTestingDatabase');
+  //const db = client.database('SpriteIntegrationTestingDatabase');
 
-  const transaction = await db.newTransaction();
+  client.command('LIST BUTTHOLE').then(console.log);
 
-    // await db
-    // .command<{ fProperty: string }>('sql', 'CREATE document TYPE aDocument')
-    // .then(console.log);
+  // const transaction = await db.newTransaction();
 
-  console.log(transaction.id);
+  //   // await db
+  //   // .command<{ fProperty: string }>('sql', 'CREATE document TYPE aDocument')
+  //   // .then(console.log);
+
+  // console.log(transaction.id);
 
   // const [created] = await db.command<DocumentTypesWithMeta['aDocument'][]>(
   //   'sql',
