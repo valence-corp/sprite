@@ -436,13 +436,9 @@ class SqlDialect {
     if (transaction) {
       this._validate.transaction(transaction);
     }
-    const response = await this.database.command<T>(
-      'sql',
-      command,
-      transaction
-    );
-    if (response.result) {
-      return response.result;
+    const result = await this.database.command<T>('sql', command, transaction);
+    if (result) {
+      return result;
     }
     throw new Error(
       'No result property was present on the response from the server.'
@@ -455,9 +451,9 @@ class SqlDialect {
    * the codebase DRY.
    */
   private _query = async <T>(command: string): Promise<T[]> => {
-    const response = await this.database.query<T>('sql', command);
-    if (response.result) {
-      return response.result;
+    const result = await this.database.query<T>('sql', command);
+    if (result) {
+      return result;
     }
     throw new Error(
       'No result property was present on the response from the server.'

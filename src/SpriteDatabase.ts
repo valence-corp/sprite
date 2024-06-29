@@ -149,7 +149,6 @@ class SpriteDatabase {
    * non-idempotent commands, see the `SpriteDatabase.command()` method.
    * @param {ArcadeSupportedQueryLanguages} language The language of the query.
    * @param {string} command The command to execute in the given language.
-   * @param {Record<string,any>} params The key-value pairs of parameters to use in the query.
    * @example
    *
    * const database = new SpriteDatabase({
@@ -166,12 +165,7 @@ class SpriteDatabase {
    *       'SELECT FROM schema:types'
    *     );
    *     console.log(result);
-   *     // {
-   *     //   user: 'aUser',
-   *     //   version: '24.x.x',
-   *     //   serverName: 'ArcadeDB_0',
-   *     //   result: [...]
-   *     // }
+   *     [...];
    *   return result
    *   } catch (error) {
    *     console.error(error);
@@ -181,17 +175,15 @@ class SpriteDatabase {
    *
    * spriteQueryExample();
    */
-  query = async <ReturnType>(
+  query = async <T>(
     language: ArcadeSupportedQueryLanguages,
-    command: string,
-    params?: Record<string, SpriteAllowedParamValues>
-  ): Promise<ArcadeQueryResponse<ReturnType[]>> => {
+    command: string
+  ): Promise<Array<T>> => {
     const response = await this._client.fetch(this._endpoint(endpoints.query), {
       method: 'POST',
       body: JSON.stringify({
         language,
-        command,
-        params
+        command
       })
     });
 
@@ -202,7 +194,8 @@ class SpriteDatabase {
 
     switch (response.status) {
       case 200:
-        return response.json();
+        const { result } = await response.json();
+        return result;
       case 400:
         throw new Error(
           `Invalid language or query. Status: ${response.status}`
@@ -258,12 +251,12 @@ class SpriteDatabase {
    */
   explain = async (sql: string): Promise<ArcadeSqlExplanation> => {
     try {
-      const response = await this.query<ArcadeSqlExplanation>(
+      const result = await this.query<ArcadeSqlExplanation>(
         'sql',
         `EXPLAIN ${sql}`
       );
-      if (response.result[0]) {
-        return response.result[0];
+      if (result[0]) {
+        return result[0];
       } else {
         throw new Error(`Unexpected result from server.`);
       }
@@ -275,14 +268,13 @@ class SpriteDatabase {
     }
   };
   /**
-   * Executes a command on the target database. This method only executes
-   * non-idempotent statements (that can change the database), such as `INSERT`,
-   * `CREATE`, and `DELETE`. The execution of idempotent commands will throw an
-   * `IllegalArgumentException` exception.
-   * 
+   * Executes a command on the target database. This method should only be used
+   * for non-idempotent statements (that can change the database), such as `INSERT`,
+   * `CREATE`, and `DELETE`.
+   *
    * Please note that not all non-idempotent commands require a transaction. For example,
    * schema updates are non-idempotent, but are also non-transactional.
-   * 
+   *
    * If you are trying to execute idempotent commands, see the `SpriteDatabase.query()` method.
    * @param {ArcadeSupportedQueryLanguages} language The language the command is written in.
    * @param {string} command The command to execute in the given language.
@@ -325,7 +317,7 @@ class SpriteDatabase {
     language: ArcadeSupportedQueryLanguages,
     command: string,
     transaction?: SpriteTransaction
-  ): Promise<ArcadeCommandResponse<T>> => {
+  ): Promise<T> => {
     const response = await this._client.fetch(
       this._endpoint(endpoints.command),
       {
@@ -342,7 +334,8 @@ class SpriteDatabase {
 
     switch (response.status) {
       case 200:
-        return response.json();
+        const { result } = await response.json();
+        return result;
       // TODO: need to find an example of a command that returns 202
       // case 202:
       //  break;
@@ -378,12 +371,12 @@ class SpriteDatabase {
    */
   getSchema = async (): Promise<ArcadeGetSchemaResponse[]> => {
     try {
-      const response = await this.query<ArcadeGetSchemaResponse>(
+      const result = await this.query<ArcadeGetSchemaResponse>(
         'sql',
         'SELECT FROM schema:types'
       );
-      if (Array.isArray(response.result)) {
-        return response.result;
+      if (Array.isArray(result)) {
+        return result;
       } else {
         throw new Error(
           `Unexpected result returned from the server when attemping to get the schema for ${this.name}`
@@ -401,18 +394,20 @@ class SpriteDatabase {
    * @returns {SpriteTransaction} An instance of a SpriteTransaction to be passed to methods that require it an argument.
    * @example
    *
-   * async function transactionExample() {
+   * async function newTransactionExample() {
    *   try {
-   *     const trx = await database.newTransaction();
    *     await database.command(
    *       'sql',
    *       'CREATE document TYPE aType',
+   *     );
+   *     const trx = await database.newTransaction();
+   *     const record = await database.command(
+   *       'sql',
+   *       'INSERT INTO aType',
    *       trx
    *     );
    *     trx.commit();
-   *     console.log(trx.id);
-   *     // 'AS-0000000-0000-0000-0000-00000000000'
-   *     return trx;
+   *     return record;
    *   } catch (error) {
    *     console.log(error);
    *     // handle error conditions
@@ -560,7 +555,6 @@ class SpriteDatabase {
           }
         }
       );
-      console.log(result.status);
       if (result.status === 204) {
         return true;
       } else {

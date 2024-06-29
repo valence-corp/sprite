@@ -1,6 +1,7 @@
 import { SpriteServer } from './SpriteServer.js';
 import { SpriteDatabase } from './SpriteDatabase.js';
 import { SpriteTransaction } from './SpriteTransaction.js';
+import { AsArcadeRecords } from './api.js';
 
 export { SpriteServer };
 export { SpriteDatabase };
@@ -13,6 +14,9 @@ type ADocumentType = {
 type DocumentTypes = {
   aDocument: ADocumentType;
 };
+
+export type DocumentTypesWithMeta = AsArcadeRecords<DocumentTypes>;
+
 
 const db = new SpriteServer({
   username: 'root', // root will be ok for this tutorial
@@ -49,78 +53,140 @@ async function neener() {
     address: 'http://localhost:2480'
   });
 
-  client.createDatabase('SpriteIntegrationTestingDatabase').then(async (db) => {
-    const docs = db.documentModality<DocumentTypes>();
+  const db = client.database('SpriteIntegrationTestingDatabase');
 
-    await docs.createType('aDocument');
-    await docs.transaction(async (trx) => {
-      await docs.newDocument('aDocument', trx, {
-        data: {
-          aProperty: 'aValue'
-        }
-      });
-      await docs.newDocument('aDocument', trx, {
-        data: {
-          aProperty: 'bValue'
-        }
-      });
-      await docs.newDocument('aDocument', trx, {
-        data: {
-          aProperty: 'cValue'
-        }
-      });
-    });
+  const transaction = await db.newTransaction();
 
-    const graph = db.graphModality<ExampleVertexes, ExampleEdges>();
+    // await db
+    // .command<{ fProperty: string }>('sql', 'CREATE document TYPE aDocument')
+    // .then(console.log);
 
-    await graph.createVertexType('aVertex');
-    await graph.createEdgeType('anEdge');
+  console.log(transaction.id);
 
-    await graph.transaction(async (trx) => {
-      const [vertex1, vertex2, vertex3] = await graph.newVertex(
-        'aVertex',
-        trx,
-        {
-          data: [
-            {
-              aProperty: 'aValue'
-            },
-            {
-              aProperty: 'bValue'
-            },
-            {
-              aProperty: 'cValue'
-            }
-          ]
-        }
-      );
+  // const [created] = await db.command<DocumentTypesWithMeta['aDocument'][]>(
+  //   'sql',
+  //   `INSERT INTO aDocument`,
+  //   transaction
+  // );
 
-      const edge1 = await graph.newEdge(
-        'anEdge',
-        vertex1['@rid'],
-        vertex2['@rid'],
-        trx,
-        {
-          data: {
-            aProperty: 'aValue'
-          }
-        }
-      );
+  // console.log(created);
 
-      const edge2 = await graph.newEdge(
-        'anEdge',
-        vertex2['@rid'],
-        vertex3['@rid'],
-        trx,
-        {
-          data: {
-            aProperty: 'aValue'
-          }
-        }
-      );
+  // const queried = await db.query<DocumentTypesWithMeta['aDocument']>(
+  //   'sql',
+  //   `SELECT FROM aDocument WHERE @rid == ${created['@rid']}`
+  // );
 
-    });
-  });
+  // console.log('before!', queried);
+
+
+  // await transaction.commit();
+
+  // const queried2 = await db.query<DocumentTypesWithMeta['aDocument']>(
+  //   'sql',
+  //   `SELECT FROM aDocument WHERE @rid == ${created['@rid']}`
+  // );
+
+  // console.log('again!', queried2)
+
+
+
+  // await db.command('sql', 'CREATE BUCKET fType').then(console.log);
+  // await db.command('sql', 'DROP BUCKET fType').then(console.log);
+  // await db.command('sql', 'DROP TYPE fType').then(console.log);
+  // await db.command('sql', 'DROP TYPE aType').then(console.log);
+
+  // await db
+  //   .command<{ fProperty: string }>('sql', 'CREATE document TYPE fType')
+  //   .then(console.log);
+
+  // await db
+  //   .command<{ aProperty: string }>('sql', 'CREATE document TYPE aType')
+  //   .then(console.log);
+
+  // const trx = await db.newTransaction();
+  // await db.command(
+  //   'sql',
+  //   'INSERT INTO aType CONTENT { "aProperty": "aValue" }',
+  //   trx
+  // );
+  // await trx.commit();
+
+  // await db
+  //   .command<{ fProperty: string }>('sql', 'ALTER TYPE fType SUPERTYPE +aType')
+  //   .then(console.log);
+
+  // client.createDatabase('SpriteIntegrationTestingDatabase').then(async (db) => {
+  //   const docs = db.documentModality<DocumentTypes>();
+
+  //   await docs.createType('aDocument');
+  //   await docs.transaction(async (trx) => {
+  //     await docs.newDocument('aDocument', trx, {
+  //       data: {
+  //         aProperty: 'aValue'
+  //       }
+  //     });
+  //     await docs.newDocument('aDocument', trx, {
+  //       data: {
+  //         aProperty: 'bValue'
+  //       }
+  //     });
+  //     await docs.newDocument('aDocument', trx, {
+  //       data: {
+  //         aProperty: 'cValue'
+  //       }
+  //     });
+  //   });
+
+  //   const graph = db.graphModality<ExampleVertexes, ExampleEdges>();
+
+  //   await graph.createVertexType('aVertex');
+  //   await graph.createEdgeType('anEdge');
+
+  //   await graph.transaction(async (trx) => {
+  //     const [vertex1, vertex2, vertex3] = await graph.newVertex(
+  //       'aVertex',
+  //       trx,
+  //       {
+  //         data: [
+  //           {
+  //             aProperty: 'aValue'
+  //           },
+  //           {
+  //             aProperty: 'bValue'
+  //           },
+  //           {
+  //             aProperty: 'cValue'
+  //           }
+  //         ]
+  //       }
+  //     );
+
+  //     const edge1 = await graph.newEdge(
+  //       'anEdge',
+  //       vertex1['@rid'],
+  //       vertex2['@rid'],
+  //       trx,
+  //       {
+  //         data: {
+  //           aProperty: 'aValue'
+  //         }
+  //       }
+  //     );
+
+  //     const edge2 = await graph.newEdge(
+  //       'anEdge',
+  //       vertex2['@rid'],
+  //       vertex3['@rid'],
+  //       trx,
+  //       {
+  //         data: {
+  //           aProperty: 'aValue'
+  //         }
+  //       }
+  //     );
+
+  //   });
+  // });
 
   // await db.command('sql', 'DROP TYPE aType');
   // await db.command('sql', 'CREATE document TYPE aType');

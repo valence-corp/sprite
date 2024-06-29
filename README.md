@@ -2,6 +2,8 @@
 
 Sprite is a TypeScript driver for ArcadeDB. It is still in early development, and should be considered experimental.
 
+[Read the documentation](https://tragedy-labs.github.io/sprite), or glance over the examples below.
+
 ## Installation
 
 (Use whichever package manager you prefer)
