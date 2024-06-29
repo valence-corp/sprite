@@ -4,7 +4,7 @@ import {
   variables,
   headersWithTransaction as headers
 } from '../../../variables.js';
-import { EdgeTypes, VertexTypes } from '../types.js';
+import { EdgeTypes, VertexTypes } from '../../types.js';
 import { testTransaction } from '../client/testClient.js';
 
 const vertexName = 'aVertex';

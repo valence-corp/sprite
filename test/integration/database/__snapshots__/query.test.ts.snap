@@ -5,6 +5,26 @@ exports[`SpriteDatabase.query executes a query successfully 1`] = `
   {
     "bucketSelectionStrategy": "round-robin",
     "buckets": [
+      "aType_0",
+      "aType_1",
+      "aType_2",
+      "aType_3",
+      "aType_4",
+      "aType_5",
+      "aType_6",
+      "aType_7",
+    ],
+    "custom": {},
+    "indexes": [],
+    "name": "aType",
+    "parentTypes": [],
+    "properties": [],
+    "records": 0,
+    "type": "document",
+  },
+  {
+    "bucketSelectionStrategy": "round-robin",
+    "buckets": [
       "Flavour_0",
       "Flavour_1",
       "Flavour_2",
@@ -19,7 +39,7 @@ exports[`SpriteDatabase.query executes a query successfully 1`] = `
     "name": "Flavour",
     "parentTypes": [],
     "properties": [],
-    "records": 24,
+    "records": 12,
     "type": "vertex",
   },
   {
@@ -39,7 +59,7 @@ exports[`SpriteDatabase.query executes a query successfully 1`] = `
     "name": "FlavourGroup",
     "parentTypes": [],
     "properties": [],
-    "records": 20,
+    "records": 10,
     "type": "vertex",
   },
   {
@@ -119,7 +139,7 @@ exports[`SpriteDatabase.query executes a query successfully 1`] = `
     "name": "Location",
     "parentTypes": [],
     "properties": [],
-    "records": 90,
+    "records": 45,
     "type": "vertex",
   },
   {
@@ -139,7 +159,7 @@ exports[`SpriteDatabase.query executes a query successfully 1`] = `
     "name": "ORIDs",
     "parentTypes": [],
     "properties": [],
-    "records": 1,
+    "records": 0,
     "type": "document",
   },
   {
@@ -179,7 +199,7 @@ exports[`SpriteDatabase.query executes a query successfully 1`] = `
     "name": "Region",
     "parentTypes": [],
     "properties": [],
-    "records": 12,
+    "records": 6,
     "type": "vertex",
   },
   {
@@ -199,7 +219,7 @@ exports[`SpriteDatabase.query executes a query successfully 1`] = `
     "name": "Whisky",
     "parentTypes": [],
     "properties": [],
-    "records": 144,
+    "records": 72,
     "type": "vertex",
   },
 ]

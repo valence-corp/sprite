@@ -6,7 +6,7 @@ import {
 } from '../../../variables.js';
 import { SpriteType } from '../../../../src/SpriteType.js';
 
-import { DocumentTypes } from '../types.js';
+import { DocumentTypes } from '../../types.js';
 import { SpriteTransaction } from '../../../../src/SpriteTransaction.js';
 
 const recordType = 'document';

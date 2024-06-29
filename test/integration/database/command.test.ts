@@ -2,7 +2,6 @@ import { ArcadeSupportedQueryLanguages } from '../../../src/types/database.js';
 import { testClient as client } from './testClient.js';
 
 describe('SpriteDatabase.command', () => {
-
   it('executes a command successfully', async () => {
     const command = 'CREATE document TYPE aType';
     const language: ArcadeSupportedQueryLanguages = 'sql';

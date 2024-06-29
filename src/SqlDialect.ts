@@ -1,6 +1,7 @@
 import { SpriteDatabase } from './SpriteDatabase.js';
 import {
   ArcadeRecordType,
+  EdgeRecordMeta,
   ISpriteCreateTypeOptions,
   ISpriteDeleteFromOptions,
   ISpriteDropTypeOptions,
@@ -158,7 +159,7 @@ class SqlDialect {
     to: SpriteEdgeVertexDescriptor<V, V2>,
     transaction: SpriteTransaction,
     options?: ISpriteEdgeOptions<E[N]>
-  ): Promise<E[N]> => {
+  ): Promise<Array<E[N] & EdgeRecordMeta>> => {
     // CREATE EDGE <type> [BUCKET <bucket>] [UPSERT] FROM <rid>|(<query>)|[<rid>]* TO <rid>|
     // (<query>)|[<rid>]*
     // [UNIDIRECTIONAL]
@@ -233,13 +234,13 @@ class SqlDialect {
         );
       }
 
-      const result = await this._command<ArcadeCreateEdgeResponse<E, N>>(
+      const result = await this._command<Array<E[N] & EdgeRecordMeta>>(
         createEdgeCommand.toString(),
         transaction
       );
 
-      if (result[0]) {
-        return result[0];
+      if (result) {
+        return result;
       } else {
         throw new Error(
           `Received an unexpected response from the server when attempting to create edge of type: ${

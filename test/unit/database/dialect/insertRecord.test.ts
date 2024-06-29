@@ -5,7 +5,7 @@ import {
   headersWithTransaction as headers
 } from '../../../variables.js';
 
-import { DocumentTypes } from '../types.js';
+import { DocumentTypes } from '../../types.js';
 import { testTransaction } from '../client/testClient.js';
 import { ArcadeCommandResponse } from '@root/src/api.js';
 

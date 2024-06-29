@@ -1,5 +1,5 @@
 import { client } from './testClient.js';
-import { DocumentTypes } from '../types.js';
+import { DocumentTypes } from '../../types.js';
 import { SpriteType } from '../../../../src/SpriteType.js';
 
 type TypeName = 'aDocument';

@@ -6,5 +6,6 @@ export const variables = {
   documentType: 'ORIDs',
   newDatabaseName: 'SpriteCreateDatabaseTestDatabase',
   newUsername: 'newUser',
-  newPassword: 'newPassword'
+  newPassword: 'newPassword',
+  rid: '#0:0',
 } as const;
