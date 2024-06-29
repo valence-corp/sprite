@@ -22,7 +22,6 @@ import { nodes } from './nodes/index.js';
 import { SpriteType } from './SpriteType.js';
 import { SpriteTransaction } from './SpriteTransaction.js';
 import {
-  ArcadeCreateEdgeResponse,
   ArcadeCreateTypeResponse,
   ArcadeDeleteFromResponse,
   ArcadeDropTypeResponse,

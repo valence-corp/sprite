@@ -14,7 +14,7 @@
     "docs:site": "ts-node ./src/dev/*",
     "test": "jest ./test/integration",
     "test:unit": "jest ./test/unit/",
-    "test:integration": "jest ./test/integration/dialect",
+    "test:integration": "jest ./test/integration/dialect/dropType.test.ts",
     "testcontainer": "tsx ./test/integration/database/initialize.ts",
     "lint": "pnpm eslint --fix ./test/ ./src",
     "format": "pnpm prettier --write ./test/ ./src",
