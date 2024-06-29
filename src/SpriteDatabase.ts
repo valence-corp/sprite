@@ -134,13 +134,6 @@ class SpriteDatabase {
       AsArcadeEdges<E>
     >;
   };
-  // /**
-  //  * @experimental
-  //  * Returns a modality building SQL queries using method chaining.
-  //  * @returns {ChainingModality} A database chaining modality.
-  //  */
-  // chainModality = <S>(): ChainingModality<S> =>
-  //   new ChainingModality<S>(this, this.operators);
   /**
    * Executes a query against the target database. This method only executes
    * idempotent statements (that cannot change the database), namely `SELECT`

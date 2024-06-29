@@ -1,15 +1,13 @@
 import { ArcadeSupportedQueryLanguages } from '../../../src/types/database.js';
 import { testClient as client } from './testClient.js';
 
-describe('SpriteDatabase.command', () => {
-  it('executes a command successfully', async () => {
-    const command = 'CREATE document TYPE aType';
+describe('SpriteDatabase.query', () => {
+  it('executes a query successfully', async () => {
+    const command = 'SELECT FROM schema:types';
     const language: ArcadeSupportedQueryLanguages = 'sql';
-    const result = await client.command(language, command);
+    const result = await client.query(language, command);
 
-    expect(result).toEqual([
-      { operation: 'create document type', typeName: 'aType' }
-    ]);
+    expect(result).toMatchSnapshot();
   });
 
   it('propagates errors from ArcadeDB', async () => {
@@ -17,7 +15,7 @@ describe('SpriteDatabase.command', () => {
     const language = 'INVALID_LANGUAGE';
     await expect(
       // @ts-expect-error - Testing invalid input
-      client.command(language, command)
+      client.query(language, command)
     ).rejects.toMatchSnapshot();
   });
 });

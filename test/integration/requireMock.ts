@@ -1,6 +1,6 @@
-import { SpriteDatabase } from '../../../src/SpriteDatabase.js';
-import { ArcadeSupportedQueryLanguages } from '../../../src/types/database.js';
-import { SpriteTransaction } from '../../../src/SpriteTransaction.js';
+import { SpriteDatabase } from '../../src/SpriteDatabase.js';
+import { ArcadeSupportedQueryLanguages } from '../../src/types/database.js';
+import { SpriteTransaction } from '../../src/SpriteTransaction.js';
 
 jest.mock('./_client', () => ({
   fetch: jest.fn()
