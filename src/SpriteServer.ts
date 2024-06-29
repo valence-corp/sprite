@@ -9,6 +9,7 @@ import { ISpriteRestClientConnectionParameters } from './types/client.js';
 import { SpriteDatabase } from './SpriteDatabase.js';
 import { SpriteRestClient } from './SpriteRestClient.js';
 import { validation } from './validation/ArcadeParameterValidation.js';
+import { ArcadeCommandResponse } from './api.js';
 
 /**
  * Methods for interact with an ArcadeDB server. Manage databases, users, etc.
@@ -484,14 +485,23 @@ class SpriteServer {
    */
   databaseExists = async (databaseName: string): Promise<boolean> => {
     try {
-      const { status } = await this._client.fetch(
+      const response = await this._client.fetch(
         `${endpoints.exists}/${databaseName}`
       );
-      switch (status) {
+      switch (response.status) {
         case 200:
-          return true;
+          const { result } = await response.json();
+          if (typeof result === 'boolean') {
+            return result;
+          } else {
+            throw new Error(
+              `Recieved an unexpected result from the server, expected boolean, recieved: [${result}] which has a type of: ${typeof result}.`
+            );
+          }
         case 400:
-          return false;
+          throw new Error(
+            `No database name was passed to the server. Recieved: [${databaseName}].`
+          );
         default:
           throw new Error(
             `Received an unexpected result from the server when attempting to check if database "${databaseName}" exists.`

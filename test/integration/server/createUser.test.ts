@@ -13,6 +13,7 @@ describe('SpriteServer.createUser', () => {
   it('should create a user', async () => {
     const created = await testClient.createUser(config);
     expect(created).toBe(true);
+    //TODO: Finish this test
   });
 
   it('should propagate errors from the database', async () => {
