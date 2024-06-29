@@ -448,6 +448,7 @@ class SpriteServer {
       return await this._booleanCommand(
         `CREATE USER ${JSON.stringify(expectedParameters)}`
       );
+
     } catch (error) {
       const databaseListString = Object.keys(params.databases).join(', ');
       throw new Error(
@@ -504,7 +505,7 @@ class SpriteServer {
           );
         default:
           throw new Error(
-            `Received an unexpected result from the server when attempting to check if database "${databaseName}" exists.`
+            `Received an unexpected status code from the server when attempting to check if database "${databaseName}" exists.`
           );
       }
     } catch (error) {
