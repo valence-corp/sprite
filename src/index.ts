@@ -57,6 +57,12 @@ async function neener() {
 
   client.command('LIST BUTTHOLE').then(console.log);
 
+  const db = client.database('Vert');
+
+  const docs = db.documentModality<ExampleVertexes>();
+
+  const trx = await docs.newTransaction();
+
   // const transaction = await db.newTransaction();
 
   //   // await db

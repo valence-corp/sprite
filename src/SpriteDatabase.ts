@@ -1,14 +1,11 @@
 import {
-  ArcadeCommandResponse,
   ArcadeGetSchemaResponse,
-  ArcadeQueryResponse,
   ArcadeSqlExplanation,
   ArcadeSupportedQueryLanguages,
   AsArcadeEdges,
   AsArcadeRecords,
   ISpriteDatabaseClientParameters,
-  ISpriteDatabaseConnectionParameters,
-  SpriteAllowedParamValues
+  ISpriteDatabaseConnectionParameters
 } from './types/database.js';
 import { ArcadeDatabaseError } from './errors/ArcadeDatabaseError.js';
 import { SpriteTransaction } from './SpriteTransaction.js';
