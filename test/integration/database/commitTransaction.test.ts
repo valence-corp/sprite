@@ -47,7 +47,10 @@ describe('SpriteDatabase.commitTransaction', () => {
     // Query to check if the document exists before the commit
     const [queriedBeforeCommit] = await testClient.query<
       ArcadeDocument<TrxTestType>
-    >('sql', `SELECT FROM ${createdRecord['@type']} WHERE @rid = ${createdRecord['@rid']}`);
+    >(
+      'sql',
+      `SELECT FROM ${createdRecord['@type']} WHERE @rid = ${createdRecord['@rid']}`
+    );
 
     // Commit the transaction
     await transaction.commit();
@@ -55,13 +58,16 @@ describe('SpriteDatabase.commitTransaction', () => {
     // Query to check if the document exists after the commit
     const [queriedRecordAfterCommit] = await testClient.query<
       ArcadeDocument<TrxTestType>
-    >('sql', `SELECT FROM ${createdRecord['@type']} WHERE @rid = ${createdRecord['@rid']}`);
+    >(
+      'sql',
+      `SELECT FROM ${createdRecord['@type']} WHERE @rid = ${createdRecord['@rid']}`
+    );
 
     // delete added record for consistancy
 
     await testClient.command(
       'sql',
-      `DELETE FROM ORIDs WHERE @rid == ${createdRecord['@rid']}`
+      `DELETE FROM ${createdRecord['@type']} WHERE @rid == ${createdRecord['@rid']}`
     );
 
     // Assertions
