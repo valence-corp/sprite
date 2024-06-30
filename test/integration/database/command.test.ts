@@ -1,11 +1,15 @@
+import { CreateDocumentType } from '../../../src/types/commandResponse.js';
 import { ArcadeSupportedQueryLanguages } from '../../../src/types/database.js';
 import { testClient as client } from './testClient.js';
 
 describe('SpriteDatabase.command', () => {
   it('executes a command successfully', async () => {
-    const command = 'CREATE document TYPE aType';
     const language: ArcadeSupportedQueryLanguages = 'sql';
-    const result = await client.command(language, command);
+    const command: string = 'CREATE document TYPE aType';
+    const result = await client.command<CreateDocumentType<'aType'>>(
+      language,
+      command
+    );
 
     expect(result).toEqual([
       { operation: 'create document type', typeName: 'aType' }

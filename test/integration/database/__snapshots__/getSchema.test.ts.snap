@@ -39,7 +39,7 @@ exports[`SpriteDatabase.getSchema matches the schema snapshot 1`] = `
     "name": "Flavour",
     "parentTypes": [],
     "properties": [],
-    "records": 12,
+    "records": 10,
     "type": "vertex",
   },
   {
@@ -79,7 +79,7 @@ exports[`SpriteDatabase.getSchema matches the schema snapshot 1`] = `
     "name": "FlavourInGroup",
     "parentTypes": [],
     "properties": [],
-    "records": 48,
+    "records": 42,
     "type": "edge",
   },
   {

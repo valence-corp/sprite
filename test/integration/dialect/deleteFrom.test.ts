@@ -23,18 +23,18 @@ describe('SqlDialect.deleteFrom()', () => {
       `SELECT * FROM ${typeName} LIMIT 1`
     );
 
-    const trx = await dbClient.newTransaction();
+    const trxTest = await dbClient.newTransaction();
 
     // Act
     await testClient.deleteFrom<VertexWithMeta, 'Flavour', '@rid'>(
       typeName,
-      trx,
+      trxTest,
       {
         where: ['@rid', '==', record['@rid']]
       }
     );
 
-    await trx.commit();
+    await trxTest.commit();
 
     // Assert
     await expect(
@@ -46,11 +46,11 @@ describe('SqlDialect.deleteFrom()', () => {
   });
 
   it(`should propagate errors from the database`, async () => {
-    const trx = await dbClient.newTransaction();
+    const trxError = await dbClient.newTransaction();
     // Assert
     await expect(
       // @ts-expect-error - testing the error
-      testClient.deleteFrom('INVALID_TYPE', trx, {
+      testClient.deleteFrom('INVALID_TYPE', trxError, {
         where: ['@rid', '==', 'invalid']
       })
     ).rejects.toMatchSnapshot();

@@ -6,15 +6,15 @@ import {
   AsArcadeRecords,
   ISpriteDatabaseClientParameters,
   ISpriteDatabaseConnectionParameters
-} from './types/database.js';
-import { ArcadeDatabaseError } from './errors/ArcadeDatabaseError.js';
-import { SpriteTransaction } from './SpriteTransaction.js';
-import { endpoints } from './endpoints/database.js';
-import { isNewClient } from './utilities/isNewClient.js';
-import { SpriteRestClient } from './SpriteRestClient.js';
-import { ArcadeTransactionIsolationLevel } from './types/transaction.js';
-import { DocumentModality, GraphModality } from './api.js';
-import { SqlDialect } from './SqlDialect.js';
+} from '@sprite/types/database.js';
+import { ArcadeDatabaseError } from '@errors/ArcadeDatabaseError.js';
+import { SpriteTransaction } from '@sprite/SpriteTransaction.js';
+import { endpoints } from '@endpoints/database.js';
+import { isNewClient } from '@utilities/isNewClient.js';
+import { SpriteRestClient } from '@sprite/SpriteRestClient.js';
+import { ArcadeTransactionIsolationLevel } from '@sprite/types/transaction.js';
+import { DocumentModality, GraphModality } from '@modes/index.js';
+import { SqlDialect } from '@dialects/SqlDialect.js';
 
 /**
  * Interact with a database, perform queries, issue commands to manage

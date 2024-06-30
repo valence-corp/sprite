@@ -39,7 +39,7 @@ exports[`SpriteDatabase.query executes a query successfully 1`] = `
     "name": "Flavour",
     "parentTypes": [],
     "properties": [],
-    "records": 12,
+    "records": 9,
     "type": "vertex",
   },
   {
@@ -79,7 +79,7 @@ exports[`SpriteDatabase.query executes a query successfully 1`] = `
     "name": "FlavourInGroup",
     "parentTypes": [],
     "properties": [],
-    "records": 48,
+    "records": 36,
     "type": "edge",
   },
   {
@@ -159,7 +159,7 @@ exports[`SpriteDatabase.query executes a query successfully 1`] = `
     "name": "ORIDs",
     "parentTypes": [],
     "properties": [],
-    "records": 0,
+    "records": 1,
     "type": "document",
   },
   {

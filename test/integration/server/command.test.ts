@@ -1,16 +1,21 @@
 import { variables } from '../variables.js';
-import { client as testClient } from './testClient.js';
+import { testClient } from './testClient.js';
 
 describe('SpriteServer.command', () => {
   it('should execute a command', async () => {
-    const list: Array<string> = await testClient.command('LIST DATABASES');
+    // Arrange & Act
+    const databaseList: Array<string> =
+      await testClient.command('LIST DATABASES');
 
-    expect(list.includes(variables.databaseName)).toBe(true);
+    // Assert
+    expect(databaseList.includes(variables.databaseName)).toBe(true);
   });
 
   it('should propagate errors from the database', async () => {
-    await expect(
-      testClient.command('INVALID COMMAND')
-    ).rejects.toMatchSnapshot();
+    // Arrange & Act
+    const invalidCommandPromise = testClient.command('INVALID COMMAND');
+
+    // Assert
+    await expect(invalidCommandPromise).rejects.toMatchSnapshot();
   });
 });

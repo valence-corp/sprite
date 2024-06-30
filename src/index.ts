@@ -1,7 +1,7 @@
-import { SpriteServer } from './SpriteServer.js';
-import { SpriteDatabase } from './SpriteDatabase.js';
-import { SpriteTransaction } from './SpriteTransaction.js';
-import { AsArcadeRecords } from './api.js';
+import { SpriteServer } from '@sprite/SpriteServer.js';
+import { SpriteDatabase } from '@sprite/SpriteDatabase.js';
+import { SpriteTransaction } from '@sprite/SpriteTransaction.js';
+import { AsArcadeRecords } from '@sprite/api.js';
 
 export { SpriteServer };
 export { SpriteDatabase };
@@ -17,13 +17,12 @@ type DocumentTypes = {
 
 export type DocumentTypesWithMeta = AsArcadeRecords<DocumentTypes>;
 
-
-const db = new SpriteServer({
-  username: 'root', // root will be ok for this tutorial
-  password: '999999999', // your password,
-  address: 'http://localhost:2480' // default address for ArcadeDB
-  //databaseName: 'ExampleDatabase' // the existing database
-});
+// const db = new SpriteServer({
+//   username: 'root', // root will be ok for this tutorial
+//   password: 'playwithdata', // your password,
+//   address: 'http://localhost:2480' // default address for ArcadeDB
+//   //databaseName: 'ExampleDatabase' // the existing database
+// });
 
 interface ExampleVertexes {
   aVertex: {
@@ -53,15 +52,11 @@ async function neener() {
     address: 'http://localhost:2480'
   });
 
-  //const db = client.database('SpriteIntegrationTestingDatabase');
+  const db = client.database('SpriteIntegrationTesting');
 
-  client.command('LIST BUTTHOLE').then(console.log);
+  const letsee = await db.command('sql', 'CREATE document TYPE horrid');
 
-  const db = client.database('Vert');
-
-  const docs = db.documentModality<ExampleVertexes>();
-
-  const trx = await docs.newTransaction();
+  console.log(letsee);
 
   // const transaction = await db.newTransaction();
 
@@ -86,7 +81,6 @@ async function neener() {
 
   // console.log('before!', queried);
 
-
   // await transaction.commit();
 
   // const queried2 = await db.query<DocumentTypesWithMeta['aDocument']>(
@@ -95,8 +89,6 @@ async function neener() {
   // );
 
   // console.log('again!', queried2)
-
-
 
   // await db.command('sql', 'CREATE BUCKET fType').then(console.log);
   // await db.command('sql', 'DROP BUCKET fType').then(console.log);

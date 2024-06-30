@@ -33,9 +33,14 @@
     // Provides a base directory for non-relative module names. All paths will be resolved relative to this baseUrl.
     "baseUrl": "./",
     "paths": {
-      "@root/*": ["./*"],
-      "@test/*": ["../test/*"]
-    },
+      "@sprite/*": ["./src/*"],
+      "@modes/*": ["./src/modes/*"],
+      "@endpoints/*": ["./src/endpoints/*"],
+      "@utilities/*": ["./src/utilities/*"],
+      "@test/*": ["./test/*"],
+      "@dialects/*": ["./src/dialects/*"],
+      "@errors/*": ["./src/errors/*"]
+    }
   },
   // Specifies folder patterns to exclude from the compilation.
   "exclude": [
