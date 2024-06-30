@@ -1,62 +1,85 @@
+import {
+  CreateEdgeType,
+  CreateVertexType,
+  DropType,
+  InsertVertex
+} from 'src/types/commands.js';
 import { RID_REGEX } from '../regex.js';
 import { testClient } from './testclient.js';
 
 interface EdgeTypes {
-  FlavourInGroup: {
+  CreateEdgeTestEdge: {
     aProperty: string;
   };
 }
 
+type CreateEdgeTestVertex = {
+  aProperty: string;
+};
+
 interface VertexTypes {
-  Flavour: {
-    name: string;
-  };
+  CreateEdgeTestVertex: CreateEdgeTestVertex;
 }
 
-const typeName = 'FlavourInGroup';
 const dbClient = testClient.database;
-type TypeName = typeof typeName;
 
 const data = {
   aProperty: 'aValue'
 };
 
+const vertexTypeName = 'CreateEdgeTestVertex';
+const edgeTypeName = 'CreateEdgeTestEdge';
+
 const indexDescriptor = {
-  type: 'Flavour',
-  key: 'name',
-  value: 'Honey'
+  type: vertexTypeName,
+  key: 'aProperty',
+  value: 'aValue'
 } as const;
 
-const createEdgeTyped = testClient.createEdge<
+const createEdge = testClient.createEdge<
   EdgeTypes,
   VertexTypes,
-  TypeName,
-  'Flavour',
-  'Flavour'
+  typeof edgeTypeName,
+  typeof vertexTypeName,
+  typeof vertexTypeName
 >;
 
-const [vertexOne, vertexTwo] = [
-  {
-    name: 'Sherry',
-    '@cat': 'v',
-    '@type': 'Flavour',
-    '@rid': '#33:0'
-  },
-  {
-    name: 'Peat',
-    '@cat': 'v',
-    '@type': 'Flavour',
-    '@rid': '#33:1'
-  }
-];
-
 describe('SqlDialect.createEdge()', () => {
+  beforeAll(async () => {
+    await dbClient.command<CreateVertexType<typeof vertexTypeName>>(
+      'sql',
+      `CREATE vertex TYPE ${vertexTypeName}`
+    );
+    await dbClient.command<CreateEdgeType<typeof edgeTypeName>>(
+      'sql',
+      `CREATE edge TYPE ${edgeTypeName}`
+    );
+  });
+  afterAll(async () => {
+    await dbClient.command<DropType<typeof vertexTypeName>>(
+      'sql',
+      `DROP TYPE ${vertexTypeName}`
+    );
+    await dbClient.command<DropType<typeof edgeTypeName>>(
+      'sql',
+      `DROP TYPE ${edgeTypeName}`
+    );
+  });
   it(`should create an edge`, async () => {
     const trx = await dbClient.newTransaction();
 
+    // Arrange
+    const [vertexOne, vertexTwo] = await dbClient.command<
+      InsertVertex<CreateEdgeTestVertex>
+    >(
+      'sql',
+      `INSERT INTO ${vertexTypeName} CONTENT ${JSON.stringify([data, data])}`,
+      trx
+    );
+
     // Act
-    const [edge] = await createEdgeTyped(
-      typeName,
+    const [edge] = await createEdge(
+      edgeTypeName,
       vertexOne['@rid'],
       vertexTwo['@rid'],
       trx,
@@ -65,40 +88,47 @@ describe('SqlDialect.createEdge()', () => {
       }
     );
 
-    // reverse the creation
+    // reverse the creation of test records
     trx.rollback();
 
     // Assert
     expect(edge['@rid']).toMatch(RID_REGEX);
     expect(edge['@cat']).toBe('e');
-    expect(edge['@type']).toBe(typeName);
+    expect(edge['@type']).toBe(edgeTypeName);
     expect(edge['@in']).toBe(vertexTwo['@rid']);
     expect(edge['@out']).toBe(vertexOne['@rid']);
     expect(edge.aProperty).toBe('aValue');
   });
 
   it(`should create an edge(s) using the vertex descriptor instead of an @rid`, async () => {
+    // Arrange
     const trx = await dbClient.newTransaction();
+    const [vertexOne] = await dbClient.command<
+      InsertVertex<CreateEdgeTestVertex>
+    >(
+      'sql',
+      `INSERT INTO ${vertexTypeName} CONTENT ${JSON.stringify([data, data])}`,
+      trx
+    );
 
     // Act
-
-    const [edge] = await createEdgeTyped(
-      typeName,
+    const [edge] = await createEdge(
+      edgeTypeName,
       indexDescriptor,
-      vertexTwo['@rid'],
+      vertexOne['@rid'],
       trx,
       {
         data
       }
     );
 
-    // reverse the creation
+    // reverse the creation of test records
     trx.rollback();
 
     // Assert
     expect(edge['@rid']).toMatch(RID_REGEX);
     expect(edge['@cat']).toBe('e');
-    expect(edge['@type']).toBe(typeName);
+    expect(edge['@type']).toBe(edgeTypeName);
     expect(edge['@in']).toMatch(RID_REGEX);
     expect(edge['@out']).toMatch(RID_REGEX);
     expect(edge.aProperty).toBe('aValue');
@@ -109,12 +139,12 @@ describe('SqlDialect.createEdge()', () => {
 
     // Assert
     await expect(
-      createEdgeTyped(typeName, 'INVALID_RID', 'INVALID_RID', trx, {
+      createEdge(edgeTypeName, 'INVALID_RID', 'INVALID_RID', trx, {
         data
       })
     ).rejects.toMatchSnapshot();
 
-    // reverse the creation
+    // rollback the transaction
     trx.rollback();
   });
 });

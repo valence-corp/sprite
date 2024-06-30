@@ -1,53 +1,72 @@
+import { CreateDocumentType, DropType } from 'src/types/commands.js';
 import { RID_REGEX } from '../regex.js';
-import { testClient } from './testclient.js';
+import { testClient as dialect } from './testclient.js';
+
+const invalidTypeName = 'INVALID_TYPE_NAME';
+const typeName = 'InsertRecordTestType';
+const db = dialect.database;
+
+type InsertRecordTestType = {
+  aProperty: string;
+};
 
 interface DocumentTypes {
-  ORIDs: {
-    aProperty: string;
-  };
+  [typeName]: InsertRecordTestType;
 }
 
-const typeName = 'ORIDs';
-const dbClient = testClient.database;
-type TypeName = typeof typeName;
-
-const data = {
+const data: InsertRecordTestType = {
   aProperty: 'aValue'
 };
 
-const insertRecordTyped = testClient.insertRecord<DocumentTypes, TypeName>;
-
 describe('SqlDialect.insertRecord()', () => {
+  beforeAll(async () => {
+    await db.command<CreateDocumentType<typeof typeName>>(
+      'sql',
+      `CREATE document TYPE ${typeName}`
+    );
+  });
+  afterAll(async () => {
+    await db.command<DropType<typeof typeName>>('sql', `DROP TYPE ${typeName}`);
+  });
   it(`should insert a record`, async () => {
-    const trx = await dbClient.newTransaction();
+    /* Arrange */
+    const trx = await db.newTransaction();
 
-    // Act
-    const [doc] = await insertRecordTyped(typeName, trx, {
-      data
-    });
+    /* Act */
+    const [doc] = await dialect.insertRecord<DocumentTypes, typeof typeName>(
+      typeName,
+      trx,
+      {
+        data
+      }
+    );
 
-    // reverse the creation
+    // undo insert
     trx.rollback();
 
-    // Assert
+    /* Assert */
     expect(doc['@rid']).toMatch(RID_REGEX);
     expect(doc['@cat']).toBe('d');
     expect(doc['@type']).toBe(typeName);
-    expect(doc.aProperty).toBe('aValue');
+    expect(doc.aProperty).toBe(data.aProperty);
   });
 
   it(`should propagate errors from the database`, async () => {
-    const trx = await dbClient.newTransaction();
+    /* Arange */
+    const trx = await db.newTransaction();
 
-    // Assert
+    /* Act & Assert */
     await expect(
-      // @ts-expect-error - intentionally passing invalid type
-      insertRecordTyped('INVALID_TYPE', trx, {
+      dialect.insertRecord<
+        DocumentTypes,
+        // @ts-expect-error - intentionally passing invalid type
+        typeof invalidTypeName
+      >(invalidTypeName, trx, {
         data
       })
     ).rejects.toMatchSnapshot();
 
-    // reverse the creation
+    // undo insert
     trx.rollback();
   });
 });

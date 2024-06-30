@@ -620,7 +620,7 @@ class SqlDialect {
       }
     } catch (error) {
       throw new Error(
-        `An error occured when attmepting to update record @rid: ${rid}, in database ${this.database.name}`,
+        `An error occured when attempting to update record @rid: ${rid}, in database ${this.database.name}`,
         { cause: error }
       );
     }

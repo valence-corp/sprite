@@ -3,7 +3,7 @@ import { testClient as client } from './testClient.js';
 
 describe('SpriteDatabase.query', () => {
   it('executes a query successfully', async () => {
-    const command = 'SELECT FROM schema:types';
+    const command = 'SELECT FROM schema:database';
     const language: ArcadeSupportedQueryLanguages = 'sql';
     const result = await client.query(language, command);
 

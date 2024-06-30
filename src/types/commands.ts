@@ -1,3 +1,10 @@
+import {
+  ArcadeRecordCategory,
+  EdgeRecordMeta,
+  RecordMeta
+} from './database.js';
+import { DeleteFromCount } from './operators.js';
+
 /** Base Interface for a command response from ArcadeDB */
 interface CommandResponse<T = string> {
   operation: T;
@@ -77,19 +84,50 @@ export interface CreateVertexType<Name = string>
  * An array, which contains an object returned from
  * ArcadeDB for a `DROP document TYPE <Name>` command
  */
-export interface DropDocumentType<Name = string>
-  extends TypeOperationResponse<Name, 'drop document type'> {}
+export interface DropType<Name = string>
+  extends TypeOperationResponse<Name, 'drop type'> {}
 
 /**
  * An array, which contains an object returned from
- * ArcadeDB for a `DROP edge TYPE <Name>` command
+ * ArcadeDB for a `INSERT INTO <document-type>` or
+ * a `INSERT INTO <vertex-type>` command
  */
-export interface DropEdgeType<Name = string>
-  extends TypeOperationResponse<Name, 'drop edge type'> {}
+type InsertRecord<T, C extends ArcadeRecordCategory> = Array<T & RecordMeta<C>>;
 
 /**
  * An array, which contains an object returned from
- * ArcadeDB for a `DROP vertex TYPE <Name>` command
+ * ArcadeDB for a `INSERT INTO <document-type>`
+ * command
+ * @template Type The type of the document to be inserted
  */
-export interface DropVertexType<Name = string>
-  extends TypeOperationResponse<Name, 'drop vertex type'> {}
+export interface InsertDocument<Type = unknown>
+  extends InsertRecord<Type, 'd'> {}
+/**
+ * An array, which contains an object returned from
+ * ArcadeDB for a `INSERT INTO <vertex-type>`
+ * command
+ * @template Type The type of the vertex to be inserted
+ */
+export interface InsertVertex<Type = unknown> extends InsertRecord<Type, 'v'> {}
+
+/**
+ * An array, which contains an object returned from
+ * ArcadeDB for a `CREATE EDGE <edge-type>` command
+ * @template TypeName - The name of the edge type
+ */
+export type CreateEdge<Type = unknown> = Array<Type & EdgeRecordMeta>;
+
+/**
+ * An array, which contains an object returned from
+ * ArcadeDB for a `CREATE VERTEX <vertex-type>` command
+ * @template Type - The type of the vertex to create
+ */
+export type CreateVertex<Type = unknown> = InsertVertex<Type>;
+
+/**
+ * An array, which contains an object returned from
+ * ArcadeDB for a `DELETE FROM` command. The object
+ * contains one property, `count` which is an
+ * integer
+ */
+export type DeleteFrom = Array<DeleteFromCount>;

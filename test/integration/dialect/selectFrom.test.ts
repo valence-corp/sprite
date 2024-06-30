@@ -1,49 +1,65 @@
-import { AsArcadeRecords, RecordMeta } from '../../../src/types/database.js';
+import { AsArcadeDocuments } from 'src/api.js';
 import { testClient } from './testclient.js';
+import { CreateDocumentType, DropType } from 'src/types/commands.js';
+import { ArcadeDocument } from 'src/types/queries.js';
 
-interface Flavour {
-  name: string;
+const typeName = 'SelectFromTestType';
+
+interface SelectFromTestType {
+  aProperty: string;
 }
 
-interface VertexTable {
-  Flavour: Flavour;
+interface DocumentTypes {
+  [typeName]: SelectFromTestType;
 }
 
-interface VertexWithMeta extends AsArcadeRecords<VertexTable> {}
+const data: SelectFromTestType = {
+  aProperty: 'aValue'
+};
 
-const dbClient = testClient.database;
-const typeName = 'Flavour';
+const db = testClient.database;
 
 describe('SqlDialect.selectFrom()', () => {
+  beforeAll(async () => {
+    await db.command<CreateDocumentType<typeof typeName>>(
+      'sql',
+      `CREATE document TYPE ${typeName}`
+    );
+  });
+  afterAll(async () => {
+    await db.command<DropType<typeof typeName>>('sql', `DROP TYPE ${typeName}`);
+  });
   it(`should select record`, async () => {
-    // Arrange
+    /* Arrange */
 
-    // Act
+    await db.command(
+      'sql',
+      `INSERT INTO ${typeName} CONTENT ${JSON.stringify([data, data])}`
+    );
+
+    /* Act */
     const records = await testClient.selectFrom<
-      VertexWithMeta,
-      'Flavour',
-      'name'
+      AsArcadeDocuments<DocumentTypes>,
+      typeof typeName,
+      'aProperty'
     >(typeName, {
-      where: ['name', '!=', 'undefined']
+      where: ['aProperty', '==', 'aValue']
     });
 
-    // Assert
-    expect(Array.isArray(records)).toBe(true); // Ensure it's an array
-
-    records.forEach((record: VertexWithMeta['Flavour']) => {
-      expect(record).toHaveProperty('name'); // Ensure each record has the 'name' property
-      expect(record.name).not.toBe('undefined'); // Ensure 'name' is not 'undefined'
+    /* Assert */
+    records.forEach((record: ArcadeDocument<SelectFromTestType>) => {
+      expect(record).toHaveProperty('@rid'); // Ensure each record has the '@rid' property
+      expect(record['@type']).toBe(typeName); // Ensure each record has the '@type' property
+      expect(record).toHaveProperty('aProperty'); // Ensure each record has the 'name' property
+      expect(record.aProperty).toBe('aValue'); // Ensure 'aProperty' is 'aValue'
     });
   });
 
   it(`should propagate errors from the database`, async () => {
-    const trx = await dbClient.newTransaction();
-    // Assert
+    /* Arrange, Act, & Assert */
     await expect(
       // @ts-ignore - intentionally passing invalid type
-      testClient.selectFrom('INVALID_TYPE', trx, {
-        where: ['@rid', '==', 'invalid']
-      })
+      testClient.selectFrom("INVALID_TYPE_NAME")
     ).rejects.toMatchSnapshot();
   });
 });

@@ -25,7 +25,7 @@ describe('SpriteServer.createDatabase()', () => {
     await client.createDatabase(variables.databaseName);
 
     // Assert
-    expect(fetch).toHaveBeenCalledWith(
+    expect(global.fetch).toHaveBeenCalledWith(
       `${variables.address}${endpoints.command}`,
       options
     );

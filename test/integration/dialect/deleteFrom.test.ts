@@ -1,44 +1,59 @@
-import { AsArcadeRecords, RecordMeta } from '../../../src/types/database.js';
 import { testClient } from './testclient.js';
+import {
+  CreateDocumentType,
+  DropType,
+  InsertDocument
+} from 'src/types/commands.js';
 
-interface Flavour {
-  name: string;
+interface DeleteFromTestDocument {
+  aProperty: string;
 }
 
-interface VertexTable {
-  Flavour: Flavour;
+interface DocumentTypes {
+  DeleteFromTestDocument: DeleteFromTestDocument;
 }
 
-interface VertexWithMeta extends AsArcadeRecords<VertexTable> {}
+const data: DeleteFromTestDocument = {
+  aProperty: 'aValue'
+};
 
-const dbClient = testClient.database;
-const typeName = 'Flavour';
+const db = testClient.database;
+const typeName = 'DeleteFromTestDocument';
 
 describe('SqlDialect.deleteFrom()', () => {
+  beforeAll(async () => {
+    await db.command<CreateDocumentType<typeof typeName>>(
+      'sql',
+      `CREATE document TYPE ${typeName}`
+    );
+  });
+  afterAll(async () => {
+    await db.command<DropType<typeof typeName>>('sql', `DROP TYPE ${typeName}`);
+  });
   it(`should delete a record`, async () => {
     // Arrange
-
-    const [record] = await dbClient.query<Flavour & RecordMeta>(
+    // Create a record to delete
+    const trxCreate = await db.newTransaction();
+    const [record] = await db.command<InsertDocument<DeleteFromTestDocument>>(
       'sql',
-      `SELECT * FROM ${typeName} LIMIT 1`
+      `INSERT INTO ${typeName} CONTENT ${JSON.stringify(data)}`
     );
-
-    const trxTest = await dbClient.newTransaction();
+    await trxCreate.commit();
 
     // Act
-    await testClient.deleteFrom<VertexWithMeta, 'Flavour', '@rid'>(
+    const trxDelete = await db.newTransaction();
+    await testClient.deleteFrom<DocumentTypes, typeof typeName, '@rid'>(
       typeName,
-      trxTest,
+      trxDelete,
       {
         where: ['@rid', '==', record['@rid']]
       }
     );
-
-    await trxTest.commit();
+    await trxDelete.commit();
 
     // Assert
     await expect(
-      dbClient.query(
+      db.query(
         'sql',
         `SELECT * FROM ${typeName} WHERE @rid == ${record['@rid']}`
       )
@@ -46,13 +61,16 @@ describe('SqlDialect.deleteFrom()', () => {
   });
 
   it(`should propagate errors from the database`, async () => {
-    const trxError = await dbClient.newTransaction();
-    // Assert
+    // Arrange
+    const trx = await db.newTransaction();
+    // Act & Assert
     await expect(
       // @ts-ignore - intentionally passing invalid type
-      testClient.deleteFrom('INVALID_TYPE', trxError, {
+      testClient.deleteFrom('INVALID_TYPE', trx, {
         where: ['@rid', '==', 'invalid']
       })
     ).rejects.toMatchSnapshot();
+
+    trx.rollback();
   });
 });

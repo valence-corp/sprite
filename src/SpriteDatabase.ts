@@ -2,8 +2,10 @@ import {
   ArcadeGetSchemaResponse,
   ArcadeSqlExplanation,
   ArcadeSupportedQueryLanguages,
+  ArcadeTypeDefinition,
+  AsArcadeDocuments,
   AsArcadeEdges,
-  AsArcadeRecords,
+  AsArcadeVertices,
   ISpriteDatabaseClientParameters,
   ISpriteDatabaseConnectionParameters
 } from './types/database.js';
@@ -62,7 +64,7 @@ class SpriteDatabase {
   /** The rest client, handles auth and connection details  */
   private _client: SpriteRestClient;
   /** Methods for performing SQL operations on the database. */
-  private _sql: SqlDialect | undefined;
+  private _dialect: SqlDialect | undefined;
   /** The name of the database */
   private _name: string;
   /** Modality for operations involving document records */
@@ -93,15 +95,15 @@ class SpriteDatabase {
     return this._name;
   }
   /**
-   * Private getter for this._sql, to avoid
+   * Private getter for this._dialect, to avoid
    * prematurly creating the sql dialect if they are not
    * needed.
    */
-  private get sql() {
-    if (!this._sql) {
-      this._sql = new SqlDialect(this);
+  private get dialect() {
+    if (!this._dialect) {
+      this._dialect = new SqlDialect(this);
     }
-    return this._sql;
+    return this._dialect;
   }
   /** Helper function for building enpoints */
   private _endpoint = (endpoint: string) => `${endpoint}/${this.name}`;
@@ -109,25 +111,31 @@ class SpriteDatabase {
    * Returns a modality for working with document records within the database.
    * @returns {DocumentModality} A database document modality.
    */
-  documentModality = <T>(): DocumentModality<AsArcadeRecords<T>> => {
+  documentModality = <T>(): DocumentModality<AsArcadeDocuments<T>> => {
     if (!this._documentModality) {
-      this._documentModality = new DocumentModality<unknown>(this, this.sql);
+      this._documentModality = new DocumentModality<unknown>(
+        this,
+        this.dialect
+      );
     }
-    return this._documentModality as DocumentModality<AsArcadeRecords<T>>;
+    return this._documentModality as DocumentModality<AsArcadeDocuments<T>>;
   };
   /**
    * Returns a modality for working with graph records within the database.
    * @returns {GraphModality} A database graph modality.
    */
   graphModality = <V, E>(): GraphModality<
-    AsArcadeRecords<V>,
+    AsArcadeVertices<V>,
     AsArcadeEdges<E>
   > => {
     if (!this._graphModality) {
-      this._graphModality = new GraphModality<unknown, unknown>(this, this.sql);
+      this._graphModality = new GraphModality<unknown, unknown>(
+        this,
+        this.dialect
+      );
     }
     return this._graphModality as GraphModality<
-      AsArcadeRecords<V>,
+      AsArcadeVertices<V>,
       AsArcadeEdges<E>
     >;
   };
@@ -359,9 +367,9 @@ class SpriteDatabase {
    *
    * getSchemaExample();
    */
-  getSchema = async (): Promise<ArcadeGetSchemaResponse[]> => {
+  getSchema = async (): Promise<ArcadeGetSchemaResponse> => {
     try {
-      const result = await this.query<ArcadeGetSchemaResponse>(
+      const result = await this.query<ArcadeTypeDefinition>(
         'sql',
         'SELECT FROM schema:types'
       );
@@ -378,6 +386,8 @@ class SpriteDatabase {
       });
     }
   };
+  sql = (command: string, transaction?: SpriteTransaction) =>
+    this.command('sql', command, transaction);
   /**
    * Begins a transaction on the server, managed as a session.
    * @param {ArcadeTransactionIsolationLevel} isolationLevel The isolation level for the transaction, defaults to `READ_COMMITED`.

@@ -1,28 +1,28 @@
 import { variables } from '../variables.js';
 import { testClient } from './testClient.js';
 
+const newDatabaseName = 'CreateDatabaseTestDatabase';
+
 describe('SpriteServer.createDatabase', () => {
   it('should create a database', async () => {
-    try {
-      // Arrange
-      await testClient.createDatabase(variables.newDatabaseName);
+    /* Arrange */
+    await testClient.createDatabase(newDatabaseName);
 
-      // Act
-      const list = await testClient.listDatabases();
+    /* Act */
+    const list = await testClient.listDatabases();
 
-      // Assert
-      const databaseCreated = list.includes(variables.newDatabaseName);
-      expect(databaseCreated).toBe(true);
-    } finally {
-      testClient.dropDatabase(variables.newDatabaseName);
-    }
+    /* Assert */
+    const databaseCreated = list.includes(newDatabaseName);
+    expect(databaseCreated).toBe(true);
+
+    testClient.dropDatabase(newDatabaseName);
   });
 
   it('should propagate errors from the database', async () => {
-    // Arrange
+    /* Arrange & Act */
     const createPromise = testClient.createDatabase(variables.databaseName);
 
-    // Assert
+    /* Assert */
     await expect(createPromise).rejects.toMatchSnapshot();
   });
 });

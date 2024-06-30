@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`SpriteDatabase.rollbackTransaction rollsback the transaction 1`] = `[Error: Unable to commit transaction AS-5282cef5-6382-42d0-bcd7-afa16f09dd7b]`;

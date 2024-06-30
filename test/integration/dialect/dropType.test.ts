@@ -1,40 +1,54 @@
-import { DropArgument } from 'net';
+import { CreateDocumentType } from 'src/types/commands.js';
 import { testClient } from './testclient.js';
+import { ArcadeDocument } from 'src/types/queries.js';
+
+
+const db = testClient.database;
+const invalidTypeName = 'DROP_TYPE_INVALID_TYPE';
+const typeName = 'DropTypeTestType';
+
+type DropTypeTestType = {
+  aProperty: string;
+};
 
 interface DocumentTypes {
-  TestType: {
-    aProperty: string;
-  };
-  INVALID_TYPE: {};
+  [typeName]: DropTypeTestType;
+  [invalidTypeName]: {};
 }
-
-const typeName = 'TestType';
-const dbClient = testClient.database;
 
 describe('SqlDialect.dropType()', () => {
   it(`should drop a type`, async () => {
-    await testClient.createType<DocumentTypes, 'TestType'>(
-      typeName,
-      'document'
+    /* Arrange */
+    await db.command<CreateDocumentType<typeof typeName>>(
+      'sql',
+      `CREATE document TYPE ${typeName}`
     );
 
-    // Assert
+    /* Act & Assert */
     await expect(
-      dbClient.query('sql', `SELECT FROM ${typeName}`)
+      db.query<ArcadeDocument<DropTypeTestType>>(
+        'sql',
+        `SELECT FROM ${typeName}`
+      )
     ).resolves.toHaveLength(0);
 
-    await testClient.dropType<DocumentTypes, 'TestType'>(typeName);
+    await testClient.dropType<DocumentTypes, typeof typeName>(typeName);
 
-    // Assert
+    /* Assert */
     await expect(
-      dbClient.query('sql', `SELECT FROM ${typeName}`)
+      db.query<ArcadeDocument<DropTypeTestType>>(
+        'sql',
+        `SELECT FROM ${typeName}`
+      )
     ).rejects.toMatchSnapshot();
   });
 
   it(`should propagate errors from the database`, async () => {
-    // Assert
+    /* Arrange, Act & Assert */
     await expect(
-      testClient.dropType<DocumentTypes, 'INVALID_TYPE'>('INVALID_TYPE')
+      testClient.dropType<DocumentTypes, typeof invalidTypeName>(
+        invalidTypeName
+      )
     ).rejects.toMatchSnapshot();
   });
 });

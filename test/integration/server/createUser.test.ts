@@ -25,38 +25,38 @@ describe('SpriteServer.createUser', () => {
   });
 
   it('should create a user and return true', async () => {
-    // Arrange & Act
+    /* Arrange & Act */
     const created = await testClient.createUser(config);
 
-    // Assert
+    /* Assert */
     expect(created).toBe(true);
   });
 
   it('should allow new user to check status of database', async () => {
-    // Arrange & Act
+    /* Arrange & Act */
     const isReady = await newUserClient.serverReady();
 
-    // Assert
+    /* Assert */
     expect(isReady).toBe(true);
   });
 
   it('should propagate errors from the database', async () => {
-    // Arrange & Act
+    /* Arrange & Act */
     const createPromise = testClient.createUser(config);
 
-    // Assert
+    /* Assert */
     // Expected to reject because the user already exists
     await expect(createPromise).rejects.toMatchSnapshot();
   });
 
   it('should prevent dropped user from checking status', async () => {
-    // Arrange
+    /* Arrange */
     const dropped = await testClient.dropUser(config.username);
 
-    // Act
+    /* Act */
     const nonExistantUserPromise = newUserClient.serverReady();
 
-    // Assert
+    /* Assert */
     expect(dropped).toBe(true);
     await expect(nonExistantUserPromise).rejects.toMatchSnapshot();
   });

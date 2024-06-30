@@ -1,7 +1,7 @@
 import { SpriteServer } from './SpriteServer.js';
 import { SpriteDatabase } from './SpriteDatabase.js';
 import { AsArcadeRecords } from './api.js';
-import { CreateDocumentType } from './types/commandResponse.js';
+import { DeleteFrom } from './types/commands.js';
 
 export { SpriteServer };
 export { SpriteDatabase };
@@ -15,7 +15,7 @@ type DocumentTypes = {
   aDocument: ADocumentType;
 };
 
-export type DocumentTypesWithMeta = AsArcadeRecords<DocumentTypes>;
+export type DocumentTypesWithMeta = AsArcadeRecords<DocumentTypes, 'd'>;
 
 // const db = new SpriteServer({
 //   username: 'root', // root will be ok for this tutorial
@@ -53,12 +53,20 @@ async function neener() {
   });
 
   const db = client.database('SpriteIntegrationTesting');
-  const [result] = await db.command<CreateDocumentType<'aDocument'>>(
+
+  const response = db.command<DeleteFrom>(
     'sql',
-    'CREATE document TYPE aDocument'
+    'DROP TYPE aType'
   );
 
-  result;
+  console.log(response);
+
+  // const [result] = await db.command<CreateDocumentType<'aDocument'>>(
+  //   'sql',
+  //   'CREATE document TYPE aDocument'
+  // );
+
+  // result;
 
   // const transaction = await db.newTransaction();
 

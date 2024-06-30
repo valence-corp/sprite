@@ -21,29 +21,32 @@ export type ArcadeRecordCategory = 'd' | 'e' | 'v';
  */
 export type ArcadeRecordType = 'document' | 'edge' | 'vertex';
 
-/**
- * The base metadata for record in
- * ArcadeDB.
- */
-export type RecordMeta = {
+type RecordMetaBase<C extends ArcadeRecordCategory> = {
   /** The id of the record. */
   '@rid': string;
   /** The category of the record. */
-  '@cat': ArcadeRecordCategory;
+  '@cat': C;
   /** The type of the record. */
   '@type': string;
 };
 
 /**
+ * The base metadata for record in
+ * ArcadeDB.
+ */
+export type RecordMeta<C extends ArcadeRecordCategory = ArcadeRecordCategory> =
+  C extends 'e' ? EdgeRecordMeta : RecordMetaBase<C>;
+
+/**
  * The metadata for an Edge record in
  * ArcadeDB
  */
-export type EdgeRecordMeta = RecordMeta & {
+export interface EdgeRecordMeta extends RecordMetaBase<'e'> {
   /** The `@rid` of the vertex the edge goes to */
   '@in': string;
   /** The `@rid` of the vertex the edge comes from */
   '@out': string;
-};
+}
 
 /**
  * Adds ArcadeDB record metadata to the types
@@ -55,12 +58,14 @@ export type AsArcadeEdges<S> = {
 
 /**
  * Adds ArcadeDB record metadata to the types
- * defined in the schema. Used for Document
- * and Vertex records.
+ * defined in the schema.
  */
-export type AsArcadeRecords<S> = {
-  [K in keyof S]: S[K] & RecordMeta;
+export type AsArcadeRecords<S, C extends ArcadeRecordCategory> = {
+  [K in keyof S]: S[K] & RecordMeta<C>;
 };
+
+export type AsArcadeDocuments<S> = AsArcadeRecords<S, 'd'>;
+export type AsArcadeVertices<S> = AsArcadeRecords<S, 'v'>;
 
 /**
  * The TypeNames in a supplied schema.

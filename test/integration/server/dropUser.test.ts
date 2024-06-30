@@ -20,10 +20,10 @@ describe('SpriteServer.dropUser', () => {
 
   it('should drop a user and return true', async () => {
     if (newUserCreated) {
-      // Arrange & Act
+      /* Arrange & Act */
       const dropped = await testClient.dropUser(config.username);
 
-      // Assert
+      /* Assert */
       expect(dropped).toBe(true);
     } else {
       throw new Error('User was not created');
@@ -31,25 +31,25 @@ describe('SpriteServer.dropUser', () => {
   });
 
   it('should not allow dropped user to check status of database', async () => {
-    // Arrange
+    /* Arrange */
     const newUserClient = new SpriteServer({
       username: config.username,
       password: config.password,
       address: 'http://localhost:2480'
     });
 
-    // Act
+    /* Act */
     const isReadyPromise = newUserClient.serverReady();
 
-    // Assert
+    /* Assert */
     await expect(isReadyPromise).rejects.toMatchSnapshot();
   });
 
   it('should propagate errors from the database', async () => {
-    // Arrange & Act
+    /* Arrange & Act */
     const dropPromise = testClient.dropUser(config.username);
 
-    // Assert
+    /* Assert */
     await expect(dropPromise).rejects.toMatchSnapshot();
   });
 });

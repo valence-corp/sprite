@@ -1,65 +1,80 @@
-import { RecordMeta } from '../../../src/types/database.js';
 import { testClient } from './testclient.js';
+import { ArcadeDocument } from 'src/types/queries.js';
+import {
+  CreateDocumentType,
+  DropType,
+  InsertDocument
+} from 'src/types/commands.js';
 
-interface Flavour {
-  name: string;
+const db = testClient.database;
+const typeName = 'UpdateOneTestType';
+
+interface UpdateOneTestType {
+  aProperty: string;
 }
 
 interface VertexTable {
-  Flavour: Flavour;
+  [typeName]: UpdateOneTestType;
 }
 
-const dbClient = testClient.database;
-const typeName = 'Flavour';
+const originalData: UpdateOneTestType = {
+  aProperty: 'aValue'
+};
+
+const updatedData: UpdateOneTestType = {
+  aProperty: 'bValue'
+};
 
 describe('SqlDialect.updateOne()', () => {
-  it(`should update a record`, async () => {
-    // Arrange
-
-    const [originalRecord] = await dbClient.query<Flavour & RecordMeta>(
+  beforeAll(async () => {
+    await db.command<CreateDocumentType<typeof typeName>>(
       'sql',
-      `SELECT * FROM ${typeName} LIMIT 1`
+      `CREATE document TYPE ${typeName}`
     );
+  });
+  afterAll(async () => {
+    await db.command<DropType<typeof typeName>>('sql', `DROP TYPE ${typeName}`);
+  });
+  it(`should update a record`, async () => {
+    /* Arrange */
+    const trxCreate = await db.newTransaction();
+    const [originalRecord] = await db.command<
+      InsertDocument<UpdateOneTestType>
+    >(
+      'sql',
+      `INSERT INTO ${typeName} CONTENT ${JSON.stringify(originalData)}`,
+      trxCreate
+    );
+    await trxCreate.commit();
 
-    const trx = await dbClient.newTransaction();
-
-    // Act
-    await testClient.updateOne<VertexTable, 'Flavour'>(
+    /* Act */
+    const trxUpdate = await db.newTransaction();
+    await testClient.updateOne<VertexTable, typeof typeName>(
       originalRecord['@rid'],
-      { name: 'Rancid' },
-      trx
+      updatedData,
+      trxUpdate
     );
+    await trxUpdate.commit();
 
-    await trx.commit();
-
-    const [updatedRecord] = await dbClient.query<Flavour & RecordMeta>(
+    const [updatedRecord] = await db.query<ArcadeDocument<UpdateOneTestType>>(
       'sql',
       `SELECT * FROM ${typeName} WHERE @rid == ${originalRecord['@rid']}`
     );
 
-    // Change the record back to its original state
-
-    const trx2 = await dbClient.newTransaction();
-    await testClient.updateOne<VertexTable, 'Flavour'>(
-      originalRecord['@rid'],
-      { name: originalRecord.name },
-      trx2
-    );
-
-    await trx2.commit();
-
-    // Assert
-    expect(updatedRecord.name).toEqual('Rancid');
-    expect(updatedRecord.name).not.toEqual(originalRecord.name);
+    /* Assert */
+    expect(updatedRecord.aProperty).toEqual('bValue');
+    expect(updatedRecord.aProperty).not.toEqual(originalRecord.aProperty);
   });
 
   it(`should propagate errors from the database`, async () => {
-    const trx = await dbClient.newTransaction();
-    // Assert
+    /* Arrange */
+    const trxError = await db.newTransaction();
+
+    /* Act & Assert */
     await expect(
-      testClient.updateOne('INVALID_RID', {}, trx)
+      testClient.updateOne('INVALID_RID', {}, trxError)
     ).rejects.toMatchSnapshot();
 
-    await trx.rollback();
+    await trxError.rollback();
   });
 });

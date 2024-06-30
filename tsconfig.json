@@ -11,7 +11,7 @@
     // Sets the ECMAScript target version for the emitted JavaScript code.
     "target": "ES2022",
     // Specifies the module system for generated code.
-    "module": "NodeNext",
+    "module": "Node16",
     // Sets the module resolution strategy to Node.js style.
     "moduleResolution": "Node16",
     // Specifies the library files to be included in the compilation. ES2022 and DOM are included here.
