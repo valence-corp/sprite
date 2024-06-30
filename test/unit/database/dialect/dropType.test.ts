@@ -1,12 +1,8 @@
 import { client } from './testClient.js';
 import { endpoints } from '../../../../src/endpoints/database.js';
-import {
-  variables,
-  headersWithTransaction as headers
-} from '../../../variables.js';
+import { variables, headers } from '../../../variables.js';
 
 import { DocumentTypes } from '../../types.js';
-import { testTransaction } from '../client/testClient.js';
 
 const typeName = 'aDocument';
 const SpriteDatabase = client.database;
@@ -28,7 +24,7 @@ describe('TypedOperations.dropType()', () => {
     } as Response);
 
     // Act
-    await client.dropType<DocumentTypes, TypeName>(typeName, testTransaction);
+    await client.dropType<DocumentTypes, TypeName>(typeName);
 
     // Assert
     expect(global.fetch).toHaveBeenCalledWith(
@@ -49,15 +45,14 @@ describe('TypedOperations.dropType()', () => {
     jest.spyOn(SpriteDatabase, 'command').mockResolvedValueOnce(dropTypeResult);
 
     // Act
-    await client.dropType<DocumentTypes, TypeName>(typeName, testTransaction, {
+    await client.dropType<DocumentTypes, TypeName>(typeName, {
       ifExists: true
     });
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       'sql',
-      `DROP TYPE ${typeName} IF EXISTS`,
-      testTransaction
+      `DROP TYPE ${typeName} IF EXISTS`
     );
   });
 
@@ -66,15 +61,14 @@ describe('TypedOperations.dropType()', () => {
     jest.spyOn(SpriteDatabase, 'command').mockResolvedValueOnce(dropTypeResult);
 
     // Act
-    await client.dropType<DocumentTypes, TypeName>(typeName, testTransaction, {
+    await client.dropType<DocumentTypes, TypeName>(typeName, {
       unsafe: true
     });
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       'sql',
-      `DROP TYPE ${typeName} UNSAFE`,
-      testTransaction
+      `DROP TYPE ${typeName} UNSAFE`
     );
   });
 });

@@ -1,7 +1,6 @@
 import { client, dbClient as SpriteDatabase } from './testClient.js';
 import { variables } from '../../../../variables.js';
 import { ArcadeCommandResponse } from '../../../../../src/types/database.js';
-import { testTransaction } from '../../client/testClient.js';
 
 const typeName = 'aVertex';
 
@@ -22,7 +21,7 @@ describe('GraphModality.createVertexType()', () => {
       );
 
     // Act
-    await client.createVertexType(typeName, testTransaction, {
+    await client.createVertexType(typeName, {
       buckets: [variables.bucketName, variables.bucketName],
       totalBuckets: 2,
       extends: 'anotherVertex',
@@ -32,8 +31,7 @@ describe('GraphModality.createVertexType()', () => {
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       `sql`,
-      `CREATE vertex TYPE ${typeName} IF NOT EXISTS EXTENDS anotherVertex BUCKET ${variables.bucketName},${variables.bucketName} BUCKETS 2`,
-      testTransaction
+      `CREATE vertex TYPE ${typeName} IF NOT EXISTS EXTENDS anotherVertex BUCKET ${variables.bucketName},${variables.bucketName} BUCKETS 2`
     );
   });
 });

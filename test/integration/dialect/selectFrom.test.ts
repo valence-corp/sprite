@@ -30,7 +30,7 @@ describe('SqlDialect.selectFrom()', () => {
     // Assert
     expect(Array.isArray(records)).toBe(true); // Ensure it's an array
 
-    records.forEach((record) => {
+    records.forEach((record: VertexWithMeta['Flavour']) => {
       expect(record).toHaveProperty('name'); // Ensure each record has the 'name' property
       expect(record.name).not.toBe('undefined'); // Ensure 'name' is not 'undefined'
     });
@@ -40,7 +40,7 @@ describe('SqlDialect.selectFrom()', () => {
     const trx = await dbClient.newTransaction();
     // Assert
     await expect(
-      // @ts-expect-error - testing the error
+      // @ts-ignore - intentionally passing invalid type
       testClient.selectFrom('INVALID_TYPE', trx, {
         where: ['@rid', '==', 'invalid']
       })

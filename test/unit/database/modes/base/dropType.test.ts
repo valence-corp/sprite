@@ -1,7 +1,6 @@
 import { client, dbClient as SpriteDatabase } from './testClient.js';
 import { variables } from '../../../../variables.js';
 import { ArcadeCommandResponse } from '../../../../../src/types/database.js';
-import { testTransaction } from '../../client/testClient.js';
 
 const typeName = 'aDocument';
 
@@ -20,15 +19,14 @@ describe('ModalityBase.dropType()', () => {
         }
       );
 
-    await client.dropType(typeName, testTransaction, {
+    await client.dropType(typeName, {
       ifExists: true,
       unsafe: true
     });
 
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       `sql`,
-      `DROP TYPE ${typeName} UNSAFE IF EXISTS`,
-      testTransaction
+      `DROP TYPE ${typeName} UNSAFE IF EXISTS`
     );
   });
 });

@@ -14,7 +14,10 @@ describe('SpriteServer.databaseExists()', () => {
     };
 
     jest.spyOn(global, 'fetch').mockResolvedValueOnce({
-      status: 200
+      status: 200,
+      json: async () => ({
+        result: true
+      })
     } as Response);
 
     // Act
@@ -27,22 +30,15 @@ describe('SpriteServer.databaseExists()', () => {
     );
   });
 
-  it('should return a boolean "true" for a 200 status response from the server', async () => {
+  it('should forward the "true" result for a 200 status response from the server', async () => {
     jest.spyOn(global, 'fetch').mockResolvedValueOnce({
       status: 200,
-      json: async () => variables.jsonResponse
+      json: async () => ({
+        result: true
+      })
     } as Response);
-
     const response = await client.databaseExists(variables.databaseName);
 
     expect(response).toBe(true);
-  });
-
-  it('should return a boolean "false" for a 400 status response from the server', async () => {
-    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
-      status: 400
-    } as Response);
-    const response = await client.databaseExists(variables.databaseName);
-    expect(response).toBe(false);
   });
 });

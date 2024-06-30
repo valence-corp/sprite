@@ -9,7 +9,6 @@ import { ISpriteRestClientConnectionParameters } from './types/client.js';
 import { SpriteDatabase } from './SpriteDatabase.js';
 import { SpriteRestClient } from './SpriteRestClient.js';
 import { validation } from './validation/ArcadeParameterValidation.js';
-import { ArcadeCommandResponse } from './api.js';
 
 /**
  * Methods for interact with an ArcadeDB server. Manage databases, users, etc.

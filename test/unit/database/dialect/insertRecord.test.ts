@@ -7,7 +7,7 @@ import {
 
 import { DocumentTypes } from '../../types.js';
 import { testTransaction } from '../client/testClient.js';
-import { ArcadeCommandResponse } from '@root/src/api.js';
+import { ArcadeCommandResponse } from '../../../../src/api.js';
 
 const typeName = 'aDocument';
 const SpriteDatabase = client.database;

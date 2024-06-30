@@ -35,8 +35,12 @@ export const testAuth = Buffer.from(
   `${variables.username}:${variables.password}`
 ).toString('base64');
 
-export const headersWithTransaction = {
+export const headers = {
   Authorization: `Basic ${testAuth}`,
-  'Content-Type': 'application/json',
+  'Content-Type': 'application/json'
+};
+
+export const headersWithTransaction = {
+  ...headers,
   'arcadedb-session-id': variables.sessionId
 };

@@ -5,31 +5,23 @@ import { testTransaction } from '../../client/testClient.js';
 
 const typeName = 'anEdge';
 
-const newEdge = {
-  '@rid': variables.rid,
-  '@cat': 'e',
-  '@type': typeName,
-  '@in': variables.rid,
-  '@out': variables.rid,
-  aProperty: 'aValue'
-};
-
-const newEdgeCommandResponse = {
-  user: variables.username,
-  serverName: '',
-  version: '',
-  result: [newEdge]
-};
+const newEdgeResult = [
+  {
+    '@rid': variables.rid,
+    '@cat': 'e',
+    '@type': typeName,
+    '@in': variables.rid,
+    '@out': variables.rid,
+    aProperty: 'aValue'
+  }
+];
 
 describe('GraphModality.newEdge()', () => {
   // Arrange
   beforeEach(() => {
     jest
       .spyOn(SpriteDatabase, 'command')
-      .mockImplementationOnce(
-        async (): Promise<ArcadeCommandResponse<unknown>> =>
-          newEdgeCommandResponse
-      );
+      .mockImplementationOnce(async (): Promise<unknown> => newEdgeResult);
   });
 
   it(`correctly passes typeName, to, from, options.data, and options.transactionId to SpriteOperations._createEdge`, async () => {
@@ -80,7 +72,7 @@ describe('GraphModality.newEdge()', () => {
 
   it('should return the newly created edge', async () => {
     // Act
-    const record = await client.newEdge(
+    const [record] = await client.newEdge(
       typeName,
       variables.rid,
       variables.rid,
@@ -93,6 +85,6 @@ describe('GraphModality.newEdge()', () => {
     );
 
     // Assert
-    expect(record).toMatchObject(newEdge);
+    expect(record).toMatchObject(newEdgeResult[0]);
   });
 });

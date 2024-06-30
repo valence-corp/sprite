@@ -8,16 +8,9 @@ describe('ModalityBase.selectFrom()', () => {
   it(`correctly passes all options to TypedOperations._selectFrom`, async () => {
     jest
       .spyOn(SpriteDatabase, 'query')
-      .mockImplementationOnce(
-        async (): Promise<ArcadeQueryResponse<unknown[]>> => {
-          return {
-            user: variables.username,
-            serverName: '',
-            version: '',
-            result: []
-          };
-        }
-      );
+      .mockImplementationOnce(async (): Promise<unknown[]> => {
+        return [];
+      });
 
     await client.selectFrom(typeName, {
       where: ['@rid', '!!', variables.rid],

@@ -1,7 +1,7 @@
-import { SpriteServer } from '@sprite/SpriteServer.js';
-import { SpriteDatabase } from '@sprite/SpriteDatabase.js';
-import { SpriteTransaction } from '@sprite/SpriteTransaction.js';
-import { AsArcadeRecords } from '@sprite/api.js';
+import { SpriteServer } from './SpriteServer.js';
+import { SpriteDatabase } from './SpriteDatabase.js';
+import { AsArcadeRecords } from './api.js';
+import { CreateDocumentType } from './types/commandResponse.js';
 
 export { SpriteServer };
 export { SpriteDatabase };
@@ -53,10 +53,12 @@ async function neener() {
   });
 
   const db = client.database('SpriteIntegrationTesting');
+  const [result] = await db.command<CreateDocumentType<'aDocument'>>(
+    'sql',
+    'CREATE document TYPE aDocument'
+  );
 
-  const letsee = await db.command('sql', 'CREATE document TYPE horrid');
-
-  console.log(letsee);
+  result;
 
   // const transaction = await db.newTransaction();
 

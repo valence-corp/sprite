@@ -6,7 +6,7 @@ import {
   TypeNames
 } from '../types/database.js';
 import { SpriteTransaction } from '../SpriteTransaction.js';
-import { SqlDialect } from '../SqlDialect.js';
+import { SqlDialect } from '../dialects/SqlDialect.js';
 
 /**
  * Handles the operations related to document records in the database.

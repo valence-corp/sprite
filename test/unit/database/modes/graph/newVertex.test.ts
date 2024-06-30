@@ -5,29 +5,21 @@ import { testTransaction } from '../../client/testClient.js';
 
 const typeName = 'aVertex';
 
-const newVertex = {
-  '@rid': variables.rid,
-  '@cat': 'v',
-  '@type': typeName,
-  aProperty: 'aValue'
-};
-
-const newVertexCommandResponse = {
-  user: variables.username,
-  serverName: '',
-  version: '',
-  result: [newVertex]
-};
+const newVertexResult = [
+  {
+    '@rid': variables.rid,
+    '@cat': 'v',
+    '@type': typeName,
+    aProperty: 'aValue'
+  }
+];
 
 describe('GraphModality.newVertex()', () => {
   // Arrange
   beforeEach(() => {
     jest
       .spyOn(SpriteDatabase, 'command')
-      .mockImplementationOnce(
-        async (): Promise<ArcadeCommandResponse<unknown>> =>
-          newVertexCommandResponse
-      );
+      .mockImplementationOnce(async (): Promise<unknown> => newVertexResult);
   });
   it(`correctly passes typeName, options.data, and options.transactionId to SpriteOperations._insertRecord`, async () => {
     // Act
@@ -58,5 +50,17 @@ describe('GraphModality.newVertex()', () => {
       `INSERT INTO BUCKET:${variables.bucketName}`,
       testTransaction
     );
+  });
+
+  it('should return the newly created vertex', async () => {
+    // Act
+    const [record] = await client.newVertex(typeName, testTransaction, {
+      data: {
+        aProperty: 'aValue'
+      }
+    });
+
+    // Assert
+    expect(record).toMatchObject(newVertexResult[0]);
   });
 });

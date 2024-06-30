@@ -2,23 +2,20 @@ import { client, dbClient as SpriteDatabase } from './testClient.js';
 import { variables } from '../../../../variables.js';
 
 describe('ModalityBase.selectOne()', () => {
-  it(`correctly passes all arguments and options to TypedOperations.selectOne`, async () => {
+  beforeEach(() => {
     jest.spyOn(SpriteDatabase, 'query').mockImplementationOnce(async () => {
-      return {
-        result: [
-          {
-            '@rid': variables.rid,
-            '@cat': 'd',
-            '@type': 'aDocument',
-            aProperty: 'aValue'
-          }
-        ],
-        serverName: '',
-        version: '',
-        user: ''
-      };
+      return [
+        {
+          '@rid': variables.rid,
+          '@cat': 'd',
+          '@type': 'aDocument',
+          aProperty: 'aValue'
+        }
+      ];
     });
+  });
 
+  it(`correctly passes all arguments and options to TypedOperations.selectOne`, async () => {
     await client.selectOne(variables.rid);
 
     expect(SpriteDatabase.query).toHaveBeenCalledWith(
@@ -27,25 +24,9 @@ describe('ModalityBase.selectOne()', () => {
     );
   });
   it('returns the record from the query result', async () => {
-    jest.spyOn(SpriteDatabase, 'query').mockImplementationOnce(async () => {
-      return {
-        result: [
-          {
-            '@rid': variables.rid,
-            '@cat': 'd',
-            '@type': 'aDocument',
-            aProperty: 'aValue'
-          }
-        ],
-        serverName: '',
-        version: '',
-        user: ''
-      };
-    });
+    const record = await client.selectOne(variables.rid);
 
-    const result = await client.selectOne(variables.rid);
-
-    expect(result).toMatchObject({
+    expect(record).toMatchObject({
       '@rid': variables.rid,
       '@cat': 'd',
       '@type': 'aDocument',

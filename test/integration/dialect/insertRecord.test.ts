@@ -41,7 +41,7 @@ describe('SqlDialect.insertRecord()', () => {
 
     // Assert
     await expect(
-      // @ts-expect-error - testing invalid type
+      // @ts-expect-error - intentionally passing invalid type
       insertRecordTyped('INVALID_TYPE', trx, {
         data
       })

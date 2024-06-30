@@ -1,10 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SpriteDatabase.query() should handle a 200 response by returning the data from the response 1`] = `
-{
-  "result": "test",
-}
-`;
+exports[`SpriteDatabase.query() should handle a 200 response by returning the data from the response 1`] = `"test"`;
 
 exports[`SpriteDatabase.query() should handle a 400 response by throwing an error 1`] = `[Error: Invalid language or query. Status: 400]`;
 

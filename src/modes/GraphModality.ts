@@ -11,7 +11,7 @@ import {
   ISpriteEdgeOptions,
   SpriteEdgeVertexDescriptor
 } from '../types/edge.js';
-import { SqlDialect } from '../SqlDialect.js';
+import { SqlDialect } from '../dialects/SqlDialect.js';
 
 /**
  * A window to a specific graph set.

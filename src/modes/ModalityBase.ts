@@ -10,7 +10,7 @@ import {
 import { SpriteTransaction } from '../SpriteTransaction.js';
 import { SpriteDatabase } from '../SpriteDatabase.js';
 import { ArcadeTransactionIsolationLevel } from '../types/transaction.js';
-import { SqlDialect } from '../SqlDialect.js';
+import { SqlDialect } from '../dialects/SqlDialect.js';
 
 class ModalityBase<S> {
   protected _database: SpriteDatabase;

@@ -1,7 +1,6 @@
 import { client, dbClient as SpriteDatabase } from './testClient.js';
 import { variables } from '../../../../variables.js';
 import { ArcadeCommandResponse } from '../../../../../src/types/database.js';
-import { testTransaction } from '../../client/testClient.js';
 
 const typeName = 'aDocument';
 
@@ -22,7 +21,7 @@ describe('DocumentModality.createType()', () => {
       );
 
     // Act
-    await client.createType(typeName, testTransaction, {
+    await client.createType(typeName, {
       buckets: [variables.bucketName, variables.bucketName],
       totalBuckets: 2,
       extends: 'anotherDocument',
@@ -32,8 +31,7 @@ describe('DocumentModality.createType()', () => {
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       `sql`,
-      `CREATE document TYPE ${typeName} IF NOT EXISTS EXTENDS anotherDocument BUCKET ${variables.bucketName},${variables.bucketName} BUCKETS 2`,
-      testTransaction
+      `CREATE document TYPE ${typeName} IF NOT EXISTS EXTENDS anotherDocument BUCKET ${variables.bucketName},${variables.bucketName} BUCKETS 2`
     );
   });
 });

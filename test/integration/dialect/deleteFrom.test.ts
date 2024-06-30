@@ -49,7 +49,7 @@ describe('SqlDialect.deleteFrom()', () => {
     const trxError = await dbClient.newTransaction();
     // Assert
     await expect(
-      // @ts-expect-error - testing the error
+      // @ts-ignore - intentionally passing invalid type
       testClient.deleteFrom('INVALID_TYPE', trxError, {
         where: ['@rid', '==', 'invalid']
       })

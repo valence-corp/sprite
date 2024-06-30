@@ -10,16 +10,9 @@ describe('ModalityBase.deleteFrom()', () => {
   it(`correctly passes all options to TypedOperations._deleteFrom`, async () => {
     jest
       .spyOn(SpriteDatabase, 'command')
-      .mockImplementationOnce(
-        async (): Promise<ArcadeCommandResponse<DeleteFromCount[]>> => {
-          return {
-            user: variables.username,
-            serverName: '',
-            version: '',
-            result: [{ count: 1 }]
-          };
-        }
-      );
+      .mockImplementationOnce(async (): Promise<DeleteFromCount[]> => {
+        return [{ count: 1 }];
+      });
 
     await client.deleteFrom(typeName, testTransaction, {
       where: ['@rid', '!!', variables.rid],

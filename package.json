@@ -15,7 +15,6 @@
     "test": "jest ./test/integration",
     "test:unit": "jest ./test/unit/",
     "test:integration": "jest ./test/integration/server",
-    "testcontainer": "tsx ./test/integration/database/initialize.ts",
     "lint": "pnpm eslint --fix ./test/ ./src",
     "format": "pnpm prettier --write ./test/ ./src",
     "exec": "pnpm build && node ./dist/index.js"

@@ -1,7 +1,6 @@
 import { client, dbClient as SpriteDatabase } from './testClient.js';
 import { variables } from '../../../../variables.js';
 import { ArcadeCommandResponse } from '../../../../../src/types/database.js';
-import { testTransaction } from '../../client/testClient.js';
 
 const typeName = 'anEdge';
 
@@ -22,7 +21,7 @@ describe('GraphModality.createEdgeType()', () => {
       );
 
     // Act
-    await client.createEdgeType(typeName, testTransaction, {
+    await client.createEdgeType(typeName, {
       buckets: [variables.bucketName, variables.bucketName],
       totalBuckets: 2,
       extends: 'anotherEdge',
@@ -32,8 +31,7 @@ describe('GraphModality.createEdgeType()', () => {
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       `sql`,
-      `CREATE edge TYPE ${typeName} IF NOT EXISTS EXTENDS anotherEdge BUCKET ${variables.bucketName},${variables.bucketName} BUCKETS 2`,
-      testTransaction
+      `CREATE edge TYPE ${typeName} IF NOT EXISTS EXTENDS anotherEdge BUCKET ${variables.bucketName},${variables.bucketName} BUCKETS 2`
     );
   });
 });

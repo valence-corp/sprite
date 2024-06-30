@@ -12,11 +12,13 @@ const typeName = 'aDocument';
 const SpriteDatabase = client.database;
 type TypeName = typeof typeName;
 
-const deleteOneResult = {
+const deleteOneResult = [{ count: 1 }];
+
+const deleteOneJsonResponse = {
   user: variables.username,
   serverName: '',
   version: '',
-  result: [{ count: 1 }]
+  result: deleteOneResult
 };
 
 describe('SpriteOperations.deleteOne()', () => {
@@ -24,7 +26,7 @@ describe('SpriteOperations.deleteOne()', () => {
     // Arrange
     jest.spyOn(global, 'fetch').mockResolvedValueOnce({
       status: 200,
-      json: async () => deleteOneResult
+      json: async () => deleteOneJsonResponse
     } as Response);
 
     // Act

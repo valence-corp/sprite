@@ -2,22 +2,16 @@ import { client } from './testClient.js';
 import { endpoints } from '../../../../src/endpoints/database.js';
 import {
   variables,
-  headersWithTransaction as headers
+  headers
 } from '../../../variables.js';
 import { SpriteType } from '../../../../src/SpriteType.js';
 
 import { DocumentTypes } from '../../types.js';
-import { SpriteTransaction } from '../../../../src/SpriteTransaction.js';
 
 const recordType = 'document';
 const typeName = 'aDocument';
 const SpriteDatabase = client.database;
 type TypeName = typeof typeName;
-
-const testTransaction = new SpriteTransaction(
-  client.database,
-  variables.sessionId
-);
 
 const createTypeResult = {
   user: variables.username,
@@ -35,11 +29,7 @@ describe('TypedOperations.createType()', () => {
     } as Response);
 
     // Act
-    await client.createType<DocumentTypes, TypeName>(
-      typeName,
-      recordType,
-      testTransaction
-    );
+    await client.createType<DocumentTypes, TypeName>(typeName, recordType);
     // Assert
     expect(global.fetch).toHaveBeenCalledWith(
       `${variables.address}${endpoints.command}/${variables.databaseName}`,
@@ -71,7 +61,6 @@ describe('TypedOperations.createType()', () => {
     const result = await client.createType<DocumentTypes, TypeName>(
       typeName,
       recordType,
-      testTransaction,
       {
         buckets: variables.bucketName
       }
@@ -87,20 +76,14 @@ describe('TypedOperations.createType()', () => {
       .mockResolvedValueOnce(createTypeResult);
 
     // Act
-    await client.createType<DocumentTypes, TypeName>(
-      typeName,
-      recordType,
-      testTransaction,
-      {
-        buckets: variables.bucketName
-      }
-    );
+    await client.createType<DocumentTypes, TypeName>(typeName, recordType, {
+      buckets: variables.bucketName
+    });
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       'sql',
-      `CREATE document TYPE ${typeName} BUCKET ${variables.bucketName}`,
-      testTransaction
+      `CREATE document TYPE ${typeName} BUCKET ${variables.bucketName}`
     );
   });
 
@@ -111,14 +94,9 @@ describe('TypedOperations.createType()', () => {
       .mockResolvedValueOnce(createTypeResult);
 
     // Act
-    await client.createType<DocumentTypes, TypeName>(
-      typeName,
-      recordType,
-      testTransaction,
-      {
-        buckets: [variables.bucketName, variables.bucketName]
-      }
-    );
+    await client.createType<DocumentTypes, TypeName>(typeName, recordType, {
+      buckets: [variables.bucketName, variables.bucketName]
+    });
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
@@ -126,8 +104,7 @@ describe('TypedOperations.createType()', () => {
       `CREATE document TYPE ${typeName} BUCKET ${[
         variables.bucketName,
         variables.bucketName
-      ].join(',')}`,
-      testTransaction
+      ].join(',')}`
     );
   });
 
@@ -138,20 +115,14 @@ describe('TypedOperations.createType()', () => {
       .mockResolvedValueOnce(createTypeResult);
 
     // Act
-    await client.createType<DocumentTypes, TypeName>(
-      typeName,
-      recordType,
-      testTransaction,
-      {
-        ifNotExists: true
-      }
-    );
+    await client.createType<DocumentTypes, TypeName>(typeName, recordType, {
+      ifNotExists: true
+    });
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       'sql',
-      `CREATE document TYPE ${typeName} IF NOT EXISTS`,
-      testTransaction
+      `CREATE document TYPE ${typeName} IF NOT EXISTS`
     );
   });
 
@@ -162,20 +133,14 @@ describe('TypedOperations.createType()', () => {
       .mockResolvedValueOnce(createTypeResult);
 
     // Act
-    await client.createType<DocumentTypes, TypeName>(
-      typeName,
-      recordType,
-      testTransaction,
-      {
-        extends: 'anotherDocument'
-      }
-    );
+    await client.createType<DocumentTypes, TypeName>(typeName, recordType, {
+      extends: 'anotherDocument'
+    });
 
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       'sql',
-      `CREATE document TYPE ${typeName} EXTENDS anotherDocument`,
-      testTransaction
+      `CREATE document TYPE ${typeName} EXTENDS anotherDocument`
     );
   });
 
@@ -186,19 +151,13 @@ describe('TypedOperations.createType()', () => {
       .mockResolvedValueOnce(createTypeResult);
 
     // Act
-    await client.createType<DocumentTypes, TypeName>(
-      typeName,
-      recordType,
-      testTransaction,
-      {
-        totalBuckets: 4
-      }
-    );
+    await client.createType<DocumentTypes, TypeName>(typeName, recordType, {
+      totalBuckets: 4
+    });
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       'sql',
-      `CREATE document TYPE ${typeName} BUCKETS 4`,
-      testTransaction
+      `CREATE document TYPE ${typeName} BUCKETS 4`
     );
   });
 

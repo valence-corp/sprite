@@ -1,4 +1,4 @@
-import { SpriteDatabase } from './SpriteDatabase.js';
+import { SpriteDatabase } from '../SpriteDatabase.js';
 import {
   ArcadeRecordType,
   EdgeRecordMeta,
@@ -11,16 +11,16 @@ import {
   RecordMeta,
   TypeNames,
   WithRid
-} from './types/database.js';
-import { SpriteCommand } from './SpriteCommand.js';
+} from '../types/database.js';
+import { SpriteCommand } from '../SpriteCommand.js';
 import {
   ArcadeDeleteReturnCount,
   ArcadeResultSortDirection,
   ArcadeSelectTimeoutStrategy
-} from './nodes/types.js';
-import { nodes } from './nodes/index.js';
-import { SpriteType } from './SpriteType.js';
-import { SpriteTransaction } from './SpriteTransaction.js';
+} from '../nodes/types.js';
+import { nodes } from '../nodes/index.js';
+import { SpriteType } from '../SpriteType.js';
+import { SpriteTransaction } from '../SpriteTransaction.js';
 import {
   ArcadeCreateTypeResponse,
   ArcadeDeleteFromResponse,
@@ -28,13 +28,13 @@ import {
   ArcadeUpdateOneResponse,
   DeleteFromCount,
   RecordOperationResponse
-} from './types/operators.js';
-import { validation } from './validation/ArcadeParameterValidation.js';
+} from '../types/operators.js';
+import { validation } from '../validation/ArcadeParameterValidation.js';
 import {
   ISpriteEdgeOptions,
   SpriteEdgeVertexDescriptor
-} from './types/edge.js';
-import { ValidSuperTypeKey } from './types/type.js';
+} from '../types/edge.js';
+import { ValidSuperTypeKey } from '../types/type.js';
 
 class SqlDialect {
   database: SpriteDatabase;
@@ -434,16 +434,16 @@ class SqlDialect {
     command: string,
     transaction?: SpriteTransaction
   ): Promise<T> => {
-    if (transaction) {
-      this._validate.transaction(transaction);
-    }
-    const result = await this.database.command<T>('sql', command, transaction);
+    const result = transaction
+      ? await this.database.command<T>('sql', command, transaction)
+      : await this.database.command<T>('sql', command);
     if (result) {
       return result;
+    } else {
+      throw new Error(
+        'No result property was present on the response from the server.'
+      );
     }
-    throw new Error(
-      'No result property was present on the response from the server.'
-    );
   };
   /**
    * A wrapper on the `SpriteDatabase.query()` method that handles
