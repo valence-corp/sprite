@@ -36,12 +36,12 @@ async function example() {
 
     await db.command('sql', 'CREATE document TYPE aType');
     console.log(result);
-    // {
-    //  user: 'aUser',
-    //  version: '24.x.x (build [...])',
-    //  serverName: 'ArcadeDB_0',
-    //  result: [ { operation: 'create document type', typeName: 'aType' } ]
-    // }
+    // [
+    //   {
+    //     operation: 'create document type',
+    //     typeName: 'aType'
+    //   }
+    // ]
 
     // CRUD must be transactional
     db.transaction(async (trx) => {
@@ -91,7 +91,7 @@ async function example() {
     console.log(created);
     // [
     //   {
-    //     operation: 'create type',
+    //     operation: 'create document type',
     //     type: 'aType'
     //   }
     // ]
