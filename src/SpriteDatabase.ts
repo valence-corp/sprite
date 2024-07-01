@@ -16,7 +16,8 @@ import { endpoints } from './endpoints/database.js';
 import { isNewClient } from './utilities/isNewClient.js';
 import { SpriteRestClient } from './SpriteRestClient.js';
 import { ArcadeTransactionIsolationLevel } from './types/transaction.js';
-import { DocumentModality, GraphModality } from './modes/index.js';
+import { DocumentModality } from './modes/DocumentModality.js';
+import { GraphModality } from './modes/GraphModality.js';
 import { SqlDialect } from './dialects/SqlDialect.js';
 
 /**

@@ -2,8 +2,6 @@ import { TypeNames } from '../../types/database.js';
 import { SpriteEdgeVertexDescriptor } from '../../types/edge.js';
 import { selectIndex } from '../../nodes/select/selectIndex.js';
 
-// TODO: Need object validation if going this route.
-
 /**
  * If the supplied value is a string (rid) it just returns the string,
  * if it's an object representing an index of a record, then it converts it
