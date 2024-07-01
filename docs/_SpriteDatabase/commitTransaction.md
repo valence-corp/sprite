@@ -34,13 +34,13 @@ async function commitTransactionExample() {
     const trx = await db.newTransaction();
     await db.command(
       'sql',
-      'CREATE document TYPE aType',
-      trx
+      'INSERT INTO aType',
     );
+
     console.log(trx.id);
     // 'AS-0000000-0000-0000-0000-00000000000'
+
     db.commitTransaction(trx.id);
-    return trx;
   } catch (error) {
     console.log(error);
     // handle error conditions

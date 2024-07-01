@@ -11,7 +11,7 @@ filename: 5_createDocument.md
 ---
 #### Introduction
 
-Most developers agree that sending SQL (or another query language) directly to your database is the most flexible and efficient method of conduction queries and database operations in a JavaScript application, however, it's not always the easiest method to get started in building out your functionality.
+Engineers tend to agree that sending a command directly to your database in its native query language is the most flexible and efficient method of conduction queries and database operations in a JavaScript application. It is, however, not always the easiest method to get started in building out your functionality.
 
 Sprite has abstractions built over the database driver functionality of the `SpriteDatabase` class, called modalities. They contain typed methods that build SQL queries based on the arguments passed to them. Understand there is a certain level of overhead intrinsic to performing this type of work in JavaScript, and you should consider the best method for your application.
 
@@ -97,7 +97,7 @@ The accessor method returns a [singleton instance](https://en.wikipedia.org/wiki
 
 #### Transactions
 
-ArcadeDB is a transactional database. This is preferred for applications that require a high level of data integrity. All non-idempotent operations (operations that can change the database) must be part of a transaction.
+ArcadeDB is a transactional database. This is preferred for applications that require a high level of data integrity. [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations must be part of a transaction.
 
 Sprite has various methods for orchestrating transactions, but this tutorial will utilize the `DocumentModality.transaction()` method, which incorporates some abstraction to reduce boilerplate.
 
@@ -123,22 +123,22 @@ async function documentModalityExample() {
 
 There is additional information on transactions in the following locations.
 
-1. [Transactions Tutorial](./transactions.html)
+1. [Transactions Tutorial]({{page.baseurl}}transactions.html)
 2. [Wikipedia: Database Transaction](https://en.wikipedia.org/wiki/Database_transaction)
 
 ---
 
 #### Creating a Type
 
-The transaction callback defines the scope for operations within a transaction. It calls the `DocumentModality.createType()` method, passing the transaction (`trx`) as a parameter. This operation should be awaited to prevent an error with the `newDocument` method in the next step, as the type must be present in the database to create a record of that type.
+A type must be present in the database prior to creating a record of that type. The `DocumentModality.createType()` method is utilized to create a document type called "aDocument". This operation should be awaited to prevent an error with the `newDocument` method that will be added in the next step (as stated, the type must be present in the database to create a record of that type).
 
 ```ts
 async function documentModalityExample() {
   try {
+    await client.createType("aDocument");
     client.transaction(async (trx) => {
       // the transaction should be passed to all
       // non-idempotent commands issued herein
-      await client.createType("aDocument", trx);
     });
   } catch (error) {
     throw new Error(`There was a problem while running the example.`, {
@@ -150,7 +150,7 @@ async function documentModalityExample() {
 
 #### Creating a Document
 
-Following the `createType` operation, insert the `newDocument` method. Ensure the transaction is passed to it also. Optionally, data can be included at record creation (as shown). The arguments will be automatially typed as defined in the `ExampleDocuments` interface created earlier.
+Insert the `newDocument` method within the scope of the transaction callback, ensuring the transaction is passed to it as a second argument. Optionally, data can be included at record creation (as shown). The arguments will be automatially typed as defined in the `ExampleDocuments` interface created earlier (the type name must be on that is included in the `ExampleDocuments` interface, and the `data` property will be typed based on that type name).
 
 ```ts
 async function documentModalityExample() {
@@ -178,7 +178,7 @@ async function documentModalityExample() {
 
 #### Running the Example
 
-The complete example is show below. Ensure your code mirrors this functionality, and execute.
+The complete example is show below. Ensure your code mirrors this, and execute.
 
 ```ts
 import { SpriteDatabase } from "@valence-corp/sprite";
@@ -203,9 +203,8 @@ const client = db.documentModality<ExampleDocuments>();
 
 async function documentModalityExample() {
   try {
+    await client.createType("aDocument");
     client.transaction(async (trx) => {
-      await client.createType("aDocument", trx);
-
       client.newDocument("aDocument", trx, {
         data: {
           aProperty: "aValue",
@@ -226,7 +225,7 @@ documentModalityExample();
 
 There should now be a document in "ExampleDatabase" of "aDocument" type.
 
-You can verify the existence of this document using the [ArcadeDB web interface](https://docs.arcadedb.com/#Studio).
+You could verify the existence of this document using the [ArcadeDB web interface](https://docs.arcadedb.com/#Studio), or by performing a query as shown in the [Select Tutorial]({{page.baseurl}}/select.html).
 
 #### What is next?
 

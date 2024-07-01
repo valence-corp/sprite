@@ -308,6 +308,14 @@
     </li>
     
     <li>
+      <a href="/sprite/SpriteDatabase/crud.html" class="foreground-1">
+        <span class="row menu-item with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          <span class="marker flex content-center-v">m</span> crud
+        </span>
+      </a>
+    </li>
+    
+    <li>
       <a href="/sprite/SpriteDatabase/documentModality.html" class="foreground-1">
         <span class="row menu-item with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
           <span class="marker flex content-center-v">m</span> documentModality
@@ -1196,7 +1204,7 @@
 
           <h4 id="introduction">Introduction</h4>
 
-<p>Most developers agree that sending SQL (or another query language) directly to your database is the most flexible and efficient method of conduction queries and database operations in a JavaScript application, however, it’s not always the easiest method to get started in building out your functionality.</p>
+<p>Engineers tend to agree that sending a command directly to your database in its native query language is the most flexible and efficient method of conduction queries and database operations in a JavaScript application. It is, however, not always the easiest method to get started in building out your functionality.</p>
 
 <p>Sprite has abstractions built over the database driver functionality of the <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> class, called modalities. They contain typed methods that build SQL queries based on the arguments passed to them. Understand there is a certain level of overhead intrinsic to performing this type of work in JavaScript, and you should consider the best method for your application.</p>
 
@@ -1283,7 +1291,7 @@
 
 <h4 id="transactions">Transactions</h4>
 
-<p>ArcadeDB is a transactional database. This is preferred for applications that require a high level of data integrity. All non-idempotent operations (operations that can change the database) must be part of a transaction.</p>
+<p>ArcadeDB is a transactional database. This is preferred for applications that require a high level of data integrity. <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> operations must be part of a transaction.</p>
 
 <p>Sprite has various methods for orchestrating transactions, but this tutorial will utilize the <code class="language-plaintext highlighter-rouge">DocumentModality.transaction()</code> method, which incorporates some abstraction to reduce boilerplate.</p>
 
@@ -1309,7 +1317,7 @@
 <p>There is additional information on transactions in the following locations.</p>
 
 <ol>
-  <li><a href="./transactions.html">Transactions Tutorial</a></li>
+  <li><a href="transactions.html">Transactions Tutorial</a></li>
   <li><a href="https://en.wikipedia.org/wiki/Database_transaction">Wikipedia: Database Transaction</a></li>
 </ol>
 
@@ -1317,14 +1325,14 @@
 
 <h4 id="creating-a-type">Creating a Type</h4>
 
-<p>The transaction callback defines the scope for operations within a transaction. It calls the <code class="language-plaintext highlighter-rouge">DocumentModality.createType()</code> method, passing the transaction (<code class="language-plaintext highlighter-rouge">trx</code>) as a parameter. This operation should be awaited to prevent an error with the <code class="language-plaintext highlighter-rouge">newDocument</code> method in the next step, as the type must be present in the database to create a record of that type.</p>
+<p>A type must be present in the database prior to creating a record of that type. The <code class="language-plaintext highlighter-rouge">DocumentModality.createType()</code> method is utilized to create a document type called “aDocument”. This operation should be awaited to prevent an error with the <code class="language-plaintext highlighter-rouge">newDocument</code> method that will be added in the next step (as stated, the type must be present in the database to create a record of that type).</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">documentModalityExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createType</span><span class="p">(</span><span class="dl">"</span><span class="s2">aDocument</span><span class="dl">"</span><span class="p">);</span>
     <span class="nx">client</span><span class="p">.</span><span class="nf">transaction</span><span class="p">(</span><span class="k">async </span><span class="p">(</span><span class="nx">trx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
       <span class="c1">// the transaction should be passed to all</span>
       <span class="c1">// non-idempotent commands issued herein</span>
-      <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createType</span><span class="p">(</span><span class="dl">"</span><span class="s2">aDocument</span><span class="dl">"</span><span class="p">,</span> <span class="nx">trx</span><span class="p">);</span>
     <span class="p">});</span>
   <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="s2">`There was a problem while running the example.`</span><span class="p">,</span> <span class="p">{</span>
@@ -1336,7 +1344,7 @@
 
 <h4 id="creating-a-document">Creating a Document</h4>
 
-<p>Following the <code class="language-plaintext highlighter-rouge">createType</code> operation, insert the <code class="language-plaintext highlighter-rouge">newDocument</code> method. Ensure the transaction is passed to it also. Optionally, data can be included at record creation (as shown). The arguments will be automatially typed as defined in the <code class="language-plaintext highlighter-rouge">ExampleDocuments</code> interface created earlier.</p>
+<p>Insert the <code class="language-plaintext highlighter-rouge">newDocument</code> method within the scope of the transaction callback, ensuring the transaction is passed to it as a second argument. Optionally, data can be included at record creation (as shown). The arguments will be automatially typed as defined in the <code class="language-plaintext highlighter-rouge">ExampleDocuments</code> interface created earlier (the type name must be on that is included in the <code class="language-plaintext highlighter-rouge">ExampleDocuments</code> interface, and the <code class="language-plaintext highlighter-rouge">data</code> property will be typed based on that type name).</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">documentModalityExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
@@ -1362,7 +1370,7 @@
 
 <h4 id="running-the-example">Running the Example</h4>
 
-<p>The complete example is show below. Ensure your code mirrors this functionality, and execute.</p>
+<p>The complete example is show below. Ensure your code mirrors this, and execute.</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">SpriteDatabase</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@valence-corp/sprite</span><span class="dl">"</span><span class="p">;</span>
 
@@ -1386,9 +1394,8 @@
 
 <span class="k">async</span> <span class="kd">function</span> <span class="nf">documentModalityExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createType</span><span class="p">(</span><span class="dl">"</span><span class="s2">aDocument</span><span class="dl">"</span><span class="p">);</span>
     <span class="nx">client</span><span class="p">.</span><span class="nf">transaction</span><span class="p">(</span><span class="k">async </span><span class="p">(</span><span class="nx">trx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createType</span><span class="p">(</span><span class="dl">"</span><span class="s2">aDocument</span><span class="dl">"</span><span class="p">,</span> <span class="nx">trx</span><span class="p">);</span>
-
       <span class="nx">client</span><span class="p">.</span><span class="nf">newDocument</span><span class="p">(</span><span class="dl">"</span><span class="s2">aDocument</span><span class="dl">"</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
         <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
           <span class="na">aProperty</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aValue</span><span class="dl">"</span><span class="p">,</span>
@@ -1409,7 +1416,7 @@
 
 <p>There should now be a document in “ExampleDatabase” of “aDocument” type.</p>
 
-<p>You can verify the existence of this document using the <a href="https://docs.arcadedb.com/#Studio">ArcadeDB web interface</a>.</p>
+<p>You could verify the existence of this document using the <a href="https://docs.arcadedb.com/#Studio">ArcadeDB web interface</a>, or by performing a query as shown in the <a href="/select.html">Select Tutorial</a>.</p>
 
 <h4 id="what-is-next">What is next?</h4>
 

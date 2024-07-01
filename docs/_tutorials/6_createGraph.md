@@ -18,7 +18,7 @@ Sprite utilizes the `GraphModality` to create graphs, which consist of vertices 
 
 ###### Note:
 
-  Consider reading [Wikipedia: Graph Database](https://en.wikipedia.org/wiki/Graph_database), if this is a new concept to you.
+Consider reading [Wikipedia: Graph Database](https://en.wikipedia.org/wiki/Graph_database), if this is a new concept to you.
 
 ---
 
@@ -48,14 +48,14 @@ Begin by inserting the following snippet into the `index.ts` file of your projec
 
 ```ts
 // Import the SpriteDatabase class from the sprite package
-import { SpriteDatabase } from "@valence-corp/sprite";
+import { SpriteDatabase } from '@valence-corp/sprite';
 
 // Create an instance of SpriteDatabase with your credentials and the name of the target database
 const db = new SpriteDatabase({
-  username: "aUsername", // root will be okay for this tutorial
-  password: "aPassword", // your password
-  address: "http://localhost:2480", // default address for ArcadeDB
-  databaseName: "ExampleDatabase", // the existing database
+  username: 'aUsername', // root will be okay for this tutorial
+  password: 'aPassword', // your password
+  address: 'http://localhost:2480', // default address for ArcadeDB
+  databaseName: 'ExampleDatabase' // the existing database
 });
 ```
 
@@ -90,7 +90,7 @@ async function graphModalityExample() {
     // Code from the tutorial will be inserted here
   } catch (error) {
     throw new Error(`There was a problem while running the example.`, {
-      cause: error,
+      cause: error
     });
   }
 }
@@ -117,7 +117,7 @@ async function graphModalityExample() {
     });
   } catch (error) {
     throw new Error(`There was a problem while running the example.`, {
-      cause: error,
+      cause: error
     });
   }
 }
@@ -125,26 +125,26 @@ async function graphModalityExample() {
 
 #### Creating Graph Types
 
-The transaction callback serves as a scope for non-idempotent operations that are part of the transaction, such as the `GraphModality.createVertexType` and `GraphModality.createEdgeType` methods. These operations should be awaited to avoid errors with the newEdge and newVertex operations which will be added in the next step, as the types must be present in the database to create records of that type.
+The transaction callback serves as a scope for the transaction, such as the `GraphModality.createVertex` and `GraphModality.createEdge` methods. Prior to creating any records, we will establish the types in the schema using `GraphModality.createVertexType` and `GraphModality.createEdgeType`.
 
 The `ifNotExists` option is set to true on the type creation operations. This prevents the database from throwing an error if the types were previously created. This, however, is optional.
 
 ```ts
 async function graphModalityExample() {
   try {
+    await client.createVertexType('Airport', {
+      ifNotExists: true
+    });
+    await client.createEdgeType('Flight', {
+      ifNotExists: true
+    });
     client.transaction(async (trx) => {
       // The transaction should be passed to all
-      // non-idempotent commands issued herein
-      await client.createVertexType("Airport", trx, {
-        ifNotExists: true,
-      });
-      await client.createEdgeType("Flight", trx, {
-        ifNotExists: true,
-      });
+      // crud operations
     });
   } catch (error) {
     throw new Error(`There was a problem while running the example.`, {
-      cause: error,
+      cause: error
     });
   }
 }
@@ -159,31 +159,31 @@ The result will be returned as an array of the created records. This example des
 ```ts
 async function graphModalityExample() {
   try {
-    client.transaction(async (trx) => {
-      await client.createVertexType("Airport", trx, {
-        ifNotExists: true,
-      });
-      await client.createEdgeType("Flight", trx, {
-        ifNotExists: true,
-      });
+    await client.createVertexType('Airport', {
+      ifNotExists: true
+    });
+    await client.createEdgeType('Flight', {
+      ifNotExists: true
+    });
 
+    client.transaction(async (trx) => {
       // Create two vertices with the type
       // created in the previous line, note that
       // the transaction is the second argument
-      const [vertex1, vertex2] = await client.newVertex("Airport", trx, {
+      const [vertex1, vertex2] = await client.newVertex('Airport', trx, {
         data: [
           {
-            name: "LAX",
+            name: 'LAX'
           },
           {
-            name: "ABQ",
-          },
-        ],
+            name: 'ABQ'
+          }
+        ]
       });
     });
   } catch (error) {
     throw new Error(`There was a problem while running the example.`, {
-      cause: error,
+      cause: error
     });
   }
 }
@@ -198,23 +198,22 @@ There is also a `console.log` call added to log the records that were created.
 ```ts
 async function graphModalityExample() {
   try {
+    await client.createVertexType('Airport', {
+      ifNotExists: true
+    });
+    await client.createEdgeType('Flight', {
+      ifNotExists: true
+    });
     client.transaction(async (trx) => {
-      await client.createVertexType("Airport", trx, {
-        ifNotExists: true,
-      });
-      await client.createEdgeType("Flight", trx, {
-        ifNotExists: true,
-      });
-
-      const [vertex1, vertex2] = await client.newVertex("Airport", trx, {
+      const [vertex1, vertex2] = await client.newVertex('Airport', trx, {
         data: [
           {
-            name: "LAX",
+            name: 'LAX'
           },
           {
-            name: "ABQ",
-          },
-        ],
+            name: 'ABQ'
+          }
+        ]
       });
 
       // An edge is created by placing the @rid
@@ -223,14 +222,14 @@ async function graphModalityExample() {
       // (optionally) data contained within
       // the edge
       const edge = await client.newEdge(
-        "Flight",
-        vertex1["@rid"],
-        vertex2["@rid"],
+        'Flight',
+        vertex1['@rid'],
+        vertex2['@rid'],
         trx,
         {
           data: {
-            dateTime: new Date().toString(),
-          },
+            dateTime: new Date().toString()
+          }
         }
       );
 
@@ -239,12 +238,12 @@ async function graphModalityExample() {
       console.log({
         vertex1,
         vertex2,
-        edge,
+        edge
       });
     });
   } catch (error) {
     throw new Error(`There was a problem while running the example.`, {
-      cause: error,
+      cause: error
     });
   }
 }
@@ -280,14 +279,13 @@ const client = db.graphModality<ExampleVertexes, ExampleEdges>();
 
 async function graphModalityExample() {
   try {
+    await client.createVertexType("Airport", {
+      ifNotExists: true,
+    });
+    await client.createEdgeType("Flight", {
+      ifNotExists: true,
+    });
     client.transaction(async (trx) => {
-      await client.createVertexType("Airport", trx, {
-        ifNotExists: true,
-      });
-      await client.createEdgeType("Flight", trx, {
-        ifNotExists: true,
-      });
-
       const [vertex1, vertex2] = await client.newVertex("Airport", trx, {
         data: [
           {

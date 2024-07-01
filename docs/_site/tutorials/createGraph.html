@@ -308,6 +308,14 @@
     </li>
     
     <li>
+      <a href="/sprite/SpriteDatabase/crud.html" class="foreground-1">
+        <span class="row menu-item with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          <span class="marker flex content-center-v">m</span> crud
+        </span>
+      </a>
+    </li>
+    
+    <li>
       <a href="/sprite/SpriteDatabase/documentModality.html" class="foreground-1">
         <span class="row menu-item with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
           <span class="marker flex content-center-v">m</span> documentModality
@@ -1235,14 +1243,14 @@
 <p>Begin by inserting the following snippet into the <code class="language-plaintext highlighter-rouge">index.ts</code> file of your project:</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Import the SpriteDatabase class from the sprite package</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">SpriteDatabase</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@valence-corp/sprite</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">SpriteDatabase</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@valence-corp/sprite</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="c1">// Create an instance of SpriteDatabase with your credentials and the name of the target database</span>
 <span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SpriteDatabase</span><span class="p">({</span>
-  <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aUsername</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// root will be okay for this tutorial</span>
-  <span class="na">password</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aPassword</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// your password</span>
-  <span class="na">address</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:2480</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// default address for ArcadeDB</span>
-  <span class="na">databaseName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ExampleDatabase</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// the existing database</span>
+  <span class="na">username</span><span class="p">:</span> <span class="dl">'</span><span class="s1">aUsername</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// root will be okay for this tutorial</span>
+  <span class="na">password</span><span class="p">:</span> <span class="dl">'</span><span class="s1">aPassword</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// your password</span>
+  <span class="na">address</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://localhost:2480</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// default address for ArcadeDB</span>
+  <span class="na">databaseName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">ExampleDatabase</span><span class="dl">'</span> <span class="c1">// the existing database</span>
 <span class="p">});</span>
 </code></pre></div></div>
 
@@ -1276,7 +1284,7 @@
     <span class="c1">// Code from the tutorial will be inserted here</span>
   <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="s2">`There was a problem while running the example.`</span><span class="p">,</span> <span class="p">{</span>
-      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span>
     <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -1302,7 +1310,7 @@
     <span class="p">});</span>
   <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="s2">`There was a problem while running the example.`</span><span class="p">,</span> <span class="p">{</span>
-      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span>
     <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -1310,25 +1318,25 @@
 
 <h4 id="creating-graph-types">Creating Graph Types</h4>
 
-<p>The transaction callback serves as a scope for non-idempotent operations that are part of the transaction, such as the <code class="language-plaintext highlighter-rouge">GraphModality.createVertexType</code> and <code class="language-plaintext highlighter-rouge">GraphModality.createEdgeType</code> methods. These operations should be awaited to avoid errors with the newEdge and newVertex operations which will be added in the next step, as the types must be present in the database to create records of that type.</p>
+<p>The transaction callback serves as a scope for the transaction, such as the <code class="language-plaintext highlighter-rouge">GraphModality.createVertex</code> and <code class="language-plaintext highlighter-rouge">GraphModality.createEdge</code> methods. Prior to creating any records, we will establish the types in the schema using <code class="language-plaintext highlighter-rouge">GraphModality.createVertexType</code> and <code class="language-plaintext highlighter-rouge">GraphModality.createEdgeType</code>.</p>
 
 <p>The <code class="language-plaintext highlighter-rouge">ifNotExists</code> option is set to true on the type creation operations. This prevents the database from throwing an error if the types were previously created. This, however, is optional.</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">graphModalityExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createVertexType</span><span class="p">(</span><span class="dl">'</span><span class="s1">Airport</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">});</span>
+    <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createEdgeType</span><span class="p">(</span><span class="dl">'</span><span class="s1">Flight</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">});</span>
     <span class="nx">client</span><span class="p">.</span><span class="nf">transaction</span><span class="p">(</span><span class="k">async </span><span class="p">(</span><span class="nx">trx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
       <span class="c1">// The transaction should be passed to all</span>
-      <span class="c1">// non-idempotent commands issued herein</span>
-      <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createVertexType</span><span class="p">(</span><span class="dl">"</span><span class="s2">Airport</span><span class="dl">"</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
-        <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="p">});</span>
-      <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createEdgeType</span><span class="p">(</span><span class="dl">"</span><span class="s2">Flight</span><span class="dl">"</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
-        <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="p">});</span>
+      <span class="c1">// crud operations</span>
     <span class="p">});</span>
   <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="s2">`There was a problem while running the example.`</span><span class="p">,</span> <span class="p">{</span>
-      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span>
     <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -1342,31 +1350,31 @@
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">graphModalityExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
-    <span class="nx">client</span><span class="p">.</span><span class="nf">transaction</span><span class="p">(</span><span class="k">async </span><span class="p">(</span><span class="nx">trx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createVertexType</span><span class="p">(</span><span class="dl">"</span><span class="s2">Airport</span><span class="dl">"</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
-        <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="p">});</span>
-      <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createEdgeType</span><span class="p">(</span><span class="dl">"</span><span class="s2">Flight</span><span class="dl">"</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
-        <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="p">});</span>
+    <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createVertexType</span><span class="p">(</span><span class="dl">'</span><span class="s1">Airport</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">});</span>
+    <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createEdgeType</span><span class="p">(</span><span class="dl">'</span><span class="s1">Flight</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">});</span>
 
+    <span class="nx">client</span><span class="p">.</span><span class="nf">transaction</span><span class="p">(</span><span class="k">async </span><span class="p">(</span><span class="nx">trx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
       <span class="c1">// Create two vertices with the type</span>
       <span class="c1">// created in the previous line, note that</span>
       <span class="c1">// the transaction is the second argument</span>
-      <span class="kd">const</span> <span class="p">[</span><span class="nx">vertex1</span><span class="p">,</span> <span class="nx">vertex2</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">newVertex</span><span class="p">(</span><span class="dl">"</span><span class="s2">Airport</span><span class="dl">"</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="p">[</span><span class="nx">vertex1</span><span class="p">,</span> <span class="nx">vertex2</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">newVertex</span><span class="p">(</span><span class="dl">'</span><span class="s1">Airport</span><span class="dl">'</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
         <span class="na">data</span><span class="p">:</span> <span class="p">[</span>
           <span class="p">{</span>
-            <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">LAX</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">LAX</span><span class="dl">'</span>
           <span class="p">},</span>
           <span class="p">{</span>
-            <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ABQ</span><span class="dl">"</span><span class="p">,</span>
-          <span class="p">},</span>
-        <span class="p">],</span>
+            <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">ABQ</span><span class="dl">'</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
       <span class="p">});</span>
     <span class="p">});</span>
   <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="s2">`There was a problem while running the example.`</span><span class="p">,</span> <span class="p">{</span>
-      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span>
     <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -1380,23 +1388,22 @@
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">graphModalityExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createVertexType</span><span class="p">(</span><span class="dl">'</span><span class="s1">Airport</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">});</span>
+    <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createEdgeType</span><span class="p">(</span><span class="dl">'</span><span class="s1">Flight</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">});</span>
     <span class="nx">client</span><span class="p">.</span><span class="nf">transaction</span><span class="p">(</span><span class="k">async </span><span class="p">(</span><span class="nx">trx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createVertexType</span><span class="p">(</span><span class="dl">"</span><span class="s2">Airport</span><span class="dl">"</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
-        <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="p">});</span>
-      <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createEdgeType</span><span class="p">(</span><span class="dl">"</span><span class="s2">Flight</span><span class="dl">"</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
-        <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="p">});</span>
-
-      <span class="kd">const</span> <span class="p">[</span><span class="nx">vertex1</span><span class="p">,</span> <span class="nx">vertex2</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">newVertex</span><span class="p">(</span><span class="dl">"</span><span class="s2">Airport</span><span class="dl">"</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="p">[</span><span class="nx">vertex1</span><span class="p">,</span> <span class="nx">vertex2</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">newVertex</span><span class="p">(</span><span class="dl">'</span><span class="s1">Airport</span><span class="dl">'</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
         <span class="na">data</span><span class="p">:</span> <span class="p">[</span>
           <span class="p">{</span>
-            <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">LAX</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">LAX</span><span class="dl">'</span>
           <span class="p">},</span>
           <span class="p">{</span>
-            <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ABQ</span><span class="dl">"</span><span class="p">,</span>
-          <span class="p">},</span>
-        <span class="p">],</span>
+            <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">ABQ</span><span class="dl">'</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
       <span class="p">});</span>
 
       <span class="c1">// An edge is created by placing the @rid</span>
@@ -1405,14 +1412,14 @@
       <span class="c1">// (optionally) data contained within</span>
       <span class="c1">// the edge</span>
       <span class="kd">const</span> <span class="nx">edge</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">newEdge</span><span class="p">(</span>
-        <span class="dl">"</span><span class="s2">Flight</span><span class="dl">"</span><span class="p">,</span>
-        <span class="nx">vertex1</span><span class="p">[</span><span class="dl">"</span><span class="s2">@rid</span><span class="dl">"</span><span class="p">],</span>
-        <span class="nx">vertex2</span><span class="p">[</span><span class="dl">"</span><span class="s2">@rid</span><span class="dl">"</span><span class="p">],</span>
+        <span class="dl">'</span><span class="s1">Flight</span><span class="dl">'</span><span class="p">,</span>
+        <span class="nx">vertex1</span><span class="p">[</span><span class="dl">'</span><span class="s1">@rid</span><span class="dl">'</span><span class="p">],</span>
+        <span class="nx">vertex2</span><span class="p">[</span><span class="dl">'</span><span class="s1">@rid</span><span class="dl">'</span><span class="p">],</span>
         <span class="nx">trx</span><span class="p">,</span>
         <span class="p">{</span>
           <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
-            <span class="na">dateTime</span><span class="p">:</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">toString</span><span class="p">(),</span>
-          <span class="p">},</span>
+            <span class="na">dateTime</span><span class="p">:</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">toString</span><span class="p">()</span>
+          <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">);</span>
 
@@ -1421,12 +1428,12 @@
       <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">({</span>
         <span class="nx">vertex1</span><span class="p">,</span>
         <span class="nx">vertex2</span><span class="p">,</span>
-        <span class="nx">edge</span><span class="p">,</span>
+        <span class="nx">edge</span>
       <span class="p">});</span>
     <span class="p">});</span>
   <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="s2">`There was a problem while running the example.`</span><span class="p">,</span> <span class="p">{</span>
-      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span><span class="p">,</span>
+      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span>
     <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -1461,14 +1468,13 @@
 
 <span class="k">async</span> <span class="kd">function</span> <span class="nf">graphModalityExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createVertexType</span><span class="p">(</span><span class="dl">"</span><span class="s2">Airport</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">});</span>
+    <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createEdgeType</span><span class="p">(</span><span class="dl">"</span><span class="s2">Flight</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">});</span>
     <span class="nx">client</span><span class="p">.</span><span class="nf">transaction</span><span class="p">(</span><span class="k">async </span><span class="p">(</span><span class="nx">trx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createVertexType</span><span class="p">(</span><span class="dl">"</span><span class="s2">Airport</span><span class="dl">"</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
-        <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="p">});</span>
-      <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createEdgeType</span><span class="p">(</span><span class="dl">"</span><span class="s2">Flight</span><span class="dl">"</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
-        <span class="na">ifNotExists</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="p">});</span>
-
       <span class="kd">const</span> <span class="p">[</span><span class="nx">vertex1</span><span class="p">,</span> <span class="nx">vertex2</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">newVertex</span><span class="p">(</span><span class="dl">"</span><span class="s2">Airport</span><span class="dl">"</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
         <span class="na">data</span><span class="p">:</span> <span class="p">[</span>
           <span class="p">{</span>

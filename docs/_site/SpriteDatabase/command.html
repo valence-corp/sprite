@@ -310,6 +310,14 @@
     </li>
     
     <li>
+      <a href="/sprite/SpriteDatabase/crud.html" class="foreground-1">
+        <span class="row menu-item with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          <span class="marker flex content-center-v">m</span> crud
+        </span>
+      </a>
+    </li>
+    
+    <li>
       <a href="/sprite/SpriteDatabase/documentModality.html" class="foreground-1">
         <span class="row menu-item with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
           <span class="marker flex content-center-v">m</span> documentModality
@@ -1198,6 +1206,11 @@
 <p>Executes a command on the target database. This method should only be used
 for non-idempotent statements (that can change the database), such as <code class="language-plaintext highlighter-rouge">INSERT</code>,
 <code class="language-plaintext highlighter-rouge">CREATE</code>, and <code class="language-plaintext highlighter-rouge">DELETE</code>.</p>
+
+<p>Commands to perform CRUD operations must have a transaction passed to them,
+otherwise your changes will not be persisted. There is a method with a
+non-optional transaction parameter, <code class="language-plaintext highlighter-rouge">SpriteDatabase.crud()</code>,
+this is safer way to write your functionality.</p>
 
 <p>If you are trying to execute idempotent commands see <code class="language-plaintext highlighter-rouge">SpriteDatabase.query()</code>.</p>
 

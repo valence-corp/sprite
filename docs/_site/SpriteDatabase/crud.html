@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ArcadeSqlExplanation</title>
+  <title>crud</title>
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👾</text></svg>">
   <link rel="stylesheet" href="/sprite/assets/css/styles.css" />
@@ -1197,14 +1197,34 @@
 </div>
     <div id="content">
       <div>
-        <h3 id="arcadesqlexplanation">ArcadeSqlExplanation</h3>
+        <h3 id="spritedatabasecrud"><em>SpriteDatabase</em>.crud</h3>
 
-<p>An object representing the explanation of an
-SQL command.</p>
+<h4 id="interface">Interface</h4>
 
-<h4 id="definition">Definition</h4>
+<p>(<strong>language: <em>ArcadeSupportedQueryLanguages</em>, command: <em>string</em>, transaction: <em>SpriteTransaction</em></strong>)</p>
 
-<hr />
+<p>A method for issuing commands that perform CRUD.
+This method is a safer way to write functionality as the transaction
+argument is not optional.</p>
+
+<h4 id="example">Example</h4>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">crudExample</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">trx</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">newTransaction</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">record</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">crud</span><span class="p">(</span>
+      <span class="dl">'</span><span class="s1">sql</span><span class="dl">'</span><span class="p">,</span>
+      <span class="dl">'</span><span class="s1">INSERT INTO aType</span><span class="dl">'</span><span class="p">,</span>
+      <span class="nx">trx</span>
+    <span class="p">);</span>
+    <span class="nx">trx</span><span class="p">.</span><span class="nf">commit</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nx">record</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+    <span class="c1">// handle error conditions</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 
       </div>

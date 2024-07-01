@@ -22,7 +22,7 @@ Rolls back a transaction on the server. Provide the session id obtained with the
 async function rollbackTransactionExample() {
   try {
     const trx = await db.newTransaction();
-    await db.command<InsertDocument<DocumentType>>(
+    await db.command(
       'sql',
       'INSERT INTO aType',
       trx

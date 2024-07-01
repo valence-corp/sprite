@@ -301,6 +301,11 @@ class SpriteDatabase {
    * for non-idempotent statements (that can change the database), such as `INSERT`,
    * `CREATE`, and `DELETE`.
    *
+   * Commands to perform CRUD operations must have a transaction passed to them,
+   * otherwise your changes will not be persisted. There is a method with a
+   * non-optional transaction parameter, {@link SpriteDatabase.crud | `SpriteDatabase.crud()`},
+   * this is safer way to write your functionality.
+   *
    * If you are trying to execute idempotent commands see {@link SpriteDatabase.query | `SpriteDatabase.query()`}.
    *
    * @note
@@ -406,6 +411,41 @@ class SpriteDatabase {
         );
     }
   };
+  /**
+   * A method for issuing commands that perform CRUD.
+   * This method is a safer way to write functionality as the transaction
+   * argument is not optional.
+   * @param language The language the command is written in.
+   * @param command The command to execute in the given language.
+   * @param transaction The transaction to perform this command within.
+   * @returns The `result` property of the command response from the server. This will be an `Array` for CRUD operations.
+   * @throw `Error` when it cannot execute the command.
+   * @see
+   * {@link SpriteDatabase.command | `SpriteDatabase.command()`}\
+   * {@link SpriteDatabase.query | `SpriteDatabase.query()`}\
+   * {@link SpriteDatabase.transaction | `SpriteDatabase.transaction()`}
+   * @example
+   * async function crudExample() {
+   *   try {
+   *     const trx = await db.newTransaction();
+   *     const record = await db.crud(
+   *       'sql',
+   *       'INSERT INTO aType',
+   *       trx
+   *     );
+   *     trx.commit();
+   *     return record;
+   *   } catch (error) {
+   *     console.log(error);
+   *     // handle error conditions
+   *   }
+   * }
+   */
+  crud = (
+    language: ArcadeSupportedQueryLanguages,
+    command: string,
+    transaction: SpriteTransaction
+  ) => this.command(language, command, transaction);
   /**
    * Return the current schema.
    * @returns An array of objects describing the schema.

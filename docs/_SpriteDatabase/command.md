@@ -18,6 +18,11 @@ Executes a command on the target database. This method should only be used
 for non-idempotent statements (that can change the database), such as `INSERT`,
 `CREATE`, and `DELETE`.
 
+Commands to perform CRUD operations must have a transaction passed to them,
+otherwise your changes will not be persisted. There is a method with a
+non-optional transaction parameter, `SpriteDatabase.crud()`,
+this is safer way to write your functionality.
+
 If you are trying to execute idempotent commands see `SpriteDatabase.query()`.
 
 ##### Note

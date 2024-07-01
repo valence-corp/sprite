@@ -308,6 +308,14 @@
     </li>
     
     <li>
+      <a href="/sprite/SpriteDatabase/crud.html" class="foreground-1">
+        <span class="row menu-item with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
+          <span class="marker flex content-center-v">m</span> crud
+        </span>
+      </a>
+    </li>
+    
+    <li>
       <a href="/sprite/SpriteDatabase/documentModality.html" class="foreground-1">
         <span class="row menu-item with-icon padding-v-3 padding-h-2 margin-h-1 block radius-1 content-center-v">
           <span class="marker flex content-center-v">m</span> documentModality
@@ -1254,7 +1262,11 @@
     <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="dl">'</span><span class="s1">sql</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">CREATE document TYPE aDocument</span><span class="dl">'</span><span class="p">);</span>
 
     <span class="nx">db</span><span class="p">.</span><span class="nf">transaction</span><span class="p">(</span><span class="k">async </span><span class="p">(</span><span class="nx">trx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="kd">const</span> <span class="p">[</span><span class="nx">record</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span>
+      <span class="c1">// the `crud` method is a safety around the `command`</span>
+      <span class="c1">// method, the only difference is that it requires a</span>
+      <span class="c1">// transaction be passed to it as a third argument</span>
+      <span class="c1">// (on `command` it is optional).</span>
+      <span class="kd">const</span> <span class="p">[</span><span class="nx">record</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">crud</span><span class="p">(</span>
         <span class="dl">'</span><span class="s1">sql</span><span class="dl">'</span><span class="p">,</span>
         <span class="s2">`INSERT INTO aDocument CONTENT </span><span class="p">${</span><span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">)}</span><span class="s2">`</span><span class="p">,</span>
         <span class="nx">trx</span>
@@ -1275,11 +1287,11 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>There is an SQL <code class="language-plaintext highlighter-rouge">command</code> issued within the scope of the transaction callback. Remember that <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> operations are transactional in ArcadeDB, so we pass the transaction to it as the third argument. This tells the database that we intend to group this operation within the transaction scope.</p>
+<p>There is an SQL <code class="language-plaintext highlighter-rouge">crud</code> operation issued within the scope of the transaction callback. This tells the database that we intend to group this operation within the transaction scope. Remember that <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> operations are transactional in ArcadeDB. Really, the <code class="language-plaintext highlighter-rouge">crud</code> method is just a safety wrapper around the <code class="language-plaintext highlighter-rouge">command</code> method so TypeScript will error if a transaction is not supplied as a third argument.</p>
 
 <p>The transaction executes the callback passed to it, and then automatically commits the transaction. This tells the database that the transaction is closed, and it can execute all operations as a unit of work.</p>
 
-<p>Note that the <code class="language-plaintext highlighter-rouge">record</code> is logged to the console prior to the <code class="language-plaintext highlighter-rouge">transaction</code> closing. ArcadeDB will send the preliminary record immediately, but won’t add it to the database until the transaction is committed.</p>
+<p>Note that the <code class="language-plaintext highlighter-rouge">record</code> is logged to the console prior to the <code class="language-plaintext highlighter-rouge">transaction</code> closing. ArcadeDB will send the preliminary record immediately, but won’t really add it to the database until the transaction is committed.</p>
 
 <h4 id="manual-transactions">Manual Transactions</h4>
 
@@ -1297,7 +1309,7 @@
     <span class="p">);</span>
 
     <span class="kd">const</span> <span class="nx">trx</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">newTransaction</span><span class="p">();</span>
-    <span class="kd">const</span> <span class="p">[</span><span class="nx">record</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span>
+    <span class="kd">const</span> <span class="p">[</span><span class="nx">record</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">crud</span><span class="p">(</span>
       <span class="dl">'</span><span class="s1">sql</span><span class="dl">'</span><span class="p">,</span>
       <span class="s2">`INSERT INTO aDocument CONTENT </span><span class="p">${</span><span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">)}</span><span class="s2">`</span><span class="p">,</span>
       <span class="nx">trx</span>
@@ -1326,11 +1338,11 @@
 
 <h4 id="why">Why?</h4>
 
-<p>Some libaries offer a higher level of abstraction over the transaction process. They will sometimes create new instances of the client tied to a single transaction. This might work, but likely scales poorly as the volume of CRUD operations increases. Sprite is opinionated that transactions are dictated by the way the developer writes code instead of convenience methods. This allows for greater control and flexibility, while keeping resource consumption to minimum.</p>
+<p>Some libaries offer a higher level of abstraction over the transaction process. Often this involves creating a new instances of the client tied to a single transaction. This is a nice developer experience, but likely scales poorly as the volume of CRUD operations increases. Sprite holds the opinion that transactions be orchestrated by the developer instead of convenience methods. This allows for greater control and flexibility, while keeping resource consumption to a minimum.</p>
 
 <h4 id="conclusion">Conclusion</h4>
 
-<p>In this tutorial, we demonstrated how to work with transactions in Sprite. We covered manual transactions, transaction helpers, and the reasoning behind manually coding transactions.</p>
+<p>In this tutorial, we demonstrated how to work with transactions in Sprite. We covered manual transactions, transaction helpers, and the reasoning behind manually orchestrating transactions.</p>
 
 <h4 id="whats-next">What’s Next?</h4>
 

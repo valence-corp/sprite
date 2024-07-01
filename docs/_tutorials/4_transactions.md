@@ -68,7 +68,11 @@ async function transactionHelperExample() {
     await db.command('sql', 'CREATE document TYPE aDocument');
 
     db.transaction(async (trx) => {
-      const [record] = await db.command(
+      // the `crud` method is a safety around the `command`
+      // method, the only difference is that it requires a
+      // transaction be passed to it as a third argument
+      // (on `command` it is optional).
+      const [record] = await db.crud(
         'sql',
         `INSERT INTO aDocument CONTENT ${JSON.stringify(data)}`,
         trx
@@ -89,11 +93,11 @@ async function transactionHelperExample() {
 }
 ```
 
-There is an SQL `command` issued within the scope of the transaction callback. Remember that [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations are transactional in ArcadeDB, so we pass the transaction to it as the third argument. This tells the database that we intend to group this operation within the transaction scope.
+There is an SQL `crud` operation issued within the scope of the transaction callback. This tells the database that we intend to group this operation within the transaction scope. Remember that [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations are transactional in ArcadeDB. Really, the `crud` method is just a safety wrapper around the `command` method so TypeScript will error if a transaction is not supplied as a third argument.
 
 The transaction executes the callback passed to it, and then automatically commits the transaction. This tells the database that the transaction is closed, and it can execute all operations as a unit of work.
 
-Note that the `record` is logged to the console prior to the `transaction` closing. ArcadeDB will send the preliminary record immediately, but won't add it to the database until the transaction is committed.
+Note that the `record` is logged to the console prior to the `transaction` closing. ArcadeDB will send the preliminary record immediately, but won't really add it to the database until the transaction is committed.
 
 #### Manual Transactions
 
@@ -112,7 +116,7 @@ async function manualTransaction() {
     );
 
     const trx = await db.newTransaction();
-    const [record] = await db.command(
+    const [record] = await db.crud(
       'sql',
       `INSERT INTO aDocument CONTENT ${JSON.stringify(data)}`,
       trx
@@ -141,11 +145,11 @@ Note that the transaction also has a `commit` method, one could use that to comm
 
 #### Why?
 
-Some libaries offer a higher level of abstraction over the transaction process. They will sometimes create new instances of the client tied to a single transaction. This might work, but likely scales poorly as the volume of CRUD operations increases. Sprite is opinionated that transactions are dictated by the way the developer writes code instead of convenience methods. This allows for greater control and flexibility, while keeping resource consumption to minimum.
+Some libaries offer a higher level of abstraction over the transaction process. Often this involves creating a new instances of the client tied to a single transaction. This is a nice developer experience, but likely scales poorly as the volume of CRUD operations increases. Sprite holds the opinion that transactions be orchestrated by the developer instead of convenience methods. This allows for greater control and flexibility, while keeping resource consumption to a minimum.
 
 #### Conclusion
 
-In this tutorial, we demonstrated how to work with transactions in Sprite. We covered manual transactions, transaction helpers, and the reasoning behind manually coding transactions.
+In this tutorial, we demonstrated how to work with transactions in Sprite. We covered manual transactions, transaction helpers, and the reasoning behind manually orchestrating transactions.
 
 #### What's Next?
 
