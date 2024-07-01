@@ -7,7 +7,6 @@ jobs:
     env:
       JAVA_OPTS: >
         -Darcadedb.server.rootPassword=playwithdata
-        -Darcadedb.dumpConfigAtStartup=true
         -Darcadedb.server.defaultDatabases=SpriteIntegrationTesting[root]{import:https://github.com/valence-corp/sprite/raw/main/test/integration/DefaultDB.zip}
     services:
       arcade:
