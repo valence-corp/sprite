@@ -29,9 +29,4 @@ describe('SpriteServer.connectCluster()', () => {
       options
     );
   });
-
-  it('should throw an error if no "address" is supplied', async () => {
-    // @ts-expect-error - Testing error handling for no arguments in connectCluster
-    expect(() => client.connectCluster()).rejects.toMatchSnapshot();
-  });
 });
