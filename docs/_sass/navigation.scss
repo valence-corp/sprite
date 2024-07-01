@@ -22,7 +22,6 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    font-size: 1.0795rem;
     letter-spacing: 0.01rem;
 
     #nav_frame {
@@ -39,9 +38,9 @@
         }
 
         &:focus {
+          color: var(--nav-focus-color);
           .menu-item {
             background: var(--nav-focus-background);
-            color: var(--nav-focus-color);
             &:hover {
               background: var(--nav-focus-background);
             }
@@ -53,12 +52,14 @@
               color: var(--accent-2);
             }
           }
+          &:hover {
+            background: var(--nav-hover-background);
+          }
         }
 
         &:hover {
           .menu-item {
             background: var(--nav-hover-background);
-            color: var(--nav-hover-foreground);
           }
         }
       }

@@ -2,9 +2,6 @@ a {
   outline: none;
   text-decoration-style: var(--link-decoration-style);
   text-decoration-thickness: var(--link-decoration-thickness);
-  &:hover {
-    color: var(--link-hover);
-  }
 }
 
 .hover-accent-2 {

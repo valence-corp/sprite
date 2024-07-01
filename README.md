@@ -147,9 +147,9 @@ type DocumentTypes = {
   aDocument: {
     aProperty: string
   }
-}
+};
 
-const client = database.documentModality<DocumentTypes>()
+const client = database.documentModality<DocumentTypes>();
 
 async function example() {
   try {
@@ -167,12 +167,14 @@ async function example() {
         }
       );
       console.log(document);
-      // {
-      //   '@rid': '#0:0',
-      //   '@cat': 'd',
-      //   '@type': 'aDocument',
-      //   aProperty: 'aValue'
-      // }
+      // [
+      //   {
+      //     '@rid': '#0:0',
+      //     '@cat': 'd',
+      //     '@type': 'aDocument',
+      //     aProperty: 'aValue'
+      //   }
+      // ]
     });
   } catch (error) {
     throw new Error('Could not create database', { cause: error });
@@ -199,15 +201,15 @@ type VertexTypes = {
   aVertex: {
     aProperty: string
   }
-}
+};
 
 type EdgeTypes = {
   anEdge: {
     aProperty: string
   }
-}
+};
 
-const graph = database.graphModality<VertexTypes, EdgeTypes>()
+const graph = database.graphModality<VertexTypes, EdgeTypes>();
 
 function example() {
   try {
@@ -243,15 +245,17 @@ function example() {
           },
         },
       );
-      console.log(edge)
-      // {
-      //  '@rid': '#3:0',
-      //  '@cat': 'e',
-      //  '@type': 'anEdge',
-      //  '@in': '#2:0',
-      //  '@out': '#1:0,
-      //  aProperty: 'aValue'
-      // }
+      console.log(edge);
+      // [
+      //   {
+      //     '@rid': '#3:0',
+      //     '@cat': 'e',
+      //     '@type': 'anEdge',
+      //     '@in': '#2:0',
+      //     '@out': '#1:0,
+      //     aProperty: 'aValue'
+      //   }
+      // ]
     });
   } catch (error) {
     throw new Error('Could not create database', { cause: error });

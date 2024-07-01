@@ -10,7 +10,9 @@ prevUrl: /tutorials/installation.html
 filename: 3_createDatabase.md
 ---
 
-This tutorial will demonstrate the basics of the `SpriteServer` module by using it to create a database.
+This tutorial will as an introduction to the `SpriteServer` module. It strives to implement all the functionality available in the [ArcadeDB Console](https://docs.arcadedb.com/#Console), but in a documented TypeScript interface. It is nearly feature complete, with settings being the only thing that is not currently ready to be deployed.
+
+This tutorial will use `SpriteServer` to create a database.
 
 #### Overview
 

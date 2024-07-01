@@ -5,7 +5,7 @@
   --background-2: #222;
   --background-3: #333;
   --background-4: #333;
-  
+
   --foreground-1: #efefef;
   --foreground-2: #e6e6e6;
   --foreground-3: #93bcf9;
@@ -16,10 +16,11 @@
 
   --nav-focus-background: rgba(99, 99, 99, 0.25);
   --nav-hover-foreground: #fff;
-  --nav-focus-color: var(--foreground-1);
+  --nav-hover-background: rgba(99, 99, 99, 0.1);
+  --nav-focus-color: var(--accent-2);
   --nav-tree-color: #333;
 
-  --border-color: rgba(255,255,255, 0.1);
+  --border-color: rgba(255, 255, 255, 0.1);
   --button-border-color: rgba(0, 0, 0, 0.5);
 
   --outline: var(--accent-2) solid 2px;

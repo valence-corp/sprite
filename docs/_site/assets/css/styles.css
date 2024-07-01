@@ -507,9 +507,6 @@ a {
   text-decoration-style: var(--link-decoration-style);
   text-decoration-thickness: var(--link-decoration-thickness);
 }
-a:hover {
-  color: var(--link-hover);
-}
 
 .hover-accent-2:hover {
   color: var(--accent-2);
@@ -598,7 +595,6 @@ a:hover {
   flex: 1;
   display: flex;
   flex-direction: column;
-  font-size: 1.0795rem;
   letter-spacing: 0.01rem;
 }
 #main_nav #nav_content #nav_frame {
@@ -614,10 +610,13 @@ a:hover {
 #main_nav #nav_content #nav_frame a .menu-item {
   line-height: 1.309rem;
 }
+#main_nav #nav_content #nav_frame button:focus,
+#main_nav #nav_content #nav_frame a:focus {
+  color: var(--nav-focus-color);
+}
 #main_nav #nav_content #nav_frame button:focus .menu-item,
 #main_nav #nav_content #nav_frame a:focus .menu-item {
   background: var(--nav-focus-background);
-  color: var(--nav-focus-color);
 }
 #main_nav #nav_content #nav_frame button:focus .menu-item:hover,
 #main_nav #nav_content #nav_frame a:focus .menu-item:hover {
@@ -631,10 +630,13 @@ a:hover {
 #main_nav #nav_content #nav_frame a:focus .menu-item .marker {
   color: var(--accent-2);
 }
+#main_nav #nav_content #nav_frame button:focus:hover,
+#main_nav #nav_content #nav_frame a:focus:hover {
+  background: var(--nav-hover-background);
+}
 #main_nav #nav_content #nav_frame button:hover .menu-item,
 #main_nav #nav_content #nav_frame a:hover .menu-item {
   background: var(--nav-hover-background);
-  color: var(--nav-hover-foreground);
 }
 #main_nav #nav_content ul,
 #main_nav #nav_content ol {
@@ -1339,9 +1341,10 @@ p {
   --link-hover: #c18bfa;
   --nav-focus-background: rgba(99, 99, 99, 0.25);
   --nav-hover-foreground: #fff;
-  --nav-focus-color: var(--foreground-1);
+  --nav-hover-background: rgba(99, 99, 99, 0.1);
+  --nav-focus-color: var(--accent-2);
   --nav-tree-color: #333;
-  --border-color: rgba(255,255,255, 0.1);
+  --border-color: rgba(255, 255, 255, 0.1);
   --button-border-color: rgba(0, 0, 0, 0.5);
   --outline: var(--accent-2) solid 2px;
   --title-emphasis-color: var(--foreground-primary);

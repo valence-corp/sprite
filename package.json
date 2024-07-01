@@ -13,8 +13,9 @@
     "docs:site": "ts-node ./src/dev/*",
     "test": "pnpm test:unit && pnpm test:integration",
     "test:unit": "jest ./test/unit/",
-    "test:nodes": "jest ./test/unit/database/dialect/nodes/common --coverage",
+    "test:nodes": "jest ./test/unit/database/dialect/nodes/common",
     "test:integration": "jest ./test/integration",
+    "test:thing": "jest ./test/unit/command/ --coverage",
     "lint": "pnpm eslint --fix ./test/ ./src",
     "format": "pnpm prettier --write ./test/ ./src",
     "exec": "pnpm build && node ./dist/index.js"
