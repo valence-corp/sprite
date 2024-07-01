@@ -150,7 +150,9 @@ async function documentModalityExample() {
 
 #### Creating a Document
 
-Insert the `newDocument` method within the scope of the transaction callback, ensuring the transaction is passed to it as a second argument. Optionally, data can be included at record creation (as shown). The arguments will be automatially typed as defined in the `ExampleDocuments` interface created earlier (the type name must be on that is included in the `ExampleDocuments` interface, and the `data` property will be typed based on that type name).
+Insert the `newDocument` method within the scope of the transaction callback, ensuring the transaction is passed to it as a second argument. Optionally, data can be included at record creation (as shown).
+
+The arguments will be automatially typed as defined in the `ExampleDocuments` interface created earlier (the type name must be on that is included in the `ExampleDocuments` interface, and the `data` property will be typed based on that type name).
 
 ```ts
 async function documentModalityExample() {

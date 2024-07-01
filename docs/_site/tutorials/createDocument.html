@@ -1344,7 +1344,9 @@
 
 <h4 id="creating-a-document">Creating a Document</h4>
 
-<p>Insert the <code class="language-plaintext highlighter-rouge">newDocument</code> method within the scope of the transaction callback, ensuring the transaction is passed to it as a second argument. Optionally, data can be included at record creation (as shown). The arguments will be automatially typed as defined in the <code class="language-plaintext highlighter-rouge">ExampleDocuments</code> interface created earlier (the type name must be on that is included in the <code class="language-plaintext highlighter-rouge">ExampleDocuments</code> interface, and the <code class="language-plaintext highlighter-rouge">data</code> property will be typed based on that type name).</p>
+<p>Insert the <code class="language-plaintext highlighter-rouge">newDocument</code> method within the scope of the transaction callback, ensuring the transaction is passed to it as a second argument. Optionally, data can be included at record creation (as shown).</p>
+
+<p>The arguments will be automatially typed as defined in the <code class="language-plaintext highlighter-rouge">ExampleDocuments</code> interface created earlier (the type name must be on that is included in the <code class="language-plaintext highlighter-rouge">ExampleDocuments</code> interface, and the <code class="language-plaintext highlighter-rouge">data</code> property will be typed based on that type name).</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">documentModalityExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
