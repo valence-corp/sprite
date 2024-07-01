@@ -8,11 +8,10 @@ permalink: /types/AsArcadeRecords.html
 
 ---
 
-### AsArcadeRecords<br/><S>
+### AsArcadeRecords<br/><S, C>
 
 Adds ArcadeDB record metadata to the types
-defined in the schema. Used for Document
-and Vertex records.
+defined in the schema.
 
 #### Definition
 

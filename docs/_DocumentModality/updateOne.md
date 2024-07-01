@@ -37,7 +37,11 @@ const client = database.documentModality<DocTypes>();
 async function updateOneExample() {
   try {
     await client.transaction(async (trx) => {
-      const result = await client.updateOne('#0:0', { aField: 'aValue' }, trx);
+      const result = await client.updateOne(
+        '#0:0',
+        { aField: 'aValue' },
+        trx
+      );
       console.log(result);
       // {
       //   '@rid': '#0:0',

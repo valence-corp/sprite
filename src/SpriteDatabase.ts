@@ -7,7 +7,8 @@ import {
   AsArcadeEdges,
   AsArcadeVertices,
   ISpriteDatabaseClientParameters,
-  ISpriteDatabaseConnectionParameters
+  ISpriteDatabaseConnectionParameters,
+  SpriteTransactionCallback
 } from './types/database.js';
 import { ArcadeDatabaseError } from './errors/ArcadeDatabaseError.js';
 import { SpriteTransaction } from './SpriteTransaction.js';
@@ -25,7 +26,7 @@ import { SqlDialect } from './dialects/SqlDialect.js';
  * @returns an instance of SpriteDatabase
  * @example
  *
- * const database = new SpriteDatabase({
+ * const db = new SpriteDatabase({
  *   username: 'aUser',
  *   password: 'aPassword',
  *   address: 'http://localhost:2480',
@@ -39,17 +40,17 @@ import { SqlDialect } from './dialects/SqlDialect.js';
  * }
  *
  * async function databaseExample() {
- *  const client = database.documents<DocumentTypes>();
+ *  const client = db.documents<DocumentTypes>();
  *   try {
- *     await client.transaction(async (trx) => {
- *       await client.createType('aDocument', trx);
- *       client.createDocument('aDocument', trx, {
+ *     await db.transaction(async (trx) => {
+ *       await db.createType('aDocument', trx);
+ *       db.createDocument('aDocument', trx, {
  *         data: {
  *           aField: 'aValue'
  *         }
  *       })
  *     });
- *     const schema = await database.getSchema();
+ *     const schema = await db.getSchema();
  *     console.log(schema);
  *     // [...]
  *   } catch (error) {
@@ -142,29 +143,58 @@ class SpriteDatabase {
   /**
    * Executes a query against the target database. This method only executes
    * idempotent statements (that cannot change the database), namely `SELECT`
-   * and `MATCH`. The execution of non-idempotent commands will throw an
-   * `IllegalArgumentException` exception. If you are trying to execute
-   * non-idempotent commands, see the `SpriteDatabase.command()` method.
-   * @param {ArcadeSupportedQueryLanguages} language The language of the query.
-   * @param {string} command The command to execute in the given language.
+   * and `MATCH`.
+   *
+   * **The execution of non-idempotent commands will throw an
+   * `IllegalArgumentException` exception.**
+   *
+   * If you are trying to execute
+   * non-idempotent commands, see the {@link SpriteDatabase.query} method.
+   *
+   * @note
+   * This library includes type definitions to assist in writing queries with
+   * typed return values. For example: `ArcadeDocument`, `ArcadeEdge`, etc.
+   * You can use these like so:
+   *
+   * ```ts
+   * const result = await db.query<ArcadeDocument<DocumentType>>(
+   *  'sql',
+   *  'SELECT * FROM aType WHERE aProperty == "aValue"'
+   * );
+   * ```
+   *
+   * @param language The language of the query.
+   * @param command The command to execute in the given language.
+   * @returns The `result` property of the query response from the server,
+   * this is an Array containing the result set of the query.
+   * @see {@link SpriteDatabase.command | `SpriteDatabase.command()`}
    * @example
    *
-   * const database = new SpriteDatabase({
+   * const db = new SpriteDatabase({
    *   username: 'aUser',
    *   password: 'aPassword',
    *   address: 'http://localhost:2480',
    *   databaseName: 'aDatabase'
    * });
    *
+   * type DocumentType = {
+   *   aProperty: string
+   * }
+   *
    * async function spriteQueryExample() {
    *   try {
-   *     const result = await database.query(
+   *     const result = await db.query<ArcadeDocument<DocumentType>>(
    *       'sql',
-   *       'SELECT FROM schema:types'
+   *       'SELECT * FROM DocumentType WHERE aProperty == "aValue"'
    *     );
    *     console.log(result);
-   *     [...];
-   *   return result
+   *     // [{
+   *     //   '@rid': '#0:0',
+   *     //   '@cat': 'd',
+   *     //   '@type': 'DocumentType',
+   *     //   aProperty: 'aValue'
+   *     // }];
+   *     return result
    *   } catch (error) {
    *     console.error(error);
    *     // handle error conditions
@@ -217,7 +247,7 @@ class SpriteDatabase {
    * @returns {string} The explanation of the command.
    * @example
    *
-   * const database = new SpriteDatabase({
+   * const db = new SpriteDatabase({
    *   username: 'aUser',
    *   password: 'aPassword',
    *   address: 'http://localhost:2480',
@@ -226,7 +256,7 @@ class SpriteDatabase {
    *
    * async function spriteExplainExample() {
    *   try {
-   *     const explanation = await client.explain("SELECT FROM schema:types");
+   *     const explanation = await db.explain("SELECT FROM schema:types");
    *     console.log(explanation);
    *     // {
    *     //   executionPlan: {
@@ -270,19 +300,49 @@ class SpriteDatabase {
    * for non-idempotent statements (that can change the database), such as `INSERT`,
    * `CREATE`, and `DELETE`.
    *
-   * Please note that not all non-idempotent commands require a transaction. For example,
-   * schema updates are non-idempotent, but are also non-transactional.
+   * If you are trying to execute idempotent commands see {@link SpriteDatabase.query | `SpriteDatabase.query()`}.
    *
-   * If you are trying to execute idempotent commands, see the `SpriteDatabase.query()` method.
-   * @param {ArcadeSupportedQueryLanguages} language The language the command is written in.
-   * @param {string} command The command to execute in the given language.
-   * @param {SpriteTransaction} transaction The transaction to perform this command within.
-   * @param {Record<string,any>} params The key-value pairs of parameters to use in the command.
+   * @note
+   * If the command you are issuing is sending JSON data, you must stringify the
+   * data with {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify | `JSON.stringify()`}.
+   *
+   * ```ts
+   * db.command<InsertDocument<DocumentType>>(
+   *   'sql',
+   *   `INSERT INTO DocumentType CONTENT ${JSON.stringify({ aProperty: 'aValue' })}`,
+   *   trx,
+   * );
+   * ```
+   *
+   * @note
+   * This package includes type definitions to help you issue commands with typed return values.
+   * For example: `CreateType`, `DeleteFrom`, `ArcadeDocument`, etc. You can use these
+   * like so:
+   *
+   * ```ts
+   * db.command<InsertDocument<DocumentType>>(
+   *   'sql',
+   *   'INSERT INTO DocumentType',
+   *   trx
+   * );
+   * ```
+   *
+   * @note
+   * Schema updates (i.e. `CREATE TYPE`, etc) are non-idempotent, but are also non-transactional.
+   * Therefore, transactions are optional on this method.
+   *
+   * @param language The language the command is written in.
+   * @param command The command to execute in the given language.
+   * @param transaction The transaction to perform this command within.
+   * @returns The `result` property of the command response from the server,
+   * typically this is an `Array`
    * @throw `Error` when it cannot execute the command.
-   * @see SpriteDatabase.transaction()
+   * @see
+   * {@link SpriteDatabase.query | `SpriteDatabase.query()`}\
+   * {@link SpriteDatabase.transaction | `SpriteDatabase.transaction()`}
    * @example
    *
-   * const database = new SpriteDatabase({
+   * const db = new SpriteDatabase({
    *   username: 'aUser',
    *   password: 'aPassword',
    *   address: 'http://localhost:2480',
@@ -291,17 +351,12 @@ class SpriteDatabase {
    *
    * async function spriteCommandExample() {
    *   try {
-   *     const result = await database.command(
+   *     const result = await db.command<CreateDocumentType>(
    *       'sql',
    *       'CREATE document TYPE aType',
    *     );
    *     console.log(result);
-   *     // {
-   *     //  user: 'aUser',
-   *     //  version: '24.x.x (build [...])',
-   *     //  serverName: 'ArcadeDB_0',
-   *     //  result: [ { operation: 'create document type', typeName: 'aType' } ]
-   *     // }
+   *     // [ { operation: 'create document type', typeName: 'aType' } ]
    *     return result;
    *   } catch (error) {
    *     // handle error conditions
@@ -355,7 +410,7 @@ class SpriteDatabase {
    * @example
    * async function getSchemaExample() {
    *   try {
-   *     const schema = await database.getSchema();
+   *     const schema = await db.getSchema();
    *     console.log(schema);
    *     // [...]
    *     return schema;
@@ -396,12 +451,12 @@ class SpriteDatabase {
    *
    * async function newTransactionExample() {
    *   try {
-   *     await database.command(
+   *     await db.command(
    *       'sql',
    *       'CREATE document TYPE aType',
    *     );
-   *     const trx = await database.newTransaction();
-   *     const record = await database.command(
+   *     const trx = await db.newTransaction();
+   *     const record = await db.command(
    *       'sql',
    *       'INSERT INTO aType',
    *       trx
@@ -466,15 +521,15 @@ class SpriteDatabase {
    * @example
    * async function commitTransactionExample() {
    *   try {
-   *     const trx = await database.newTransaction();
-   *     await database.command(
+   *     const trx = await db.newTransaction();
+   *     await db.command(
    *       'sql',
    *       'CREATE document TYPE aType',
    *       trx
    *     );
    *     console.log(trx.id);
    *     // 'AS-0000000-0000-0000-0000-00000000000'
-   *     database.commitTransaction(trx.id);
+   *     db.commitTransaction(trx.id);
    *     return trx;
    *   } catch (error) {
    *     console.log(error);
@@ -520,16 +575,15 @@ class SpriteDatabase {
    * @example
    * async function rollbackTransactionExample() {
    *   try {
-   *     const trx = await database.newTransaction();
-   *     await database.command(
+   *     const trx = await db.newTransaction();
+   *     await db.command<InsertDocument<DocumentType>>(
    *       'sql',
-   *       'CREATE document TYPE aType',
+   *       'INSERT INTO aType',
    *       trx
    *     );
-   *     await trx.commit();
    *     console.log(trx.id);
    *     // 'AS-0000000-0000-0000-0000-00000000000'
-   *     database.rollbackTransaction(trx.id);
+   *     db.rollbackTransaction(trx.id);
    *     return trx;
    *   } catch (error) {
    *     console.log(error);
@@ -566,6 +620,67 @@ class SpriteDatabase {
       throw new Error(`Unable to rollback transaction ${transactionId}`, {
         cause: error
       });
+    }
+  };
+  /**
+   * Helps to manage a transaction by automatically invoking `newTransaction`,
+   * and passing the returned `SpriteTransaction` to a callback as an argument,
+   * to be passed to non-idempotent databases operations in the callback scope.
+   * `SpriteTransaction.commit()` is called automatically after the callback
+   * is executed.
+   * @param {SpriteTransactionCallback} callback
+   * @param {ArcadeTransactionIsolationLevel} isolationLevel
+   * @see
+   * {@link SpriteDatabase.newTransaction | SpriteDatabase.newTransaction()} \
+   * {@link SpriteTransaction.commit | SpriteTransaction.commit()}
+   * @returns {void} void
+   * @example
+   *
+   * const db = new SpriteDatabase({
+   *   username: 'aUser',
+   *   password: 'aPassword',
+   *   address: 'http://localhost:2480',
+   *   databaseName: 'aSpriteDatabase'
+   * });
+   *
+   * type DocumentType = {
+   *   aProperty: string
+   * }
+   *
+   * async function transactionExample() {
+   *   try {
+   *     await db.command<CreatDocumentType>(
+   *       'sql',
+   *       'CREATE document TYPE aType',
+   *     );
+   *     await db.transaction(async (trx) => {
+   *       db.command<InsertDocument<DocumentType>(
+   *         'aType',
+   *         trx,
+   *         {
+   *           aProperty: 'aValue'
+   *         }
+   *       );
+   *     });
+   *   } catch (error) {
+   *     console.error(error);
+   *     // handle error conditions
+   *   }
+   * };
+   *
+   * transactionExample();
+   */
+  transaction = async (
+    callback: SpriteTransactionCallback,
+    isolationLevel?: ArcadeTransactionIsolationLevel
+  ): Promise<SpriteTransaction> => {
+    try {
+      const trx = await this.newTransaction(isolationLevel);
+      await callback(trx);
+      await trx.commit();
+      return trx;
+    } catch (error) {
+      throw new Error(`Could not complete transaction.`, { cause: error });
     }
   };
 }

@@ -12,18 +12,62 @@ permalink: /SpriteDatabase/command.html
 
 #### Interface
 
-(**language: *ArcadeSupportedQueryLanguages*, command: *string*, transaction: *SpriteTransaction*, options: ****)
+(**language: *ArcadeSupportedQueryLanguages*, command: *string*, transaction: *SpriteTransaction***)
 
-Executes a command on the target database. This method only executes
-non-idempotent statements (that can change the database), such as `INSERT`,
-`CREATE`, and `DELETE`. The execution of idempotent commands will throw an
-`IllegalArgumentException` exception. If you are trying to execute
-idempotent commands, see the `SpriteDatabase.query()` method.
+Executes a command on the target database. This method should only be used
+for non-idempotent statements (that can change the database), such as `INSERT`,
+`CREATE`, and `DELETE`.
+
+If you are trying to execute idempotent commands see `SpriteDatabase.query()`.
+
+##### Note
+
+---
+
+If the command you are issuing is sending JSON data, you must stringify the
+data with `JSON.stringify()`.
+
+```ts
+db.command<InsertDocument<DocumentType>>(
+  'sql',
+  `INSERT INTO DocumentType CONTENT ${JSON.stringify({ aProperty: 'aValue' })}`,
+  trx,
+);
+```
+
+---
+
+##### Note
+
+---
+
+This package includes type definitions to help you issue commands with typed return values.
+For example: `CreateType`, `DeleteFrom`, `ArcadeDocument`, etc. You can use these
+like so:
+
+```ts
+db.command<InsertDocument<DocumentType>>(
+  'sql',
+  'INSERT INTO DocumentType',
+  trx
+);
+```
+
+---
+
+##### Note
+
+---
+
+Schema updates (i.e. `CREATE TYPE`, etc) are non-idempotent, but are also non-transactional.
+Therefore, transactions are optional on this method.
+
+---
 
 #### Example
 
 ```ts
-const database = new SpriteDatabase({
+const db = new SpriteDatabase({
   username: 'aUser',
   password: 'aPassword',
   address: 'http://localhost:2480',
@@ -32,22 +76,12 @@ const database = new SpriteDatabase({
 
 async function spriteCommandExample() {
   try {
-    // commands are non-idempotent, and must be
-    // conducted as part of a transaction
-    const transaction = await database.newTransaction();
-    const result = await database.command(
+    const result = await db.command<CreateDocumentType>(
       'sql',
       'CREATE document TYPE aType',
-      transaction
     );
-    transaction.commit();
     console.log(result);
-    // {
-    //  user: 'aUser',
-    //  version: '24.x.x (build [...])',
-    //  serverName: 'ArcadeDB_0',
-    //  result: [ { operation: 'create document type', typeName: 'aType' } ]
-    // }
+    // [ { operation: 'create document type', typeName: 'aType' } ]
     return result;
   } catch (error) {
     // handle error conditions

@@ -19,18 +19,20 @@ Begins a transaction on the server, managed as a session.
 #### Example
 
 ```ts
-async function transactionExample() {
+async function newTransactionExample() {
   try {
-    const trx = await database.newTransaction();
-    await database.command(
+    await db.command(
       'sql',
       'CREATE document TYPE aType',
+    );
+    const trx = await db.newTransaction();
+    const record = await db.command(
+      'sql',
+      'INSERT INTO aType',
       trx
     );
     trx.commit();
-    console.log(trx.id);
-    // 'AS-0000000-0000-0000-0000-00000000000'
-    return trx;
+    return record;
   } catch (error) {
     console.log(error);
     // handle error conditions

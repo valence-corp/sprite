@@ -38,8 +38,15 @@ const client = database.documentModality<DocTypes>();
 
 async function transactionExample() {
   try {
+    await client.createType('aType');
     const transaction = await client.transaction(async (trx) => {
-      client.createType('aType', trx);
+      client.newDocument(
+        'aType',
+        trx,
+        {
+          aField: 'aValue'
+        }
+      );
     });
     console.log(transaction.id);
     // 'AS-0000000-0000-0000-0000-00000000000'

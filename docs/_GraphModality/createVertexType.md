@@ -12,13 +12,9 @@ permalink: /GraphModality/createVertexType.html
 
 #### Interface
 
-(**typeName: *N*, transaction: *SpriteTransaction*, options: *ISpriteCreateTypeOptions&lt;V, N&gt;***)
+(**typeName: *N*, options: *ISpriteCreateTypeOptions&lt;V, N&gt;***)
 
 Create a new vertex type.
-
-#### Note
-
-<p class="note">non-idempotent commands (such a creating types) must be issued as part of a transaction</p>
 
 #### Example
 
@@ -46,12 +42,9 @@ const client = db.graphModality<VertexTypes, EdgeTypes>();
 
 async function createVertexTypeExample() {
   try {
-    // non-idempotent operations must be conducted within a transaction
-    client.transaction(async (trx)=>{
-      const type = await client.createVertexType('aType', trx);
-      console.log(type.name);
-      // 'aType'
-    });
+    const type = await client.createVertexType('aType', trx);
+    console.log(type.name);
+    // 'aType'
   } catch (error) {
     // handle error conditions
     console.error(error);

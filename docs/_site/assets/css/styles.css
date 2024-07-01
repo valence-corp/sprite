@@ -497,6 +497,10 @@ a > code:hover {
   z-index: 9;
   font-family: "Retro Pixel Petty 5X5";
 }
+#documentHeader h1 a {
+  color: var(--foreground-1);
+  text-decoration: none;
+}
 
 a {
   outline: none;

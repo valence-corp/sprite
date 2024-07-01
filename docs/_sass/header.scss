@@ -10,6 +10,10 @@
     position: relative;
     z-index: 9;
     font-family: "Retro Pixel Petty 5X5";
+    a {
+      color: var(--foreground-1);
+      text-decoration: none;
+    }
   }
 }
 

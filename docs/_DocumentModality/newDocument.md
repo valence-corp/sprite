@@ -34,7 +34,7 @@ interface DocumentTypes {
 
 const client = database.documentModality<DocumentTypes>();
 
-// non-idempotent operations must be conducted within a transaction
+// inserts / record creation must be conducted within a transaction
 client.transaction(async (trx)=>{
   // to create a document, a type must be created first
   await client.createType('aDocument', trx);

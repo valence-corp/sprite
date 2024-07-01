@@ -8,9 +8,9 @@ permalink: /types/RecordMeta.html
 
 ---
 
-### RecordMeta
+### RecordMeta<br/><C>
 
-The base metadata for record in 
+The base metadata for record in
 ArcadeDB.
 
 #### Definition

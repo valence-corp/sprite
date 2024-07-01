@@ -40,7 +40,7 @@ type EdgeTypes = {
 
 const client = db.graphModality<VertexTypes, EdgeTypes>();
 
-// non-idempotent operations must be conducted within a transaction
+// inserts / record creation must be conducted within a transaction
 client.transaction(async ()=>{
   // to create a edge, a type must be created first
   await client.createType('anEdge');

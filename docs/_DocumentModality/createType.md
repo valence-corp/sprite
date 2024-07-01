@@ -12,13 +12,17 @@ permalink: /DocumentModality/createType.html
 
 #### Interface
 
-(**typeName: *N*, transaction: *SpriteTransaction*, options: *ISpriteCreateTypeOptions&lt;S, N&gt;***)
+(**typeName: *N*, options: *ISpriteCreateTypeOptions&lt;S, N&gt;***)
 
 Create a new document type in the schema.
 
-#### Note
+##### Note
 
-<p class="note">non-idempotent commands (such a creating types) must be issued as part of a transaction</p>
+---
+
+non-idempotent commands (such a creating types) must be issued as part of a transaction
+
+---
 
 #### Example
 
@@ -40,12 +44,9 @@ const client = database.documentModality<DocumentTypes>();
 
 async function createDocumentTypeExample() {
   try {
-    // non-idempotent operations must be conducted within a transaction
-    client.transaction(async (trx)=>{
-      const type = await client.createType('aDocument', trx);
-      console.log(type.name);
-      // 'aType'
-    });
+    const type = await client.createType('aDocument');
+    console.log(type.name);
+    // 'aType'
   } catch (error) {
     // handle error conditions
     console.error(error);

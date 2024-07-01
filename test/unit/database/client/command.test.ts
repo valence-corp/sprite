@@ -4,21 +4,8 @@ import {
   variables,
   headersWithTransaction as headers
 } from '../../../variables.js';
-import { Mock } from 'node:test';
 
 describe('SpriteDatabase.command()', () => {
-  // let fetchSpy: typeof
-
-  // beforeEach(() => {
-  //   fetchSpy = jest.spyOn(global, 'fetch').mockResolvedValueOnce({
-  //     status: 200,
-  //     json: async () => variables.jsonResponse
-  //   } as Response);
-  // });
-
-  // afterEach(() => {
-  //   fetchSpy.mockRestore();
-  // });
   it(`should make a properly formatted POST request to ${endpoints.query}/${variables.databaseName}`, async () => {
     jest.spyOn(global, 'fetch').mockResolvedValueOnce({
       status: 200,

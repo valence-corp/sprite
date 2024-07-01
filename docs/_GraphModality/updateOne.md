@@ -40,7 +40,7 @@ async function updateOneExample() {
       const result = await client.updateOne(
         '#0:0',
         { aField: 'aValue' },
-        trx 
+        trx
       );
       console.log(result);
       // {

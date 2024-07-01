@@ -12,5 +12,5 @@ permalink: /DocumentModality/dropType.html
 
 #### Interface
 
-(**typeName: *N*, transaction: *SpriteTransaction*, options: *ISpriteDropTypeOptions***)
+(**typeName: *N*, options: *ISpriteDropTypeOptions***)
 

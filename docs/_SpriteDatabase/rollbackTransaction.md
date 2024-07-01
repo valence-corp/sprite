@@ -21,16 +21,15 @@ Rolls back a transaction on the server. Provide the session id obtained with the
 ```ts
 async function rollbackTransactionExample() {
   try {
-    const trx = await database.newTransaction();
-    await database.command(
+    const trx = await db.newTransaction();
+    await db.command<InsertDocument<DocumentType>>(
       'sql',
-      'CREATE document TYPE aType',
+      'INSERT INTO aType',
       trx
     );
-    await trx.commit();
     console.log(trx.id);
     // 'AS-0000000-0000-0000-0000-00000000000'
-    database.rollbackTransaction(trx.id);
+    db.rollbackTransaction(trx.id);
     return trx;
   } catch (error) {
     console.log(error);

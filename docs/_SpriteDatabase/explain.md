@@ -20,7 +20,7 @@ without executing the statement itself.
 #### Example
 
 ```ts
-const database = new SpriteDatabase({
+const db = new SpriteDatabase({
   username: 'aUser',
   password: 'aPassword',
   address: 'http://localhost:2480',
@@ -29,7 +29,7 @@ const database = new SpriteDatabase({
 
 async function spriteExplainExample() {
   try {
-    const explanation = await client.explain("SELECT FROM schema:types");
+    const explanation = await db.explain("SELECT FROM schema:types");
     console.log(explanation);
     // {
     //   executionPlan: {

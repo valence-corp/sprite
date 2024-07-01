@@ -17,7 +17,7 @@ Return the current schema.
 ```ts
 async function getSchemaExample() {
   try {
-    const schema = await database.getSchema();
+    const schema = await db.getSchema();
     console.log(schema);
     // [...]
     return schema;
