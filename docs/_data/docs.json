@@ -53,7 +53,7 @@
 							"fileName": "modes/DocumentModality.ts",
 							"line": 18,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/DocumentModality.ts#L18"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/DocumentModality.ts#L18"
 						}
 					],
 					"signatures": [
@@ -68,7 +68,7 @@
 									"fileName": "modes/DocumentModality.ts",
 									"line": 18,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/DocumentModality.ts#L18"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/DocumentModality.ts#L18"
 								}
 							],
 							"typeParameter": [
@@ -153,7 +153,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 16,
 							"character": 12,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L16"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L16"
 						}
 					],
 					"type": {
@@ -181,7 +181,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 17,
 							"character": 12,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L17"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L17"
 						}
 					],
 					"type": {
@@ -210,7 +210,7 @@
 							"fileName": "modes/DocumentModality.ts",
 							"line": 102,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/DocumentModality.ts#L102"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/DocumentModality.ts#L102"
 						}
 					],
 					"signatures": [
@@ -275,7 +275,7 @@
 									"fileName": "modes/DocumentModality.ts",
 									"line": 102,
 									"character": 15,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/DocumentModality.ts#L102"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/DocumentModality.ts#L102"
 								}
 							],
 							"typeParameter": [
@@ -419,7 +419,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 136,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L136"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L136"
 						}
 					],
 					"signatures": [
@@ -479,7 +479,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 136,
 									"character": 15,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L136"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L136"
 								}
 							],
 							"typeParameter": [
@@ -655,7 +655,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 180,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L180"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L180"
 						}
 					],
 					"signatures": [
@@ -715,7 +715,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 180,
 									"character": 14,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L180"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L180"
 								}
 							],
 							"parameters": [
@@ -793,7 +793,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 28,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L28"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L28"
 						}
 					],
 					"signatures": [
@@ -808,7 +808,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 28,
 									"character": 13,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L28"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L28"
 								}
 							],
 							"typeParameter": [
@@ -907,7 +907,7 @@
 							"fileName": "modes/DocumentModality.ts",
 							"line": 60,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/DocumentModality.ts#L60"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/DocumentModality.ts#L60"
 						}
 					],
 					"signatures": [
@@ -959,7 +959,7 @@
 									"fileName": "modes/DocumentModality.ts",
 									"line": 60,
 									"character": 16,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/DocumentModality.ts#L60"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/DocumentModality.ts#L60"
 								}
 							],
 							"typeParameter": [
@@ -1117,7 +1117,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 32,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L32"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L32"
 						}
 					],
 					"signatures": [
@@ -1132,7 +1132,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 32,
 									"character": 19,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L32"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L32"
 								}
 							],
 							"parameters": [
@@ -1196,7 +1196,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 22,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L22"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L22"
 						}
 					],
 					"signatures": [
@@ -1211,7 +1211,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 22,
 									"character": 15,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L22"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L22"
 								}
 							],
 							"typeParameter": [
@@ -1375,7 +1375,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 273,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L273"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L273"
 						}
 					],
 					"signatures": [
@@ -1431,7 +1431,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 273,
 									"character": 14,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L273"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L273"
 								}
 							],
 							"typeParameter": [
@@ -1534,7 +1534,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 80,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L80"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L80"
 						}
 					],
 					"signatures": [
@@ -1593,7 +1593,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 80,
 									"character": 16,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L80"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L80"
 								}
 							],
 							"parameters": [
@@ -1670,7 +1670,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 228,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L228"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L228"
 						}
 					],
 					"signatures": [
@@ -1704,7 +1704,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 228,
 									"character": 14,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L228"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L228"
 								}
 							],
 							"typeParameter": [
@@ -1882,7 +1882,7 @@
 					"fileName": "modes/DocumentModality.ts",
 					"line": 17,
 					"character": 6,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/DocumentModality.ts#L17"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/DocumentModality.ts#L17"
 				}
 			],
 			"typeParameters": [
@@ -1964,7 +1964,7 @@
 							"fileName": "modes/GraphModality.ts",
 							"line": 23,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/GraphModality.ts#L23"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/GraphModality.ts#L23"
 						}
 					],
 					"signatures": [
@@ -1979,7 +1979,7 @@
 									"fileName": "modes/GraphModality.ts",
 									"line": 23,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/GraphModality.ts#L23"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/GraphModality.ts#L23"
 								}
 							],
 							"typeParameter": [
@@ -2079,7 +2079,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 16,
 							"character": 12,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L16"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L16"
 						}
 					],
 					"type": {
@@ -2107,7 +2107,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 17,
 							"character": 12,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L17"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L17"
 						}
 					],
 					"type": {
@@ -2136,7 +2136,7 @@
 							"fileName": "modes/GraphModality.ts",
 							"line": 187,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/GraphModality.ts#L187"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/GraphModality.ts#L187"
 						}
 					],
 					"signatures": [
@@ -2192,7 +2192,7 @@
 									"fileName": "modes/GraphModality.ts",
 									"line": 187,
 									"character": 19,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/GraphModality.ts#L187"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/GraphModality.ts#L187"
 								}
 							],
 							"typeParameter": [
@@ -2336,7 +2336,7 @@
 							"fileName": "modes/GraphModality.ts",
 							"line": 233,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/GraphModality.ts#L233"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/GraphModality.ts#L233"
 						}
 					],
 					"signatures": [
@@ -2392,7 +2392,7 @@
 									"fileName": "modes/GraphModality.ts",
 									"line": 233,
 									"character": 21,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/GraphModality.ts#L233"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/GraphModality.ts#L233"
 								}
 							],
 							"typeParameter": [
@@ -2536,7 +2536,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 136,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L136"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L136"
 						}
 					],
 					"signatures": [
@@ -2596,7 +2596,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 136,
 									"character": 15,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L136"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L136"
 								}
 							],
 							"typeParameter": [
@@ -2785,7 +2785,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 180,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L180"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L180"
 						}
 					],
 					"signatures": [
@@ -2845,7 +2845,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 180,
 									"character": 14,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L180"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L180"
 								}
 							],
 							"parameters": [
@@ -2923,7 +2923,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 28,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L28"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L28"
 						}
 					],
 					"signatures": [
@@ -2938,7 +2938,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 28,
 									"character": 13,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L28"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L28"
 								}
 							],
 							"typeParameter": [
@@ -3037,7 +3037,7 @@
 							"fileName": "modes/GraphModality.ts",
 							"line": 127,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/GraphModality.ts#L127"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/GraphModality.ts#L127"
 						}
 					],
 					"signatures": [
@@ -3109,7 +3109,7 @@
 									"fileName": "modes/GraphModality.ts",
 									"line": 127,
 									"character": 12,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/GraphModality.ts#L127"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/GraphModality.ts#L127"
 								}
 							],
 							"typeParameter": [
@@ -3391,7 +3391,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 32,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L32"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L32"
 						}
 					],
 					"signatures": [
@@ -3406,7 +3406,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 32,
 									"character": 19,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L32"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L32"
 								}
 							],
 							"parameters": [
@@ -3470,7 +3470,7 @@
 							"fileName": "modes/GraphModality.ts",
 							"line": 72,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/GraphModality.ts#L72"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/GraphModality.ts#L72"
 						}
 					],
 					"signatures": [
@@ -3542,7 +3542,7 @@
 									"fileName": "modes/GraphModality.ts",
 									"line": 72,
 									"character": 14,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/GraphModality.ts#L72"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/GraphModality.ts#L72"
 								}
 							],
 							"typeParameter": [
@@ -3700,7 +3700,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 22,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L22"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L22"
 						}
 					],
 					"signatures": [
@@ -3715,7 +3715,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 22,
 									"character": 15,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L22"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L22"
 								}
 							],
 							"typeParameter": [
@@ -3905,7 +3905,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 273,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L273"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L273"
 						}
 					],
 					"signatures": [
@@ -3961,7 +3961,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 273,
 									"character": 14,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L273"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L273"
 								}
 							],
 							"typeParameter": [
@@ -4077,7 +4077,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 80,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L80"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L80"
 						}
 					],
 					"signatures": [
@@ -4136,7 +4136,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 80,
 									"character": 16,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L80"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L80"
 								}
 							],
 							"parameters": [
@@ -4213,7 +4213,7 @@
 							"fileName": "modes/ModalityBase.ts",
 							"line": 228,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L228"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L228"
 						}
 					],
 					"signatures": [
@@ -4247,7 +4247,7 @@
 									"fileName": "modes/ModalityBase.ts",
 									"line": 228,
 									"character": 14,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/ModalityBase.ts#L228"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/ModalityBase.ts#L228"
 								}
 							],
 							"typeParameter": [
@@ -4440,7 +4440,7 @@
 					"fileName": "modes/GraphModality.ts",
 					"line": 22,
 					"character": 6,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/modes/GraphModality.ts#L22"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/modes/GraphModality.ts#L22"
 				}
 			],
 			"typeParameters": [
@@ -4550,19 +4550,19 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 75,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L75"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L75"
 						},
 						{
 							"fileName": "SpriteDatabase.ts",
 							"line": 76,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L76"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L76"
 						},
 						{
 							"fileName": "SpriteDatabase.ts",
 							"line": 77,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L77"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L77"
 						}
 					],
 					"signatures": [
@@ -4577,7 +4577,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 75,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L75"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L75"
 								}
 							],
 							"parameters": [
@@ -4613,7 +4613,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 76,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L76"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L76"
 								}
 							],
 							"parameters": [
@@ -4661,7 +4661,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 66,
 							"character": 10,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L66"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L66"
 						}
 					],
 					"type": {
@@ -4695,7 +4695,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 68,
 							"character": 10,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L68"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L68"
 						}
 					],
 					"type": {
@@ -4738,7 +4738,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 72,
 							"character": 10,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L72"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L72"
 						}
 					],
 					"type": {
@@ -4784,7 +4784,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 74,
 							"character": 10,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L74"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L74"
 						}
 					],
 					"type": {
@@ -4834,7 +4834,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 70,
 							"character": 10,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L70"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L70"
 						}
 					],
 					"type": {
@@ -4855,7 +4855,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 103,
 							"character": 14,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L103"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L103"
 						}
 					],
 					"getSignature": {
@@ -4877,7 +4877,7 @@
 								"fileName": "SpriteDatabase.ts",
 								"line": 103,
 								"character": 14,
-								"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L103"
+								"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L103"
 							}
 						],
 						"type": {
@@ -4902,7 +4902,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 95,
 							"character": 6,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L95"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L95"
 						}
 					],
 					"getSignature": {
@@ -4924,7 +4924,7 @@
 								"fileName": "SpriteDatabase.ts",
 								"line": 95,
 								"character": 6,
-								"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L95"
+								"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L95"
 							}
 						],
 						"type": {
@@ -4946,7 +4946,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 110,
 							"character": 10,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L110"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L110"
 						}
 					],
 					"signatures": [
@@ -4969,7 +4969,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 110,
 									"character": 22,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L110"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L110"
 								}
 							],
 							"parameters": [
@@ -5003,7 +5003,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 375,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L375"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L375"
 						}
 					],
 					"signatures": [
@@ -5217,7 +5217,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 375,
 									"character": 12,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L375"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L375"
 								}
 							],
 							"typeParameter": [
@@ -5326,7 +5326,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 585,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L585"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L585"
 						}
 					],
 					"signatures": [
@@ -5419,7 +5419,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 585,
 									"character": 22,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L585"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L585"
 								}
 							],
 							"parameters": [
@@ -5472,7 +5472,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 444,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L444"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L444"
 						}
 					],
 					"signatures": [
@@ -5578,7 +5578,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 444,
 									"character": 9,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L444"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L444"
 								}
 							],
 							"parameters": [
@@ -5673,7 +5673,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 115,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L115"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L115"
 						}
 					],
 					"signatures": [
@@ -5707,7 +5707,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 115,
 									"character": 21,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L115"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L115"
 								}
 							],
 							"typeParameter": [
@@ -5760,7 +5760,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 281,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L281"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L281"
 						}
 					],
 					"signatures": [
@@ -5803,7 +5803,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 281,
 									"character": 12,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L281"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L281"
 								}
 							],
 							"parameters": [
@@ -5858,7 +5858,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 467,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L467"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L467"
 						}
 					],
 					"signatures": [
@@ -5901,7 +5901,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 467,
 									"character": 14,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L467"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L467"
 								}
 							],
 							"type": {
@@ -5935,7 +5935,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 128,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L128"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L128"
 						}
 					],
 					"signatures": [
@@ -5969,7 +5969,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 128,
 									"character": 18,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L128"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L128"
 								}
 							],
 							"typeParameter": [
@@ -6044,7 +6044,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 517,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L517"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L517"
 						}
 					],
 					"signatures": [
@@ -6087,7 +6087,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 517,
 									"character": 19,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L517"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L517"
 								}
 							],
 							"parameters": [
@@ -6157,7 +6157,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 206,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L206"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L206"
 						}
 					],
 					"signatures": [
@@ -6284,7 +6284,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 206,
 									"character": 10,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L206"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L206"
 								}
 							],
 							"typeParameter": [
@@ -6373,7 +6373,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 639,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L639"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L639"
 						}
 					],
 					"signatures": [
@@ -6424,7 +6424,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 639,
 									"character": 24,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L639"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L639"
 								}
 							],
 							"parameters": [
@@ -6477,7 +6477,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 486,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L486"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L486"
 						}
 					],
 					"signatures": [
@@ -6492,7 +6492,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 486,
 									"character": 8,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L486"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L486"
 								}
 							],
 							"parameters": [
@@ -6552,7 +6552,7 @@
 							"fileName": "SpriteDatabase.ts",
 							"line": 716,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L716"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L716"
 						}
 					],
 					"signatures": [
@@ -6642,7 +6642,7 @@
 									"fileName": "SpriteDatabase.ts",
 									"line": 716,
 									"character": 16,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L716"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L716"
 								}
 							],
 							"parameters": [
@@ -6747,7 +6747,7 @@
 					"fileName": "SpriteDatabase.ts",
 					"line": 64,
 					"character": 6,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteDatabase.ts#L64"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteDatabase.ts#L64"
 				}
 			]
 		},
@@ -6798,7 +6798,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 44,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L44"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L44"
 						}
 					],
 					"signatures": [
@@ -6813,7 +6813,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 44,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L44"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L44"
 								}
 							],
 							"parameters": [
@@ -6853,7 +6853,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 42,
 							"character": 10,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L42"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L42"
 						}
 					],
 					"type": {
@@ -6879,7 +6879,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 43,
 							"character": 10,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L43"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L43"
 						}
 					],
 					"type": {
@@ -6906,7 +6906,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 280,
 							"character": 10,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L280"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L280"
 						}
 					],
 					"signatures": [
@@ -6985,7 +6985,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 280,
 									"character": 28,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L280"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L280"
 								}
 							],
 							"parameters": [
@@ -7046,7 +7046,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 113,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L113"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L113"
 						}
 					],
 					"signatures": [
@@ -7089,7 +7089,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 113,
 									"character": 18,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L113"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L113"
 								}
 							],
 							"parameters": [
@@ -7142,7 +7142,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 243,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L243"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L243"
 						}
 					],
 					"signatures": [
@@ -7242,7 +7242,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 243,
 									"character": 12,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L243"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L243"
 								}
 							],
 							"typeParameter": [
@@ -7315,7 +7315,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 314,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L314"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L314"
 						}
 					],
 					"signatures": [
@@ -7379,7 +7379,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 314,
 									"character": 19,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L314"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L314"
 								}
 							],
 							"parameters": [
@@ -7432,7 +7432,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 349,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L349"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L349"
 						}
 					],
 					"signatures": [
@@ -7483,7 +7483,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 349,
 									"character": 19,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L349"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L349"
 								}
 							],
 							"parameters": [
@@ -7538,7 +7538,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 407,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L407"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L407"
 						}
 					],
 					"signatures": [
@@ -7630,7 +7630,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 407,
 									"character": 15,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L407"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L407"
 								}
 							],
 							"parameters": [
@@ -7677,7 +7677,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 190,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L190"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L190"
 						}
 					],
 					"signatures": [
@@ -7752,7 +7752,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 190,
 									"character": 13,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L190"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L190"
 								}
 							],
 							"parameters": [
@@ -7796,7 +7796,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 484,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L484"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L484"
 						}
 					],
 					"signatures": [
@@ -7864,7 +7864,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 484,
 									"character": 19,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L484"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L484"
 								}
 							],
 							"parameters": [
@@ -7917,7 +7917,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 541,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L541"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L541"
 						}
 					],
 					"signatures": [
@@ -7973,7 +7973,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 541,
 									"character": 22,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L541"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L541"
 								}
 							],
 							"type": {
@@ -8005,7 +8005,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 577,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L577"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L577"
 						}
 					],
 					"signatures": [
@@ -8065,7 +8065,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 577,
 									"character": 17,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L577"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L577"
 								}
 							],
 							"parameters": [
@@ -8118,7 +8118,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 612,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L612"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L612"
 						}
 					],
 					"signatures": [
@@ -8178,7 +8178,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 612,
 									"character": 13,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L612"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L612"
 								}
 							],
 							"parameters": [
@@ -8239,7 +8239,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 661,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L661"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L661"
 						}
 					],
 					"signatures": [
@@ -8303,7 +8303,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 661,
 									"character": 14,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L661"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L661"
 								}
 							],
 							"type": {
@@ -8337,7 +8337,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 704,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L704"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L704"
 						}
 					],
 					"signatures": [
@@ -8393,7 +8393,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 704,
 									"character": 19,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L704"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L704"
 								}
 							],
 							"typeParameter": [
@@ -8505,7 +8505,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 742,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L742"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L742"
 						}
 					],
 					"signatures": [
@@ -8561,7 +8561,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 742,
 									"character": 18,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L742"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L742"
 								}
 							],
 							"type": {
@@ -8596,7 +8596,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 155,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L155"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L155"
 						}
 					],
 					"signatures": [
@@ -8639,7 +8639,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 155,
 									"character": 17,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L155"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L155"
 								}
 							],
 							"parameters": [
@@ -8692,7 +8692,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 76,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L76"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L76"
 						}
 					],
 					"signatures": [
@@ -8755,7 +8755,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 76,
 									"character": 16,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L76"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L76"
 								}
 							],
 							"type": {
@@ -8787,7 +8787,7 @@
 							"fileName": "SpriteServer.ts",
 							"line": 779,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L779"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L779"
 						}
 					],
 					"signatures": [
@@ -8863,7 +8863,7 @@
 									"fileName": "SpriteServer.ts",
 									"line": 779,
 									"character": 13,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L779"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L779"
 								}
 							],
 							"type": {
@@ -8927,7 +8927,7 @@
 					"fileName": "SpriteServer.ts",
 					"line": 41,
 					"character": 6,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteServer.ts#L41"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteServer.ts#L41"
 				}
 			]
 		},
@@ -8949,7 +8949,7 @@
 							"fileName": "SpriteTransaction.ts",
 							"line": 7,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteTransaction.ts#L7"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteTransaction.ts#L7"
 						}
 					],
 					"signatures": [
@@ -8964,7 +8964,7 @@
 									"fileName": "SpriteTransaction.ts",
 									"line": 7,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteTransaction.ts#L7"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteTransaction.ts#L7"
 								}
 							],
 							"parameters": [
@@ -9015,7 +9015,7 @@
 							"fileName": "SpriteTransaction.ts",
 							"line": 5,
 							"character": 10,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteTransaction.ts#L5"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteTransaction.ts#L5"
 						}
 					],
 					"type": {
@@ -9037,7 +9037,7 @@
 							"fileName": "SpriteTransaction.ts",
 							"line": 4,
 							"character": 10,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteTransaction.ts#L4"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteTransaction.ts#L4"
 						}
 					],
 					"type": {
@@ -9058,7 +9058,7 @@
 							"fileName": "SpriteTransaction.ts",
 							"line": 6,
 							"character": 10,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteTransaction.ts#L6"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteTransaction.ts#L6"
 						}
 					],
 					"type": {
@@ -9079,7 +9079,7 @@
 							"fileName": "SpriteTransaction.ts",
 							"line": 21,
 							"character": 6,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteTransaction.ts#L21"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteTransaction.ts#L21"
 						}
 					],
 					"getSignature": {
@@ -9101,7 +9101,7 @@
 								"fileName": "SpriteTransaction.ts",
 								"line": 21,
 								"character": 6,
-								"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteTransaction.ts#L21"
+								"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteTransaction.ts#L21"
 							}
 						],
 						"type": {
@@ -9121,7 +9121,7 @@
 							"fileName": "SpriteTransaction.ts",
 							"line": 17,
 							"character": 6,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteTransaction.ts#L17"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteTransaction.ts#L17"
 						}
 					],
 					"getSignature": {
@@ -9143,7 +9143,7 @@
 								"fileName": "SpriteTransaction.ts",
 								"line": 17,
 								"character": 6,
-								"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteTransaction.ts#L17"
+								"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteTransaction.ts#L17"
 							}
 						],
 						"type": {
@@ -9163,7 +9163,7 @@
 							"fileName": "SpriteTransaction.ts",
 							"line": 24,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteTransaction.ts#L24"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteTransaction.ts#L24"
 						}
 					],
 					"signatures": [
@@ -9178,7 +9178,7 @@
 									"fileName": "SpriteTransaction.ts",
 									"line": 24,
 									"character": 11,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteTransaction.ts#L24"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteTransaction.ts#L24"
 								}
 							],
 							"type": {
@@ -9210,7 +9210,7 @@
 							"fileName": "SpriteTransaction.ts",
 							"line": 34,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteTransaction.ts#L34"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteTransaction.ts#L34"
 						}
 					],
 					"signatures": [
@@ -9225,7 +9225,7 @@
 									"fileName": "SpriteTransaction.ts",
 									"line": 34,
 									"character": 13,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteTransaction.ts#L34"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteTransaction.ts#L34"
 								}
 							],
 							"type": {
@@ -9282,7 +9282,7 @@
 					"fileName": "SpriteTransaction.ts",
 					"line": 3,
 					"character": 13,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/SpriteTransaction.ts#L3"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/SpriteTransaction.ts#L3"
 				}
 			]
 		},
@@ -9320,7 +9320,7 @@
 							"fileName": "types/database.ts",
 							"line": 263,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L263"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L263"
 						}
 					],
 					"type": {
@@ -9351,7 +9351,7 @@
 							"fileName": "types/database.ts",
 							"line": 259,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L259"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L259"
 						}
 					],
 					"type": {
@@ -9378,7 +9378,7 @@
 							"fileName": "types/database.ts",
 							"line": 253,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L253"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L253"
 						}
 					],
 					"type": {
@@ -9405,7 +9405,7 @@
 							"fileName": "types/database.ts",
 							"line": 255,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L255"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L255"
 						}
 					],
 					"type": {
@@ -9430,7 +9430,7 @@
 					"fileName": "types/database.ts",
 					"line": 249,
 					"character": 17,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L249"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L249"
 				}
 			],
 			"typeParameters": [
@@ -9481,7 +9481,7 @@
 							"fileName": "types/database.ts",
 							"line": 28,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L28"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L28"
 						}
 					],
 					"type": {
@@ -9521,7 +9521,7 @@
 							"fileName": "types/database.ts",
 							"line": 46,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L46"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L46"
 						}
 					],
 					"type": {
@@ -9556,7 +9556,7 @@
 							"fileName": "types/database.ts",
 							"line": 48,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L48"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L48"
 						}
 					],
 					"type": {
@@ -9583,7 +9583,7 @@
 							"fileName": "types/database.ts",
 							"line": 26,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L26"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L26"
 						}
 					],
 					"type": {
@@ -9615,7 +9615,7 @@
 							"fileName": "types/database.ts",
 							"line": 30,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L30"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L30"
 						}
 					],
 					"type": {
@@ -9646,7 +9646,7 @@
 					"fileName": "types/database.ts",
 					"line": 44,
 					"character": 17,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L44"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L44"
 				}
 			],
 			"extendedTypes": [
@@ -9701,7 +9701,7 @@
 							"fileName": "types/client.ts",
 							"line": 19,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/client.ts#L19"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/client.ts#L19"
 						}
 					],
 					"type": {
@@ -9728,7 +9728,7 @@
 							"fileName": "types/client.ts",
 							"line": 21,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/client.ts#L21"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/client.ts#L21"
 						}
 					],
 					"type": {
@@ -9751,7 +9751,7 @@
 											"fileName": "types/client.ts",
 											"line": 23,
 											"character": 4,
-											"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/client.ts#L23"
+											"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/client.ts#L23"
 										}
 									],
 									"type": {
@@ -9770,7 +9770,7 @@
 											"fileName": "types/client.ts",
 											"line": 22,
 											"character": 4,
-											"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/client.ts#L22"
+											"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/client.ts#L22"
 										}
 									],
 									"type": {
@@ -9793,7 +9793,7 @@
 									"fileName": "types/client.ts",
 									"line": 21,
 									"character": 11,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/client.ts#L21"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/client.ts#L21"
 								}
 							]
 						}
@@ -9814,7 +9814,7 @@
 					"fileName": "types/client.ts",
 					"line": 17,
 					"character": 17,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/client.ts#L17"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/client.ts#L17"
 				}
 			]
 		},
@@ -9852,7 +9852,7 @@
 							"fileName": "types/server.ts",
 							"line": 11,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L11"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L11"
 						}
 					],
 					"type": {
@@ -9868,7 +9868,7 @@
 									"fileName": "types/server.ts",
 									"line": 11,
 									"character": 13,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L11"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L11"
 								}
 							],
 							"indexSignature": {
@@ -9882,7 +9882,7 @@
 										"fileName": "types/server.ts",
 										"line": 11,
 										"character": 15,
-										"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L11"
+										"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L11"
 									}
 								],
 								"parameters": [
@@ -9925,7 +9925,7 @@
 							"fileName": "types/server.ts",
 							"line": 5,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L5"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L5"
 						}
 					],
 					"type": {
@@ -9952,7 +9952,7 @@
 							"fileName": "types/server.ts",
 							"line": 3,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L3"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L3"
 						}
 					],
 					"type": {
@@ -9976,7 +9976,7 @@
 					"fileName": "types/server.ts",
 					"line": 1,
 					"character": 17,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L1"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L1"
 				}
 			]
 		},
@@ -10016,7 +10016,7 @@
 							"fileName": "types/database.ts",
 							"line": 133,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L133"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L133"
 						}
 					],
 					"type": {
@@ -10057,7 +10057,7 @@
 							"fileName": "types/database.ts",
 							"line": 129,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L129"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L129"
 						}
 					],
 					"type": {
@@ -10124,7 +10124,7 @@
 							"fileName": "types/database.ts",
 							"line": 125,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L125"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L125"
 						}
 					],
 					"type": {
@@ -10164,7 +10164,7 @@
 							"fileName": "types/database.ts",
 							"line": 138,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L138"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L138"
 						}
 					],
 					"type": {
@@ -10189,7 +10189,7 @@
 					"fileName": "types/database.ts",
 					"line": 119,
 					"character": 17,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L119"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L119"
 				}
 			],
 			"typeParameters": [
@@ -10291,7 +10291,7 @@
 							"fileName": "types/database.ts",
 							"line": 97,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L97"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L97"
 						}
 					],
 					"type": {
@@ -10323,7 +10323,7 @@
 							"fileName": "types/database.ts",
 							"line": 101,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L101"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L101"
 						}
 					],
 					"type": {
@@ -10346,7 +10346,7 @@
 					"fileName": "types/database.ts",
 					"line": 93,
 					"character": 17,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L93"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L93"
 				}
 			]
 		},
@@ -10384,7 +10384,7 @@
 							"fileName": "types/client.ts",
 							"line": 6,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/client.ts#L6"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/client.ts#L6"
 						}
 					],
 					"type": {
@@ -10416,7 +10416,7 @@
 							"fileName": "types/database.ts",
 							"line": 84,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L84"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L84"
 						}
 					],
 					"type": {
@@ -10443,7 +10443,7 @@
 							"fileName": "types/client.ts",
 							"line": 10,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/client.ts#L10"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/client.ts#L10"
 						}
 					],
 					"type": {
@@ -10475,7 +10475,7 @@
 							"fileName": "types/client.ts",
 							"line": 8,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/client.ts#L8"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/client.ts#L8"
 						}
 					],
 					"type": {
@@ -10505,7 +10505,7 @@
 					"fileName": "types/database.ts",
 					"line": 79,
 					"character": 17,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L79"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L79"
 				}
 			],
 			"extendedTypes": [
@@ -10580,7 +10580,7 @@
 							"fileName": "types/database.ts",
 							"line": 403,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L403"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L403"
 						}
 					],
 					"type": {
@@ -10636,7 +10636,7 @@
 							"fileName": "types/database.ts",
 							"line": 408,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L408"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L408"
 						}
 					],
 					"type": {
@@ -10674,7 +10674,7 @@
 							"fileName": "types/database.ts",
 							"line": 398,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L398"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L398"
 						}
 					],
 					"type": {
@@ -10701,7 +10701,7 @@
 							"fileName": "types/database.ts",
 							"line": 394,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L394"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L394"
 						}
 					],
 					"type": {
@@ -10754,7 +10754,7 @@
 					"fileName": "types/database.ts",
 					"line": 386,
 					"character": 17,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L386"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L386"
 				}
 			],
 			"typeParameters": [
@@ -10872,7 +10872,7 @@
 							"fileName": "types/database.ts",
 							"line": 159,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L159"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L159"
 						}
 					],
 					"type": {
@@ -10901,7 +10901,7 @@
 							"fileName": "types/database.ts",
 							"line": 165,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L165"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L165"
 						}
 					],
 					"type": {
@@ -10924,7 +10924,7 @@
 					"fileName": "types/database.ts",
 					"line": 154,
 					"character": 17,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L154"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L154"
 				}
 			]
 		},
@@ -10975,7 +10975,7 @@
 							"fileName": "types/edge.ts",
 							"line": 74,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L74"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L74"
 						}
 					],
 					"type": {
@@ -11015,7 +11015,7 @@
 							"fileName": "types/edge.ts",
 							"line": 39,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L39"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L39"
 						}
 					],
 					"type": {
@@ -11044,7 +11044,7 @@
 							"fileName": "types/edge.ts",
 							"line": 34,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L34"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L34"
 						}
 					],
 					"type": {
@@ -11104,7 +11104,7 @@
 							"fileName": "types/edge.ts",
 							"line": 57,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L57"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L57"
 						}
 					],
 					"type": {
@@ -11125,7 +11125,7 @@
 							"fileName": "types/edge.ts",
 							"line": 58,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L58"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L58"
 						}
 					],
 					"type": {
@@ -11158,7 +11158,7 @@
 											"fileName": "types/edge.ts",
 											"line": 62,
 											"character": 4,
-											"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L62"
+											"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L62"
 										}
 									],
 									"type": {
@@ -11187,7 +11187,7 @@
 											"fileName": "types/edge.ts",
 											"line": 66,
 											"character": 4,
-											"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L66"
+											"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L66"
 										}
 									],
 									"type": {
@@ -11210,7 +11210,7 @@
 									"fileName": "types/edge.ts",
 									"line": 58,
 									"character": 10,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L58"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L58"
 								}
 							]
 						}
@@ -11248,7 +11248,7 @@
 							"fileName": "types/edge.ts",
 							"line": 51,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L51"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L51"
 						}
 					],
 					"type": {
@@ -11312,7 +11312,7 @@
 							"fileName": "types/edge.ts",
 							"line": 46,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L46"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L46"
 						}
 					],
 					"type": {
@@ -11340,7 +11340,7 @@
 					"fileName": "types/edge.ts",
 					"line": 30,
 					"character": 17,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L30"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L30"
 				}
 			],
 			"typeParameters": [
@@ -11379,7 +11379,7 @@
 							"fileName": "types/edge.ts",
 							"line": 11,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L11"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L11"
 						}
 					],
 					"type": {
@@ -11425,7 +11425,7 @@
 							"fileName": "types/edge.ts",
 							"line": 7,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L7"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L7"
 						}
 					],
 					"type": {
@@ -11456,7 +11456,7 @@
 							"fileName": "types/edge.ts",
 							"line": 15,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L15"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L15"
 						}
 					],
 					"type": {
@@ -11521,7 +11521,7 @@
 					"fileName": "types/edge.ts",
 					"line": 3,
 					"character": 17,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L3"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L3"
 				}
 			],
 			"typeParameters": [
@@ -11593,7 +11593,7 @@
 							"fileName": "types/database.ts",
 							"line": 148,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L148"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L148"
 						}
 					],
 					"type": {
@@ -11622,7 +11622,7 @@
 							"fileName": "types/database.ts",
 							"line": 146,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L146"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L146"
 						}
 					],
 					"type": {
@@ -11681,7 +11681,7 @@
 					"fileName": "types/database.ts",
 					"line": 144,
 					"character": 17,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L144"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L144"
 				}
 			],
 			"typeParameters": [
@@ -11728,7 +11728,7 @@
 							"fileName": "types/client.ts",
 							"line": 6,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/client.ts#L6"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/client.ts#L6"
 						}
 					],
 					"type": {
@@ -11755,7 +11755,7 @@
 							"fileName": "types/client.ts",
 							"line": 10,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/client.ts#L10"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/client.ts#L10"
 						}
 					],
 					"type": {
@@ -11782,7 +11782,7 @@
 							"fileName": "types/client.ts",
 							"line": 8,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/client.ts#L8"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/client.ts#L8"
 						}
 					],
 					"type": {
@@ -11806,7 +11806,7 @@
 					"fileName": "types/client.ts",
 					"line": 4,
 					"character": 17,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/client.ts#L4"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/client.ts#L4"
 				}
 			],
 			"extendedBy": [
@@ -11877,7 +11877,7 @@
 							"fileName": "types/database.ts",
 							"line": 346,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L346"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L346"
 						}
 					],
 					"type": {
@@ -11906,7 +11906,7 @@
 							"fileName": "types/database.ts",
 							"line": 328,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L328"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L328"
 						}
 					],
 					"type": {
@@ -11950,7 +11950,7 @@
 											"fileName": "types/database.ts",
 											"line": 334,
 											"character": 4,
-											"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L334"
+											"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L334"
 										}
 									],
 									"type": {
@@ -11978,7 +11978,7 @@
 											"fileName": "types/database.ts",
 											"line": 329,
 											"character": 4,
-											"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L329"
+											"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L329"
 										}
 									],
 									"type": {
@@ -12020,7 +12020,7 @@
 									"fileName": "types/database.ts",
 									"line": 328,
 									"character": 12,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L328"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L328"
 								}
 							]
 						}
@@ -12055,7 +12055,7 @@
 							"fileName": "types/database.ts",
 							"line": 341,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L341"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L341"
 						}
 					],
 					"type": {
@@ -12084,7 +12084,7 @@
 							"fileName": "types/database.ts",
 							"line": 351,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L351"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L351"
 						}
 					],
 					"type": {
@@ -12115,7 +12115,7 @@
 											"fileName": "types/database.ts",
 											"line": 355,
 											"character": 4,
-											"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L355"
+											"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L355"
 										}
 									],
 									"type": {
@@ -12160,7 +12160,7 @@
 											"fileName": "types/database.ts",
 											"line": 361,
 											"character": 4,
-											"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L361"
+											"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L361"
 										}
 									],
 									"type": {
@@ -12188,7 +12188,7 @@
 									"fileName": "types/database.ts",
 									"line": 351,
 									"character": 12,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L351"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L351"
 								}
 							]
 						}
@@ -12215,7 +12215,7 @@
 							"fileName": "types/database.ts",
 							"line": 323,
 							"character": 2,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L323"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L323"
 						}
 					],
 					"type": {
@@ -12269,7 +12269,7 @@
 					"fileName": "types/database.ts",
 					"line": 315,
 					"character": 17,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L315"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L315"
 				}
 			],
 			"typeParameters": [
@@ -12366,7 +12366,7 @@
 					"fileName": "types/database.ts",
 					"line": 177,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L177"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L177"
 				}
 			],
 			"type": {
@@ -12414,7 +12414,7 @@
 					"fileName": "types/operators.ts",
 					"line": 32,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/operators.ts#L32"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/operators.ts#L32"
 				}
 			],
 			"typeParameters": [
@@ -12496,7 +12496,7 @@
 					"fileName": "types/operators.ts",
 					"line": 26,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/operators.ts#L26"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/operators.ts#L26"
 				}
 			],
 			"type": {
@@ -12536,7 +12536,7 @@
 					"fileName": "types/operators.ts",
 					"line": 12,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/operators.ts#L12"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/operators.ts#L12"
 				}
 			],
 			"type": {
@@ -12576,7 +12576,7 @@
 					"fileName": "types/operators.ts",
 					"line": 29,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/operators.ts#L29"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/operators.ts#L29"
 				}
 			],
 			"type": {
@@ -12616,7 +12616,7 @@
 					"fileName": "types/database.ts",
 					"line": 216,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L216"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L216"
 				}
 			],
 			"type": {
@@ -12648,7 +12648,7 @@
 					"fileName": "types/database.ts",
 					"line": 269,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L269"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L269"
 				}
 			],
 			"typeParameters": [
@@ -12707,7 +12707,7 @@
 					"fileName": "types/database.ts",
 					"line": 16,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L16"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L16"
 				}
 			],
 			"type": {
@@ -12755,7 +12755,7 @@
 					"fileName": "types/database.ts",
 					"line": 22,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L22"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L22"
 				}
 			],
 			"type": {
@@ -12795,7 +12795,7 @@
 					"fileName": "types/server.ts",
 					"line": 39,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L39"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L39"
 				}
 			],
 			"type": {
@@ -12826,7 +12826,7 @@
 									"fileName": "types/server.ts",
 									"line": 45,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L45"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L45"
 								}
 							],
 							"type": {
@@ -12853,7 +12853,7 @@
 									"fileName": "types/server.ts",
 									"line": 41,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L41"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L41"
 								}
 							],
 							"type": {
@@ -12880,7 +12880,7 @@
 									"fileName": "types/server.ts",
 									"line": 43,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L43"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L43"
 								}
 							],
 							"type": {
@@ -12904,7 +12904,7 @@
 							"fileName": "types/server.ts",
 							"line": 39,
 							"character": 43,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L39"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L39"
 						}
 					]
 				}
@@ -12921,7 +12921,7 @@
 					"fileName": "types/server.ts",
 					"line": 121,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L121"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L121"
 				}
 			],
 			"type": {
@@ -12940,7 +12940,7 @@
 					"fileName": "types/server.ts",
 					"line": 116,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L116"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L116"
 				}
 			],
 			"type": {
@@ -12972,7 +12972,7 @@
 											"fileName": "types/server.ts",
 											"line": 117,
 											"character": 2,
-											"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L117"
+											"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L117"
 										}
 									],
 									"type": {
@@ -12993,7 +12993,7 @@
 											"fileName": "types/server.ts",
 											"line": 118,
 											"character": 2,
-											"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L118"
+											"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L118"
 										}
 									],
 									"type": {
@@ -13021,7 +13021,7 @@
 									"fileName": "types/server.ts",
 									"line": 116,
 									"character": 76,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L116"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L116"
 								}
 							]
 						}
@@ -13040,7 +13040,7 @@
 					"fileName": "types/server.ts",
 					"line": 56,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L56"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L56"
 				}
 			],
 			"type": {
@@ -13063,7 +13063,7 @@
 									"fileName": "types/server.ts",
 									"line": 58,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L58"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L58"
 								}
 							],
 							"type": {
@@ -13086,7 +13086,7 @@
 													"fileName": "types/server.ts",
 													"line": 58,
 													"character": 12,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L58"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L58"
 												}
 											],
 											"type": {
@@ -13105,7 +13105,7 @@
 													"fileName": "types/server.ts",
 													"line": 58,
 													"character": 60,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L58"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L58"
 												}
 											],
 											"type": {
@@ -13124,7 +13124,7 @@
 													"fileName": "types/server.ts",
 													"line": 58,
 													"character": 46,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L58"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L58"
 												}
 											],
 											"type": {
@@ -13143,7 +13143,7 @@
 													"fileName": "types/server.ts",
 													"line": 58,
 													"character": 28,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L58"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L58"
 												}
 											],
 											"type": {
@@ -13168,7 +13168,7 @@
 											"fileName": "types/server.ts",
 											"line": 58,
 											"character": 10,
-											"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L58"
+											"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L58"
 										}
 									]
 								}
@@ -13185,7 +13185,7 @@
 									"fileName": "types/server.ts",
 									"line": 57,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L57"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L57"
 								}
 							],
 							"type": {
@@ -13204,7 +13204,7 @@
 									"fileName": "types/server.ts",
 									"line": 59,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L59"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L59"
 								}
 							],
 							"type": {
@@ -13227,7 +13227,7 @@
 													"fileName": "types/server.ts",
 													"line": 69,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L69"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L69"
 												}
 											],
 											"type": {
@@ -13246,7 +13246,7 @@
 													"fileName": "types/server.ts",
 													"line": 68,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L68"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L68"
 												}
 											],
 											"type": {
@@ -13265,7 +13265,7 @@
 													"fileName": "types/server.ts",
 													"line": 62,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L62"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L62"
 												}
 											],
 											"type": {
@@ -13284,7 +13284,7 @@
 													"fileName": "types/server.ts",
 													"line": 85,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L85"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L85"
 												}
 											],
 											"type": {
@@ -13303,7 +13303,7 @@
 													"fileName": "types/server.ts",
 													"line": 77,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L77"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L77"
 												}
 											],
 											"type": {
@@ -13322,7 +13322,7 @@
 													"fileName": "types/server.ts",
 													"line": 112,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L112"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L112"
 												}
 											],
 											"type": {
@@ -13341,7 +13341,7 @@
 													"fileName": "types/server.ts",
 													"line": 91,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L91"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L91"
 												}
 											],
 											"type": {
@@ -13360,7 +13360,7 @@
 													"fileName": "types/server.ts",
 													"line": 90,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L90"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L90"
 												}
 											],
 											"type": {
@@ -13379,7 +13379,7 @@
 													"fileName": "types/server.ts",
 													"line": 111,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L111"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L111"
 												}
 											],
 											"type": {
@@ -13398,7 +13398,7 @@
 													"fileName": "types/server.ts",
 													"line": 106,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L106"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L106"
 												}
 											],
 											"type": {
@@ -13417,7 +13417,7 @@
 													"fileName": "types/server.ts",
 													"line": 80,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L80"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L80"
 												}
 											],
 											"type": {
@@ -13436,7 +13436,7 @@
 													"fileName": "types/server.ts",
 													"line": 83,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L83"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L83"
 												}
 											],
 											"type": {
@@ -13455,7 +13455,7 @@
 													"fileName": "types/server.ts",
 													"line": 97,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L97"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L97"
 												}
 											],
 											"type": {
@@ -13474,7 +13474,7 @@
 													"fileName": "types/server.ts",
 													"line": 99,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L99"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L99"
 												}
 											],
 											"type": {
@@ -13493,7 +13493,7 @@
 													"fileName": "types/server.ts",
 													"line": 98,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L98"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L98"
 												}
 											],
 											"type": {
@@ -13512,7 +13512,7 @@
 													"fileName": "types/server.ts",
 													"line": 92,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L92"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L92"
 												}
 											],
 											"type": {
@@ -13531,7 +13531,7 @@
 													"fileName": "types/server.ts",
 													"line": 100,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L100"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L100"
 												}
 											],
 											"type": {
@@ -13550,7 +13550,7 @@
 													"fileName": "types/server.ts",
 													"line": 96,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L96"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L96"
 												}
 											],
 											"type": {
@@ -13569,7 +13569,7 @@
 													"fileName": "types/server.ts",
 													"line": 89,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L89"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L89"
 												}
 											],
 											"type": {
@@ -13588,7 +13588,7 @@
 													"fileName": "types/server.ts",
 													"line": 88,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L88"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L88"
 												}
 											],
 											"type": {
@@ -13607,7 +13607,7 @@
 													"fileName": "types/server.ts",
 													"line": 109,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L109"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L109"
 												}
 											],
 											"type": {
@@ -13626,7 +13626,7 @@
 													"fileName": "types/server.ts",
 													"line": 108,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L108"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L108"
 												}
 											],
 											"type": {
@@ -13645,7 +13645,7 @@
 													"fileName": "types/server.ts",
 													"line": 107,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L107"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L107"
 												}
 											],
 											"type": {
@@ -13664,7 +13664,7 @@
 													"fileName": "types/server.ts",
 													"line": 73,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L73"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L73"
 												}
 											],
 											"type": {
@@ -13683,7 +13683,7 @@
 													"fileName": "types/server.ts",
 													"line": 70,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L70"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L70"
 												}
 											],
 											"type": {
@@ -13702,7 +13702,7 @@
 													"fileName": "types/server.ts",
 													"line": 71,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L71"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L71"
 												}
 											],
 											"type": {
@@ -13721,7 +13721,7 @@
 													"fileName": "types/server.ts",
 													"line": 67,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L67"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L67"
 												}
 											],
 											"type": {
@@ -13740,7 +13740,7 @@
 													"fileName": "types/server.ts",
 													"line": 93,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L93"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L93"
 												}
 											],
 											"type": {
@@ -13759,7 +13759,7 @@
 													"fileName": "types/server.ts",
 													"line": 63,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L63"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L63"
 												}
 											],
 											"type": {
@@ -13778,7 +13778,7 @@
 													"fileName": "types/server.ts",
 													"line": 65,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L65"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L65"
 												}
 											],
 											"type": {
@@ -13797,7 +13797,7 @@
 													"fileName": "types/server.ts",
 													"line": 64,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L64"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L64"
 												}
 											],
 											"type": {
@@ -13816,7 +13816,7 @@
 													"fileName": "types/server.ts",
 													"line": 66,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L66"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L66"
 												}
 											],
 											"type": {
@@ -13835,7 +13835,7 @@
 													"fileName": "types/server.ts",
 													"line": 84,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L84"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L84"
 												}
 											],
 											"type": {
@@ -13854,7 +13854,7 @@
 													"fileName": "types/server.ts",
 													"line": 103,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L103"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L103"
 												}
 											],
 											"type": {
@@ -13873,7 +13873,7 @@
 													"fileName": "types/server.ts",
 													"line": 102,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L102"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L102"
 												}
 											],
 											"type": {
@@ -13892,7 +13892,7 @@
 													"fileName": "types/server.ts",
 													"line": 101,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L101"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L101"
 												}
 											],
 											"type": {
@@ -13911,7 +13911,7 @@
 													"fileName": "types/server.ts",
 													"line": 105,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L105"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L105"
 												}
 											],
 											"type": {
@@ -13930,7 +13930,7 @@
 													"fileName": "types/server.ts",
 													"line": 104,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L104"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L104"
 												}
 											],
 											"type": {
@@ -13949,7 +13949,7 @@
 													"fileName": "types/server.ts",
 													"line": 94,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L94"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L94"
 												}
 											],
 											"type": {
@@ -13968,7 +13968,7 @@
 													"fileName": "types/server.ts",
 													"line": 60,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L60"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L60"
 												}
 											],
 											"type": {
@@ -13987,7 +13987,7 @@
 													"fileName": "types/server.ts",
 													"line": 81,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L81"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L81"
 												}
 											],
 											"type": {
@@ -14006,7 +14006,7 @@
 													"fileName": "types/server.ts",
 													"line": 87,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L87"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L87"
 												}
 											],
 											"type": {
@@ -14025,7 +14025,7 @@
 													"fileName": "types/server.ts",
 													"line": 86,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L86"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L86"
 												}
 											],
 											"type": {
@@ -14044,7 +14044,7 @@
 													"fileName": "types/server.ts",
 													"line": 110,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L110"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L110"
 												}
 											],
 											"type": {
@@ -14063,7 +14063,7 @@
 													"fileName": "types/server.ts",
 													"line": 72,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L72"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L72"
 												}
 											],
 											"type": {
@@ -14082,7 +14082,7 @@
 													"fileName": "types/server.ts",
 													"line": 78,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L78"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L78"
 												}
 											],
 											"type": {
@@ -14101,7 +14101,7 @@
 													"fileName": "types/server.ts",
 													"line": 79,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L79"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L79"
 												}
 											],
 											"type": {
@@ -14120,7 +14120,7 @@
 													"fileName": "types/server.ts",
 													"line": 82,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L82"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L82"
 												}
 											],
 											"type": {
@@ -14139,7 +14139,7 @@
 													"fileName": "types/server.ts",
 													"line": 75,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L75"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L75"
 												}
 											],
 											"type": {
@@ -14158,7 +14158,7 @@
 													"fileName": "types/server.ts",
 													"line": 74,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L74"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L74"
 												}
 											],
 											"type": {
@@ -14177,7 +14177,7 @@
 													"fileName": "types/server.ts",
 													"line": 76,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L76"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L76"
 												}
 											],
 											"type": {
@@ -14196,7 +14196,7 @@
 													"fileName": "types/server.ts",
 													"line": 95,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L95"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L95"
 												}
 											],
 											"type": {
@@ -14215,7 +14215,7 @@
 													"fileName": "types/server.ts",
 													"line": 61,
 													"character": 4,
-													"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L61"
+													"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L61"
 												}
 											],
 											"type": {
@@ -14289,7 +14289,7 @@
 											"fileName": "types/server.ts",
 											"line": 59,
 											"character": 12,
-											"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L59"
+											"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L59"
 										}
 									]
 								}
@@ -14311,7 +14311,7 @@
 							"fileName": "types/server.ts",
 							"line": 56,
 							"character": 38,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L56"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L56"
 						}
 					]
 				}
@@ -14328,7 +14328,7 @@
 					"fileName": "types/server.ts",
 					"line": 48,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L48"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L48"
 				}
 			],
 			"type": {
@@ -14351,7 +14351,7 @@
 									"fileName": "types/server.ts",
 									"line": 53,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L53"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L53"
 								}
 							],
 							"type": {
@@ -14370,7 +14370,7 @@
 									"fileName": "types/server.ts",
 									"line": 51,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L51"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L51"
 								}
 							],
 							"type": {
@@ -14389,7 +14389,7 @@
 									"fileName": "types/server.ts",
 									"line": 49,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L49"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L49"
 								}
 							],
 							"type": {
@@ -14408,7 +14408,7 @@
 									"fileName": "types/server.ts",
 									"line": 52,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L52"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L52"
 								}
 							],
 							"type": {
@@ -14427,7 +14427,7 @@
 									"fileName": "types/server.ts",
 									"line": 50,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L50"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L50"
 								}
 							],
 							"type": {
@@ -14453,7 +14453,7 @@
 							"fileName": "types/server.ts",
 							"line": 48,
 							"character": 38,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L48"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L48"
 						}
 					]
 				}
@@ -14470,7 +14470,7 @@
 					"fileName": "types/server.ts",
 					"line": 123,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L123"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L123"
 				}
 			],
 			"typeParameters": [
@@ -14517,7 +14517,7 @@
 										"fileName": "types/server.ts",
 										"line": 124,
 										"character": 2,
-										"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L124"
+										"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L124"
 									}
 								],
 								"type": {
@@ -14538,7 +14538,7 @@
 										"fileName": "types/server.ts",
 										"line": 126,
 										"character": 2,
-										"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L126"
+										"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L126"
 									}
 								],
 								"type": {
@@ -14559,7 +14559,7 @@
 										"fileName": "types/server.ts",
 										"line": 125,
 										"character": 2,
-										"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L125"
+										"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L125"
 									}
 								],
 								"type": {
@@ -14585,7 +14585,7 @@
 								"fileName": "types/server.ts",
 								"line": 123,
 								"character": 78,
-								"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L123"
+								"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L123"
 							}
 						]
 					}
@@ -14630,7 +14630,7 @@
 					"fileName": "types/server.ts",
 					"line": 34,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L34"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L34"
 				}
 			],
 			"type": {
@@ -14662,7 +14662,7 @@
 					"fileName": "types/database.ts",
 					"line": 218,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L218"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L218"
 				}
 			],
 			"type": {
@@ -14685,7 +14685,7 @@
 									"fileName": "types/database.ts",
 									"line": 219,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L219"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L219"
 								}
 							],
 							"type": {
@@ -14704,7 +14704,7 @@
 									"fileName": "types/database.ts",
 									"line": 220,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L220"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L220"
 								}
 							],
 							"type": {
@@ -14723,7 +14723,7 @@
 									"fileName": "types/database.ts",
 									"line": 221,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L221"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L221"
 								}
 							],
 							"type": {
@@ -14742,7 +14742,7 @@
 									"fileName": "types/database.ts",
 									"line": 222,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L222"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L222"
 								}
 							],
 							"type": {
@@ -14761,7 +14761,7 @@
 									"fileName": "types/database.ts",
 									"line": 223,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L223"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L223"
 								}
 							],
 							"type": {
@@ -14785,7 +14785,7 @@
 									"fileName": "types/database.ts",
 									"line": 224,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L224"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L224"
 								}
 							],
 							"type": {
@@ -14804,7 +14804,7 @@
 									"fileName": "types/database.ts",
 									"line": 225,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L225"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L225"
 								}
 							],
 							"type": {
@@ -14832,7 +14832,7 @@
 							"fileName": "types/database.ts",
 							"line": 218,
 							"character": 52,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L218"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L218"
 						}
 					]
 				}
@@ -14857,7 +14857,7 @@
 					"fileName": "types/database.ts",
 					"line": 241,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L241"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L241"
 				}
 			],
 			"type": {
@@ -14880,7 +14880,7 @@
 									"fileName": "types/database.ts",
 									"line": 242,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L242"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L242"
 								}
 							],
 							"type": {
@@ -14901,7 +14901,7 @@
 									"fileName": "types/database.ts",
 									"line": 243,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L243"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L243"
 								}
 							],
 							"type": {
@@ -14924,7 +14924,7 @@
 							"fileName": "types/database.ts",
 							"line": 241,
 							"character": 35,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L241"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L241"
 						}
 					]
 				}
@@ -14949,7 +14949,7 @@
 					"fileName": "types/database.ts",
 					"line": 229,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L229"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L229"
 				}
 			],
 			"type": {
@@ -14972,7 +14972,7 @@
 									"fileName": "types/database.ts",
 									"line": 232,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L232"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L232"
 								}
 							],
 							"type": {
@@ -14991,7 +14991,7 @@
 									"fileName": "types/database.ts",
 									"line": 231,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L231"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L231"
 								}
 							],
 							"type": {
@@ -15010,7 +15010,7 @@
 									"fileName": "types/database.ts",
 									"line": 233,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L233"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L233"
 								}
 							],
 							"type": {
@@ -15029,7 +15029,7 @@
 									"fileName": "types/database.ts",
 									"line": 234,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L234"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L234"
 								}
 							],
 							"type": {
@@ -15053,7 +15053,7 @@
 									"fileName": "types/database.ts",
 									"line": 230,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L230"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L230"
 								}
 							],
 							"type": {
@@ -15088,7 +15088,7 @@
 							"fileName": "types/database.ts",
 							"line": 229,
 							"character": 48,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L229"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L229"
 						}
 					]
 				}
@@ -15125,7 +15125,7 @@
 					"fileName": "types/database.ts",
 					"line": 108,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L108"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L108"
 				}
 			],
 			"type": {
@@ -15177,7 +15177,7 @@
 					"fileName": "types/database.ts",
 					"line": 186,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L186"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L186"
 				}
 			],
 			"type": {
@@ -15208,7 +15208,7 @@
 									"fileName": "types/database.ts",
 									"line": 200,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L200"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L200"
 								}
 							],
 							"type": {
@@ -15237,7 +15237,7 @@
 									"fileName": "types/database.ts",
 									"line": 198,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L198"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L198"
 								}
 							],
 							"type": {
@@ -15267,7 +15267,7 @@
 									"fileName": "types/database.ts",
 									"line": 212,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L212"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L212"
 								}
 							],
 							"type": {
@@ -15309,7 +15309,7 @@
 									"fileName": "types/database.ts",
 									"line": 210,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L210"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L210"
 								}
 							],
 							"type": {
@@ -15339,7 +15339,7 @@
 									"fileName": "types/database.ts",
 									"line": 188,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L188"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L188"
 								}
 							],
 							"type": {
@@ -15366,7 +15366,7 @@
 									"fileName": "types/database.ts",
 									"line": 204,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L204"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L204"
 								}
 							],
 							"type": {
@@ -15396,7 +15396,7 @@
 									"fileName": "types/database.ts",
 									"line": 208,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L208"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L208"
 								}
 							],
 							"type": {
@@ -15426,7 +15426,7 @@
 									"fileName": "types/database.ts",
 									"line": 194,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L194"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L194"
 								}
 							],
 							"type": {
@@ -15453,7 +15453,7 @@
 									"fileName": "types/database.ts",
 									"line": 190,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L190"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L190"
 								}
 							],
 							"type": {
@@ -15485,7 +15485,7 @@
 							"fileName": "types/database.ts",
 							"line": 186,
 							"character": 35,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L186"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L186"
 						}
 					]
 				}
@@ -15518,7 +15518,7 @@
 					"fileName": "types/operators.ts",
 					"line": 35,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/operators.ts#L35"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/operators.ts#L35"
 				}
 			],
 			"type": {
@@ -15542,7 +15542,7 @@
 					"fileName": "types/database.ts",
 					"line": 67,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L67"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L67"
 				}
 			],
 			"typeParameters": [
@@ -15593,7 +15593,7 @@
 					"fileName": "types/database.ts",
 					"line": 55,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L55"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L55"
 				}
 			],
 			"typeParameters": [
@@ -15671,7 +15671,7 @@
 					"fileName": "types/database.ts",
 					"line": 63,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L63"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L63"
 				}
 			],
 			"typeParameters": [
@@ -15763,7 +15763,7 @@
 					"fileName": "types/database.ts",
 					"line": 68,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L68"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L68"
 				}
 			],
 			"typeParameters": [
@@ -15822,7 +15822,7 @@
 					"fileName": "types/operators.ts",
 					"line": 7,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/operators.ts#L7"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/operators.ts#L7"
 				}
 			],
 			"type": {
@@ -15845,7 +15845,7 @@
 									"fileName": "types/operators.ts",
 									"line": 7,
 									"character": 32,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/operators.ts#L7"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/operators.ts#L7"
 								}
 							],
 							"type": {
@@ -15867,7 +15867,7 @@
 							"fileName": "types/operators.ts",
 							"line": 7,
 							"character": 30,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/operators.ts#L7"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/operators.ts#L7"
 						}
 					]
 				}
@@ -15884,7 +15884,7 @@
 					"fileName": "types/database.ts",
 					"line": 141,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L141"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L141"
 				}
 			],
 			"typeParameters": [
@@ -15959,7 +15959,7 @@
 					"fileName": "types/database.ts",
 					"line": 37,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L37"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L37"
 				}
 			],
 			"typeParameters": [
@@ -16041,7 +16041,7 @@
 					"fileName": "types/operators.ts",
 					"line": 18,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/operators.ts#L18"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/operators.ts#L18"
 				}
 			],
 			"type": {
@@ -16072,7 +16072,7 @@
 									"fileName": "types/operators.ts",
 									"line": 20,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/operators.ts#L20"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/operators.ts#L20"
 								}
 							],
 							"type": {
@@ -16099,7 +16099,7 @@
 									"fileName": "types/operators.ts",
 									"line": 22,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/operators.ts#L22"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/operators.ts#L22"
 								}
 							],
 							"type": {
@@ -16122,7 +16122,7 @@
 							"fileName": "types/operators.ts",
 							"line": 18,
 							"character": 38,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/operators.ts#L18"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/operators.ts#L18"
 						}
 					]
 				}
@@ -16147,7 +16147,7 @@
 					"fileName": "types/database.ts",
 					"line": 10,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L10"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L10"
 				}
 			],
 			"type": {
@@ -16187,7 +16187,7 @@
 					"fileName": "types/server.ts",
 					"line": 15,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L15"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L15"
 				}
 			],
 			"type": {
@@ -16210,7 +16210,7 @@
 									"fileName": "types/server.ts",
 									"line": 18,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L18"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L18"
 								}
 							],
 							"type": {
@@ -16229,7 +16229,7 @@
 									"fileName": "types/server.ts",
 									"line": 16,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L16"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L16"
 								}
 							],
 							"type": {
@@ -16248,7 +16248,7 @@
 									"fileName": "types/server.ts",
 									"line": 17,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L17"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L17"
 								}
 							],
 							"type": {
@@ -16272,7 +16272,7 @@
 							"fileName": "types/server.ts",
 							"line": 15,
 							"character": 38,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L15"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L15"
 						}
 					]
 				}
@@ -16297,7 +16297,7 @@
 					"fileName": "types/server.ts",
 					"line": 22,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L22"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L22"
 				}
 			],
 			"type": {
@@ -16328,7 +16328,7 @@
 									"fileName": "types/server.ts",
 									"line": 24,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L24"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L24"
 								}
 							],
 							"type": {
@@ -16360,7 +16360,7 @@
 									"fileName": "types/server.ts",
 									"line": 26,
 									"character": 2,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L26"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L26"
 								}
 							],
 							"type": {
@@ -16386,7 +16386,7 @@
 							"fileName": "types/server.ts",
 							"line": 22,
 							"character": 39,
-							"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/server.ts#L22"
+							"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/server.ts#L22"
 						}
 					]
 				}
@@ -16459,7 +16459,7 @@
 					"fileName": "types/edge.ts",
 					"line": 23,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/edge.ts#L23"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/edge.ts#L23"
 				}
 			],
 			"typeParameters": [
@@ -16548,7 +16548,7 @@
 					"fileName": "types/database.ts",
 					"line": 312,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L312"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L312"
 				}
 			],
 			"type": {
@@ -16587,7 +16587,7 @@
 					"fileName": "types/database.ts",
 					"line": 169,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L169"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L169"
 				}
 			],
 			"type": {
@@ -16606,7 +16606,7 @@
 									"fileName": "types/database.ts",
 									"line": 170,
 									"character": 5,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L170"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L170"
 								}
 							],
 							"signatures": [
@@ -16663,7 +16663,7 @@
 									"fileName": "types/database.ts",
 									"line": 171,
 									"character": 5,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L171"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L171"
 								}
 							],
 							"signatures": [
@@ -16737,7 +16737,7 @@
 					"fileName": "types/database.ts",
 					"line": 376,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L376"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L376"
 				}
 			],
 			"typeParameters": [
@@ -16874,7 +16874,7 @@
 					"fileName": "types/database.ts",
 					"line": 73,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L73"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L73"
 				}
 			],
 			"typeParameters": [
@@ -16925,7 +16925,7 @@
 					"fileName": "types/database.ts",
 					"line": 368,
 					"character": 12,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L368"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L368"
 				}
 			],
 			"typeParameters": [
@@ -17007,7 +17007,7 @@
 											"fileName": "types/database.ts",
 											"line": 369,
 											"character": 2,
-											"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L369"
+											"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L369"
 										}
 									],
 									"type": {
@@ -17029,7 +17029,7 @@
 									"fileName": "types/database.ts",
 									"line": 368,
 									"character": 66,
-									"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L368"
+									"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L368"
 								}
 							]
 						}
@@ -17050,7 +17050,7 @@
 					"fileName": "types/database.ts",
 					"line": 272,
 					"character": 21,
-					"url": "https://github.com/valence-corp/sprite/blob/c6eebb5e7be66ea51d9e8646b3d851b3bedb9b48/src/types/database.ts#L272"
+					"url": "https://github.com/valence-corp/sprite/blob/b9f58768afa0665587ab0ee848473767cb0c81bf/src/types/database.ts#L272"
 				}
 			],
 			"type": {
@@ -17293,11 +17293,11 @@
 	"readme": [
 		{
 			"kind": "text",
-			"text": "# Sprite\n\nSprite is a TypeScript driver for ArcadeDB. It is still in early development, and should be considered experimental.\n\n[Read the documentation](https://tragedy-labs.github.io/sprite), or glance over the examples below.\n\n## Installation\n\n(Use whichever package manager you prefer)\n\n"
+			"text": "# Sprite\n\nSprite is a TypeScript driver for ArcadeDB.\n\n[Read the documentation](https://valence-corp.github.io/sprite), or see the examples below.\n\n## Installation\n\n(Use whichever package manager you prefer)\n\n"
 		},
 		{
 			"kind": "code",
-			"text": "`pnpm install @tragedy-labs/sprite`"
+			"text": "`<npm|pnpm|yarn|bun> <install|add> @tragedy-labs/sprite`"
 		},
 		{
 			"kind": "text",
@@ -17305,7 +17305,7 @@
 		},
 		{
 			"kind": "code",
-			"text": "```ts\n@import { SpriteServer } from '@tragedy-labs/sprite';\n\nconst server = new SpriteServer({\n  username: 'aUser',\n  password: 'aPassword',\n  address: 'http://localhost:2480'\n});\n\nasync function example() {\n\n  const ready = await server.serverReady();\n  console.log(ready);\n  // true;\n\n  try {\n    const db = await server.createDatabase('aDatabase');\n    console.log(db.name);\n    // 'aDatabase'\n\n    db.transaction(async (trx) => {\n      const result = await db.command('sql', 'CREATE document TYPE aType', trx);\n      console.log(result);\n      // {\n      //  user: 'aUser',\n      //  version: '24.x.x (build [...])',\n      //  serverName: 'ArcadeDB_0',\n      //  result: [ { operation: 'create document type', typeName: 'aType' } ]\n      // }\n    });\n  } catch (error) {\n    throw new Error('Could not create database', { cause: error });\n  }\n}\n\nexample();\n\n```"
+			"text": "```ts\n@import { SpriteServer } from '@tragedy-labs/sprite';\n\nconst server = new SpriteServer({\n  username: 'aUser',\n  password: 'aPassword',\n  address: 'http://localhost:2480'\n});\n\nasync function example() {\n\n  const ready = await server.serverReady();\n  console.log(ready);\n  // true;\n\n  try {\n    const db = await server.createDatabase('aDatabase');\n    console.log(db.name);\n    // 'aDatabase'\n\n    await db.command('sql', 'CREATE document TYPE aType');\n    console.log(result);\n    // {\n    //  user: 'aUser',\n    //  version: '24.x.x (build [...])',\n    //  serverName: 'ArcadeDB_0',\n    //  result: [ { operation: 'create document type', typeName: 'aType' } ]\n    // }\n\n    // CRUD must be transactional\n    db.transaction(async (trx) => {\n      const doc = db.crud(\n        'sql',\n        `INSERT INTO aType CONTENT ${JSON.stringify{ aProperty: 'aValue' }}`,\n        trx\n      );\n    });\n  } catch (error) {\n    throw new Error('Could not create database', { cause: error });\n  }\n}\n\nexample();\n\n```"
 		},
 		{
 			"kind": "text",
@@ -17313,15 +17313,15 @@
 		},
 		{
 			"kind": "code",
-			"text": "```ts\n@import { SpriteDatabase } from '@tragedy-labs/sprite';\n\nconst database = new SpriteDatabase({\n  username: 'aUser',\n  password: 'aPassword',\n  address: 'http://localhost:2480',\n  databaseName: 'aDatabase'\n});\n\nasync function example() {\n  try {\n    const result = await database.getSchema();\n    console.log(result);\n    // [...]\n  } catch (error) {\n    throw new Error('Could not get database schema', { cause: error });\n  }\n}\n\nexample();\n\n```"
+			"text": "```ts\n@import { SpriteDatabase } from '@tragedy-labs/sprite';\n@import type {\n  CreateDocumentType,\n  InsertDocument,\n  SelectFrom\n} from '@tragedy-labs/sprite';\n\nconst db = new SpriteDatabase({\n  username: 'aUser',\n  password: 'aPassword',\n  address: 'http://localhost:2480',\n  databaseName: 'aDatabase'\n});\n\ntype ExampleDoc = {\n  aValue: string;\n};\n\nasync function example() {\n  try {\n    const created = await db.command<CreateDocumentType>(\n      'sql',\n      'CREATE document TYPE aType'\n    );\n\n    console.log(created);\n    // [\n    //   {\n    //     operation: 'create type',\n    //     type: 'aType'\n    //   }\n    // ]\n\n    const schema = await db.getSchema();\n    console.log(schema);\n    // [...]\n\n    // CRUD must be transactional\n    db.transaction(async (trx) => {\n      await db.crud<InsertDocument<ExampleDoc>>(\n        'sql',\n        `INSERT INTO aType CONTENT ${JSON.stringify{ aProperty: 'aValue' }}`,\n        trx\n      );\n    });\n\n    const docs = await db.query<SelectFrom<ExampleDoc>>(\n      'sql',\n      'SELECT * FROM aType'\n    );\n    console.log(docs);\n    // [\n    //   {\n    //     aProperty: 'aValue'\n    //   }\n    // ]\n\n  } catch (error) {\n    throw new Error('An error occured...', { cause: error });\n  }\n}\n\nexample();\n\n```"
 		},
 		{
 			"kind": "text",
-			"text": "\n\n#### Working with Documents\n\n"
+			"text": "\n\n### DocumentModality\n\nThere are higher level functions if you want to quickly implement functionality instead of writing your own SQL.\n\n"
 		},
 		{
 			"kind": "code",
-			"text": "```ts\n@import { SpriteDatabase } from '@tragedy-labs/sprite';\n\nconst database = new SpriteDatabase({\n  username: 'aUser',\n  password: 'aPassword',\n  address: 'http://localhost:2480',\n  databaseName: 'aDatabase'\n});\n\ntype DocumentTypes = {\n  aDocument: {\n    aProperty: string\n  }\n}\n\nconst client = database.documentModality<DocumentTypes>()\n\nasync function example() {\n  try {\n    await client.transaction(async (trx) => {\n      // non-idempotent operations must be\n      // conducted within a transaction\n      await client.createType('aDocument', trx);\n      const document = await client.newDocument('aDocument', trx, {\n        data: {\n          aProperty: 'aValue'\n        }\n      });\n      console.log(document);\n      // {\n      //   '@rid': '#0:0',\n      //   '@cat': 'd',\n      //   '@type': 'aDocument',\n      //   aProperty: 'aValue'\n      // }\n    });\n  } catch (error) {\n    throw new Error('Could not create database', { cause: error });\n  }\n}\n\nexample();\n\n```"
+			"text": "```ts\n@import { SpriteDatabase } from '@tragedy-labs/sprite';\n\nconst database = new SpriteDatabase({\n  username: 'aUser',\n  password: 'aPassword',\n  address: 'http://localhost:2480',\n  databaseName: 'aDatabase'\n});\n\ntype DocumentTypes = {\n  aDocument: {\n    aProperty: string\n  }\n}\n\nconst client = database.documentModality<DocumentTypes>()\n\nasync function example() {\n  try {\n    await client.createType('aDocument');\n\n    // CRUD must be transactional\n    await client.transaction(async (trx) => {\n      const document = await client.newDocument(\n        'aDocument',\n        trx,\n        {\n          data: {\n            aProperty: 'aValue'\n          }\n        }\n      );\n      console.log(document);\n      // {\n      //   '@rid': '#0:0',\n      //   '@cat': 'd',\n      //   '@type': 'aDocument',\n      //   aProperty: 'aValue'\n      // }\n    });\n  } catch (error) {\n    throw new Error('Could not create database', { cause: error });\n  }\n}\n\nexample();\n\n```"
 		},
 		{
 			"kind": "text",
@@ -17329,7 +17329,7 @@
 		},
 		{
 			"kind": "code",
-			"text": "```ts\n@import { SpriteDatabase } from '@tragedy-labs/sprite';\n\nconst database = new SpriteDatabase({\n  username: 'aUser',\n  password: 'aPassword',\n  address: 'http://localhost:2480',\n  databaseName: 'aDatabase'\n});\n\ntype VertexTypes = {\n  aVertex: {\n    aProperty: string\n  }\n}\n\n\ntype EdgeTypes = {\n  anEdge: {\n    aProperty: string\n  }\n}\n\nconst graph = database.graphModality<VertexTypes, EdgeTypes>()\n\nfunction example() {\n  try {\n    graph.transaction(async (trx) => {\n      // non-idempotent operations must be\n      // conducted within a transaction\n      await graph.createVertexType('aVertex', trx);\n      await graph.createEdgeType('anEdge', trx);\n      const vertexA = await graph.newVertex('aVertex', trx, {\n        data: {\n          aProperty: 'aValue'\n        }\n      });\n      const vertexB = await graph.newVertex('aVertex', trx, {\n        data: {\n          aProperty: 'anotherValue'\n        }\n      });\n      const edge = await graph.newEdge(\n        'anEdge',\n        vertexA['@rid'],\n        vertexB['@rid'],\n        trx,\n        {\n          data: {\n            aProperty: 'aValue',\n          },\n        },\n      );\n      console.log(edge)\n      // {\n      //  '@rid': '#3:0',\n      //  '@cat': 'e',\n      //  '@type': 'anEdge',\n      //  '@in': '#2:0',\n      //  '@out': '#1:0,\n      //  aProperty: 'aValue'\n      // }\n    });\n  } catch (error) {\n    throw new Error('Could not create database', { cause: error });\n  }\n}\n\nexample();\n\n```"
+			"text": "```ts\n@import { SpriteDatabase } from '@tragedy-labs/sprite';\n\nconst database = new SpriteDatabase({\n  username: 'aUser',\n  password: 'aPassword',\n  address: 'http://localhost:2480',\n  databaseName: 'aDatabase'\n});\n\ntype VertexTypes = {\n  aVertex: {\n    aProperty: string\n  }\n}\n\ntype EdgeTypes = {\n  anEdge: {\n    aProperty: string\n  }\n}\n\nconst graph = database.graphModality<VertexTypes, EdgeTypes>()\n\nfunction example() {\n  try {\n    await graph.createVertexType('aVertex', trx);\n    await graph.createEdgeType('anEdge', trx);\n    graph.transaction(async (trx) => {\n      const vertexA = await graph.newVertex(\n        'aVertex',\n        trx,\n        {\n          data: {\n            aProperty: 'aValue'\n          }\n        }\n      );\n      const vertexB = await graph.newVertex(\n        'aVertex',\n        trx,\n        {\n          data: {\n            aProperty: 'anotherValue'\n          }\n        }\n      );\n      const edge = await graph.newEdge(\n        'anEdge',\n        vertexA['@rid'],\n        vertexB['@rid'],\n        trx,\n        {\n          data: {\n            aProperty: 'aValue',\n          },\n        },\n      );\n      console.log(edge)\n      // {\n      //  '@rid': '#3:0',\n      //  '@cat': 'e',\n      //  '@type': 'anEdge',\n      //  '@in': '#2:0',\n      //  '@out': '#1:0,\n      //  aProperty: 'aValue'\n      // }\n    });\n  } catch (error) {\n    throw new Error('Could not create database', { cause: error });\n  }\n}\n\nexample();\n\n```"
 		}
 	],
 	"symbolIdMap": {
