@@ -35,7 +35,7 @@ describe('SqlDialect.deleteOne()', () => {
       `INSERT INTO ${typeName} CONTENT ${JSON.stringify(data)}`,
       createTrx
     );
-    await createTrx.commit()
+    await createTrx.commit();
 
     /* Act */
     const deleteTrx = await db.newTransaction();

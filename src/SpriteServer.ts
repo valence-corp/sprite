@@ -313,7 +313,6 @@ class SpriteServer {
    */
   connectCluster = async (address: string): Promise<boolean> => {
     try {
-      this._validate.url(address);
       return await this._booleanCommand(`CONNECT CLUSTER ${address}`);
     } catch (error) {
       throw new Error(
@@ -447,7 +446,6 @@ class SpriteServer {
       return await this._booleanCommand(
         `CREATE USER ${JSON.stringify(expectedParameters)}`
       );
-
     } catch (error) {
       const databaseListString = Object.keys(params.databases).join(', ');
       throw new Error(
@@ -489,7 +487,7 @@ class SpriteServer {
         `${endpoints.exists}/${databaseName}`
       );
       switch (response.status) {
-        case 200:
+        case 200: {
           const { result } = await response.json();
           if (typeof result === 'boolean') {
             return result;
@@ -498,6 +496,7 @@ class SpriteServer {
               `Recieved an unexpected result from the server, expected boolean, recieved: [${result}] which has a type of: ${typeof result}.`
             );
           }
+        }
         case 400:
           throw new Error(
             `No database name was passed to the server. Recieved: [${databaseName}].`

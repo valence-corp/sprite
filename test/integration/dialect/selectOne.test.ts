@@ -13,7 +13,7 @@ interface SelectOneTestType {
 
 interface DocumentTypes {
   [typeName]: SelectOneTestType;
-  [invalidTypeName]: {};
+  [invalidTypeName]: object;
 }
 
 describe('SqlDialect.selectOne()', () => {

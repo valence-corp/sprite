@@ -3,7 +3,6 @@ import { endpoints } from '../../../../src/endpoints/database.js';
 import { variables, testAuth } from '../../../variables.js';
 
 import { DocumentTypes } from '../../types.js';
-import { ArcadeQueryResponse } from '../../../../src/types/database.js';
 
 const typeName = 'aDocument';
 const SpriteDatabase = client.database;

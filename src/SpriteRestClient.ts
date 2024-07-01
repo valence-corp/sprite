@@ -24,15 +24,10 @@ class SpriteRestClient {
     params: ISpriteRestClientConnectionParameters
   ): ISpriteConnection => {
     try {
-      // this.validate.nonEmptyString(params.username);
-      // this.validate.nonEmptyString(params.password);
-      // this.validate.url(params.address);
-
       const base64EncodedCredentials = this.encodeCredentials(
         params.username,
         params.password
       );
-
       return {
         headers: {
           'Content-Type': 'application/json',
@@ -149,16 +144,6 @@ class SpriteRestClient {
     parameters?: string | object
   ): Promise<T> => {
     try {
-      //this.validate.nonEmptyString(command);
-
-      if (typeof parameters === 'string') {
-        //this.validate.nonEmptyString(parameters);
-      }
-
-      if (typeof parameters === 'object') {
-        //this.validate.nonEmptyObject(parameters);
-      }
-
       const parametersString = parameters
         ? typeof parameters === 'object'
           ? ` ${JSON.stringify(parameters)}`

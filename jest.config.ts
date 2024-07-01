@@ -5,6 +5,9 @@ const config: JestConfigWithTsJest = {
   preset: 'ts-jest',
   resolver: 'ts-jest-resolver',
   testEnvironment: 'node',
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1'
+  },
   transform: {
     '^.+\\.ts?$': 'ts-jest',
   },

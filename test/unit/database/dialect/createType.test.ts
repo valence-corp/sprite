@@ -1,9 +1,6 @@
 import { client } from './testClient.js';
 import { endpoints } from '../../../../src/endpoints/database.js';
-import {
-  variables,
-  headers
-} from '../../../variables.js';
+import { variables, headers } from '../../../variables.js';
 import { SpriteType } from '../../../../src/SpriteType.js';
 
 import { DocumentTypes } from '../../types.js';

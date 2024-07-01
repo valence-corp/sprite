@@ -58,8 +58,8 @@ describe('SqlDialect.selectFrom()', () => {
   it(`should propagate errors from the database`, async () => {
     /* Arrange, Act, & Assert */
     await expect(
-      // @ts-ignore - intentionally passing invalid type
-      testClient.selectFrom("INVALID_TYPE_NAME")
+      // @ts-expect-error - intentionally passing invalid type
+      testClient.selectFrom('INVALID_TYPE_NAME')
     ).rejects.toMatchSnapshot();
   });
 });

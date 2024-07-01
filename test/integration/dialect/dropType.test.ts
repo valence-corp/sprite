@@ -2,7 +2,6 @@ import { CreateDocumentType } from 'src/types/commands.js';
 import { testClient } from './testclient.js';
 import { ArcadeDocument } from 'src/types/queries.js';
 
-
 const db = testClient.database;
 const invalidTypeName = 'DROP_TYPE_INVALID_TYPE';
 const typeName = 'DropTypeTestType';
@@ -13,7 +12,7 @@ type DropTypeTestType = {
 
 interface DocumentTypes {
   [typeName]: DropTypeTestType;
-  [invalidTypeName]: {};
+  [invalidTypeName]: object;
 }
 
 describe('SqlDialect.dropType()', () => {

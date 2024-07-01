@@ -1,7 +1,6 @@
 import { endpoints } from '../../../src/endpoints/server.js';
 import { client } from './utilities/testClient.js';
 import { variables, testAuth } from '../../variables.js';
-import { testPropagateErrors } from '../helpers/testPropagateErrors.js';
 
 describe('SpriteBase.fetchJson()', () => {
   it('should make a properly formatted fetch request with supplied options', async () => {
@@ -28,10 +27,6 @@ describe('SpriteBase.fetchJson()', () => {
       options
     );
   });
-
-  // I believe that if the fetchJson method is being used that it should always return the
-  // "result" property from the object that the fetch method returns. This simplifies
-  // the code for higher level methods.
   it('should return the result property of the response json object', async () => {
     // Arrange
     jest.spyOn(global, 'fetch').mockResolvedValue({

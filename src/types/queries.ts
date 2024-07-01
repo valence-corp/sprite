@@ -6,8 +6,7 @@ import { ArcadeRecordCategory, RecordMeta } from './database.js';
  * expect it to be delivered as an array of the
  * described object.
  */
-type ArcadeRecord<T, C extends ArcadeRecordCategory> = T &
-  RecordMeta<C>;
+type ArcadeRecord<T, C extends ArcadeRecordCategory> = T & RecordMeta<C>;
 
 /**
  * The `DOCUMENT` record of a certain type, with ArcadeDB meta

@@ -1,6 +1,5 @@
 import { client, dbClient as SpriteDatabase } from './testClient.js';
 import { variables } from '../../../../variables.js';
-import { ArcadeQueryResponse } from '../../../../../src/types/database.js';
 
 const typeName = 'aDocument';
 

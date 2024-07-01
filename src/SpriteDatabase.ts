@@ -221,9 +221,10 @@ class SpriteDatabase {
     // 403, 404 are handled by SpriteBase.fetch()
 
     switch (response.status) {
-      case 200:
+      case 200: {
         const { result } = await response.json();
         return result;
+      }
       case 400:
         throw new Error(
           `Invalid language or query. Status: ${response.status}`
@@ -386,9 +387,10 @@ class SpriteDatabase {
     );
 
     switch (response.status) {
-      case 200:
+      case 200: {
         const { result } = await response.json();
         return result;
+      }
       // TODO: need to find an example of a command that returns 202
       // case 202:
       //  break;
@@ -443,6 +445,7 @@ class SpriteDatabase {
   };
   sql = (command: string, transaction?: SpriteTransaction) =>
     this.command('sql', command, transaction);
+
   /**
    * Begins a transaction on the server, managed as a session.
    * @param {ArcadeTransactionIsolationLevel} isolationLevel The isolation level for the transaction, defaults to `READ_COMMITED`.
@@ -524,13 +527,13 @@ class SpriteDatabase {
    *     const trx = await db.newTransaction();
    *     await db.command(
    *       'sql',
-   *       'CREATE document TYPE aType',
-   *       trx
+   *       'INSERT INTO aType',
    *     );
+   *
    *     console.log(trx.id);
    *     // 'AS-0000000-0000-0000-0000-00000000000'
+   *
    *     db.commitTransaction(trx.id);
-   *     return trx;
    *   } catch (error) {
    *     console.log(error);
    *     // handle error conditions
@@ -576,7 +579,7 @@ class SpriteDatabase {
    * async function rollbackTransactionExample() {
    *   try {
    *     const trx = await db.newTransaction();
-   *     await db.command<InsertDocument<DocumentType>>(
+   *     await db.command(
    *       'sql',
    *       'INSERT INTO aType',
    *       trx

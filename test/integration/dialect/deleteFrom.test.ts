@@ -31,7 +31,7 @@ describe('SqlDialect.deleteFrom()', () => {
     await db.command<DropType<typeof typeName>>('sql', `DROP TYPE ${typeName}`);
   });
   it(`should delete a record`, async () => {
-    // Arrange
+    /* Arrange */
     // Create a record to delete
     const trxCreate = await db.newTransaction();
     const [record] = await db.command<InsertDocument<DeleteFromTestDocument>>(
@@ -40,7 +40,7 @@ describe('SqlDialect.deleteFrom()', () => {
     );
     await trxCreate.commit();
 
-    // Act
+    /* Act */
     const trxDelete = await db.newTransaction();
     await testClient.deleteFrom<DocumentTypes, typeof typeName, '@rid'>(
       typeName,
@@ -51,7 +51,7 @@ describe('SqlDialect.deleteFrom()', () => {
     );
     await trxDelete.commit();
 
-    // Assert
+    /* Assert */
     await expect(
       db.query(
         'sql',
@@ -61,11 +61,11 @@ describe('SqlDialect.deleteFrom()', () => {
   });
 
   it(`should propagate errors from the database`, async () => {
-    // Arrange
+    /* Arrange */
     const trx = await db.newTransaction();
-    // Act & Assert
+    /* Act & Assert */
     await expect(
-      // @ts-ignore - intentionally passing invalid type
+      // @ts-expect-error - intentionally passing invalid type
       testClient.deleteFrom('INVALID_TYPE', trx, {
         where: ['@rid', '==', 'invalid']
       })

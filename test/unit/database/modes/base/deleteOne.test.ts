@@ -1,6 +1,5 @@
 import { client, dbClient as SpriteDatabase } from './testClient.js';
 import { variables } from '../../../../variables.js';
-import { ArcadeCommandResponse } from '../../../../../src/types/database.js';
 import { testTransaction } from '../../client/testClient.js';
 import { DeleteFromCount } from '../../../../../src/types/operators.js';
 

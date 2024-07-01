@@ -32,6 +32,10 @@
     "rootDir": "./",
     // Provides a base directory for non-relative module names. All paths will be resolved relative to this baseUrl.
     "baseUrl": "./",
+    "paths": {
+      // Maps the '@/*' import to the 'src/*' directory.
+      "@/*": ["src/*"],
+    }
   },
   // Specifies folder patterns to exclude from the compilation.
   "exclude": [

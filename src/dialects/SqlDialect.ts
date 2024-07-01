@@ -168,7 +168,6 @@ class SqlDialect {
     // [RETRY <retry> [WAIT <pauseBetweenRetriesInMs]] [BATCH <batch-size
     // >]
     try {
-      this._validate.transaction(transaction);
       const createEdgeCommand = new SpriteCommand({
         initial: this._nodes.create.edge.createEdge<N>(type)
       });
@@ -269,7 +268,6 @@ class SqlDialect {
     transaction: SpriteTransaction,
     options?: ISpriteInsertRecordOptions<S[N]>
   ): Promise<Array<S[N] & RecordMeta>> => {
-    this._validate.transaction(transaction);
     // INSERT INTO [TYPE:]<type>|BUCKET:<bucket>
     // [CONTENT {<JSON>}|[{<JSON>}[,]*]]
     const insertIntoCommand = new SpriteCommand({
@@ -373,7 +371,6 @@ class SqlDialect {
     // DELETE FROM <Type> [RETURN <returning>]
     // [WHERE <Condition>*] [LIMIT <MaxRecords>] [TIMEOUT <MilliSeconds>] [UNSAFE]
     try {
-      this._validate.transaction(transaction);
       // If there no options (like you want delete all the records of a certain type)
       // you must use backticks on the typeName, so this is a hack for now (TODO)
       const command = new SpriteCommand({
@@ -561,7 +558,6 @@ class SqlDialect {
     transaction: SpriteTransaction
   ): Promise<DeleteFromCount> => {
     try {
-      this._validate.transaction(transaction);
       const result = await this._command<ArcadeDeleteFromResponse>(
         `DELETE FROM ${rid}`,
         transaction
@@ -598,7 +594,6 @@ class SqlDialect {
     // [CONTENT <JSON>]
     // RETURN AFTER @this
     try {
-      this._validate.transaction(transaction);
       const command = new SpriteCommand({
         initial: this._nodes.update.record.updateRecord(rid)
       });
