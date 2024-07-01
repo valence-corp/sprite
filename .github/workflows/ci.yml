@@ -28,5 +28,3 @@ jobs:
 
       - name: Run integration tests
         run: npm run test:integration
-
-      - run: echo "🍏 This job's status is ${{ job.status }}."

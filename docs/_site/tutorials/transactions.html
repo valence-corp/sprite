@@ -1194,19 +1194,9 @@
   aria-label="Edit on Github"><svg xmlns="http://www.w3.org/2000/svg" aria-label="Github Icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"/></svg> Edit<span class="mobile-hidden"> on Github</span></a>
 </header>
 
-          <p>ArcadeDB is a transactional database. This is preferred for applications that require a high level of data integrity. Non-idempotent operations (which is a technical way of saying “operations that can change the database”) must be part of a transaction.</p>
+          <p>ArcadeDB is a transactional database. This is preferred for applications that require a high level of data integrity. CRUD commands are required to be issued as part of a <a href="https://en.wikipedia.org/wiki/Database_transaction">transaction</a> as a way to ensure <a href="https://en.wikipedia.org/wiki/ACID">ACID compliance</a>.</p>
 
-<p>In ArcadeDB (and Sprite) commands are non-idempotent, and queries are idempotent. Commands, therefore, are required to be issued as part of a transaction. Sprite contains many methods that are built as abstractions over commands (for example: <code class="language-plaintext highlighter-rouge">createType</code>, <code class="language-plaintext highlighter-rouge">createDocument</code>, or <code class="language-plaintext highlighter-rouge">deleteOne</code>). They still use the <code class="language-plaintext highlighter-rouge">SpriteDatabase.command</code> method internally, and as a result must be performed as part of a transaction.</p>
-
-<p>There are a few different ways to conduct transactions in Sprite</p>
-
-<ol>
-  <li>Manually, with <code class="language-plaintext highlighter-rouge">newTransaction</code>, <code class="language-plaintext highlighter-rouge">commitTransaction</code>, and <code class="language-plaintext highlighter-rouge">rollbackTransaction</code></li>
-  <li>The <code class="language-plaintext highlighter-rouge">SpriteDatabase.transaction</code> method (which incorporates some abstraction to reduce boilerplate)</li>
-  <li>The <code class="language-plaintext highlighter-rouge">SpriteTransaction</code> class itself has a <code class="language-plaintext highlighter-rouge">commit</code>, and a <code class="language-plaintext highlighter-rouge">rollback</code> method on it.</li>
-</ol>
-
-<p>This tutorial will demonstate these methods, and explain why they are implemented as such in Sprite.</p>
+<p>There are a few different ways to conduct transactions in Sprite. This tutorial will demonstate these methods, and explain why they are implemented as such in Sprite. As a warning, some code here might be daunting at first. It is not super important that you are an SQL expert, as long as you understand the basics of the transaction process. The next tutorial will explain some higher-level methods that might be better for beginners, but this is foundational for using a transactional database.</p>
 
 <hr />
 
@@ -1238,94 +1228,109 @@
 
 <h4 id="instantiating-spritedatabase">Instantiating SpriteDatabase</h4>
 
-<p>Begin by inserting the following code into your project’s <code class="language-plaintext highlighter-rouge">index.ts</code> file:</p>
+<p>The following code demonstrates how to create a new instance of <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> in your project:</p>
 
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">SpriteDatabase</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@valence-corp/sprite</span><span class="dl">"</span><span class="p">;</span>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">SpriteDatabase</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@valence-corp/sprite</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SpriteDatabase</span><span class="p">({</span>
-  <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aUsername</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// root will be ok for this tutorial</span>
-  <span class="na">password</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aPassword</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// your password,</span>
-  <span class="na">address</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:2480</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// default address for ArcadeDB</span>
-  <span class="na">databaseName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ExampleDatabase</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// the existing database</span>
+  <span class="na">username</span><span class="p">:</span> <span class="dl">'</span><span class="s1">aUsername</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// root will be ok for this tutorial</span>
+  <span class="na">password</span><span class="p">:</span> <span class="dl">'</span><span class="s1">aPassword</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// your password,</span>
+  <span class="na">address</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://localhost:2480</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// default address for ArcadeDB</span>
+  <span class="na">databaseName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">ExampleDatabase</span><span class="dl">'</span> <span class="c1">// the existing database</span>
 <span class="p">});</span>
-</code></pre></div></div>
-
-<h4 id="manual-transactions">Manual Transactions</h4>
-
-<p>The following code demonstrates manual transactions:</p>
-
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">manualTransaction</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">try</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">transaction</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">newTransaction</span><span class="p">();</span>
-    <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span>
-      <span class="dl">"</span><span class="s2">sql</span><span class="dl">"</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">CREATE document TYPE ExampleUnused</span><span class="dl">"</span><span class="p">,</span>
-      <span class="nx">transaction</span>
-    <span class="p">);</span>
-    <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">commitTransaction</span><span class="p">(</span><span class="nx">transaction</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
-    <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">rollbackTransaction</span><span class="p">(</span><span class="nx">transaction</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span>
-      <span class="dl">"</span><span class="s2">There was an error during the example transaction</span><span class="dl">"</span><span class="p">,</span>
-      <span class="p">{</span> <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span> <span class="p">}</span>
-    <span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
 </code></pre></div></div>
 
 <h4 id="transaction-helper">Transaction Helper</h4>
 
-<p>The <code class="language-plaintext highlighter-rouge">SpriteDatabase.transaction</code> method reduces boilerplate for transactions:</p>
+<p>You can think of a transaction as a scope in which a series of commands are executed as a unit of work in the database, similar to how a function groups programmatic operations within a scope.</p>
+
+<p>This example uses the <code class="language-plaintext highlighter-rouge">SpriteDatabase.transaction</code> method to create a transaction scope. The <code class="language-plaintext highlighter-rouge">transaction</code> method accepts one argument, which is a callback. Upon initialization, the <code class="language-plaintext highlighter-rouge">transaction</code> method creates a new <code class="language-plaintext highlighter-rouge">SpriteTransaction</code> instance and passes it as a parameter to the callback (named <code class="language-plaintext highlighter-rouge">trx</code> in this case).</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">transactionHelperExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">transaction</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">transaction</span><span class="p">(</span><span class="k">async </span><span class="p">(</span><span class="nx">trx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span>
-        <span class="dl">"</span><span class="s2">sql</span><span class="dl">"</span><span class="p">,</span>
-        <span class="dl">"</span><span class="s2">CREATE document TYPE ExampleUnused</span><span class="dl">"</span><span class="p">,</span>
+    <span class="c1">// Ensure a type exists for the record we will create.</span>
+    <span class="c1">// Schema changes are non-transactional, and non-idempotent.</span>
+    <span class="c1">// They do not require a transaction.</span>
+    <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="dl">'</span><span class="s1">sql</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">CREATE document TYPE aDocument</span><span class="dl">'</span><span class="p">);</span>
+
+    <span class="nx">db</span><span class="p">.</span><span class="nf">transaction</span><span class="p">(</span><span class="k">async </span><span class="p">(</span><span class="nx">trx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="p">[</span><span class="nx">record</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span>
+        <span class="dl">'</span><span class="s1">sql</span><span class="dl">'</span><span class="p">,</span>
+        <span class="s2">`INSERT INTO aDocument CONTENT </span><span class="p">${</span><span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">)}</span><span class="s2">`</span><span class="p">,</span>
         <span class="nx">trx</span>
       <span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">record</span><span class="p">);</span>
+      <span class="c1">// {</span>
+      <span class="c1">//   '@rid': "#0:0",</span>
+      <span class="c1">//   '@cat': 'd',</span>
+      <span class="c1">//   '@type': 'aDocument',</span>
+      <span class="c1">//   aProperty: 'aValue'</span>
+      <span class="c1">// }</span>
     <span class="p">});</span>
-    <span class="k">await</span> <span class="nx">transaction</span><span class="p">.</span><span class="nf">rollback</span><span class="p">();</span>
   <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span>
-      <span class="dl">"</span><span class="s2">There was an error during the example transaction</span><span class="dl">"</span><span class="p">,</span>
-      <span class="p">{</span> <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span> <span class="p">}</span>
-    <span class="p">);</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">There was an error during the example transaction</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span>
+    <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h4 id="spritetransaction">SpriteTransaction</h4>
+<p>There is an SQL <code class="language-plaintext highlighter-rouge">command</code> issued within the scope of the transaction callback. Remember that <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> operations are transactional in ArcadeDB, so we pass the transaction to it as the third argument. This tells the database that we intend to group this operation within the transaction scope.</p>
 
-<p>It could be apparent from previous examples, but it is not strictly necessary to pass the transaction to another method in order to <code class="language-plaintext highlighter-rouge">commit</code> or <code class="language-plaintext highlighter-rouge">rollback</code>. The <code class="language-plaintext highlighter-rouge">SpriteTransaction</code> class has to shortcut these operations directly.</p>
+<p>The transaction executes the callback passed to it, and then automatically commits the transaction. This tells the database that the transaction is closed, and it can execute all operations as a unit of work.</p>
 
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">transactionHelperExample</span><span class="p">()</span> <span class="p">{</span>
+<p>Note that the <code class="language-plaintext highlighter-rouge">record</code> is logged to the console prior to the <code class="language-plaintext highlighter-rouge">transaction</code> closing. ArcadeDB will send the preliminary record immediately, but won’t add it to the database until the transaction is committed.</p>
+
+<h4 id="manual-transactions">Manual Transactions</h4>
+
+<p>It could be necessary to manually orchestrate a transaction for greater control over the process. If something goes wrong before a transaction is committed (a powerloss, user error, or race condition), it might be necessary to rollback a transaction. This can be accomplished by using the <code class="language-plaintext highlighter-rouge">SpriteTransaction.rollback()</code> method.</p>
+
+<p>This example creates a transaction (named <code class="language-plaintext highlighter-rouge">trx</code>). The transaction is again passed as a third argument to the command which is creating a new record, but instead of being commit, we use the <code class="language-plaintext highlighter-rouge">rollback</code> method on the transaction instance, this ensures that the created record was not added to the database, and the transaction is closed.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">manualTransaction</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">transaction</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">createTransaction</span><span class="p">();</span>
+    <span class="c1">// ensure a type exists prior to</span>
+    <span class="c1">// attemping to insert a document</span>
     <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span>
-      <span class="dl">"</span><span class="s2">sql</span><span class="dl">"</span><span class="p">,</span>
-      <span class="dl">"</span><span class="s2">CREATE document TYPE ExampleUnused</span><span class="dl">"</span><span class="p">,</span>
-      <span class="nx">transaction</span>
+      <span class="dl">'</span><span class="s1">sql</span><span class="dl">'</span><span class="p">,</span>
+      <span class="dl">'</span><span class="s1">CREATE document TYPE aDocument</span><span class="dl">'</span>
     <span class="p">);</span>
-    <span class="k">await</span> <span class="nx">transaction</span><span class="p">.</span><span class="nf">commit</span><span class="p">();</span>
+
+    <span class="kd">const</span> <span class="nx">trx</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">newTransaction</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="p">[</span><span class="nx">record</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span>
+      <span class="dl">'</span><span class="s1">sql</span><span class="dl">'</span><span class="p">,</span>
+      <span class="s2">`INSERT INTO aDocument CONTENT </span><span class="p">${</span><span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">)}</span><span class="s2">`</span><span class="p">,</span>
+      <span class="nx">trx</span>
+    <span class="p">);</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">record</span><span class="p">);</span>
+    <span class="c1">// {</span>
+    <span class="c1">//   '@rid': "#0:0",</span>
+    <span class="c1">//   '@cat': 'd',</span>
+    <span class="c1">//   '@type': 'aDocument',</span>
+    <span class="c1">//   aProperty: 'aValue'</span>
+    <span class="c1">// }</span>
+
     <span class="k">await</span> <span class="nx">transaction</span><span class="p">.</span><span class="nf">rollback</span><span class="p">();</span>
+    <span class="c1">// await transaction.commit();</span>
+
   <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span>
-      <span class="dl">"</span><span class="s2">There was an error during the example transaction</span><span class="dl">"</span><span class="p">,</span>
-      <span class="p">{</span> <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span> <span class="p">}</span>
-    <span class="p">);</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">There was an error during the example transaction</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span>
+    <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
+
+<p>Note that the transaction also has a <code class="language-plaintext highlighter-rouge">commit</code> method, one could use that to commit the transaction instead.</p>
 
 <h4 id="why">Why?</h4>
 
-<p>Manually passing transactions allows for more control and flexibility, and reduces resource consumption by avoiding the need to create a new instance of the client for each transaction. Some situations could necessitate using the manual rollback methods, but the abstractions are suitable for most.</p>
+<p>Some libaries offer a higher level of abstraction over the transaction process. They will sometimes create new instances of the client tied to a single transaction. This might work, but likely scales poorly as the volume of CRUD operations increases. Sprite is opinionated that transactions are dictated by the way the developer writes code instead of convenience methods. This allows for greater control and flexibility, while keeping resource consumption to minimum.</p>
 
 <h4 id="conclusion">Conclusion</h4>
 
-<p>In this tutorial, we demonstrated how to work with transactions in Sprite. We covered manual transactions, transaction helpers, and the reasoning behind manually passing transactions.</p>
+<p>In this tutorial, we demonstrated how to work with transactions in Sprite. We covered manual transactions, transaction helpers, and the reasoning behind manually coding transactions.</p>
 
 <h4 id="whats-next">What’s Next?</h4>
 
