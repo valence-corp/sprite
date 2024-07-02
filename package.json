@@ -15,7 +15,7 @@
     "test:unit": "jest ./test/unit/",
     "test:nodes": "jest ./test/unit/database/dialect/nodes/common",
     "test:integration": "jest ./test/integration",
-    "test:thing": "jest ./test/unit/database/dialect/nodes/ --coverage",
+    "test:thing": "jest ./test/unit/database/modes/base/",
     "lint": "pnpm eslint --fix ./test/ ./src",
     "format": "pnpm prettier --write ./test/ ./src",
     "exec": "pnpm build && node ./dist/index.js"

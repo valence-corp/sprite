@@ -6,7 +6,7 @@ import { DeleteFromCount } from '../../../../../src/types/operators.js';
 const typeName = 'aDocument';
 
 describe('ModalityBase.deleteFrom()', () => {
-  it(`correctly passes all options to TypedOperations._deleteFrom`, async () => {
+  it(`correctly passes all options to SqlDialect._deleteFrom`, async () => {
     jest
       .spyOn(SpriteDatabase, 'command')
       .mockImplementationOnce(async (): Promise<DeleteFromCount[]> => {

@@ -15,7 +15,7 @@ describe('ModalityBase.selectOne()', () => {
     });
   });
 
-  it(`correctly passes all arguments and options to TypedOperations.selectOne`, async () => {
+  it(`correctly passes all arguments and options to SqlDialect.selectOne`, async () => {
     await client.selectOne(variables.rid);
 
     expect(SpriteDatabase.query).toHaveBeenCalledWith(

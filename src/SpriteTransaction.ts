@@ -23,6 +23,8 @@ export class SpriteTransaction {
   }
   commit = async () => {
     try {
+      // TODO: This is leftover from old functionality,
+      // should be looked at and cleaned up.
       this._committed = await this.database.commitTransaction(this.id);
       return this.committed;
     } catch (error) {

@@ -4,7 +4,7 @@ import { variables } from '../../../../variables.js';
 const typeName = 'aDocument';
 
 describe('ModalityBase.selectFrom()', () => {
-  it(`correctly passes all options to TypedOperations._selectFrom`, async () => {
+  it(`correctly passes all options to SqlDialect._selectFrom`, async () => {
     jest
       .spyOn(SpriteDatabase, 'query')
       .mockImplementationOnce(async (): Promise<unknown[]> => {

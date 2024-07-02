@@ -5,7 +5,7 @@ import { ArcadeCommandResponse } from '../../../../../src/types/database.js';
 const typeName = 'aDocument';
 
 describe('ModalityBase.dropType()', () => {
-  it(`correctly passes all options to TypedOperations._dropType`, async () => {
+  it(`correctly passes all options to SqlDialect._dropType`, async () => {
     jest
       .spyOn(SpriteDatabase, 'command')
       .mockImplementationOnce(

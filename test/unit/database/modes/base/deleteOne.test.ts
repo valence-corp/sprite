@@ -4,7 +4,7 @@ import { testTransaction } from '../../client/testClient.js';
 import { DeleteFromCount } from '../../../../../src/types/operators.js';
 
 describe('ModalityBase.deleteOne()', () => {
-  it(`correctly passes all options to TypedOperations._deleteOne`, async () => {
+  it(`correctly passes all options to SqlDialect._deleteOne`, async () => {
     jest
       .spyOn(SpriteDatabase, 'command')
       .mockImplementationOnce(async (): Promise<DeleteFromCount[]> => {

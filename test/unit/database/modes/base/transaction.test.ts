@@ -1,6 +1,6 @@
 import { client, dbClient as SpriteDatabase } from './testClient.js';
 import { variables } from '../../../../variables.js';
-import { SpriteTransaction } from '../../../../../src/SpriteTransaction.js';
+import { SpriteTransaction } from '@/SpriteTransaction.js';
 
 describe('ModalityBase.transaction()', () => {
   beforeEach(() => {
@@ -48,7 +48,7 @@ describe('ModalityBase.transaction()', () => {
 
     const transaction = await client.transaction(() => {});
 
-    expect(transaction.committed).toBe(true);
+    expect(transaction).toBe(true);
   });
 
   it(`it executes the callback once`, async () => {
@@ -64,5 +64,12 @@ describe('ModalityBase.transaction()', () => {
     });
 
     expect(count).toBe(1);
+  });
+
+  it('throws an error if an error occurs within the callback', async () => {
+    const transactionPromise = client.transaction(() => {
+      throw new Error('Simulated error');
+    });
+    await expect(transactionPromise).rejects.toMatchSnapshot();
   });
 });

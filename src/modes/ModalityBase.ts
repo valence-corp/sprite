@@ -80,12 +80,11 @@ class ModalityBase<S> {
   transaction = async (
     callback: SpriteTransactionCallback,
     isolationLevel?: ArcadeTransactionIsolationLevel
-  ): Promise<SpriteTransaction> => {
+  ): Promise<boolean> => {
     try {
       const trx = await this.newTransaction(isolationLevel);
       await callback(trx);
-      await trx.commit();
-      return trx;
+      return trx.commit();
     } catch (error) {
       throw new Error(`Could not complete transaction.`, { cause: error });
     }
