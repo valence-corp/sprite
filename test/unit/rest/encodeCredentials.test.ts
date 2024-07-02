@@ -8,6 +8,16 @@ import { client } from './utilities/testClient.js';
 // nodejs environment.
 
 describe('SpriteBase.encodeCredentials()', () => {
+  let originalWindow: Window & typeof globalThis;
+  let originalBuffer: typeof Buffer;
+  beforeEach(() => {
+    originalWindow = global.window;
+    originalBuffer = global.Buffer;
+  });
+  afterEach(() => {
+    global.window = originalWindow;
+    global.Buffer = originalBuffer;  
+  });
   const credentialString = `${variables.username}:${variables.password}`;
   it('should properly encode the credentials in a nodejs environment (such as those passed to this.fetch in the `Authorization` header)', async () => {
     jest.spyOn(global, 'fetch').mockResolvedValue(new Response());
@@ -81,4 +91,23 @@ describe('SpriteBase.encodeCredentials()', () => {
         })
     ).toThrowErrorMatchingSnapshot();
   });
+
+  test('should throw an error when Buffer is not available', () => {
+    global.window = undefined as unknown as typeof global.window;
+    global.Buffer = undefined as unknown as typeof Buffer;
+
+    expect(() => client.encodeCredentials('user', 'pass')).toThrowErrorMatchingSnapshot()
+  });
+
+  test('should throw an error when Buffer fails', () => {
+    global.window = undefined as unknown as typeof global.window;
+    global.Buffer = {
+      from: jest.fn(() => { throw new Error('Buffer error'); })
+    } as unknown as typeof Buffer;
+
+    expect(() => client.encodeCredentials('user', 'pass')).toThrowErrorMatchingSnapshot();
+  });
+
+
+
 });

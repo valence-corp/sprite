@@ -40,6 +40,22 @@ describe('SpriteBase.fetchJson()', () => {
     expect(result).toBe(variables.jsonResponse.result);
   });
 
+  it('should return the json object if it does not have a result property', async () => {
+    // Arrange
+
+    const oddJsonResult = { a: 1, b: 2, c: 3 };
+
+    jest.spyOn(global, 'fetch').mockResolvedValue({
+      status: 200,
+      json: async () => (oddJsonResult)
+    } as Response);
+
+    // Act
+    const result = await client.fetchJson(endpoints.command);
+
+    expect(result).toBe(oddJsonResult);
+  });
+
   it(`should throw an ArcadeDatabaseError when it receives an object with an error property`, async () => {
     // Arrange
     jest.spyOn(global, 'fetch').mockResolvedValueOnce({
