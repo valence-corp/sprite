@@ -1,10 +1,9 @@
-// export function limit(records: number) {
-//   return `LIMIT ${records}`;
-// }
-
 import { limit } from '@/nodes/select/from/limit';
 
 describe('sql > nodes > select > from > limit', () => {
+  // export function limit(records: number) {
+  //   return `LIMIT ${records}`;
+  // }
   it('it should return the LIMIT + string input', () => {
     const input = 1;
     const result = limit(input);
