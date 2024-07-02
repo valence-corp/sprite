@@ -1,13 +1,14 @@
-//import { ISpriteDatabaseSchema, TypeInRecordCategory } from 'src/old/SpriteDatabase.js';
-//import { validation } from '../../../validation/ArcadeParameterValidation.js';
+// export function drop<N = string>(typeName: N) {
+//     return `DROP TYPE ${typeName}`;
+// }
 
-export function drop<N>(typeName: N) {
-  try {
-    //validation.typeName(typeName);
-    return `DROP TYPE ${typeName as string}`;
-  } catch (error) {
-    throw new TypeError(`Could not set DROP TYPE on the command.`, {
-      cause: error
-    });
-  }
-}
+import { drop } from "@/nodes/drop/type/drop";
+
+describe('sql > nodes > drop > type', () => {
+  it('should return a DROP TYPE SQL statement for a given type name', () => {
+    const typeName = 'custom_type';
+    const expectedResult = 'DROP TYPE custom_type';
+    const result = drop(typeName);
+    expect(result).toEqual(expectedResult);
+  });
+});
