@@ -4,25 +4,20 @@ class ArcadeParameterValidation {
   private RID_REGEX = '';
   constructor() {}
   bucketName = (variable: unknown) => {
-    if (!this.SIMPLE_REGEX.test(variable as string)) {
-      throw new TypeError(
-        `The supplied argument could not be validated as a properly formatted bucket name for ArcadeDB. ${this.getVariableDescription(
-          variable
-        )}`
-      );
+    if (
+      typeof variable === 'string' &&
+      this.SIMPLE_REGEX.test(variable as string)
+    ) {
+      return true;
     }
-    return true;
-    // TODO:
-    // This can probably be deleted, based on the premise that
-    // if you are adding a list of buckets, they already exits
-    // and we should only need to verify a bucket name is valid
-    // when creating it, but that's untested too
-    // if (Array.isArray(variable)) {
-    //   variable.forEach((name) => {
-    //     this.bucketName(name);
-    //   });
-    //   return true;
-    // }
+    if (Array.isArray(variable)) {
+      return true;
+    }
+    throw new TypeError(
+      `The supplied argument could not be validated as a properly formatted bucket name for ArcadeDB. ${this.getVariableDescription(
+        variable
+      )}`
+    );
   };
   /**
    * Test a string to validate it as a database name in ArcadeDB.

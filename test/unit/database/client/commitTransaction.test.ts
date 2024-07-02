@@ -1,5 +1,5 @@
 import { client } from './testClient.js';
-import { endpoints } from '../../../../src/endpoints/database.js';
+import { endpoints } from '@/endpoints/database.js';
 import { variables, testAuth } from '../../../variables.js';
 
 describe('SpriteDatabase.commitTransaction()', () => {
@@ -20,5 +20,18 @@ describe('SpriteDatabase.commitTransaction()', () => {
         }
       }
     );
+  });
+  it('should error if no sessionId is provided', async () => {
+    // Act & Assert
+    // @ts-expect-error sessionId is required
+    await expect(client.commitTransaction()).rejects.toMatchSnapshot();
+  });
+  it('should error for a non-204 response', async () => {
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+      status: 205
+    } as Response);
+    await expect(
+      client.commitTransaction(variables.sessionId)
+    ).rejects.toMatchSnapshot();
   });
 });

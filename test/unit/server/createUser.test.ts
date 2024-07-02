@@ -1,4 +1,4 @@
-import { endpoints } from '../../../src/endpoints/server.js';
+import { endpoints } from '@/endpoints/server.js';
 import { testAuth, variables } from '../../variables.js';
 import { client } from './testClient.js';
 
@@ -51,9 +51,9 @@ describe('SpriteServer.createUser()', () => {
 
   it('should throw an error if no "username" is supplied', async () => {
     // Act
-    expect(() =>
+    await expect(
       // @ts-expect-error - Testing error handling for no username property in createUser
-      client.createDatabase({
+      client.createUser({
         password: 'myPassword',
         databases: {
           myDatabase: 'admin'
@@ -64,9 +64,9 @@ describe('SpriteServer.createUser()', () => {
 
   it('should throw an error if no "password" is supplied', async () => {
     // Act
-    expect(() =>
+    await expect(
       // @ts-expect-error - Testing error handling for no password property
-      client.createDatabase({
+      client.createUser({
         username: 'myUsername',
         databases: {
           myDatabase: 'admin'
@@ -77,11 +77,23 @@ describe('SpriteServer.createUser()', () => {
 
   it('should throw an error if no "databases" property is supplied', async () => {
     // Act
-    expect(() =>
+    await expect(
       // @ts-expect-error - Testing error handling for no databases property
-      client.createDatabase({
+      client.createUser({
         username: 'myUsername',
         password: 'myPassword'
+      })
+    ).rejects.toMatchSnapshot();
+  });
+
+  it('should throw an error if the password is under 4 characters long', async () => {
+    await expect(
+      client.createUser({
+        username: 'myUsername',
+        password: '1',
+        databases: {
+          aDatabase: ''
+        }
       })
     ).rejects.toMatchSnapshot();
   });

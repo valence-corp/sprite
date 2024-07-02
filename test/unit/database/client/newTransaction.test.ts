@@ -63,4 +63,27 @@ describe('SpriteDatabase.newTransaction()', () => {
 
     expect(trx).toBeInstanceOf(SpriteTransaction);
   });
+
+  it('should error if it receives a non-204 response', async () => {
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+      status: 205
+    } as Response);
+    await expect(client.newTransaction()).rejects.toMatchSnapshot();
+  });
+
+  it('should propagate errors from internal methods', async () => {
+    jest
+      .spyOn(global, 'fetch')
+      .mockRejectedValueOnce(new TypeError('fetch failed'));
+
+    await expect(client.newTransaction()).rejects.toMatchSnapshot();
+  });
+
+  it('should error if the headers do not contain an arcadedb-session-id', async () => {
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+      status: 204
+    } as Response);
+    const trxPromise = client.newTransaction();
+    await expect(trxPromise).rejects.toMatchSnapshot();
+  });
 });

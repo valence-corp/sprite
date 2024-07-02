@@ -21,4 +21,29 @@ describe('SpriteDatabase.rollbackTransaction()', () => {
       }
     );
   });
+  it('should error for a non-204 response', async () => {
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+      status: 205
+    } as Response);
+    await expect(
+      client.rollbackTransaction(variables.sessionId)
+    ).rejects.toMatchSnapshot();
+  });
+  it('should propagate errors from the server', async () => {
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+      status: 500,
+      json: async () => ({
+        error: 'Generic Error For Testing',
+        detail: 'This is just an error for testing purposes',
+        exception: 'com.arcadedb.exception.AnArbitraryException'
+      })
+    } as Response);
+    await expect(client.rollbackTransaction('')).rejects.toMatchSnapshot();
+  });
+  it('should propagate errors from internal methods', async () => {
+    jest
+      .spyOn(global, 'fetch')
+      .mockRejectedValueOnce(new Error('Generic Error For Testing'));
+    await expect(client.rollbackTransaction('')).rejects.toMatchSnapshot();
+  });
 });

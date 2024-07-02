@@ -46,7 +46,12 @@ describe('SpriteDatabase.query()', () => {
 
   it('should handle a 500 response by throwing an error', async () => {
     jest.spyOn(global, 'fetch').mockResolvedValueOnce({
-      status: 500
+      status: 500,
+      json: async () => ({
+        error: 'Internal error',
+        detail: 'Database \u0027school\u0027 is not available',
+        exception: 'com.arcadedb.exception.DatabaseOperationException'
+      })
     } as Response);
     await expect(
       client.query('gremlin', variables.nonEmptyString)

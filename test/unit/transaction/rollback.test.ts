@@ -20,4 +20,19 @@ describe('SpriteTransaction.rollback()', () => {
       variables.sessionId
     );
   });
+  it('should return the result of SpriteDatabase.rollbackTransaction()', async () => {
+    jest
+      .spyOn(SpriteDatabase, 'rollbackTransaction')
+      .mockImplementationOnce(async (): Promise<boolean> => {
+        return true;
+      });
+    const transaction = new SpriteTransaction(
+      SpriteDatabase,
+      variables.sessionId
+    );
+
+    const result = await transaction.rollback();
+
+    expect(result).toBe(true);
+  });
 });

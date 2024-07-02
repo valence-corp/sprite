@@ -29,4 +29,13 @@ describe('SpriteServer.connectCluster()', () => {
       options
     );
   });
+
+  it('should propagate errors from internal methods', async () => {
+    jest
+      .spyOn(global, 'fetch')
+      .mockRejectedValueOnce(new TypeError('Failed to fetch'));
+    await expect(
+      client.connectCluster(variables.address)
+    ).rejects.toMatchSnapshot();
+  });
 });

@@ -187,19 +187,8 @@ class SpriteServer {
    *
    * databaseExample();
    */
-  database = (databaseName: string): SpriteDatabase => {
-    try {
-      this._validate.databaseName(databaseName);
-      return new SpriteDatabase({ client: this._client, databaseName });
-    } catch (error) {
-      throw new Error(
-        `Could not return an insance of "SpriteDatabase" for database: ${databaseName}`,
-        {
-          cause: error
-        }
-      );
-    }
-  };
+  database = (databaseName: string): SpriteDatabase =>
+    new SpriteDatabase({ client: this._client, databaseName });
   /**
    * Sends a command to the ArcadeDB server and returns the response.
    *

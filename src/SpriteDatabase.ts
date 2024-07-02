@@ -281,15 +281,11 @@ class SpriteDatabase {
    */
   explain = async (sql: string): Promise<ArcadeSqlExplanation> => {
     try {
-      const result = await this.query<ArcadeSqlExplanation>(
+      const [result] = await this.query<ArcadeSqlExplanation>(
         'sql',
         `EXPLAIN ${sql}`
       );
-      if (result[0]) {
-        return result[0];
-      } else {
-        throw new Error(`Unexpected result from server.`);
-      }
+      return result;
     } catch (error) {
       throw new Error(
         `Could not retreive explanation from the server for ${sql}.`,
@@ -471,22 +467,13 @@ class SpriteDatabase {
         'sql',
         'SELECT FROM schema:types'
       );
-      if (Array.isArray(result)) {
-        return result;
-      } else {
-        throw new Error(
-          `Unexpected result returned from the server when attemping to get the schema for ${this.name}`
-        );
-      }
+      return result;
     } catch (error) {
       throw new Error(`Could not get schema for database ${this.name}`, {
         cause: error
       });
     }
   };
-  sql = (command: string, transaction?: SpriteTransaction) =>
-    this.command('sql', command, transaction);
-
   /**
    * Begins a transaction on the server, managed as a session.
    * @param {ArcadeTransactionIsolationLevel} isolationLevel The isolation level for the transaction, defaults to `READ_COMMITED`.
@@ -538,15 +525,16 @@ class SpriteDatabase {
         );
       }
 
-      const sessionId = response.headers.get('arcadedb-session-id');
+      const sessionId = response.headers?.get('arcadedb-session-id');
 
-      // Must check if it's a string because it be null from
-      // headers.get()
-      if (typeof sessionId !== 'string') {
+      // this is weird, but the headers could be null, so we need to check
+      // if the sessionId exists, (might as well check the type)
+      // but we should error if it's not a string, because we can't return
+      // a transaction without a sessionId
+      if (!sessionId || typeof sessionId !== 'string') {
         throw new Error('Invalid transaction key received from server.');
-      } else {
-        return new SpriteTransaction(this, sessionId);
       }
+      return new SpriteTransaction(this, sessionId);
     } catch (error) {
       throw new Error(
         `Unable to begin transaction in database "${this.name}".`,
@@ -585,11 +573,6 @@ class SpriteDatabase {
    */
   commitTransaction = async (transactionId: string): Promise<boolean> => {
     try {
-      if (!transactionId) {
-        throw new TypeError(
-          `Must supply a transactionId in order to commit a transaction`
-        );
-      }
       const result = await this._client.fetch(
         this._endpoint(endpoints.commitTransaction),
         {
@@ -639,11 +622,6 @@ class SpriteDatabase {
    */
   rollbackTransaction = async (transactionId: string): Promise<boolean> => {
     try {
-      if (!transactionId) {
-        throw new Error(
-          `Must supply a transactionId in order to rollback a transaction.`
-        );
-      }
       const result = await this._client.fetch(
         this._endpoint(endpoints.rollbackTransaction),
         {
@@ -717,12 +695,11 @@ class SpriteDatabase {
   transaction = async (
     callback: SpriteTransactionCallback,
     isolationLevel?: ArcadeTransactionIsolationLevel
-  ): Promise<SpriteTransaction> => {
+  ): Promise<boolean> => {
     try {
       const trx = await this.newTransaction(isolationLevel);
       await callback(trx);
-      await trx.commit();
-      return trx;
+      return await trx.commit();
     } catch (error) {
       throw new Error(`Could not complete transaction.`, { cause: error });
     }

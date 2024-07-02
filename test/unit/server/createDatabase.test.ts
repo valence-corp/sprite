@@ -1,5 +1,5 @@
-import { SpriteDatabase } from '../../../src/SpriteDatabase.js';
-import { endpoints } from '../../../src/endpoints/server.js';
+import { SpriteDatabase } from '@/SpriteDatabase.js';
+import { endpoints } from '@/endpoints/server.js';
 import { testAuth, variables } from '../../variables.js';
 import { client } from './testClient.js';
 
@@ -44,22 +44,32 @@ describe('SpriteServer.createDatabase()', () => {
   it('should throw an error if no "databaseName" is supplied', async () => {
     // Act
     // @ts-expect-error - Testing error handling for no arguments in createDatabase
-    expect(() => client.createDatabase()).rejects.toMatchSnapshot();
+    await expect(client.createDatabase()).rejects.toMatchSnapshot();
   });
 
   it('should throw an error if "databaseName" is an empty string', async () => {
     // Act
-    expect(() => client.createDatabase('')).rejects.toMatchSnapshot();
+    await expect(client.createDatabase('')).rejects.toMatchSnapshot();
   });
 
   it('should throw an error if "databaseName" is a string containing only whitespace', async () => {
     // Act
-    expect(() => client.createDatabase('   ')).rejects.toMatchSnapshot();
+    await expect(client.createDatabase('   ')).rejects.toMatchSnapshot();
   });
 
   it('should throw an error if supplied "databaseName" is a number', async () => {
     // Act
     // @ts-expect-error - Testing error handling for a number argument in createDatabase
-    expect(() => client.createDatabase(9)).rejects.toMatchSnapshot();
+    await expect(client.createDatabase(9)).rejects.toMatchSnapshot();
+  });
+
+  it('should throw an error if fetch returns a non "ok" result property in the response object', () => {
+    jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+      json: async () => ({ result: 'not ok' })
+    } as Response);
+
+    expect(
+      client.createDatabase(variables.databaseName)
+    ).rejects.toMatchSnapshot();
   });
 });

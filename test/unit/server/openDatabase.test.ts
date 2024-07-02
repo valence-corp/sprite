@@ -32,9 +32,12 @@ describe('SpriteServer.openDatabase()', () => {
     );
   });
 
-  it('should throw an error if no "databaseName" is supplied', async () => {
-    // Act
-    // @ts-expect-error - Testing error handling f0r no arguments in openDatabase
-    expect(() => client.openDatabase()).rejects.toMatchSnapshot();
+  it('should propagate errors from internal methods', async () => {
+    jest
+      .spyOn(global, 'fetch')
+      .mockRejectedValueOnce(new TypeError('Failed to fetch'));
+    expect(() =>
+      client.openDatabase(variables.databaseName)
+    ).rejects.toMatchSnapshot();
   });
 });

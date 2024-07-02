@@ -5,11 +5,6 @@ export class SpriteTransaction {
   private _committed: boolean = false;
   private database: SpriteDatabase;
   constructor(database: SpriteDatabase, transactionId: string) {
-    if (!transactionId) {
-      throw new Error(
-        `A transaction ID must be supplied as a parameter in order to return an instance of SpriteTransaction. Recieved ${transactionId}`
-      );
-    }
     this.database = database;
     this._id = transactionId;
   }
@@ -22,25 +17,10 @@ export class SpriteTransaction {
     return this._committed;
   }
   commit = async () => {
-    try {
-      // TODO: This is leftover from old functionality,
-      // should be looked at and cleaned up.
-      this._committed = await this.database.commitTransaction(this.id);
-      return this.committed;
-    } catch (error) {
-      throw new Error(`Could not commit transaction: ${this.id}`, {
-        cause: error
-      });
-    }
+    // TODO: This old committed logic is flawed and perhaps replacing
+    // with a status would be a better approach.
+    this._committed = await this.database.commitTransaction(this.id);
+    return this.committed;
   };
-  rollback = async () => {
-    try {
-      this._committed = false;
-      return await this.database.rollbackTransaction(this.id);
-    } catch (error) {
-      throw new Error(`Could not rollback transaction: ${this.id}`, {
-        cause: error
-      });
-    }
-  };
+  rollback = async () => this.database.rollbackTransaction(this.id);
 }
