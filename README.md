@@ -185,7 +185,7 @@ example();
 
 ```
 
-#### Working with Graphs
+### Working with Graphs
 
 ```ts
 @import { SpriteDatabase } from '@tragedy-labs/sprite';

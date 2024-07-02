@@ -1228,68 +1228,172 @@
 
 <h4 id="instantiating-spritedatabase">Instantiating SpriteDatabase</h4>
 
-<p>Begin by inserting the following snippet into the <code class="language-plaintext highlighter-rouge">index.ts</code> file of your project. This imports the <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> module, and creates an instance of it named <code class="language-plaintext highlighter-rouge">db</code>.</p>
+<p>Begin by inserting the following snippet into the <code class="language-plaintext highlighter-rouge">index.ts</code> file of your project. This imports the <code class="language-plaintext highlighter-rouge">SpriteDatabase</code> module, and creates an instance of it named <code class="language-plaintext highlighter-rouge">db</code>. TypeScript definitions for our example document table are also created.</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// import the SpriteDatabase class from the sprite package</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">SpriteDatabase</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@valence-corp/sprite</span><span class="dl">"</span><span class="p">;</span>
+<span class="c1">// The ArcadeDocument type will also be needed for this tutorial</span>
+<span class="k">import</span> <span class="p">{</span> <span class="kd">type</span> <span class="nx">ArcadeDocument</span><span class="p">,</span> <span class="nx">SpriteDatabase</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@tragedy-labs/sprite</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="c1">// create an instance of SpriteDatabase with your credentials</span>
 <span class="c1">// and the name of the target database</span>
 <span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SpriteDatabase</span><span class="p">({</span>
-  <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aUsername</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// root will be ok for this tutorial</span>
-  <span class="na">password</span><span class="p">:</span> <span class="dl">"</span><span class="s2">aPassword</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// your password,</span>
-  <span class="na">address</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://localhost:2480</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// default address for ArcadeDB</span>
-  <span class="na">databaseName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ExampleDatabase</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// the existing database</span>
+  <span class="na">username</span><span class="p">:</span> <span class="dl">'</span><span class="s1">aUsername</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// root will be ok for this tutorial</span>
+  <span class="na">password</span><span class="p">:</span> <span class="dl">'</span><span class="s1">aPassword</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// your password,</span>
+  <span class="na">address</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://localhost:2480</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// default address for ArcadeDB</span>
+  <span class="na">databaseName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">ExampleDatabase</span><span class="dl">'</span> <span class="c1">// the existing database</span>
 <span class="p">});</span>
 
 <span class="kd">type</span> <span class="nx">ADocumentType</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">aProperty</span><span class="p">:</span> <span class="kr">string</span>
-<span class="p">}</span>
+  <span class="na">aProperty</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+<span class="p">};</span>
 
 <span class="kd">type</span> <span class="nx">DocumentTypes</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">aDocument</span><span class="p">:</span> <span class="nx">ADocumentType</span>
-<span class="p">}</span>
-
+  <span class="na">aDocument</span><span class="p">:</span> <span class="nx">ADocumentType</span><span class="p">;</span>
+<span class="p">};</span>
 </code></pre></div></div>
 
 <h4 id="spritedatabasequery">SpriteDatabase.query()</h4>
 
-<p>The following code is to be inserted under the database instantiation. The <code class="language-plaintext highlighter-rouge">manualTransaction</code> function creates a new transaction, issues a command using that transaction, and then commits the transaction. All commands are non-idempotent in ArcadeDB (and Sprite). Non-idempotent means that it can change the database, so things like CRUD operations.</p>
+<p>A simple query is written in SQL and sent via the <code class="language-plaintext highlighter-rouge">SpriteDatabase.query</code> method, it tells the database to select all documents of the <code class="language-plaintext highlighter-rouge">aDocument</code> type. The result of the query is logged. It should always be an array comprised of the <a href="https://en.wikipedia.org/wiki/Result_set">result set</a>. Result sets with one member will still be returned in an array.</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nf">selectQueryExample</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">try</span> <span class="p">{</span>
     <span class="c1">// ArcadeDB supports various query</span>
     <span class="c1">// lanagues, so it must be specified</span>
-    <span class="c1">// See ArcadeDB docs for a full list</span>
-    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nx">query</span><span class="o">&lt;</span><span class="nx">ADocumentType</span><span class="o">&gt;</span><span class="p">(</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span><span class="p">.</span><span class="nx">query</span><span class="o">&lt;</span><span class="nx">ArcadeDocument</span><span class="o">&lt;</span><span class="nx">ADocumentType</span><span class="o">&gt;&gt;</span><span class="p">(</span>
       <span class="dl">'</span><span class="s1">sql</span><span class="dl">'</span><span class="p">,</span>
-      <span class="dl">'</span><span class="s1">SELECT * from aDocument</span><span class="dl">'</span>
+      <span class="dl">'</span><span class="s1">SELECT * FROM aDocument</span><span class="dl">'</span>
     <span class="p">);</span>
 
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-    <span class="c1">// { </span>
-    <span class="c1">//   user: 'aUsername',</span>
-    <span class="c1">//   version: '24.x.x',</span>
-    <span class="c1">//   serverName: 'ArcadeDB_0',</span>
-    <span class="c1">//   result: [</span>
-    <span class="c1">//     {</span>
-    <span class="c1">//       '@rid': '#0:0',</span>
-    <span class="c1">//       '@cat': 'd',</span>
-    <span class="c1">//       '@type': 'aDocument',</span>
-    <span class="c1">//       aProperty: 'aValue'</span>
-    <span class="c1">//     }</span>
-    <span class="c1">//   ]</span>
-    <span class="c1">// }</span>
+    <span class="c1">// ArcadeDocument accepts a type parameter,</span>
+    <span class="c1">// the resultant type will be the type defined</span>
+    <span class="c1">// earlies, with ArcadeDB meta added to provide</span>
+    <span class="c1">// an accurate type for the result set</span>
 
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="c1">// [</span>
+    <span class="c1">//   {</span>
+    <span class="c1">//     '@rid': '#0:0',</span>
+    <span class="c1">//     '@cat': 'd',</span>
+    <span class="c1">//     '@type': 'aDocument',</span>
+    <span class="c1">//     aProperty: 'aValue'</span>
+    <span class="c1">//   }</span>
+    <span class="c1">// ]</span>
   <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// handle error conditions</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span>
-      <span class="dl">'</span><span class="s1">An error occured while running the example</span><span class="dl">'</span><span class="p">,</span>
-      <span class="p">{</span> <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span> <span class="p">}</span>
-    <span class="p">)</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">An error occured while running the example</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span>
+    <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
+
+<h4 id="spritedatabaseselectfrom">SpriteDatabase.selectFrom()</h4>
+
+<p>If you are working in a modality, there are higher-level methods to make common SQL operations easier. An example would be the <code class="language-plaintext highlighter-rouge">selectFrom</code> method. They build SQL queries based on the supplied options and return the result.</p>
+
+<p>This example will create a typed modality instance to perform a query.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">documentModality</span><span class="o">&lt;</span><span class="nx">DocumentTypes</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">selectOneExample</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// types are inferred based on the type parameters</span>
+    <span class="c1">// supplied to the modality when the client is</span>
+    <span class="c1">// created.</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">selectFrom</span><span class="p">(</span><span class="dl">'</span><span class="s1">aDocument</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">where</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">aProperty</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">==</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">aValue</span><span class="dl">'</span><span class="p">]</span>
+    <span class="p">});</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="c1">// [</span>
+    <span class="c1">//   {</span>
+    <span class="c1">//     '@rid': '#0:0',</span>
+    <span class="c1">//     '@cat': 'd',</span>
+    <span class="c1">//     '@type': 'aDocument',</span>
+    <span class="c1">//     aProperty: 'aValue'</span>
+    <span class="c1">//   }</span>
+    <span class="c1">// ]</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// handle error conditions</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">An error occured while running the example</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="spritedatabaseselectone">SpriteDatabase.selectOne()</h4>
+
+<p>Sometimes only one specific record is needed. It can often be more performant than selecting from a type and filtering. The <code class="language-plaintext highlighter-rouge">selectOne</code> method is very straight forward, with no technical overhead compared to writing an SQL query to do it.</p>
+
+<p>This example is somewhat complicated, because you need to know the <code class="language-plaintext highlighter-rouge">@rid</code> of the record in order to select one directly. First a record will be created in order to obtain the rid, and then we will query for it to show it is possible. It is a very contrived example.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">documentModality</span><span class="o">&lt;</span><span class="nx">DocumentTypes</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">selectOneExample</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+
+    <span class="c1">// create a variable to store the rid</span>
+    <span class="kd">let</span> <span class="na">rid</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+
+    <span class="c1">// a transaction is invoked to create the document</span>
+    <span class="c1">// and we set the rid variable the resultant records</span>
+    <span class="c1">// @rid</span>
+    <span class="k">await</span> <span class="nf">transaction</span><span class="p">(</span><span class="k">async </span><span class="p">(</span><span class="nx">trx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">doc</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nf">createDocument</span><span class="p">(</span><span class="dl">'</span><span class="s1">aDocument</span><span class="dl">'</span><span class="p">,</span> <span class="nx">trx</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">aProperty</span><span class="p">:</span> <span class="dl">'</span><span class="s1">aValue</span><span class="dl">'</span>
+        <span class="p">}</span>
+      <span class="p">});</span>
+      <span class="nx">rid</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">[</span><span class="dl">'</span><span class="s1">@rid</span><span class="dl">'</span><span class="p">];</span>
+    <span class="p">});</span>
+
+    <span class="c1">// types are inferred in this case as well, but you must</span>
+    <span class="c1">// supply the name of the type you are selecting as a</span>
+    <span class="c1">// parameter, otherwise it will be unknown</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">selectOne</span><span class="o">&lt;</span><span class="dl">'</span><span class="s1">aDocument</span><span class="dl">'</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">rid</span><span class="p">);</span>
+
+    <span class="c1">// selectOne will always return one record, so it will</span>
+    <span class="c1">// always just be an object, no arrays involved</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="c1">// {</span>
+    <span class="c1">//   '@rid': '#0:0',</span>
+    <span class="c1">//   '@cat': 'd',</span>
+    <span class="c1">//   '@type': 'aDocument',</span>
+    <span class="c1">//   aProperty: 'aValue'</span>
+    <span class="c1">// }</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// handle error conditions</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">An error occured while running the example</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">cause</span><span class="p">:</span> <span class="nx">error</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="conclusion">Conclusion</h4>
+
+<p>This tutorial has covered performing <code class="language-plaintext highlighter-rouge">select</code> queries using SQL via the <code class="language-plaintext highlighter-rouge">SpriteDatabase.query</code> method, and also via the <code class="language-plaintext highlighter-rouge">DocumentModality</code> using the <code class="language-plaintext highlighter-rouge">selectOne</code>, and <code class="language-plaintext highlighter-rouge">selectFrom</code> methods.</p>
+
+<hr />
+
+<h6 id="note">Note</h6>
+
+<p>The <code class="language-plaintext highlighter-rouge">selectOne</code> and <code class="language-plaintext highlighter-rouge">selectFrom</code> methods are also available on the <code class="language-plaintext highlighter-rouge">GraphModality</code>.</p>
+
+<hr />
+
+<h4 id="whats-next">What’s Next?</h4>
+
+<p>Go build something, or review the tutorials you might have skipped over. You could look at the documentation now that you have a good understanding of how Sprite works.</p>
+
+<p>Some areas of interest not covered by tutorials are:</p>
+
+<ul>
+  <li>DocumentModality.updateOne</li>
+  <li>GraphModality.dropType</li>
+</ul>
 
           <footer
   class="tutorial padding-v-1 flex prevOnly">
