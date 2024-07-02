@@ -15,5 +15,7 @@ export function isNewClient(
     Object.hasOwn(parameters, 'databaseName')
   ) {
     return true;
+  } else {
+    return false;
   }
 }
