@@ -16,8 +16,7 @@ const createTypeResult = {
   version: '',
   result: [{ typeName }]
 };
-
-describe('TypedOperations.createType()', () => {
+describe('SqlDialect.createType()', () => {
   it(`makes a properly formatted POST request to ${endpoints.command}/${variables.databaseName}`, async () => {
     // Arrange
     jest.spyOn(global, 'fetch').mockResolvedValueOnce({
@@ -27,6 +26,7 @@ describe('TypedOperations.createType()', () => {
 
     // Act
     await client.createType<DocumentTypes, TypeName>(typeName, recordType);
+
     // Assert
     expect(global.fetch).toHaveBeenCalledWith(
       `${variables.address}${endpoints.command}/${variables.databaseName}`,
@@ -41,36 +41,28 @@ describe('TypedOperations.createType()', () => {
     );
   });
 
-  it('it returns an instance of SpriteType when it receives a a JSON object with a result property from the server.', async () => {
-    // TODO: This seems confusing.
-    // reasoning for this is because the if it's passed a
-    // 'ifNotExists' option, it won't throw an error, and
-    // the user might be expecting a 'type' to perform
-    // operations on, so we return the type even if
-    // it was previously created.
-
+  it('returns an instance of SpriteType when it receives a JSON object with a result property from the server', async () => {
     // Arrange
     jest
       .spyOn(SpriteDatabase, 'command')
-      .mockResolvedValueOnce(createTypeResult);
+      .mockResolvedValueOnce(createTypeResult.result);
 
     // Act
     const result = await client.createType<DocumentTypes, TypeName>(
       typeName,
       recordType,
-      {
-        buckets: variables.bucketName
-      }
+      { buckets: variables.bucketName }
     );
+
     // Assert
     expect(result).toBeInstanceOf(SpriteType);
   });
 
-  it('handles "buckets" option by appending "BUCKET" + [bucketName] to the command when passed a string bucketName property.', async () => {
+  it('handles "buckets" option by appending "BUCKET" + [bucketName] to the command when passed a string bucketName property', async () => {
     // Arrange
     jest
       .spyOn(SpriteDatabase, 'command')
-      .mockResolvedValueOnce(createTypeResult);
+      .mockResolvedValueOnce(createTypeResult.result);
 
     // Act
     await client.createType<DocumentTypes, TypeName>(typeName, recordType, {
@@ -84,11 +76,11 @@ describe('TypedOperations.createType()', () => {
     );
   });
 
-  it('handles "buckets" option by appending "BUCKET" + [bucketNames] to the command when passed an array of strings as the bucketName property.', async () => {
+  it('handles "buckets" option by appending "BUCKET" + [bucketNames] to the command when passed an array of strings as the bucketName property', async () => {
     // Arrange
     jest
       .spyOn(SpriteDatabase, 'command')
-      .mockResolvedValueOnce(createTypeResult);
+      .mockResolvedValueOnce(createTypeResult.result);
 
     // Act
     await client.createType<DocumentTypes, TypeName>(typeName, recordType, {
@@ -98,18 +90,15 @@ describe('TypedOperations.createType()', () => {
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       'sql',
-      `CREATE document TYPE ${typeName} BUCKET ${[
-        variables.bucketName,
-        variables.bucketName
-      ].join(',')}`
+      `CREATE document TYPE ${typeName} BUCKET ${[variables.bucketName, variables.bucketName].join(',')}`
     );
   });
 
-  it('handles "ifNotExists" option by appending "IF NOT EXISTS" to the command when passed "false"', async () => {
+  it('handles "ifNotExists" option by appending "IF NOT EXISTS" to the command when passed true', async () => {
     // Arrange
     jest
       .spyOn(SpriteDatabase, 'command')
-      .mockResolvedValueOnce(createTypeResult);
+      .mockImplementationOnce(async () => createTypeResult.result);
 
     // Act
     await client.createType<DocumentTypes, TypeName>(typeName, recordType, {
@@ -127,7 +116,7 @@ describe('TypedOperations.createType()', () => {
     // Arrange
     jest
       .spyOn(SpriteDatabase, 'command')
-      .mockResolvedValueOnce(createTypeResult);
+      .mockResolvedValueOnce(createTypeResult.result);
 
     // Act
     await client.createType<DocumentTypes, TypeName>(typeName, recordType, {
@@ -145,12 +134,13 @@ describe('TypedOperations.createType()', () => {
     // Arrange
     jest
       .spyOn(SpriteDatabase, 'command')
-      .mockResolvedValueOnce(createTypeResult);
+      .mockResolvedValueOnce(createTypeResult.result);
 
     // Act
     await client.createType<DocumentTypes, TypeName>(typeName, recordType, {
       totalBuckets: 4
     });
+
     // Assert
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       'sql',
@@ -159,12 +149,64 @@ describe('TypedOperations.createType()', () => {
   });
 
   it('should throw an error if it receives an empty string for parameters', async () => {
-    //@ts-expect-error - Testing for empty string
+    // @ts-expect-error - Testing for empty string
     await expect(client.createType('')).rejects.toMatchSnapshot();
   });
 
   it('should throw an error if it receives no arguments', async () => {
-    //@ts-expect-error - Testing for no arguments
+    // @ts-expect-error - Testing for no arguments
     await expect(client.createType()).rejects.toMatchSnapshot();
   });
+
+  it('should throw an error if the server response result is an empty array, and ifNotExists is not true', async () => {
+    // Arrange
+    jest.spyOn(SpriteDatabase, 'command').mockResolvedValueOnce([]);
+
+    // Act
+    await expect(
+      client.createType<DocumentTypes, TypeName>(typeName, recordType)
+    ).rejects.toMatchSnapshot();
+  });
+
+  it('should throw an error if the server response result contains an array containing an object that does not contain the created typename', async () => {
+    // Arrange
+    jest
+      .spyOn(SpriteDatabase, 'command')
+      .mockResolvedValueOnce([{ typeName: 'EXPECT_AN_ERROR' }]);
+
+    // Act
+    await expect(
+      client.createType<DocumentTypes, TypeName>(typeName, recordType)
+    ).rejects.toMatchSnapshot();
+  });
+
+  it('should return an instance of SpriteType if the server responds appropriately', async () => {
+    // Arrange
+    jest.spyOn(SpriteDatabase, 'command').mockResolvedValueOnce([{ typeName }]);
+
+    // Act
+    const result = await client.createType<DocumentTypes, TypeName>(
+      typeName,
+      recordType
+    );
+
+    // Assert
+    expect(result).toBeInstanceOf(SpriteType);
+  });
+
+  it('should return an instance of SpriteType if response is an empty array and ifNotExists is true', async () => {
+    // Arrange
+    jest.spyOn(SpriteDatabase, 'command').mockResolvedValueOnce([]);
+
+    // Act
+    const result = await client.createType<DocumentTypes, TypeName>(
+      typeName,
+      recordType,
+      { ifNotExists: true }
+    );
+
+    // Assert
+    expect(result).toBeInstanceOf(SpriteType);
+  });
+
 });

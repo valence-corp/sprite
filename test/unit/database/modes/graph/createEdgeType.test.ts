@@ -1,6 +1,6 @@
 import { client, dbClient as SpriteDatabase } from './testClient.js';
 import { variables } from '../../../../variables.js';
-import { ArcadeCommandResponse } from '../../../../../src/types/database.js';
+import { CreateEdgeType } from '@/types/commands.js';
 
 const typeName = 'anEdge';
 
@@ -9,16 +9,9 @@ describe('GraphModality.createEdgeType()', () => {
     // Arrange
     jest
       .spyOn(SpriteDatabase, 'command')
-      .mockImplementationOnce(
-        async (): Promise<ArcadeCommandResponse<unknown>> => {
-          return {
-            user: variables.username,
-            serverName: '',
-            version: '',
-            result: [{ typeName }]
-          };
-        }
-      );
+      .mockImplementationOnce(async (): Promise<CreateEdgeType> => {
+        return [{ typeName, operation: 'create edge type' }];
+      });
 
     // Act
     await client.createEdgeType(typeName, {

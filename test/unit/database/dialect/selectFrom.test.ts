@@ -135,4 +135,14 @@ describe('TypedOperations.selectFrom()', () => {
       `SELECT FROM aDocument WHERE @rid = '${variables.rid}'`
     );
   });
+
+  it('should propagate errors from internal methods calls', async () => {
+    jest
+      .spyOn(global, 'fetch')
+      .mockRejectedValueOnce(new TypeError('Failed to fetch'));
+
+    expect(() =>
+      client.selectFrom<DocumentTypes, TypeName, '@rid'>(typeName)
+    ).rejects.toMatchSnapshot();
+  });
 });

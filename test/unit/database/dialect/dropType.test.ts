@@ -71,4 +71,13 @@ describe('TypedOperations.dropType()', () => {
       `DROP TYPE ${typeName} UNSAFE`
     );
   });
+
+  it('should propagate errors from internal methods', async () => {
+    jest
+      .spyOn(global, 'fetch')
+      .mockRejectedValueOnce(new TypeError('Failed to fetch'));
+    expect(() =>
+      client.dropType<DocumentTypes, TypeName>(typeName)
+    ).rejects.toMatchSnapshot();
+  });
 });

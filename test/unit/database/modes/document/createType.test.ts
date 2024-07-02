@@ -1,6 +1,6 @@
 import { client, dbClient as SpriteDatabase } from './testClient.js';
 import { variables } from '../../../../variables.js';
-import { ArcadeCommandResponse } from '../../../../../src/types/database.js';
+import { CreateDocumentType } from '@/types/commands.js';
 
 const typeName = 'aDocument';
 
@@ -10,13 +10,8 @@ describe('DocumentModality.createType()', () => {
     jest
       .spyOn(SpriteDatabase, 'command')
       .mockImplementationOnce(
-        async (): Promise<ArcadeCommandResponse<unknown>> => {
-          return {
-            user: variables.username,
-            serverName: '',
-            version: '',
-            result: [{ typeName }]
-          };
+        async (): Promise<CreateDocumentType<typeof typeName>> => {
+          return [{ typeName, operation: 'create document type' }];
         }
       );
 

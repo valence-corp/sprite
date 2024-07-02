@@ -42,7 +42,7 @@ const createEdgeResult = {
   result: [{ count: 0 }]
 };
 
-describe('TypedOperations.insertRecord()', () => {
+describe('SqlDialect.insertRecord()', () => {
   it(`should make a properly formatted POST request to ${endpoints.command}/${variables.databaseName}`, async () => {
     // Arrange
     jest.spyOn(global, 'fetch').mockResolvedValueOnce({
@@ -94,6 +94,29 @@ describe('TypedOperations.insertRecord()', () => {
     expect(SpriteDatabase.command).toHaveBeenCalledWith(
       'sql',
       `CREATE EDGE ${typeName} FROM ${variables.rid} TO ${variables.rid}`,
+      testTransaction
+    );
+  });
+
+  it('handles "ifNotExists" option by appending "IF NOT EXISTS" to the command when passed "true"', async () => {
+    // Arrange
+    jest.spyOn(SpriteDatabase, 'command').mockImplementationOnce(async () => {
+      return createEdgeResult.result;
+    });
+
+    // Act
+    await createEdgeTyped(
+      typeName,
+      variables.rid,
+      variables.rid,
+      testTransaction,
+      { ifNotExists: true }
+    );
+
+    // Assert
+    expect(SpriteDatabase.command).toHaveBeenCalledWith(
+      'sql',
+      `CREATE EDGE ${typeName} FROM ${variables.rid} TO ${variables.rid} IF NOT EXISTS`,
       testTransaction
     );
   });
@@ -239,5 +262,17 @@ describe('TypedOperations.insertRecord()', () => {
       `CREATE EDGE ${typeName} FROM ${variables.rid} TO ${variables.rid} BATCH 1000`,
       testTransaction
     );
+  });
+
+  it('propagates errors from internal methods', async () => {
+    // Arrange
+    jest
+      .spyOn(SpriteDatabase, 'command')
+      .mockRejectedValueOnce(new TypeError('Failed to fetch'));
+
+    // Act
+    await expect(
+      createEdgeTyped(typeName, variables.rid, variables.rid, testTransaction)
+    ).rejects.toMatchSnapshot();
   });
 });

@@ -26,8 +26,7 @@ import {
   ArcadeDeleteFromResponse,
   ArcadeDropTypeResponse,
   ArcadeUpdateOneResponse,
-  DeleteFromCount,
-  RecordOperationResponse
+  DeleteFromCount
 } from '../types/operators.js';
 import { validation } from '../validation/ArcadeParameterValidation.js';
 import {
@@ -99,17 +98,15 @@ class SqlDialect {
           options.totalBuckets
         );
       }
-
       const response = await this._command<ArcadeCreateTypeResponse>(
         createTypeCommand.toString()
       );
-      // TODO: this seems a bit lax
-      // It could be an empty array, or something that
-      // says the type was created. But, maybe it's ok.
-      // Need to look closer at testing this to ensure
-      // ifNotExists not erroring works ok with the returned
-      // type.
-      if (response) {
+      if (
+        response[0]?.typeName === typeName ||
+        (Array.isArray(response) &&
+          response.length === 0 &&
+          options?.ifNotExists)
+      ) {
         return this.type<S, N>(typeName);
       } else {
         throw new Error(
@@ -187,6 +184,7 @@ class SqlDialect {
         this._nodes.create.edge.from,
         from
       );
+
       createEdgeCommand.append<SpriteEdgeVertexDescriptor<V, V2>>(
         this._nodes.create.edge.to,
         to
@@ -233,22 +231,10 @@ class SqlDialect {
         );
       }
 
-      const result = await this._command<Array<E[N] & EdgeRecordMeta>>(
+      return await this._command<Array<E[N] & EdgeRecordMeta>>(
         createEdgeCommand.toString(),
         transaction
       );
-
-      if (result) {
-        return result;
-      } else {
-        throw new Error(
-          `Received an unexpected response from the server when attempting to create edge of type: ${
-            type as string
-          }, with content: ${JSON.stringify(options?.data)}, into database '${
-            this.database.name
-          }'`
-        );
-      }
     } catch (error) {
       throw Error(`Unable to build CREATE EDGE sql command.`, {
         cause: error
@@ -268,37 +254,33 @@ class SqlDialect {
     transaction: SpriteTransaction,
     options?: ISpriteInsertRecordOptions<S[N]>
   ): Promise<Array<S[N] & RecordMeta>> => {
-    // INSERT INTO [TYPE:]<type>|BUCKET:<bucket>
-    // [CONTENT {<JSON>}|[{<JSON>}[,]*]]
-    const insertIntoCommand = new SpriteCommand({
-      initial: this._nodes.insert.record.insertInto<string>(
-        options?.bucket
-          ? this._nodes.insert.record.bucket(options.bucket)
-          : (typeName as string)
-      )
-    });
+    try {
+      // INSERT INTO [TYPE:]<type>|BUCKET:<bucket>
+      // [CONTENT {<JSON>}|[{<JSON>}[,]*]]
+      const insertIntoCommand = new SpriteCommand({
+        initial: this._nodes.insert.record.insertInto<string>(
+          options?.bucket
+            ? this._nodes.insert.record.bucket(options.bucket)
+            : (typeName as string)
+        )
+      });
 
-    if (options?.data) {
-      insertIntoCommand.append<OmitMeta<S[N]> | OmitMeta<S[N]>[]>(
-        this._nodes.insert.record.content,
-        options.data
+      if (options?.data) {
+        insertIntoCommand.append<OmitMeta<S[N]> | OmitMeta<S[N]>[]>(
+          this._nodes.insert.record.content,
+          options.data
+        );
+      }
+
+      return await this._command<Array<S[N] & RecordMeta>>(
+        insertIntoCommand.toString(),
+        transaction
       );
-    }
-
-    const result = await this._command<Array<S[N] & RecordMeta>>(
-      insertIntoCommand.toString(),
-      transaction
-    );
-
-    if (result) {
-      return result;
-    } else {
+    } catch (error) {
       throw new Error(
-        `Received an unexpected response from the server when attempting to create record of type: ${
-          typeName as string
-        }, with content: ${JSON.stringify(options?.data)}, into database '${
+        `Unable to build SQL command for INSERT INTO [${typeName as string}] in database: [${
           this.database.name
-        }'`
+        }]`
       );
     }
   };
@@ -335,19 +317,9 @@ class SqlDialect {
         );
       }
 
-      const result = await this._command<ArcadeDropTypeResponse>(
+      return await this._command<ArcadeDropTypeResponse>(
         dropTypeCommand.toString()
       );
-
-      if (result) {
-        return true;
-      } else {
-        throw new Error(
-          `Received an unexpected response from the server: ${JSON.stringify(
-            result
-          )}`
-        );
-      }
     } catch (error) {
       throw new Error(
         `Unable to drop type [${typeName as string}] from database [${
@@ -371,7 +343,7 @@ class SqlDialect {
     // DELETE FROM <Type> [RETURN <returning>]
     // [WHERE <Condition>*] [LIMIT <MaxRecords>] [TIMEOUT <MilliSeconds>] [UNSAFE]
     try {
-      // If there no options (like you want delete all the records of a certain type)
+      // TODO: If there no options (like you want delete all the records of a certain type)
       // you must use backticks on the typeName, so this is a hack for now (TODO)
       const command = new SpriteCommand({
         initial: this._nodes.delete.from.delete<N>(
@@ -401,15 +373,11 @@ class SqlDialect {
         );
       }
 
-      const result = await this._command<ArcadeDeleteFromResponse>(
+      const [result] = await this._command<ArcadeDeleteFromResponse>(
         command.toString(),
         transaction
       );
-      if (result[0]) {
-        return result[0];
-      } else {
-        throw new Error('Unexpected result from the the server.');
-      }
+      return result;
     } catch (error) {
       throw new Error(
         `Could not delete record of type: ['${
@@ -422,10 +390,8 @@ class SqlDialect {
     }
   };
   /**
-   * A wrapper on the `SpriteDatabase.command()` method that handles
-   * the response by automatically returning the result property
-   * instead of returning the entire response. It is used to keep
-   * the codebase DRY.
+   * A wrapper on the `SpriteDatabase.command()` method that sets the
+   * language to SQL so it isn't set in multiple places.
    */
   private _command = async <T>(
     command: string,
@@ -434,29 +400,14 @@ class SqlDialect {
     const result = transaction
       ? await this.database.command<T>('sql', command, transaction)
       : await this.database.command<T>('sql', command);
-    if (result) {
-      return result;
-    } else {
-      throw new Error(
-        'No result property was present on the response from the server.'
-      );
-    }
+    return result;
   };
   /**
-   * A wrapper on the `SpriteDatabase.query()` method that handles
-   * the response by automatically returning the result property
-   * instead of returning the entire response. It is used to keep
-   * the codebase DRY.
+   * A wrapper on the `SpriteDatabase.query()` method that sets
+   * the language to SQL, so it isn't set in multiple places.
    */
-  private _query = async <T>(command: string): Promise<T[]> => {
-    const result = await this.database.query<T>('sql', command);
-    if (result) {
-      return result;
-    }
-    throw new Error(
-      'No result property was present on the response from the server.'
-    );
-  };
+  private _query = async <T>(command: string): Promise<T[]> =>
+    await this.database.query<T>('sql', command);
   /**
    * Perform a `SELECT FROM` sql query by providing a typename and options.
    * @param {string} typeName The name of the type to generate a `SELECT FROM` query for.
@@ -537,8 +488,8 @@ class SqlDialect {
    */
   selectOne = async <S, N extends TypeNames<S>>(rid: string): Promise<S[N]> => {
     try {
-      const result = await this._query<S[N]>(`SELECT FROM ${rid}`);
-      return result[0];
+      const [result] = await this._query<S[N]>(`SELECT FROM ${rid}`);
+      return result;
     } catch (error) {
       throw new Error(
         `Could not select RID: [${rid}], from database ${this.database.name}.`,
@@ -558,22 +509,24 @@ class SqlDialect {
     transaction: SpriteTransaction
   ): Promise<DeleteFromCount> => {
     try {
-      const result = await this._command<ArcadeDeleteFromResponse>(
+      const [result] = await this._command<ArcadeDeleteFromResponse>(
         `DELETE FROM ${rid}`,
         transaction
       );
-      switch (result[0].count) {
-        case 1:
-          return result[0];
-        case 0:
-          throw new Error(
-            `No record found with rid: [${rid}], in database: [${this.database.name}]`
-          );
-        default:
-          throw new Error(
-            `Unexpected result when deleting record by rid: [${rid}]`
-          );
-      }
+      return result;
+      // TODO: Should this have more robust error handling?
+      // switch (result[0].count) {
+      //   case 1:
+      //     return result[0];
+      //   case 0:
+      //     throw new Error(
+      //       `No record found with rid: [${rid}], in database: [${this.database.name}]`
+      //     );
+      //   default:
+      //     throw new Error(
+      //       `Unexpected result when deleting record by rid: [${rid}]`
+      //     );
+      // }
     } catch (error) {
       throw new Error(`Could not delete record: [${rid}]`, { cause: error });
     }
@@ -589,7 +542,7 @@ class SqlDialect {
     rid: string,
     data: OmitMeta<S[N]>,
     transaction: SpriteTransaction
-  ): Promise<RecordOperationResponse> => {
+  ): Promise<ArcadeUpdateOneResponse> => {
     // UPDATE <recordID>
     // [CONTENT <JSON>]
     // RETURN AFTER @this
@@ -604,15 +557,10 @@ class SqlDialect {
 
       command.append<boolean>(this._nodes.update.record.returnAfter, true);
 
-      const result = await this._command<ArcadeUpdateOneResponse>(
+      return await this._command<ArcadeUpdateOneResponse>(
         command.toString(),
         transaction
       );
-      if (result[0]) {
-        return result[0];
-      } else {
-        throw new Error(`No record with id [${rid}] found.`);
-      }
     } catch (error) {
       throw new Error(
         `An error occured when attempting to update record @rid: ${rid}, in database ${this.database.name}`,

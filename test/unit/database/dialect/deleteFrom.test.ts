@@ -146,4 +146,16 @@ describe('SpriteOperations.deleteOne()', () => {
       testTransaction
     );
   });
+
+  it('should propagate errors from internal methods', async () => {
+    jest
+      .spyOn(SpriteDatabase, 'command')
+      .mockRejectedValueOnce(new TypeError('Failed to fetch'));
+    expect(() =>
+      client.deleteFrom<DocumentTypes, TypeName, typeof variables.propertyName>(
+        typeName,
+        testTransaction
+      )
+    ).rejects.toMatchSnapshot();
+  });
 });

@@ -97,30 +97,19 @@ describe('TypedOperations.insertRecord()', () => {
     );
   });
 
-  // it('it properly handles a transactionId', async () => {
-  //   jest.spyOn(global, 'fetch').mockResolvedValueOnce({
-  //     status: 200,
-  //     json: async () => ({ result: [{ count: 1 }] }),
-  //   } as Response);
+  it('propagates errors from internal methods', async () => {
+    jest
+      .spyOn(SpriteDatabase, 'command')
+      .mockRejectedValueOnce(new TypeError('Failed to fetch'));
 
-  //   await client._insertRecord<DocumentTypes, TypeName>('aDocument',  {
-  //     transactionId: variables.sessionId,
-  //   });
-
-  //   expect(global.fetch).toHaveBeenCalledWith(
-  //     `${variables.address}${endpoints.command}/${variables.databaseName}`,
-  //     {
-  //       method: 'POST',
-  //       headers: {
-  //         'Authorization': `Basic ${testAuth}`,
-  //         'Content-Type': 'application/json',
-  //         'arcadedb-session-id': variables.sessionId,
-  //       },
-  //       body: JSON.stringify({
-  //         language: 'sql',
-  //         command: `INSERT INTO ${typeName}`,
-  //       }),
-  //     },
-  //   );
-  // });
+    await expect(
+      client.insertRecord<DocumentTypes, TypeName>(
+        'aDocument',
+        testTransaction,
+        {
+          data
+        }
+      )
+    ).rejects.toMatchSnapshot();
+  });
 });
