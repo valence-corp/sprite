@@ -4,29 +4,25 @@ class ArcadeParameterValidation {
   private RID_REGEX = '';
   constructor() {}
   bucketName = (variable: unknown) => {
-    if (typeof variable === 'string') {
-      if (this.SIMPLE_REGEX.test(variable as string)) {
-        return true;
-      } else {
-        throw new TypeError(
-          `The supplied argument could not be validated as a properly formatted bucket name for ArcadeDB. ${this.getVariableDescription(
-            variable
-          )}`
-        );
-      }
+    if (!this.SIMPLE_REGEX.test(variable as string)) {
+      throw new TypeError(
+        `The supplied argument could not be validated as a properly formatted bucket name for ArcadeDB. ${this.getVariableDescription(
+          variable
+        )}`
+      );
     }
-
-    if (Array.isArray(variable)) {
-      // TODO: this is a basic validation check to see if the parameter is an array of strings
-      // it's really not great validation.
-      return true;
-    }
-
-    throw new TypeError(
-      `The supplied argument could not be validated as a properly formatted bucket name for ArcadeDB. ${this.getVariableDescription(
-        variable
-      )}`
-    );
+    return true;
+    // TODO:
+    // This can probably be deleted, based on the premise that
+    // if you are adding a list of buckets, they already exits
+    // and we should only need to verify a bucket name is valid
+    // when creating it, but that's untested too
+    // if (Array.isArray(variable)) {
+    //   variable.forEach((name) => {
+    //     this.bucketName(name);
+    //   });
+    //   return true;
+    // }
   };
   /**
    * Test a string to validate it as a database name in ArcadeDB.
@@ -88,17 +84,6 @@ class ArcadeParameterValidation {
       );
     }
   };
-  // integer = (variable: unknown): boolean => {
-  //   if (typeof variable === 'number') {
-  //     return true;
-  //   } else {
-  //     throw new TypeError(
-  //       `The supplied argument could not be validated as an. ${this.getVariableDescription(
-  //         variable
-  //       )}`
-  //     );
-  //   }
-  // };
   private getVariableDescription = (variable: unknown) => {
     return `The supplied argument was: [${JSON.stringify(
       variable
