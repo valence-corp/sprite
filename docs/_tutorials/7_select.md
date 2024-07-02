@@ -15,12 +15,12 @@ This tutorial will cover all three of these methods.
 #### Overview
 
 1. [Prerequisites](#prerequisites)
-2. [Instantiating SpriteDatabase](#instantiating)
-3. [SpriteDatabase.query](#query)
-4. [selectOne](#selectOne)
-5. [selectFrom](#why)
+2. [Instantiating SpriteDatabase](#instantiating-spritedatabase)
+3. [SpriteDatabase.query](#spritedatabasequery)
+5. [selectFrom](#spritedatabaseselectfrom)
+4. [selectOne](#spritedatabaseselectone)
 6. [Conclusion](#conclusion)
-7. [What is next](#next)
+7. [What is next](#what-is-next)
 
 #### Prerequisites
 
@@ -190,7 +190,7 @@ The `selectOne` and `selectFrom` methods are also available on the `GraphModalit
 
 ---
 
-#### What's Next?
+#### What is Next?
 
 Go build something, or review the tutorials you might have skipped over. You could look at the documentation now that you have a good understanding of how Sprite works.
 

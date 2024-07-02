@@ -13,7 +13,7 @@ We strive to ensure a positive and productive community experience. We are dedic
   - Minimize unstructured criticism; instead, propose documented solutions with code and benchmarks to support your ideas.
   - Focus on providing constructive feedback that is specific, objective, and actionable.
 
-## Harassment Policy
+## Harassment Will Not Be Tolerated
 
   - We have zero tolerance for harassment, including behavior that excludes or discriminates against socially marginalized groups.
   - Harassment is defined in accordance with the Citizen Code of Conduct.
