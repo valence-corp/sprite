@@ -44,23 +44,23 @@ describe('SpriteServer.createDatabase()', () => {
   it('should throw an error if no "databaseName" is supplied', async () => {
     // Act
     // @ts-expect-error - Testing error handling for no arguments in createDatabase
-    await expect(client.createDatabase()).rejects.toMatchSnapshot();
+    expect(() => client.createDatabase()).rejects.toMatchSnapshot();
   });
 
   it('should throw an error if "databaseName" is an empty string', async () => {
     // Act
-    await expect(client.createDatabase('')).rejects.toMatchSnapshot();
+    expect(() => client.createDatabase('')).rejects.toMatchSnapshot();
   });
 
   it('should throw an error if "databaseName" is a string containing only whitespace', async () => {
     // Act
-    await expect(client.createDatabase('   ')).rejects.toMatchSnapshot();
+    expect(() => client.createDatabase('   ')).rejects.toMatchSnapshot();
   });
 
   it('should throw an error if supplied "databaseName" is a number', async () => {
     // Act
     // @ts-expect-error - Testing error handling for a number argument in createDatabase
-    await expect(client.createDatabase(9)).rejects.toMatchSnapshot();
+    expect(() => client.createDatabase(9)).rejects.toMatchSnapshot();
   });
 
   it('should throw an error if fetch returns a non "ok" result property in the response object', () => {
