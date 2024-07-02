@@ -8,12 +8,12 @@ describe('sql > nodes > select > from > timeout', () => {
     const input: number = 1;
     const result = timeout(input);
 
-    expect(result).toBe(input);
+    expect(result).toBe(`TIMEOUT ${input}`);
   });
   it('it should handle different inputs', () => {
     const input: number = 2;
     const result = timeout(input);
 
-    expect(result).toBe(input);
+    expect(result).toBe(`TIMEOUT ${input}`);
   });
 });
