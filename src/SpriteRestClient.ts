@@ -135,25 +135,14 @@ class SpriteRestClient {
   /**
    * Issue a command to the server.
    * @param {string} command The command to perform on the server.
-   * @param {object} parameters Parameters for the issued command.
    * @returns {ArcadeCommandResponse} The response from the server
    * @throws If the command could not be executed
    */
-  serverCommand = async <T>(
-    command: string,
-    parameters?: string | object
-  ): Promise<T> => {
+  serverCommand = async <T>(command: string): Promise<T> => {
     try {
-      const parametersString = parameters
-        ? typeof parameters === 'object'
-          ? ` ${JSON.stringify(parameters)}`
-          : ` ${parameters}`
-        : '';
-
       const body = JSON.stringify({
-        command: `${command}${parametersString}`
+        command
       });
-
       return await this.fetchJson<T>(endpoints.command, {
         method: 'POST',
         body

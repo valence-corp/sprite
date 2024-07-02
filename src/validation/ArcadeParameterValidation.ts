@@ -3,7 +3,7 @@ class ArcadeParameterValidation {
     /^(?!@rid$|@type$|@cat$|@in$|@out$)[a-zA-Z_$][a-zA-Z0-9_$]*$/;
   private RID_REGEX = '';
   constructor() {}
-  bucketName = (variable: unknown) => {
+  bucketName = (variable: unknown): boolean => {
     if (
       typeof variable === 'string' &&
       this.SIMPLE_REGEX.test(variable as string)
@@ -11,7 +11,7 @@ class ArcadeParameterValidation {
       return true;
     }
     if (Array.isArray(variable)) {
-      return true;
+      return variable.every((item: string) => this.bucketName(item));
     }
     throw new TypeError(
       `The supplied argument could not be validated as a properly formatted bucket name for ArcadeDB. ${this.getVariableDescription(

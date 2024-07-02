@@ -12,6 +12,7 @@
     "docs:json": "typedoc ./src/api.ts --json ./docs/_data/docs.json ",
     "docs:site": "ts-node ./src/dev/*",
     "test": "pnpm test:unit && pnpm test:integration",
+    "test:all": "jest ./test/ --coverage",
     "test:unit": "jest ./test/unit/",
     "test:nodes": "jest ./test/unit/database/dialect/nodes/common",
     "test:integration": "jest ./test/integration",
