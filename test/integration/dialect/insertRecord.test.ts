@@ -51,7 +51,7 @@ describe('SqlDialect.insertRecord()', () => {
     expect(doc.aProperty).toBe(data.aProperty);
   });
 
-  it(`should propagate errors from the database`, async () => {
+  it(`should propagate errors from from the database`, async () => {
     /* Arange */
     const trx = await db.newTransaction();
 
