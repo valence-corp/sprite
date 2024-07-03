@@ -35,9 +35,9 @@ class ModalityBase<S> {
    * Helps to manage a transaction, by automatically invoking `newTransation`,
    * and passing the returned `SpriteTransaction` to a callback as an argument,
    * to be passed to non-idempotent databases operations.
-   * @param {SpriteTransactionCallback} callback
-   * @param {ArcadeTransactionIsolationLevel} isolationLevel
-   * @returns {void} void
+   * @param callback
+   * @param isolationLevel
+   * @returns void
    * @example
    *
    * const database = new SpriteDatabase({
@@ -93,8 +93,8 @@ class ModalityBase<S> {
    * Delete records of a certain type, target specific records
    * using the `where` property of the options argument.
    * @param typeName The typename of the record to delete.
-   * @param {ISpriteDeleteFromOptions} options The options to configure the deleteFrom command.
-   * @returns {number} The count of the records deleted.
+   * @param options The options to configure the deleteFrom command.
+   * @returns The count of the records deleted.
    * @throws If the records could not be deleted.
    * @example
    *
@@ -180,9 +180,9 @@ class ModalityBase<S> {
     this._sql.deleteOne(rid, transaction);
   /**
    * Update one record in the database, by providing an RID.
-   * @param {string} rid The RID of the record to update.
-   * @param {object} data The data to replace within the record.
-   * @param {SpriteTransaction} transaction The transaction to conduct the update operation within
+   * @param rid The RID of the record to update.
+   * @param data The data to replace within the record.
+   * @param transaction The transaction to conduct the update operation within
    * @example
    *
    * const database = new SpriteDatabase({
@@ -232,7 +232,7 @@ class ModalityBase<S> {
   /**
    * Select a specific record by providing the `rid`
    * @param rid The RID of the record to select.
-   * @returns {ArcadeRecord | ArcadeEdgeRecord} The ArcadeDB record (if it was found).
+   * @returns The ArcadeDB record (if it was found).
    * @throws If the record was not found.
    * @example
    *

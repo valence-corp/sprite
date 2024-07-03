@@ -47,7 +47,7 @@ class SpriteServer {
   /**
    * Returns a `boolean` value indicating if the ArcadeDB server is ready.\
    * Useful for remote monitoring of server readiness.
-   * @returns {Promise<boolean>} `true` if the server is ready, otherwise `false`.
+   * @returns `true` if the server is ready, otherwise `false`.
    * @example
    *
    * const client = new SpriteServer({
@@ -87,8 +87,8 @@ class SpriteServer {
    * 2. Releases it from RAM: The database instance is removed from the server's RAM, which means that the database's metadata, schema, and cached data are no longer stored in memory. This helps to reduce memory usage.
    * 3. Prevents further operations: Once the database is closed, users can no longer perform operations on the database, such as executing queries, creating new records, or modifying existing data. The database is effectively "offline" until it's reopened.
    *
-   * @param {string} databaseName The name of the database to close.
-   * @returns {Promise<boolean>} The response from the server.
+   * @param databaseName The name of the database to close.
+   * @returns The response from the server.
    * @example
    *
    * const server = new SpriteServer({
@@ -129,8 +129,8 @@ class SpriteServer {
    * 4. Connect to the underlying storage: The database instance establishes a connection to the underlying storage, such as disk storage, to access the database files.
    * 5. Make the database available for operations: The database is now available for users to perform operations, such as executing queries, creating new records, or modifying existing data.
    *
-   * @param {string} databaseName The name of the database to open.
-   * @returns {Promise<boolean>} The response from the server.
+   * @param databaseName The name of the database to open.
+   * @returns The response from the server.
    * @example
    *
    * const server = new SpriteServer({
@@ -164,8 +164,8 @@ class SpriteServer {
   /**
    * Returns an `SpriteDatabase` instance for the supplied `databaseName`,
    * using the authorization details of the `SpriteServer` instance.
-   * @param {string} databaseName The name of the database to create a client for.
-   * @returns {SpriteDatabase} An instance of `SpriteDatabase`.
+   * @param databaseName The name of the database to create a client for.
+   * @returns An instance of `SpriteDatabase`.
    * @example
    *
    * const server = new SpriteServer({
@@ -194,9 +194,9 @@ class SpriteServer {
    *
    * This method provides a way to execute arbitrary commands on the server, such as creating databases, executing queries, or performing administrative tasks.
    *
-   * @param {string} command The command to send to the server, such as `CREATE DATABASE aDatabase`. The command string should be a valid ArcadeDB command, and it's case-sensitive.
-   * @returns {Promise<T>} The response from the server, simplified from the raw JSON response. The response object will contain the `result` property, which can be a boolean value (e.g., `OK`), a string, or an object. Other properties may include `user`, `version`, and `serverName`.
-   * @throws {Error} If the command fails to execute, an error will be thrown with a message describing the problem. The error object will contain a `cause` property with the underlying error.
+   * @param command The command to send to the server, such as `CREATE DATABASE aDatabase`. The command string should be a valid ArcadeDB command, and it's case-sensitive.
+   * @returns The response from the server, simplified from the raw JSON response. The response object will contain the `result` property, which can be a boolean value (e.g., `OK`), a string, or an object. Other properties may include `user`, `version`, and `serverName`.
+   * @throws If the command fails to execute, an error will be thrown with a message describing the problem. The error object will contain a `cause` property with the underlying error.
    *
    * @example
    *
@@ -249,8 +249,8 @@ class SpriteServer {
    * Internal method for sending commands to the server in which a JSON response
    * containing an `ok` value in the `result` property is expected. `ok` is then
    * returned as a simple boolean (`true`) value
-   * @param {string} command The [command](https://docs.arcadedb.com/#HTTP-ServerCommand) to send to the server, such as `CREATE DATABASE`.
-   * @returns {boolean} `true` if the command was successful.
+   * @param command The [command](https://docs.arcadedb.com/#HTTP-ServerCommand) to send to the server, such as `CREATE DATABASE`.
+   * @returns `true` if the command was successful.
    * @example
    *
    * async function booleanCommandExample(databaseName: string) {
@@ -276,8 +276,8 @@ class SpriteServer {
   };
   /**
    * Connects this server to a cluster with `address`.
-   * @param {string} address The address of the cluster to connect (i.e. 192.168.0.1)
-   * @returns {Promise<SpriteConnectClusterResponse>} The response from the server.
+   * @param address The address of the cluster to connect (i.e. 192.168.0.1)
+   * @returns The response from the server.
    * @throws `Error` if the cluster could not be connected.
    * @example
    *
@@ -312,8 +312,8 @@ class SpriteServer {
   };
   /**
    * Create a database
-   * @param {string} databaseName The name of the database to create.
-   * @returns {Promise<SpriteDatabase>} An instance of `SpriteDatabase`, targeting the created database.
+   * @param databaseName The name of the database to create.
+   * @returns An instance of `SpriteDatabase`, targeting the created database.
    * @example
    *
    * const server = new SpriteServer({
@@ -363,7 +363,7 @@ class SpriteServer {
    * @param username The `username` of the user to create.
    * @param password The `password` of the user to create.
    * @param databases An object of databases to add the user to, and their permissions (groups they belong to).
-   * @returns {Promise<boolean>} `true` if the user was created successfully.
+   * @returns `true` if the user was created successfully.
    * @throws `Error` if the user could not be created.
    * @example
    *
@@ -445,8 +445,8 @@ class SpriteServer {
   };
   /**
    * Check to see if a database exists.
-   * @param {string} databaseName The name of the database to check for existence.
-   * @returns {Promise<boolean>} `true` if database exists, `false` if not
+   * @param databaseName The name of the database to check for existence.
+   * @returns `true` if database exists, `false` if not
    * @throws `Error` if the existence of the database could not be verified.
    * @example
    *
@@ -504,7 +504,7 @@ class SpriteServer {
   };
   /**
    * Disconnects the server from the cluster.
-   * @returns {Promise<SpriteDisconnectClusterResponse>} The response from the server.
+   * @returns The response from the server.
    * @throws `Error` if the cluster could not be disconnected.
    * @example
    *
@@ -539,8 +539,8 @@ class SpriteServer {
   };
   /**
    * Drop a database
-   * @param {string} databaseName The name of the database to drop.
-   * @returns {Promise<boolean>} `true` if successfully dropped.
+   * @param databaseName The name of the database to drop.
+   * @returns `true` if successfully dropped.
    * @throws `Error` if the database could not be dropped.
    * @example
    *
@@ -574,8 +574,8 @@ class SpriteServer {
   };
   /**
    * Drop a user from the ArcadeDB server.
-   * @param {string} username The `username` of the user to drop from the ArcadeDB server.
-   * @returns {Promise<SpriteDropUserResult>} `true` if the user was successfully dropped.
+   * @param username The `username` of the user to drop from the ArcadeDB server.
+   * @returns `true` if the user was successfully dropped.
    * @throws `Error` if the user could not be dropped.
    * @example
    *
@@ -609,7 +609,7 @@ class SpriteServer {
    * Retrieves a list of server events, optionally a filename of the form
    * `server-event-log-yyyymmdd-HHMMSS.INDEX.jsonl` (where INDEX is a integer, i.e. 0)
    * can be given to retrieve older event logs.
-   * @returns {Promise<SpriteGetServerEventsResult>} An object containing he server events from the server, and filenames of the associated logs.
+   * @returns An object containing he server events from the server, and filenames of the associated logs.
    * @throws `Error` if there was a problem fetching the event logs.
    * @example
    *
@@ -659,11 +659,11 @@ class SpriteServer {
   };
   /**
    * Returns the current configuration.
-   * @param {ArcadeServerInformationLevel} mode The level of informatio detail to return.
+   * @param mode The level of informatio detail to return.
    * * `basic` returns minimal server information
    * * `default` returns full server configuration (default value when no parameter is given)
    * * `cluster` returns the cluster layout
-   * @returns {Promise<Response>} The response from the server.
+   * @returns The response from the server.
    * @throws `Error` if the information could not be retrieved.
    * @example
    *

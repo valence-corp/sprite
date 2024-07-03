@@ -6,8 +6,8 @@ export interface ArcadeFetchErrorDescription {
 /**
  * The error thrown when the fetch() method of the Sprite class encounters an error.
  * @class
- * @param {ArcadeFetchErrorDescription} description A detailed error message to display.
- * @param {Response} response The response from the fetch() method.
+ * @param description A detailed error message to display.
+ * @param response The response from the fetch() method.
  * @extends Error
  * @example
  * const response = await sprite.fetch();

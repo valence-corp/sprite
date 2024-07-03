@@ -23,7 +23,7 @@ import { SqlDialect } from './dialects/SqlDialect.js';
 /**
  * Interact with a database, perform queries, issue commands to manage
  * records, types, and settings.
- * @param {ISpriteDatabaseConnectionParameters} parameters The fields necessary to perform operations on a specific database.
+ * @param parameters The fields necessary to perform operations on a specific database.
  * @returns an instance of SpriteDatabase
  * @example
  *
@@ -124,7 +124,7 @@ class SpriteDatabase {
   };
   /**
    * Returns a modality for working with graph records within the database.
-   * @returns {GraphModality} A database graph modality.
+   * @returns A database graph modality.
    */
   graphModality = <V, E>(): GraphModality<
     AsArcadeVertices<V>,
@@ -245,8 +245,8 @@ class SpriteDatabase {
   /**
    * Returns information about query execution planning of a specific statement,
    * without executing the statement itself.
-   * @param {string} sql The SQL command to explain.
-   * @returns {string} The explanation of the command.
+   * @param sql The SQL command to explain.
+   * @returns The explanation of the command.
    * @example
    *
    * const db = new SpriteDatabase({
@@ -476,8 +476,8 @@ class SpriteDatabase {
   };
   /**
    * Begins a transaction on the server, managed as a session.
-   * @param {ArcadeTransactionIsolationLevel} isolationLevel The isolation level for the transaction, defaults to `READ_COMMITED`.
-   * @returns {SpriteTransaction} An instance of a SpriteTransaction to be passed to methods that require it an argument.
+   * @param isolationLevel The isolation level for the transaction, defaults to `READ_COMMITED`.
+   * @returns An instance of a SpriteTransaction to be passed to methods that require it an argument.
    * @example
    *
    * async function newTransactionExample() {
@@ -547,8 +547,8 @@ class SpriteDatabase {
    * Provide the id obtained from the transaction returned from invoking
    * `SpriteDatabase.newTransaction()`.
    * @note You can use the `SpriteTransaction.commit()` method directly.
-   * @param {string} transactionId The ID of the transaction to commit.
-   * @returns {Promise<boolean>} Promise that resolves to boolean `true` if successful, and `false` otherwise.
+   * @param transactionId The ID of the transaction to commit.
+   * @returns Promise that resolves to boolean `true` if successful, and `false` otherwise.
    * @throws Error if it cannot commit the transaction.
    * @example
    * async function commitTransactionExample() {
@@ -597,8 +597,8 @@ class SpriteDatabase {
   };
   /**
    * Rolls back a transaction on the server. Provide the session id obtained with the `SpriteDatabase.newTransaction()` method.
-   * @param {string} transactionId The ID of the transaction to commit.
-   * @returns {Promise<boolean>} The response from the server.
+   * @param transactionId The ID of the transaction to commit.
+   * @returns The response from the server.
    * @example
    * async function rollbackTransactionExample() {
    *   try {
@@ -650,12 +650,12 @@ class SpriteDatabase {
    * to be passed to non-idempotent databases operations in the callback scope.
    * `SpriteTransaction.commit()` is called automatically after the callback
    * is executed.
-   * @param {SpriteTransactionCallback} callback
-   * @param {ArcadeTransactionIsolationLevel} isolationLevel
+   * @param callback
+   * @param isolationLevel
    * @see
    * {@link SpriteDatabase.newTransaction | SpriteDatabase.newTransaction()} \
    * {@link SpriteTransaction.commit | SpriteTransaction.commit()}
-   * @returns {void} void
+   * @returns void
    * @example
    *
    * const db = new SpriteDatabase({

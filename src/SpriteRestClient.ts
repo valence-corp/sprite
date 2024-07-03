@@ -16,8 +16,8 @@ class SpriteRestClient {
   }
   /**
    * Formats the connection parameters into a configuration object that can be used to interact with the ArcadeDB server.
-   * @param {ISpriteClientConnectionParameters} params The username, password, and address of the database.
-   * @returns {ISpriteConnection} The configuration necessary to have REST interactions with the ArcadeDB server.
+   * @param params The username, password, and address of the database.
+   * @returns The configuration necessary to have REST interactions with the ArcadeDB server.
    * @throws `Error` if valid parameter types are not received, or something else causes an error when building the object.
    */
   getConnection = (
@@ -48,7 +48,7 @@ class SpriteRestClient {
    * warnings.
    * @param username The string username to encode.
    * @param password The string password to encode.
-   * @returns {string} The base64 encoded credentials.
+   * @returns The base64 encoded credentials.
    * @example
    * const encoded = await this.encodeCredentials("root", "password");
    * console.log(encoded);
@@ -79,9 +79,9 @@ class SpriteRestClient {
    * the server address and the `Authorization` header to the request.\
    * It also handles the response from the server, throwing an error if the server returns
    * a non-200 status code.
-   * @param {string} endpoint - The relative path to the endpoint (i.e. /api/v1/ready)
-   * @param {RequestInit} {options} The request options for the fetch api.
-   * @returns {Promise<Response>}
+   * @param endpoint The relative path to the endpoint (i.e. /api/v1/ready)
+   * @param options The request options for the fetch api.
+   * @returns The fetch response
    */
   fetch = async (
     endpoint: string,
@@ -111,8 +111,8 @@ class SpriteRestClient {
    * of the response object from ArcadeDB, but may also throw an `Error` depending on the
    * outcome of the database operation.
    * @param endpoint
-   * @param {RequestInit} requestParameters
-   * @returns {Promise<T>}
+   * @param requestParameters
+   * @returns The response from the server, typically the `result` property of the response.
    * @example
    * const response = await sprite.arcadeJson<boolean>(endpoint, parameters);
    * console.log(response);
@@ -134,8 +134,8 @@ class SpriteRestClient {
   };
   /**
    * Issue a command to the server.
-   * @param {string} command The command to perform on the server.
-   * @returns {ArcadeCommandResponse} The response from the server
+   * @param command The command to perform on the server.
+   * @returns The response from the server
    * @throws If the command could not be executed
    */
   serverCommand = async <T>(command: string): Promise<T> => {

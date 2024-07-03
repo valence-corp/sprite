@@ -64,8 +64,8 @@ class SelectFrom<S, N extends TypeNames<S>, P extends keyof WithRid<S, N>> {
   };
   /**
    * Designates the field with which to order the result-set.
-   * @param {string} field The field to order the result-set by.
-   * @param {ArcadeResultSortDirection} direction Defines the direction to sort the result (ASCending or DESCending).
+   * @param field The field to order the result-set by.
+   * @param direction Defines the direction to sort the result (ASCending or DESCending).
    */
   orderBy = (field: keyof S[N], direction: ArcadeResultSortDirection) => {
     this.options = {
@@ -81,7 +81,7 @@ class SelectFrom<S, N extends TypeNames<S>, P extends keyof WithRid<S, N>> {
    * Defines the number of records you want to skip from the start of the result-set.
    * You mayfind this useful in Pagination, when using it in conjunction with the
    * limit `option`.
-   * @param {number} numberOfRecords The number of records to skip
+   * @param numberOfRecords The number of records to skip
    * @returns
    */
   skip = (numberOfRecords: number) => {
@@ -94,7 +94,7 @@ class SelectFrom<S, N extends TypeNames<S>, P extends keyof WithRid<S, N>> {
   /**
    * Defines the maximum number of records in the result-set. You may find this useful in
    * Pagination, when using it in conjunction with the `skip` option.
-   * @param {number} numberOfRecords The number of records to limit the query to.
+   * @param numberOfRecords The number of records to limit the query to.
    */
   limit = (numberOfRecords: number) => {
     this.options = {
@@ -106,8 +106,8 @@ class SelectFrom<S, N extends TypeNames<S>, P extends keyof WithRid<S, N>> {
   /**
    * Defines the maximum time in milliseconds for the query, and optionally the
    * exception strategy to use.
-   * @param {number} timeout The duration of the timeout in milliseconds.
-   * @param {ArcadeSelectTimeoutStrategy} strategy The timeout strategy to use. `RETURN` Truncates the result-set, returning the data collected up to the timeout. `EXCEPTION` Raises an exception.
+   * @param timeout The duration of the timeout in milliseconds.
+   * @param strategy The timeout strategy to use. `RETURN` Truncates the result-set, returning the data collected up to the timeout. `EXCEPTION` Raises an exception.
    */
   timeout = (duration: number, strategy?: ArcadeSelectTimeoutStrategy) => {
     this.options = {

@@ -16,8 +16,8 @@ import { SqlDialect } from '../dialects/SqlDialect.js';
 /**
  * A window to a specific graph set.
  * Mandatory type parameters for the graph elements to target.
- * @param {SpriteDatabase} client The instance of SpriteDatabase to target
- * @param {SpriteOperations} operators The operators instance to use
+ * @param client The instance of SpriteDatabase to target
+ * @param operators The operators instance to use
  */
 class GraphModality<V, E> extends ModalityBase<V & E> {
   constructor(client: SpriteDatabase, dialect: SqlDialect) {
@@ -25,9 +25,9 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
   }
   /**
    * Insert a new vertex into the database.
-   * @param {string} type The type of vertex to create. It must be a type that currently exists in the schema
-   * @param {ISpriteInsertRecordOptions} options The options for the vertex insertion.
-   * @returns {SpriteRecord} The record that is created in the database.
+   * @param type The type of vertex to create. It must be a type that currently exists in the schema
+   * @param options The options for the vertex insertion.
+   * @returns The record that is created in the database.
    * @see createVertexType()
    * @see transaction()
    * @example
@@ -76,13 +76,13 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
   ) => this._sql.insertRecord<V, N>(typeName, transaction, options);
   /**
    * Insert a new edge into the database.
-   * @param {string} type The type of edge to create. It must be a type that currently exists in the schema.
-   * @param {SpriteEdgeVertexDescriptor} to The vertex to which to create the edge.
-   * @param {SpriteEdgeVertexDescriptor} from The vertex from which to create the edge.
+   * @param type The type of edge to create. It must be a type that currently exists in the schema.
+   * @param to The vertex to which to create the edge.
+   * @param from The vertex from which to create the edge.
+   * @param options The options for the edge insertion.
+   * @returns The record that is created in the database.
    * @see createEdgeType()
    * @see transaction()
-   * @param {ISpriteInsertRecordOptions} options The options for the edge insertion.
-   * @returns {SpriteRecord} The record that is created in the database.
    * @example
    *
    * const db = new SpriteDatabase({
@@ -144,8 +144,8 @@ class GraphModality<V, E> extends ModalityBase<V & E> {
     );
   /**
    * Create a new edge type.
-   * @param {TypeInRecordCategory} typeName The name of the type to create.
-   * @param {ISpriteCreateTypeOptions} options Options to create the type with.
+   * @param typeName The name of the type to create.
+   * @param options Options to create the type with.
    * @returns {SpriteType} an instance of SpriteType.
    * @throws `Error` if the type could not be created.
    * @example

@@ -6,7 +6,7 @@ export interface ISpriteCommandOptions {
  * Used in building SQL commands for use in the `SpriteOperations` class.
  * Contains the string command, and methods for appending strings to
  * the command as directed by the SQL nodes within the operators.
- * @param {ISpriteCommandOptions} options Options for initializing the command
+ * @param options Options for initializing the command
  */
 export class SpriteCommand {
   private _command: string;

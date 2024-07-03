@@ -11,8 +11,8 @@ import { SqlDialect } from '../dialects/SqlDialect.js';
 /**
  * Handles the operations related to document records in the database.
  * It wraps the methods of the SpriteOperations class with types.
- * @param {SpriteDatabase} client The instance of Database to target
- * @param {SpriteOperations} operators The operators instance to use
+ * @param client The instance of Database to target
+ * @param operators The operators instance to use
  */
 class DocumentModality<S> extends ModalityBase<S> {
   constructor(client: SpriteDatabase, dialect: SqlDialect) {
@@ -20,9 +20,9 @@ class DocumentModality<S> extends ModalityBase<S> {
   }
   /**
    * Insert a new document into the database.
-   * @param {string} type The type of document to create. It must be a type that currently exists in the schema.
-   * @param {ISpriteInsertRecordOptions} options The options for the document insertion.
-   * @returns {SpriteRecord} The record that is created in the database.
+   * @param type The type of document to create. It must be a type that currently exists in the schema.
+   * @param options The options for the document insertion.
+   * @returns The record that is created in the database.
    * @see createType
    * @example
    *
@@ -64,9 +64,9 @@ class DocumentModality<S> extends ModalityBase<S> {
   ) => this._sql.insertRecord<S, N>(typeName, transaction, options);
   /**
    * Create a new document type in the schema.
-   * @param {TypeInRecordCategory} typeName The name of the type to create.
-   * @param {ISpriteCreateTypeOptions} options Options to create the type with.
-   * @returns {SpriteType} an instance of SpriteType.
+   * @param typeName The name of the type to create.
+   * @param options Options to create the type with.
+   * @returns an instance of SpriteType.
    * @throws `Error` if the type could not be created.
    * @note non-idempotent commands (such a creating types) must be issued as part of a transaction
    * @example

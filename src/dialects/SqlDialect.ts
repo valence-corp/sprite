@@ -44,11 +44,11 @@ class SqlDialect {
   }
   /**
    * Create a type in the database.
-   * @param {string} typeName The name of the type to create
-   * @param {ArcadeRecordType} recordType The type of record to create (`document`, `edge`, or `vertex`)
-   * @param {SpriteTransaction} transaction
-   * @param {ISpriteCreateTypeOptions} options
-   * @returns {SpriteType} an instance of SpriteType for the created type.
+   * @param typeName The name of the type to create
+   * @param recordType The type of record to create (`document`, `edge`, or `vertex`)
+   * @param transaction
+   * @param options
+   * @returns an instance of SpriteType for the created type.
    */
   createType = async <S, N extends TypeNames<S>>(
     typeName: N,
@@ -137,12 +137,12 @@ class SqlDialect {
   /**
    * Create a new edge, of a specified type, in the database.
    * @note The type must be created before a record can be created.
-   * @param {string} type The type of edge to create.
-   * @param {SpriteEdgeVertexDescriptor} from The starting vertex of the edge. It can be either the rid of the vertex (`@44:9`), or an index described by an object (`{type: 'user', key: 'name', value: 'Jeremiah'}`).
-   * @param {SpriteEdgeVertexDescriptor} to The starting vertex of the edge. It can be either the rid of the vertex (`@44:9`), or an index described by an object (`{type: 'car', key: 'color', value: 'yellow'}`).
-   * @param {SpriteTransaction} transaction The transaction to create the edge within.
-   * @param {ISpriteEdgeOptions} options The options to create the edge with
-   * @return {ArcadeEdgeRecord} The record that is created in the database.
+   * @param type The type of edge to create.
+   * @param from The starting vertex of the edge. It can be either the rid of the vertex (`@44:9`), or an index described by an object (`{type: 'user', key: 'name', value: 'Jeremiah'}`).
+   * @param to The starting vertex of the edge. It can be either the rid of the vertex (`@44:9`), or an index described by an object (`{type: 'car', key: 'color', value: 'yellow'}`).
+   * @param transaction The transaction to create the edge within.
+   * @param options The options to create the edge with
+   * @return The record that is created in the database.
    */
   createEdge = async <
     E,
@@ -244,10 +244,10 @@ class SqlDialect {
   /**
    * Insert a new record, of a specified type, in the database. This can be used to create both document, and vertex records.
    * @note The type must be created before a record can be created.
-   * @param {string} typeName The type of the record to create.
-   * @param {SpriteTransaction} transaction The transaction to create the record within.
-   * @param {ISpriteInsertRecordOptions} options The options to insert the record with.
-   * @return {ArcadeRecord} The record that is created in the database.
+   * @param typeName The type of the record to create.
+   * @param transaction The transaction to create the record within.
+   * @param options The options to insert the record with.
+   * @return The record that is created in the database.
    */
   insertRecord = async <S, N extends TypeNames<S>>(
     typeName: N,
@@ -288,8 +288,8 @@ class SqlDialect {
    * Removes an existing type from the schema. Does not remove the property values
    * in the records, it just changes the schema information (existing records
    * keep their existing property values).
-   * @param {string} typeName The name of the type to drop.
-   * @param {ISpriteDropTypeOptions} options The options to perform to drop the type with.
+   * @param typeName The name of the type to drop.
+   * @param options The options to perform to drop the type with.
    * @returns `true` if the type was successfully dropped.
    * @throws `Error` if the type could not be dropped.
    */
@@ -331,8 +331,8 @@ class SqlDialect {
   };
   /**
    * Perform a `DELETE FROM` sql command by providing a typename and options.
-   * @param {string} typeName The name of the type to generate a `DELETE FROM` command for.
-   * @param {ISpriteDeleteFromOptions} options The options to perform the command with
+   * @param typeName The name of the type to generate a `DELETE FROM` command for.
+   * @param options The options to perform the command with
    * @returns An array containing the results of the query.
    */
   deleteFrom = async <S, N extends TypeNames<S>, P extends keyof WithRid<S, N>>(
@@ -410,8 +410,8 @@ class SqlDialect {
     await this.database.query<T>('sql', command);
   /**
    * Perform a `SELECT FROM` sql query by providing a typename and options.
-   * @param {string} typeName The name of the type to generate a `SELECT FROM` query for.
-   * @param {ISpriteSelectFromOptions} options The options to perform the query with
+   * @param typeName The name of the type to generate a `SELECT FROM` query for.
+   * @param options The options to perform the query with
    * @returns An array containing the results of the query.
    */
   selectFrom = async <S, N extends TypeNames<S>, P extends keyof WithRid<S, N>>(
@@ -482,8 +482,8 @@ class SqlDialect {
   };
   /**
    * Select a record by providing the unique `@rid`.
-   * @param {string} rid The rid of the record.
-   * @returns {SpriteDocument | SpriteEdge | SpriteVertex } The record, if found.
+   * @param rid The rid of the record.
+   * @returns The record, if found.
    * @throws If the record could not be found.
    */
   selectOne = async <S, N extends TypeNames<S>>(rid: string): Promise<S[N]> => {
@@ -500,8 +500,8 @@ class SqlDialect {
   /**
    * Delete a record by providing the `rid`
    * @param rid The RID of the record to delete.
-   * @param {SpriteTransaction} transaction The transaction to conduct the operation within.
-   * @returns {boolean} `true` if the record was deleted.
+   * @param transaction The transaction to conduct the operation within.
+   * @returns `true` if the record was deleted.
    * @throws If the record was not deleted.
    */
   deleteOne = async (
@@ -533,9 +533,9 @@ class SqlDialect {
   };
   /**
    * Update a record by providing the `@rid`.
-   * @param {string} rid The RID of the record to update.
-   * @param {object} data The data to update the record with.
-   * @returns {boolean} `true` if the record was updated.
+   * @param rid The RID of the record to update.
+   * @param data The data to update the record with.
+   * @returns `true` if the record was updated.
    * @throws If the record was not updated.
    */
   updateOne = async <S, N extends TypeNames<S>>(
